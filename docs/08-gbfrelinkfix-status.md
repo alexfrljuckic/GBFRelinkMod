@@ -93,15 +93,29 @@ compiled in. Working branch `ragnarok-2.0-fixes` in the (gitignored) clone; the 
 fix is exported as [0001-press-any-key-2.0-fix.patch](0001-press-any-key-2.0-fix.patch)
 for sending upstream.
 
+## LIVE-VERIFIED ✅ (2026-07-09) — the crash is fixed
+
+Deployed Ultimate ASI Loader 9.7.2 as `winmm.dll` (game imports `WINMM.dll`) +
+`scripts\GBFRelinkFix.asi` (our build) + `scripts\GBFRelinkFix.ini`, and launched the
+2.0 game (Steam appid **881020**). **The game boots and runs stably** — no more
+black-screen-back-to-Steam. Log evidence (`GBFRelinkFix.log`):
+
+```
+Press Any Key: Address is granblue_fantasy_relink.exe+29ffddf   <- OUR FIX resolved
+Intro Logos / Current Resolution / Gameplay Camera FOV/Distance / Cutscene FOV / HUD: Scale — all resolved
+HUD: Markers: Pattern scan failed.  <- predicted miss; logged + skipped gracefully, no crash
+```
+
+So on 2.0 the ragnarok branch + the Press-Any-Key signature repair = a **working fix**.
+The one remaining miss (`HUD: Markers`) fails safe — `FindPattern` returns null and that
+hook is skipped, it does not crash. (Test ran with `Custom Resolution` disabled to keep
+the ambiguous `Resolution List` hook out of the first boot.)
+
 ## Remaining work items
 
-1. **Live-verify** the 13 matching hooks actually behave. The `.asi` builds but only a
-   real run proves the hooks. To test: deploy an ASI loader
-   ([Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) as
-   `dinput8.dll`/`version.dll`) + `GBFRelinkFix.asi` + `GBFRelinkFix.ini` into the game
-   folder, then launch. **This modifies the game install and risks a crash — do it as a
-   deliberate manual step**, keeping the uninstall path handy (delete the loader DLL +
-   `.asi`). Left for Alex / a future session rather than done silently.
+1. ~~Live-verify the matching hooks~~ — DONE, see above. Still worth a pass with
+   `Custom Resolution = true` to exercise the `Resolution List` hook (4-match ambiguity)
+   on a real ultrawide display.
 2. **Disambiguate `Resolution List`** (4 matches — inspect which site the demo build's
    unique match corresponds to, or lengthen the sig).
 3. **Finish `HUD: Markers`** via x64dbg at `0x2656fa4`-equivalent RVA.

@@ -6,3 +6,4 @@ extracted/
 *.7z
 vendor/
 *.asi
+save-backups/

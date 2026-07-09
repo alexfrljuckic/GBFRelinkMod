@@ -1,0 +1,36 @@
+[2026-07-09 15:58:05] [Info] ----------
+[2026-07-09 15:58:05] [Info] GBFRelinkFix v1.1.2
+[2026-07-09 15:58:05] [Info] Build Date: Jul  9 2026 15:40:04
+[2026-07-09 15:58:05] [Info] ----------
+[2026-07-09 15:58:05] [Info] Log File: D:\Steam\steamapps\common\Granblue Fantasy Relink\GBFRelinkFix.log
+[2026-07-09 15:58:05] [Info] ----------
+[2026-07-09 15:58:05] [Info] Module Name: granblue_fantasy_relink.exe
+[2026-07-09 15:58:05] [Info] Module Path: D:\Steam\steamapps\common\Granblue Fantasy Relink\
+[2026-07-09 15:58:05] [Info] Module Address: 0x7ff760000000
+[2026-07-09 15:58:05] [Info] Module Timestamp: 1782470458
+[2026-07-09 15:58:05] [Info] ----------
+[2026-07-09 15:58:05] [Info] Config File: D:\Steam\steamapps\common\Granblue Fantasy Relink\scripts\GBFRelinkFix.ini
+[2026-07-09 15:58:05] [Info] Config Parse: [Intro Skip]: Enabled = true
+[2026-07-09 15:58:05] [Info] Config Parse: [Custom Resolution]: Enabled = false
+[2026-07-09 15:58:05] [Info] Config Parse: [Custom Resolution]: Width = 0
+[2026-07-09 15:58:05] [Info] Config Parse: [Custom Resolution]: Height = 0
+[2026-07-09 15:58:05] [Info] Config Parse: [Gameplay Camera]: FOV = 1
+[2026-07-09 15:58:05] [Info] Config Parse: [Gameplay Camera]: Distance = 1
+[2026-07-09 15:58:05] [Info] Config Parse: [Fix HUD]: Enabled = true
+[2026-07-09 15:58:05] [Info] Config Parse: [Fix FOV]: Enabled = true
+[2026-07-09 15:58:05] [Info] Config Parse: [Shadow Quality]: Resolution = 2048
+[2026-07-09 15:58:05] [Info] Config Parse: [Level of Detail]: Multiplier = 1
+[2026-07-09 15:58:05] [Info] Config Parse: [Disable TAA]: Enabled = false
+[2026-07-09 15:58:05] [Info] Config Parse: [Unlock Framerate]: Enabled = false
+[2026-07-09 15:58:05] [Info] ----------
+[2026-07-09 15:58:05] [Info] Intro Logos: Address is granblue_fantasy_relink.exe+3f491b7
+[2026-07-09 15:58:05] [Info] Press Any Key: Address is granblue_fantasy_relink.exe+29ffddf
+[2026-07-09 15:58:05] [Info] Current Resolution: Address is granblue_fantasy_relink.exe+6c132e
+[2026-07-09 15:58:05] [Info] Gameplay Camera FOV/Distance: Address is granblue_fantasy_relink.exe+94e51b
+[2026-07-09 15:58:05] [Info] Cutscene FOV: Address is granblue_fantasy_relink.exe+947bfd
+[2026-07-09 15:58:05] [Info] HUD: Scale: Address is granblue_fantasy_relink.exe+15fac8
+[2026-07-09 15:58:05] [Error] HUD: Markers: Pattern scan failed. Pattern: C5 ?? 59 ?? ?? ?? ?? ?? C5 ?? 5E ?? C5 ?? D0 ?? 0F B6 ?? ?? ?? ?? ??
+[2026-07-09 15:58:07] [Info] Current Resolution: 2560x1440 | Aspect Ratio: 1.77778 (1.00000) | HUD: 2560.00x1440.00 (0.00, 0.00)
+[2026-07-09 15:58:07] [Info] ----------
+[2026-07-09 15:58:41] [Info] Current Resolution: 3840x2160 | Aspect Ratio: 1.77778 (1.00000) | HUD: 3840.00x2160.00 (0.00, 0.00)
+[2026-07-09 15:58:41] [Info] ----------
