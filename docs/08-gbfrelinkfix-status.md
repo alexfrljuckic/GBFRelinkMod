@@ -124,6 +124,15 @@ hook (the game has anti-debug, so x64dbg was out). New unique pattern, base reg 
 on 2.0**, and the HUD lays out correctly on 21:9. The ragnarok branch + our two signature
 repairs = a fully working 2.0 ultrawide fix.
 
+**UPDATE 2 — Span HUD ported + new config (2026-07-09):** added a configurable
+`[Span HUD]` feature (ported from master's `SpanAllHUD`) that pushes gameplay HUD
+elements out to the true ultrawide edges instead of a centered 16:9 band, with world
+markers excluded so they stay pinned. Full RE writeup in
+[09-hud-markers-debugging.md](09-hud-markers-debugging.md). Three fixes now stacked on the
+`ragnarok-2.0-fixes` branch (Press-Any-Key, HUD Markers, Span HUD), exported as
+[gbfrelinkfix-2.0-fixes.patch](gbfrelinkfix-2.0-fixes.patch). Menus deliberately left
+16:9-centered (master's `SpanAllBackgrounds` — known visual issues, out of scope).
+
 ## Remaining work items
 
 1. ~~Live-verify the matching hooks~~ — DONE, see above.

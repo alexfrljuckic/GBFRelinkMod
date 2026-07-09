@@ -64,3 +64,27 @@ Log now shows `HUD: Markers: Address is ...+2657b9d` (**15/15 patterns resolve**
 HUD lays out in proper proportion on 21:9 in-game. Lesson: **when a game has anti-debug,
 your own already-injected mod is the debugger** — a mid-hook can dump any register/memory
 to the log with zero detection surface.
+
+## Bonus: Span HUD ported to 2.0 (2026-07-09)
+
+The `HUD: Markers` fix corrects *world* markers, but the main HUD (party list, prompts)
+still sat in a centered 16:9 band — the mod deliberately renders it undistorted there.
+Naively rescaling the global HUD (HUD:Scale `NativeAspect → AspectRatio`) **stretched
+everything** — wrong lever.
+
+Right lever = master's `SpanAllHUD`. Master's "UI Constraints" pattern
+(`48 ?? ?? ?? ?? ?? 00 48 ?? ?? 74 ?? C5..C5..C5.. EB ??`) **still matches uniquely on
+2.0**. Same in-mod-diagnostic method dumped the element struct at `rax`:
+
+```
+[rax+0x1B4]=3840 [rax+0x1B8]=2160   reference w/h
+[rax+0x1BC]=3840 [rax+0x1C0]=2160   constraint w/h (loaded into xmm2/xmm0 at +0x1C)
+[rax+0x1CC]=0xFFFFFFFF               position-offset sentinel (unset for static HUD)
+```
+
+Hook at +0x1C: for any element with constraint `3840x2160`, override `xmm2 = 2160*aspect`
+(register-only, no struct write). **Excluded world markers** by skipping elements whose
+`rax+0x1CC` isn't the `0xFFFFFFFF` sentinel (markers use it as a live position offset).
+Wired to a `[Span HUD]` config (Enabled + AspectRatio). **Menus/backgrounds left
+16:9-centered** — that's master's `SpanAllBackgrounds` territory (flagged for visual
+issues) and deliberately out of scope.
