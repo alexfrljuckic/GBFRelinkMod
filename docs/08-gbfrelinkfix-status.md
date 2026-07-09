@@ -106,6 +106,12 @@ Intro Logos / Current Resolution / Gameplay Camera FOV/Distance / Cutscene FOV /
 HUD: Markers: Pattern scan failed.  <- predicted miss; logged + skipped gracefully, no crash
 ```
 
+**Ultrawide confirmed in-game (2026-07-09):** with `Custom Resolution = true` and the
+3440×1440 entry selected in Graphics settings, the game runs at
+`3440x1440 | Aspect Ratio: 2.38889` (21:9), HUD spanned correctly to 16:9 centered
+(2560 wide, 440px offset each side). Custom Resolution / Resolution List / Resolution
+String / Startup Aspect Ratio / both FOV hooks / HUD Scale all resolve and behave.
+
 So on 2.0 the ragnarok branch + the Press-Any-Key signature repair = a **working fix**.
 The one remaining miss (`HUD: Markers`) fails safe — `FindPattern` returns null and that
 hook is skipped, it does not crash. (Test ran with `Custom Resolution` disabled to keep
