@@ -1,0 +1,7 @@
+add_column|QuestIDMin|hex_uint
+add_column|QuestIDMax|hex_uint
+add_column|Key|hash_string
+add_column|ItemId|hash_string
+add_column|Weight|uint
+add_column|TraitLevel|uint
+add_column|Unk18|int
