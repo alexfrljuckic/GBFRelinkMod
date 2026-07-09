@@ -1,0 +1,49 @@
+From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Thu, 9 Jul 2026 15:40:42 -0400
+Subject: [PATCH] fix: repair Press Any Key signature for release 2.0 (49 8B ->
+ 49 3B)
+
+Trailing mov became cmp in the 2026-07-08 release build; new sig verified
+unique against the shipped exe. Builds clean with xmake + MSVC 2022.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ external/inipp  | 1 +
+ external/spdlog | 1 +
+ src/dllmain.cpp | 3 ++-
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+ create mode 160000 external/inipp
+ create mode 160000 external/spdlog
+
+diff --git a/external/inipp b/external/inipp
+new file mode 160000
+index 0000000..3c16688
+--- /dev/null
++++ b/external/inipp
+@@ -0,0 +1 @@
++Subproject commit 3c1668812026f1a94471b85ac5ab11ab87c43607
+diff --git a/external/spdlog b/external/spdlog
+new file mode 160000
+index 0000000..b18a234
+--- /dev/null
++++ b/external/spdlog
+@@ -0,0 +1 @@
++Subproject commit b18a234ed6af38638678a3338c0d7ed90210ae6c
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 6e3986d..6d36f9d 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -15,7 +15,8 @@ void SkipIntro()
+         }
+ 
+         // Skip title logo and press any key
+-        if (auto* PressAnyKey = Memory::FindPattern("Press Any Key", "0F 84 ?? ?? ?? ?? 4D 85 ?? 0F 84 ?? ?? ?? ?? 49 8B ?? ?? ?? ?? ?? 49 8B ?? ?? ?? ?? ??"))
++        // Release 2.0 (2026-07-08): trailing `mov` (49 8B) became `cmp` (49 3B); patched jz prefix unchanged.
++        if (auto* PressAnyKey = Memory::FindPattern("Press Any Key", "0F 84 ?? ?? ?? ?? 4D 85 ?? 0F 84 ?? ?? ?? ?? 49 8B ?? ?? ?? ?? ?? 49 3B ?? ?? ?? ?? ??"))
+             Memory::PatchBytes(PressAnyKey, "\x90\x90\x90\x90\x90\x90");
+     }
+ }
+-- 
+2.55.0.windows.2
+

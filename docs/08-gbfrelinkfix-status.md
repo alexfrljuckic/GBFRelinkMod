@@ -80,9 +80,28 @@ register/offset drift (`rsi+0x348` here) means **both the signature and the hook
 need updating**, and confirming the right xmm/struct offsets requires a debugger session
 (x64dbg) — next session's job.
 
+## Build: DONE ✅ (2026-07-09)
+
+The patched branch **compiles and links cleanly**. Toolchain installed this session:
+- **xmake 3.0.9** portable bundle → `tools/xmake/xmake.exe` (gitignored)
+- **VS 2022 Build Tools** with the VC++ x64 workload + Win11 SDK (MSVC 14.44) —
+  `xmake config -p windows -a x64 -m release --vs=2022` then `xmake build`
+- Submodules `zydis`/`safetyhook`/`mINI` initialized in the clone
+
+Output: `GBFRelinkFix.asi` — valid **PE32+ DLL, 947 KB**, with the Press-Any-Key fix
+compiled in. Working branch `ragnarok-2.0-fixes` in the (gitignored) clone; the one-line
+fix is exported as [0001-press-any-key-2.0-fix.patch](0001-press-any-key-2.0-fix.patch)
+for sending upstream.
+
 ## Remaining work items
 
-1. **Live-verify** the 13 matching hooks actually behave (build the branch, run the game).
+1. **Live-verify** the 13 matching hooks actually behave. The `.asi` builds but only a
+   real run proves the hooks. To test: deploy an ASI loader
+   ([Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) as
+   `dinput8.dll`/`version.dll`) + `GBFRelinkFix.asi` + `GBFRelinkFix.ini` into the game
+   folder, then launch. **This modifies the game install and risks a crash — do it as a
+   deliberate manual step**, keeping the uninstall path handy (delete the loader DLL +
+   `.asi`). Left for Alex / a future session rather than done silently.
 2. **Disambiguate `Resolution List`** (4 matches — inspect which site the demo build's
    unique match corresponds to, or lengthen the sig).
 3. **Finish `HUD: Markers`** via x64dbg at `0x2656fa4`-equivalent RVA.

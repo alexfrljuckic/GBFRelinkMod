@@ -5,3 +5,4 @@ extracted/
 *.zip
 *.7z
 vendor/
+*.asi
