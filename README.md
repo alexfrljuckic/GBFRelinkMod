@@ -33,7 +33,9 @@ That breakage is the opportunity: lots of in-demand mods need updating right now
 | [05-first-projects.md](docs/05-first-projects.md) | Ranked concrete entry points, anchored on updating GBFRelinkFix for 2.0 |
 | [06-toolchain-setup.md](docs/06-toolchain-setup.md) | Setup checklist — extraction stack DONE 2026-07-09 (see its setup log); Reloaded-II + dev stacks pending |
 | [07-2.0-table-compat-audit.md](docs/07-2.0-table-compat-audit.md) | **Original research**: per-table audit of what 2.0 changed — 55 of 304 tables have new layouts |
-| [08-gbfrelinkfix-status.md](docs/08-gbfrelinkfix-status.md) | **Original research**: ragnarok-branch pattern scan vs release exe — 13/15 match, Press-Any-Key sig repaired, Markers site located |
+| [08-gbfrelinkfix-status.md](docs/08-gbfrelinkfix-status.md) | **Original research**: GBFRelinkFix ported to 2.0 — crash fix + world markers + Span HUD, all live-verified |
+| [09-hud-markers-debugging.md](docs/09-hud-markers-debugging.md) | **Original research**: in-mod diagnostic method (beats anti-debug), HUD Markers + Span HUD struct RE |
+| [10-modding-opportunities.md](docs/10-modding-opportunities.md) | Alex's Reloaded-II setup + per-mod 2.0 breakage, what's moddable now, ranked opportunities |
 
 ## Link index
 
