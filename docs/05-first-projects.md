@@ -16,9 +16,12 @@ and match to a software-dev background.*
   [04-code-mods.md](04-code-mods.md), Path B). Contributions could be: testing the
   `ragnarok` branch, bisecting which hook crashes (the .ini toggles + a debugger),
   or re-finding specific signatures and PRing them.
-- **First step**: build the repo as-is (CMake/VS), read how patterns are declared, watch
-  the `ragnarok` branch. Even *reproducing + diagnosing* the crash precisely (which scan
-  mismatches) is a valuable issue comment.
+- **STARTED 2026-07-09** — see [08-gbfrelinkfix-status.md](08-gbfrelinkfix-status.md):
+  the `ragnarok` branch is a feature-complete rewrite against the June demo; our disk
+  scan of the release exe shows **13/15 of its patterns still match**, we repaired the
+  `Press Any Key` sig (verified unique) and located the probable `HUD: Markers` site.
+  Remaining: live verification (needs xmake + VS Build Tools), `Resolution List`
+  disambiguation, Markers hook-body offsets via x64dbg.
 - Skills gained: safetyhook, pattern scanning, x64dbg/Ghidra basics — the core toolkit of
   the entire fix-mod genre.
 

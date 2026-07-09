@@ -4,3 +4,4 @@ extracted/
 *.sqlite
 *.zip
 *.7z
+vendor/
