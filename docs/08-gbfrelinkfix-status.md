@@ -113,9 +113,25 @@ the ambiguous `Resolution List` hook out of the first boot.)
 
 ## Remaining work items
 
-1. ~~Live-verify the matching hooks~~ — DONE, see above. Still worth a pass with
-   `Custom Resolution = true` to exercise the `Resolution List` hook (4-match ambiguity)
-   on a real ultrawide display.
+1. ~~Live-verify the matching hooks~~ — DONE, see above.
+
+## `Resolution List` 4-match: resolved — it's harmless (2026-07-09)
+
+Reverse-engineered with [scripts/disambiguate-reslist.mjs](../scripts/disambiguate-reslist.mjs):
+all four matches are code sites whose `lea rcx,[rip+disp]` resolves to the **same**
+resolution table in `.rdata` at RVA `0x54bea78`:
+
+```
++0x00 widths : 3840 2560 1920 1600 1280
++0x14 heights: 2160 1440 1080 ...
+```
+
+The hook doesn't patch code at the match — it uses the match to locate this table, then
+writes `CustomResX`→`+0x00` and `CustomResY`→`+0x14` (overwriting the `3840×2160` slot).
+Since every match points to the same table, **first-match is safe**; no disambiguation or
+sig change needed. (Correction to the earlier "risky" note and to the first Lyall comment.)
+Table lives in read-only `.rdata`, so the mod's `Memory::Write` must un-protect it — it
+does, and the demo build relied on the same.
 2. **Disambiguate `Resolution List`** (4 matches — inspect which site the demo build's
    unique match corresponds to, or lengthen the sig).
 3. **Finish `HUD: Markers`** via x64dbg at `0x2656fa4`-equivalent RVA.
