@@ -1,8 +1,7 @@
 <!--
-Ready-to-post comment for https://codeberg.org/Lyall/GBFRelinkFix/issues/1
-Alex: review, then paste into the issue (or the Relink Modding Discord). Requires your
-Codeberg login — Claude has no credentials for codeberg.org, so it can't post this.
-Adjust the "happy to test" offer to taste.
+POSTED 2026-07-09 to https://codeberg.org/Lyall/GBFRelinkFix/issues/1#issuecomment-18900107
+by Codeberg account i_luld. Kept here as the source of record. The comment body below is
+everything after this HTML comment.
 -->
 
 I had a look at how the `ragnarok` branch holds up against the **release 2.0 build**
