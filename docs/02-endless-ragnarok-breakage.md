@@ -47,7 +47,7 @@ Incompatible until updated. **Save-safety note from the ER page**: consume modde
 | Tool | 2.0 status (2026-07-09) |
 |---|---|
 | Mod loader `gbfrelink.utility.manager` | ✅ **v2.0.1** (released 2026-07-08) supports 1.3 *and* 2.0; adds `.mmat` auto-upgrade + `IUserDefinedParams` API for querying game version/type |
-| GBFRDataTools | ⚠️ Works, but **lacks the ER file list** — new-content paths are unknown hashes until the list updates. Marked "pending contribution" on the ER page. Nenkai paused ER research during the closed beta, resuming after release ([README](https://github.com/Nenkai/GBFRDataTools)) |
+| GBFRDataTools | 🔶 **File list landed on master 2026-07-09** ("filelist: 369354/408165, 90.49%") — grab `GBFRDataTools/filelist.txt` from master; no release yet. **Table schema headers still pre-ER** (`GBFRDataTools.Database` last updated 2026-03-04), so `tbl-to-sqlite` fails on the 55 tables 2.0 changed — see our [compatibility audit](07-2.0-table-compat-audit.md) |
 | File Name Logger | 🔧 Updated locally by Nenkai; public release planned alongside the ER update |
 
 ## How the community recovers from an update (the playbook)

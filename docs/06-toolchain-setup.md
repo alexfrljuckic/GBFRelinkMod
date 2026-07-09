@@ -1,16 +1,22 @@
-# Toolchain Setup Checklist (deferred)
+# Toolchain Setup Checklist
 
-*Not executed yet — this session was research-only. Written 2026-07-09 so a future
-session (or a human with a terminal) can run it top to bottom on the machine that has
-the game installed. Sources:
+*Extraction stack executed 2026-07-09 on this machine (game found at
+`D:\Steam\steamapps\common\Granblue Fantasy Relink`) — see **Actual setup log** at the
+bottom for what was done and corrections to the published docs. Player-side (Reloaded-II)
+and dev stacks still pending. Sources:
 [file extraction](https://nenkai.github.io/relink-modding/tutorials/file_extraction/),
 [installing mods](https://nenkai.github.io/relink-modding/modding/installing_mods/).*
 
 ## 0. Prerequisites
 
-- [ ] Granblue Fantasy: Relink installed (Steam). Note the path:
-      `<Steam>\steamapps\common\Granblue Fantasy Relink`
-- [ ] **.NET 8.0 SDK/runtime** (GBFRDataTools requirement)
+- [x] Granblue Fantasy: Relink installed (Steam):
+      `D:\Steam\steamapps\common\Granblue Fantasy Relink` (2.0/ER build, files dated
+      2026-07-08; `data.11` = the new 18 GB ER archive; exe is
+      **`granblue_fantasy_relink.exe`**, lowercase — not the `Granblue Fantasy Relink.exe`
+      the install guide mentions)
+- [x] **.NET 10 runtime** — the docs say .NET 8, but GBFRDataTools **1.5.1 targets
+      .NET 10** (launch error names `Microsoft.NETCore.App 10.0.0`); installed via
+      `winget install Microsoft.DotNet.Runtime.10`
 - [ ] Disk headroom: a full `extract-all` roughly doubles the game's footprint — prefer
       filtered extraction (`-f`) unless researching broadly
 - [ ] In-game: `Game Options → Other → Play Log → Do Not Agree` (telemetry opt-out
@@ -34,24 +40,48 @@ the game installed. Sources:
 
 ## 2. Extraction/authoring stack (make mods)
 
-- [ ] Download [GBFRDataTools](https://github.com/Nenkai/GBFRDataTools/releases) —
-      **check first whether a post-2026-07-08 release with Endless Ragnarok file-list
-      support exists**; extract next to the game exe (docs' recommendation)
-- [ ] Test single-file extraction:
+- [x] Download [GBFRDataTools](https://github.com/Nenkai/GBFRDataTools/releases) —
+      installed **1.5.1** to `C:\dev\GBF\tools\GBFRDataTools\` (gitignored). No post-ER
+      *release* exists yet, **but master got the ER file list on 2026-07-09**
+      ("filelist: 369354/408165 (90.49%)") — we replaced the bundled `filelist.txt`
+      with master's (377,590 paths; old one kept as `filelist.txt.v1.5.1.bak`).
+      To refresh later:
       ```
-      GBFRDataTools.exe extract -i "<game>\data.i" -f "system/table/item.tbl"
+      curl -sL -o filelist.txt https://raw.githubusercontent.com/Nenkai/GBFRDataTools/master/GBFRDataTools/filelist.txt
       ```
-      (any known path works; tables are under `system/table`)
-- [ ] Extract the table folder for gameplay modding:
+- [x] Extract the table folder for gameplay modding — worked against 2.0 (304 tables →
+      `extracted/2.0/system/table`, gitignored):
       ```
-      GBFRDataTools.exe extract-all -i "<game>\data.i" -f "system/table" -o <research dir>
+      GBFRDataTools.exe extract-all -i "D:\Steam\steamapps\common\Granblue Fantasy Relink\data.i" -f "system/table" -o "C:\dev\GBF\extracted\2.0"
       ```
-- [ ] Install [SQLiteStudio](https://sqlitestudio.pl/); convert and open:
+- [x] Convert to SQLite — **partially works on 2.0**: whole-folder conversion dies on
+      the first table whose layout 2.0 changed (`ap_open_rank ... larger`). 249 of 304
+      tables still convert (see [07-2.0-table-compat-audit.md](07-2.0-table-compat-audit.md));
+      converting just those produced `extracted/tables-2.0-partial.sqlite`:
       ```
-      GBFRDataTools.exe tbl-to-sqlite -i <table folder> -o tables.sqlite -v <version>
+      GBFRDataTools.exe tbl-to-sqlite -i <folder of OK tables> -o tables-2.0-partial.sqlite -v 2.0.2
       ```
+- [ ] Install [SQLiteStudio](https://sqlitestudio.pl/) (GUI, still pending — any SQLite
+      client works on the generated db)
 - [ ] Keep a **pristine vanilla copy** of everything extracted, per game version
       (you'll need 1.x *and* 2.0 vanillas to port mods)
+
+### Actual setup log (2026-07-09)
+
+- Tools live in `C:\dev\GBF\tools\` (gitignored): `GBFRDataTools\` (1.5.1 + master
+  filelist) and `dotnet10\` (user-local .NET 10.0.9 runtime via the
+  [dotnet-install script](https://dot.net/v1/dotnet-install.ps1) — winget wanted UAC).
+- Run the tool with the local runtime:
+  ```
+  DOTNET_ROOT=C:\dev\GBF\tools\dotnet10 tools\GBFRDataTools\GBFRDataTools.exe ...
+  ```
+- Doc corrections found: tool targets **.NET 10** (not 8); game exe is
+  `granblue_fantasy_relink.exe`; `tbl-to-sqlite -v` takes any version string and
+  validates row sizes against its bundled `.headers` schemas.
+- Upstream status at time of setup: ER **file list on master since 2026-07-09**
+  (no release yet); **table schema headers NOT yet updated for 2.0**
+  (`GBFRDataTools.Database` last touched 2026-03-04) — that's the current gate for
+  modding the 55 changed tables.
 
 ## 3. C# mod dev stack (Path A in [04-code-mods.md](04-code-mods.md))
 

@@ -31,7 +31,8 @@ That breakage is the opportunity: lots of in-demand mods need updating right now
 | [03-table-modding.md](docs/03-table-modding.md) | Gameplay modding via `.tbl` → SQLite → `.tbl`, and porting mods to 2.0 |
 | [04-code-mods.md](docs/04-code-mods.md) | The two code-mod architectures: Reloaded-II C# vs ASI/C++ pattern-scan |
 | [05-first-projects.md](docs/05-first-projects.md) | Ranked concrete entry points, anchored on updating GBFRelinkFix for 2.0 |
-| [06-toolchain-setup.md](docs/06-toolchain-setup.md) | Deferred step-by-step setup checklist (tools not installed yet) |
+| [06-toolchain-setup.md](docs/06-toolchain-setup.md) | Setup checklist — extraction stack DONE 2026-07-09 (see its setup log); Reloaded-II + dev stacks pending |
+| [07-2.0-table-compat-audit.md](docs/07-2.0-table-compat-audit.md) | **Original research**: per-table audit of what 2.0 changed — 55 of 304 tables have new layouts |
 
 ## Link index
 

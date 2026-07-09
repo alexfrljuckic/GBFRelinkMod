@@ -1,0 +1,6 @@
+# Downloaded tool binaries and game data extractions — not source
+tools/
+extracted/
+*.sqlite
+*.zip
+*.7z
