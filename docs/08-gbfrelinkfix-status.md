@@ -117,6 +117,13 @@ The one remaining miss (`HUD: Markers`) fails safe — `FindPattern` returns nul
 hook is skipped, it does not crash. (Test ran with `Custom Resolution` disabled to keep
 the ambiguous `Resolution List` hook out of the first boot.)
 
+**UPDATE — `HUD: Markers` also fixed (2026-07-09):** repaired via an in-mod diagnostic
+hook (the game has anti-debug, so x64dbg was out). New unique pattern, base reg still
+`r14`, reference width/height slots shifted `0x1B4/0x1B8 → 0x1BC/0x1C0`. See
+[09-hud-markers-debugging.md](09-hud-markers-debugging.md). **All 15 patterns now resolve
+on 2.0**, and the HUD lays out correctly on 21:9. The ragnarok branch + our two signature
+repairs = a fully working 2.0 ultrawide fix.
+
 ## Remaining work items
 
 1. ~~Live-verify the matching hooks~~ — DONE, see above.
