@@ -60,7 +60,35 @@ convention (the CE `[Inventory]`/`Highlighted Item` pointers are a lead), the mo
 **increment counts directly** on a quest-complete signal instead of calling the
 grant function — simpler and robust.
 
+## PLAN PIVOT (2026-07-10): exchange + drop-silver-only (Alex chose this)
+
+Research (agent) settled it: **no native Dalia badge conversion exists**; only **two
+tiers** (Silver `ITEM_14_0031`, Gold `ITEM_14_0032`) — "Copper Dalia Badge"
+(`ITEM_14_0030`) is dead/unused text. BUT the exchange is moddable via `trade.tbl` —
+Nexus mod #536 does 6 Silver → 1 Gold at the Knickknack Shack. And Gold badges already
+**buy** Gold Spellbooks there.
+
+So Alex's chosen design (avoids the assembly code-hook entirely):
+1. **Drop only Silver badges** from quests → reward.tbl + reward_lot.tbl. Silver = **1
+   slot**, which FITS: below-Chaos `_101` mostly has 1 free slot; Chaos+ `_101` has 2
+   free (voucher takes 1, silver takes the other). (Caveat: the 412/520 below-Chaos
+   quests with no `_101` row still can't get drops — likely non-repeatable story quests.)
+2. **Silver → Gold exchange** at the Knickknack Shack → `trade.tbl` edit.
+3. **Unlimited Gold Spellbook** purchase (Alex's explicit requirement) → `trade.tbl`
+   (remove the spellbook entry's stock cap / make it infinitely refreshable).
+
+`trade.tbl` = the shop table (MinQuestId/MaxQuestId, {Gem,Pendulum,Item}Purchasable,
+IsRefreshable, MaxStockForRefresh, ...) — **2.0-CHANGED, still to be reversed** (blocked:
+game holds `data.0` locked while running — need it closed).
+
+Architecture (Alex's "one drop rate overhaul, usable separately"): a config-driven C#
+mod owning reward.tbl + reward_lot.tbl + trade.tbl with per-feature toggles (vouchers,
+silver drops, exchange, unlimited spellbook). This means **moving the voucher tables OUT
+of the Transmarvel Overhaul** into this unified mod (overhaul keeps gacha_rate_group +
+skill tables). Same IDataManager pattern as the MSP mod — NOT the assembly code-hook.
+
 ## Status
-Phase 1 (scoping + item ids + table-route ruled out + CE entry points located) DONE.
-Phase 2 (the live-diagnostic RE loop) needs a game session with Alex. `constant.tbl`
-also reversed this session (docs/19) as a side effect.
+Phase 1 DONE (ids, table-slot proof, CE entry points, `constant.tbl` reversed docs/19).
+Code-hook route SHELVED in favor of the exchange approach above. NEXT (blocked on game
+closed): reverse `trade.tbl`, build the exchange + unlimited-spellbook edits, then the
+unified reward+trade C# mod.
