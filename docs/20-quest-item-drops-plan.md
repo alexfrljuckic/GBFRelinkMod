@@ -87,8 +87,33 @@ silver drops, exchange, unlimited spellbook). This means **moving the voucher ta
 of the Transmarvel Overhaul** into this unified mod (overhaul keeps gacha_rate_group +
 skill tables). Same IDataManager pattern as the MSP mod — NOT the assembly code-hook.
 
+## SHOP APPROACH (2026-07-10) — the winning path, but with hard constraints
+
+Pivoted again: instead of quest drops, sell badges + Gold Spellbook at the Knickknack
+Shack. Reversed **`trade.tbl`** (6th 2.0 table, docs/patches). The shop cost chain:
+`trade` (ItemPurchasable, ItemTierMapId, unique **SubKey**) → `item_tier_map.MaterialId1`
+→ `item_material_list` (Item1..12 + ItemCount + **CoinCost**=rupies). Mod ships all 3
+tables (`gbfr.shop.rupiebadges` folder, ModName "Cheap Badges & Spellbooks").
+
+**Two hard constraints, both data-proven (scripts/trace-shop-currency.mjs,
+analyze-shop-costs.mjs), both learned via live tests with Alex:**
+1. **No shop charges rupies.** All 526 CoinCost>0 recipes feed upgrade/transmutation,
+   never a `trade` row. So rupie pricing is impossible — CoinCost is ignored by shops
+   (an item with only CoinCost shows as FREE).
+2. **Free shop items get a ~200 purchase cap.** Every vanilla shop item has a cost;
+   priced items at stock 0/0/0 are unlimited, free ones are capped.
+Also learned live: **SubKey must be unique** (first build collided → invisible), and
+**IsRefreshable=1 moves an item into the featured/rotating shop** (→ disappears from the
+normal list).
+
+**v2 (current, awaiting retest):** each entry has a trivial 1× MATERIAL cost →
+unlimited like every real shop item. Cheap 1:1 chain: Silver badge = 1 common crystal
+(`ITEM_10_0000`), Gold badge = 1 silver, Gold Spellbook = 1 gold; stock 0/0/0,
+IsRefreshable=0, in shop category 5. Rebuild: `scripts/build-badge-shop.mjs`.
+NEEDS Alex retest: do the 3 entries show, and are they now unlimited?
+
 ## Status
 Phase 1 DONE (ids, table-slot proof, CE entry points, `constant.tbl` reversed docs/19).
-Code-hook route SHELVED in favor of the exchange approach above. NEXT (blocked on game
-closed): reverse `trade.tbl`, build the exchange + unlimited-spellbook edits, then the
-unified reward+trade C# mod.
+Quest-drop + code-hook routes SHELVED for the shop approach. Badge-shop v2 deployed,
+awaiting Alex's live retest. Config (adjustable costs, per-item toggles) deferred until
+the shop mechanism is confirmed working.
