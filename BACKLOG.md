@@ -38,7 +38,7 @@ Last updated 2026-07-09.
   (bootstrapper ASI + SAC).
 
 ## 🔬 In design (validate before building)
-- **Complete open-source UI spanning** (menu backgrounds, combat screen-effects,
+- **Complete open-source UI spanning** — **DONE 2026-07-10, all features verified at 3440x1440** (menu backgrounds, combat screen-effects,
   speech-bubbles/nameplates, lock-on/dodge) — session log in
   [docs/18](docs/18-ui-spanning-session2.md). **2026-07-10: menu/title/load BACKGROUNDS
   SOLVED + live-verified** (span-at-the-readers, vendor `ce8aae4`; Claude ran the game

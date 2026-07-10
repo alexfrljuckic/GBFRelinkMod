@@ -75,6 +75,17 @@
 > **Release call: the verified set is `ultrawide-v2`-worthy** — vignettes are documented
 > known-issues.
 
+> **FINAL (2026-07-10 ~10:15, vendor `9f762a6`): ALL VERIFIED — including combat VFX.**
+> Alex pointed at [zhen469891/gbfr-ultrawide](https://github.com/zhen469891/gbfr-ultrawide)
+> (MIT, an independent v2.0.2 rebuild of Lyall's mod). Their ADR-0012 solved our battle
+> vignette: it's the view-CB `+0x59C` shader factor sizing combat-VFX quads — and the fix
+> is **master's own Screen Effects hook that our branch never ported**. Site re-verified
+> against the exe ourselves (unique pattern, register-only store override at
+> exe+0x20d117b), ported, and **Alex verified in combat: BREAK/skill bars GONE**, menus
+> clean. Their ADR-0009 also documents a nameplate-scale fix (pattern-based) if we ever
+> see nameplate drift — currently nothing reported. The UI-spanning project is COMPLETE
+> pending release packaging (`ultrawide-v2`).
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to

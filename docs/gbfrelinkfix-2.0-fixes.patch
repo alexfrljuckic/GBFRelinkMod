@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/9] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 01/10] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/9] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 02/10] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/9] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 03/10] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,8 +216,8 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 4/9] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
- Size Setter (2.0)
+Subject: [PATCH 04/10] feat: Lock-On/Dodge offset port + Span Backgrounds via
+ UI Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
 disassembly of the 2.0 exe (master's MIT code as algorithm reference):
@@ -547,7 +547,7 @@ index 3aff169..96b18aa 100644
 From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:44:51 -0400
-Subject: [PATCH 5/9] fix: UI spanning diagnostics v2 from run-1 evidence
+Subject: [PATCH 05/10] fix: UI spanning diagnostics v2 from run-1 evidence
  (census + struct dumps)
 
 Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
@@ -795,8 +795,8 @@ index 96b18aa..83a42af 100644
 From fe7482b1836999021462a8dddec045814f7306db Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:55:01 -0400
-Subject: [PATCH 6/9] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
- =?UTF-8?q?kground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
+Subject: [PATCH 06/10] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20b?=
+ =?UTF-8?q?ackground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -967,7 +967,7 @@ index edf049d..0996d80 100644
 From ce8aae452760f0aaea7cd4eea4183db22af59d6e Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:24:56 -0400
-Subject: [PATCH 7/9] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
+Subject: [PATCH 07/10] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
  =?UTF-8?q?=E2=80=94=20span=20at=20the=20width=20readers=20(v4/v5)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1068,8 +1068,8 @@ index 0996d80..a938b9d 100644
 From c66286ab2b8625eb70442cf9031664dff6b4e499 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:31:29 -0400
-Subject: [PATCH 8/9] =?UTF-8?q?feat:=20full-coverage=20width-reader=20hook?=
- =?UTF-8?q?s=20(168=20sites)=20=E2=80=94=20Main=20Menu=20fully=20spans?=
+Subject: [PATCH 08/10] =?UTF-8?q?feat:=20full-coverage=20width-reader=20ho?=
+ =?UTF-8?q?oks=20(168=20sites)=20=E2=80=94=20Main=20Menu=20fully=20spans?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -1170,8 +1170,9 @@ index a938b9d..75d7dc0 100644
 From ea278e2b6a2ea48040f8b66fbf80d2d6e5c110ed Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 10:00:38 -0400
-Subject: [PATCH 9/9] =?UTF-8?q?feat:=20v7-v10=20=E2=80=94=20bubble=20flick?=
- =?UTF-8?q?er=20fix,=20generalized=20full-width=20gate,=20cut-in=20shifts?=
+Subject: [PATCH 09/10] =?UTF-8?q?feat:=20v7-v10=20=E2=80=94=20bubble=20fli?=
+ =?UTF-8?q?cker=20fix,=20generalized=20full-width=20gate,=20cut-in=20shift?=
+ =?UTF-8?q?s?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -1342,6 +1343,62 @@ index 75d7dc0..d6b2d1c 100644
              if (Screen::AspectRatio > Screen::NativeAspect) {
                  float width = 2160.0f * Screen::AspectRatio;
                  if (*reinterpret_cast<float*>(ctx.r14 + 0x1BC) != width)
+-- 
+2.55.0.windows.2
+
+
+From 9f762a6024c7a2197dfc1306e7987c60657c4445 Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Fri, 10 Jul 2026 10:11:14 -0400
+Subject: [PATCH 10/10] =?UTF-8?q?feat:=20Screen=20Effects=20port=20?=
+ =?UTF-8?q?=E2=80=94=20combat=20VFX=20quads=20span=20(VERIFIED=20at=203440?=
+ =?UTF-8?q?x1440)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Ports master's Screen Effects hook, which this branch never carried: the
+store at pattern+0xB fills the view constant block's +0x59C factor, a
+shader-consumed scale that sizes full-screen combat-VFX quads (BREAK,
+charge flashes, finisher overlays). Shipping 1.0 left those quads 16:9-wide
+with vertical bars at the band edges on ultrawide; the correct value at any
+non-16:9 aspect is aspect/(16:9) (Screen::AspectMultiplier).
+
+Site re-verified against the 2.0.2 exe with our disassembler: pattern is
+unique (exe+0x20d117b), the hooked instruction is the +0x59C store, and the
+override is register-only. Credit: zhen469891/gbfr-ultrawide (MIT)
+confirmed the pattern survives 2.0.2 and documented the evidence chain
+(their ADR-0012: the factor is shared by the scene pass and VFX quads;
+scene renders identically under 1.0 vs the multiplier). In-game verified by
+Alex at 3440x1440: BREAK/skill flashes span, no bars, scene unchanged.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ src/dllmain.cpp | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index d6b2d1c..4c23cd1 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -368,6 +368,17 @@ void HUD()
+             });
+         }
+ 
++        // Fix combat screen effects (charge flashes / BREAK / finisher overlay quads).
++        // Master's hook, never ported to this branch — confirmed still valid on 2.0.2 by
++        // zhen469891/gbfr-ultrawide (MIT): the store at pattern+0xB fills the view
++        // constant block's +0x59C factor, which sizes full-screen combat-VFX quads. The
++        // game ships 1.0 there = quads stay 16:9-wide with vertical bars at the band
++        // edges on ultrawide. Correct value at any non-16:9 aspect = aspect/(16:9).
++        MAKE_MIDHOOK(ScreenEffects_sh, "Screen Effects", "C5 ?? ?? ?? 48 ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 C3", 0xB, [](SafetyHookContext& ctx) {
++            if (Screen::AspectRatio != Screen::NativeAspect)
++                ctx.xmm0.f32[0] = Screen::AspectMultiplier;
++        });
++
+         // Fix markers
+         // Release 2.0 (2026-07-08): vdivss folded out of the sequence and the HUD reference
+         // width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0). Base reg still r14
 -- 
 2.55.0.windows.2
 
