@@ -3,7 +3,7 @@
   "ModName": "Transmarvel Overhaul (2.0)",
   "ModAuthor": "alexfrljuckic",
   "ModVersion": "1.0",
-  "ModDescription": "Transmarvel, fixed: sigil rolls are always one of 41 chase sigils (13 top V+ + all 28 character Warpath+, equal odds); wrightstones always tier-3 Transmarveled; the random 2nd trait on + sigils only rolls from a curated 18-trait list (no junk resistances); and every Chaos+ quest clear grants guaranteed Transmarvel Vouchers (Chaos/Chaos+ x1, Chaos++ x2, Infinity x3). Built for Endless Ragnarok 2.0. Curios untouched.",
+  "ModDescription": "Transmarvel, fixed: sigil rolls are always one of 41 chase sigils (13 top V+ + all 28 character Warpath+, equal odds); wrightstones always tier-3 Transmarveled; the random 2nd trait on + sigils only rolls from a curated 18-trait list (no junk resistances); and every Chaos+ quest clear grants guaranteed Transmarvel Vouchers (Chaos/Chaos+ x1, Chaos++ x2, Infinity x3). Built for Endless Ragnarok 2.0. Curio sigil pools and sub-Chaos rewards untouched; the trait filter applies to + sigils from any source.",
   "ModDll": "",
   "ModIcon": "",
   "ModR2RManagedDll32": "",
