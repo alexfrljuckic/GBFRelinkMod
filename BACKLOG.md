@@ -39,9 +39,13 @@ Last updated 2026-07-09.
 
 ## 🔬 In design (validate before building)
 - **Complete open-source UI spanning** (menu backgrounds, combat screen-effects,
-  speech-bubbles/nameplates, lock-on/dodge) — **fresh-session handoff in
-  [docs/17](docs/17-ui-spanning-handoff.md)** (read it first; everything below is summarized
-  there). Status after this session:
+  speech-bubbles/nameplates, lock-on/dodge) — session log in
+  [docs/18](docs/18-ui-spanning-session2.md). **2026-07-10: menu/title/load BACKGROUNDS
+  SOLVED + live-verified** (span-at-the-readers, vendor `ce8aae4`; Claude ran the game
+  autonomously at 2.4:1 windowed — save hash-verified untouched). Remaining before an
+  ultrawide-v2 release: loading-tips bg (unhooked reader form), lock-on/dodge `+0x150`
+  shift (needs a combat run on real ultrawide), screen effects, nameplates. Older notes
+  ([docs/17](docs/17-ui-spanning-handoff.md)):
   - Built a real **zydis disassembler** (`tools/disasm/disasm.exe`, src `tools-src/disasm/`) —
     read game code precisely, no more guessing.
   - Confirmed 2.0 struct: object-ID @ `rax+0x1C4`, width/height @ `0x1BC/0x1C0`, master's

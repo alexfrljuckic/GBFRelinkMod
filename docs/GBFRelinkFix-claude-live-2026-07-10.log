@@ -1,0 +1,139 @@
+[2026-07-10 00:17:29] [Info] ----------
+[2026-07-10 00:17:29] [Info] GBFRelinkFix v1.1.2
+[2026-07-10 00:17:29] [Info] Build Date: Jul  9 2026 15:40:04
+[2026-07-10 00:17:29] [Info] ----------
+[2026-07-10 00:17:29] [Info] Log File: D:\Steam\steamapps\common\Granblue Fantasy Relink\GBFRelinkFix.log
+[2026-07-10 00:17:29] [Info] ----------
+[2026-07-10 00:17:29] [Info] Module Name: granblue_fantasy_relink.exe
+[2026-07-10 00:17:29] [Info] Module Path: D:\Steam\steamapps\common\Granblue Fantasy Relink\
+[2026-07-10 00:17:29] [Info] Module Address: 0x7ff760000000
+[2026-07-10 00:17:29] [Info] Module Timestamp: 1782470458
+[2026-07-10 00:17:29] [Info] ----------
+[2026-07-10 00:17:29] [Info] Config File: D:\Steam\steamapps\common\Granblue Fantasy Relink\scripts\GBFRelinkFix.ini
+[2026-07-10 00:17:29] [Info] Config Parse: [Intro Skip]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Custom Resolution]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Custom Resolution]: Width = 1920
+[2026-07-10 00:17:29] [Info] Config Parse: [Custom Resolution]: Height = 800
+[2026-07-10 00:17:29] [Info] Config Parse: [Gameplay Camera]: FOV = 1
+[2026-07-10 00:17:29] [Info] Config Parse: [Gameplay Camera]: Distance = 1
+[2026-07-10 00:17:29] [Info] Config Parse: [Fix HUD]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Fix FOV]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Span HUD]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Span HUD]: AspectRatio = 0
+[2026-07-10 00:17:29] [Info] Config Parse: [Span HUD]: FixLockOn = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Span HUD]: FixDodge = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Span Backgrounds]: Enabled = true
+[2026-07-10 00:17:29] [Info] Config Parse: [Span Backgrounds]: AspectRatio = 0
+[2026-07-10 00:17:29] [Info] Config Parse: [Shadow Quality]: Resolution = 2048
+[2026-07-10 00:17:29] [Info] Config Parse: [Level of Detail]: Multiplier = 1
+[2026-07-10 00:17:29] [Info] Config Parse: [Disable TAA]: Enabled = false
+[2026-07-10 00:17:29] [Info] Config Parse: [Unlock Framerate]: Enabled = false
+[2026-07-10 00:17:29] [Info] ----------
+[2026-07-10 00:17:29] [Info] Intro Logos: Address is granblue_fantasy_relink.exe+3f491b7
+[2026-07-10 00:17:29] [Info] Press Any Key: Address is granblue_fantasy_relink.exe+29ffddf
+[2026-07-10 00:17:29] [Info] Current Resolution: Address is granblue_fantasy_relink.exe+6c132e
+[2026-07-10 00:17:29] [Info] Resolution List: Address is granblue_fantasy_relink.exe+17cb3b
+[2026-07-10 00:17:29] [Info] Resolution String: Address is granblue_fantasy_relink.exe+4269d40
+[2026-07-10 00:17:29] [Info] Startup Aspect Ratio: Address is granblue_fantasy_relink.exe+231be3
+[2026-07-10 00:17:29] [Info] Gameplay Camera FOV/Distance: Address is granblue_fantasy_relink.exe+94e51b
+[2026-07-10 00:17:29] [Info] Cutscene FOV: Address is granblue_fantasy_relink.exe+947bfd
+[2026-07-10 00:17:29] [Info] HUD: Scale: Address is granblue_fantasy_relink.exe+15fac8
+[2026-07-10 00:17:29] [Info] HUD: Span: Address is granblue_fantasy_relink.exe+261c638
+[2026-07-10 00:17:29] [Info] HUD: Markers: Address is granblue_fantasy_relink.exe+2657b9d
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+a7fbe3
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+2380bf6
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b9006
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b90d2
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b9142
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b91b2
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b9222
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+28b9292
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+33437b6
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3965bf6
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3983a6d
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3c974f5
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3e7aca7
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3ec2853
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3f207b9
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3f2093c
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+3f58989
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+407dfa4
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+407e0fc
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+4259049
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+4276cd8
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+43ac707
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+43ac7cf
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+43acebd
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+43acf45
+[2026-07-10 00:17:29] [Info] UI Size Setter: Address is granblue_fantasy_relink.exe+43acfcd
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+213ba82
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a717
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a733
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a74f
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a76b
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a787
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+260a7a3
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+261a725
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+2676830
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+26d4ff0
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+26d59f0
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+26df7c1
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+26dfb22
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3340615
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3340d80
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+33776a9
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+33a3f68
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+33a4078
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+33a475b
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+33a840a
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+347535e
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3475570
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+349378e
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+34d256b
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+39b75dc
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3ca80d2
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3e29aef
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+3ec270a
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+4258fc7
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+430e479
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+433a905
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm0: Address is granblue_fantasy_relink.exe+433a921
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+25e399e
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+25e58dc
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+2636363
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+2664edc
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+2666390
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+28ba852
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+3340afc
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+3a5e16b
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+3e342ef
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+4276c42
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm1: Address is granblue_fantasy_relink.exe+4655e59
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm6: Address is granblue_fantasy_relink.exe+2382310
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm6: Address is granblue_fantasy_relink.exe+2a2639d
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm6: Address is granblue_fantasy_relink.exe+3340797
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm6: Address is granblue_fantasy_relink.exe+3420663
+[2026-07-10 00:17:29] [Info] BG: W reader rax/xmm6: Address is granblue_fantasy_relink.exe+3e35ba6
+[2026-07-10 00:17:29] [Info] BG: W reader rcx/xmm3: Address is granblue_fantasy_relink.exe+26d9456
+[2026-07-10 00:17:29] [Info] BG: W reader rcx/xmm3: Address is granblue_fantasy_relink.exe+33415de
+[2026-07-10 00:17:31] [Info] Current Resolution: 1920x800 | Aspect Ratio: 2.40000 (1.35000) | HUD: 1422.22x800.00 (248.89, 0.00)
+[2026-07-10 00:17:31] [Info] ----------
+[2026-07-10 00:17:36] [Info] BG: reader saw 3840x2160 element: id=0x7328174d off0x1CC=0x00000002
+[2026-07-10 00:17:37] [Info] BG: reader saw 3840x2160 element: id=0xc3d4410c off0x1CC=0x00000005
+[2026-07-10 00:17:37] [Info] BG: reader saw 3840x2160 element: id=0xecad1dc1 off0x1CC=0x00000007
+[2026-07-10 00:19:56] [Info] BG: reader saw 3840x2160 element: id=0xec983a58 off0x1CC=0x00000002
+[2026-07-10 00:20:24] [Info] BG: reader saw 3840x2160 element: id=0x600a6c3e off0x1CC=0x00000003
+[2026-07-10 00:20:29] [Info] BG: reader saw 3840x2160 element: id=0x62230830 off0x1CC=0x000000ee
+[2026-07-10 00:20:33] [Info] BG: reader saw 3840x2160 element: id=0x754d6673 off0x1CC=0x00000002
+[2026-07-10 00:20:33] [Info] BG: reader saw 3840x2160 element: id=0x55e347b5 off0x1CC=0x00000012
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1152x2160 id=0x1e5e739b off0x1CC=0x00000034
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1352x856 id=0xcb5319c5 off0x1CC=0x0000003d
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 208x208 id=0x4e5e752a off0x1CC=0x00000067
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1264x2160 id=0x1e5e739b off0x1CC=0x00000082
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 624x984 id=0xcb5319c5 off0x1CC=0x0000008b
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1480x2160 id=0x7ac7dcc5 off0x1CC=0x000000ce
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1440x2160 id=0x7ac7dcc5 off0x1CC=0x0000012f
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 1880x1232 id=0x659427fa off0x1CC=0x00000138
+[2026-07-10 00:23:08] [Info] BG: reader saw 3840x2160 element: id=0xcff9f3e0 off0x1CC=0x00000115
+[2026-07-10 00:23:08] [Info] BG: reader saw 3840x2160 element: id=0x10322ae6 off0x1CC=0x00000116
+[2026-07-10 00:23:08] [Info] UI Size Setter: size 64x64 id=0x827427a6 off0x1CC=0x0000002b

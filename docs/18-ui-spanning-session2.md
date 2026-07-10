@@ -27,6 +27,23 @@
 > +0x1BC at the constraints site (write-once by construction); FixLockOn/FixDodge shift
 > +0x150 X by -/+(2160*aspect-3840)/2 from a cached original; setter hooks census-only.
 
+> **RUNS 3–5 + LIVE AUTONOMOUS VERIFICATION (2026-07-10, vendor `ce8aae4`): BACKGROUNDS
+> SOLVED.** With Alex AFK and the ultrawide disconnected, Claude ran the game solo —
+> windowed 1920x800 (2.4:1) via the Custom Resolution feature on the 1080p monitor,
+> scancode-level SendInput for menus, desktop screenshots for verification, save files
+> hash-verified untouched. Findings: (run 3) full-screen backgrounds never pass the
+> UI-Constraints site either — struct-writes there don't reach them; (v4) hook every VEX
+> float load of `[rax|rcx+0x1BC]` (4 encoding forms, ~50 sites) and write the struct at
+> read time, value-gated on 3840x2160; (run 4) FadeBlack reached the readers with a live
+> int at +0x1CC — the -1 sentinel gate is constraints-site-only, dropped for readers (v5).
+> **Visually verified spanned: title bg, Load Game bg, in-town Main Menu.** Census mapped
+> 10 background ids incl. docs/17's unknowns (see `ce8aae4` message / archived log
+> [GBFRelinkFix-claude-live-2026-07-10.log](GBFRelinkFix-claude-live-2026-07-10.log)).
+> Remaining: loading-screen tips bg still 16:9 (unhooked encoding form); lock-on/dodge
+> +0x150 shift needs a combat run; screen-effects seams need a big-attack capture; Alex's
+> game display settings were left Windowed on device 2 (LG) — re-pick when the ultrawide
+> is reconnected.
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to
