@@ -44,6 +44,21 @@
 > game display settings were left Windowed on device 2 (LG) — re-pick when the ultrawide
 > is reconnected.
 
+> **v6 (vendor `c66286a`): FULL reader coverage — 168 sites.** Replaced the four
+> hand-picked forms with decode-and-dispatch over all VEX2 + VEX3 loads of `[reg+0x1BC]`
+> (base register decoded from the matched bytes, per-register callback table). Re-verified
+> live: **Main Menu now spans completely** (v5 left one layer's strip at the right edge);
+> loading-tips bg mostly spans (one cloud layer still short on the left — minor).
+> Deployed ini restored to desktop-resolution config with Span HUD + Span Backgrounds +
+> FixLockOn/FixDodge on; Alex's save hash-verified untouched after both live sessions.
+>
+> **State for Alex's next ultrawide session:** everything is deployed — just play. Check
+> (1) menus/pause/quest-board span at 3440x1440, (2) lock-on/dodge indicator positions in
+> combat (the +0x150 shift is implemented but combat-untested — set FixLockOn/FixDodge
+> false if they look wrong), (3) big-attack screen-effect seams (likely still present —
+> next work item). Game display settings need re-picking (Windowed/LG was set during
+> testing). If all verifies, cut `ultrawide-v2` per CLAUDE.md release conventions.
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to

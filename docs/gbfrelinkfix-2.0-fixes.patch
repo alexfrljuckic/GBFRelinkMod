@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/7] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 1/8] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/7] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 2/8] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/7] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 3/8] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,7 +216,7 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 4/7] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
+Subject: [PATCH 4/8] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
  Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
@@ -547,7 +547,7 @@ index 3aff169..96b18aa 100644
 From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:44:51 -0400
-Subject: [PATCH 5/7] fix: UI spanning diagnostics v2 from run-1 evidence
+Subject: [PATCH 5/8] fix: UI spanning diagnostics v2 from run-1 evidence
  (census + struct dumps)
 
 Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
@@ -795,7 +795,7 @@ index 96b18aa..83a42af 100644
 From fe7482b1836999021462a8dddec045814f7306db Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:55:01 -0400
-Subject: [PATCH 6/7] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
+Subject: [PATCH 6/8] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
  =?UTF-8?q?kground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -967,7 +967,7 @@ index edf049d..0996d80 100644
 From ce8aae452760f0aaea7cd4eea4183db22af59d6e Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:24:56 -0400
-Subject: [PATCH 7/7] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
+Subject: [PATCH 7/8] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
  =?UTF-8?q?=E2=80=94=20span=20at=20the=20width=20readers=20(v4/v5)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1058,6 +1058,108 @@ index 0996d80..a938b9d 100644
 +        MAKE_MIDHOOK_ALL(BGReadRax1_sh, "BG: W reader rax/xmm1", "C5 ?? 10 88 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); });
 +        MAKE_MIDHOOK_ALL(BGReadRax6_sh, "BG: W reader rax/xmm6", "C5 ?? 10 B0 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); });
 +        MAKE_MIDHOOK_ALL(BGReadRcx3_sh, "BG: W reader rcx/xmm3", "C5 ?? 10 99 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rcx); });
+     }
+ }
+ 
+-- 
+2.55.0.windows.2
+
+
+From c66286ab2b8625eb70442cf9031664dff6b4e499 Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Fri, 10 Jul 2026 00:31:29 -0400
+Subject: [PATCH 8/8] =?UTF-8?q?feat:=20full-coverage=20width-reader=20hook?=
+ =?UTF-8?q?s=20(168=20sites)=20=E2=80=94=20Main=20Menu=20fully=20spans?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Replaces the four hand-picked encoding forms with a decode-and-dispatch
+pass: one scan each for VEX2 (C5 pp 10 modrm disp32=0x1BC) and VEX3
+(covers r8-r15 bases), base register decoded from the matched bytes and
+dispatched through a per-register callback table. 168 load sites hooked.
+
+Live-verified at 2.4:1: the Main Menu background now spans completely
+(the v5 build left a strip on one layer whose reader used an unhooked
+form); loading-tips background mostly spans (one cloud layer still shows
+a left strip - minor, tracked). Boot time and stability unaffected.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ src/dllmain.cpp | 55 +++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 46 insertions(+), 9 deletions(-)
+
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index a938b9d..75d7dc0 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -173,6 +173,28 @@ static void SpanElementOnRead(std::uintptr_t elem)
+     *cW = 2160.0f * bgAspect;
+ }
+ 
++// Per-base-register trampolines for the width-reader hooks: safetyhook mid callbacks are
++// plain function pointers, so the base register each site uses is baked in via this table
++// (indexed by the modrm/VEX-decoded base). Index 4 is unreachable (rm=4 = SIB, filtered).
++static void (*const g_bgReadCbs[16])(SafetyHookContext&) = {
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rcx); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rdx); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rbx); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(0); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rbp); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rsi); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rdi); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r8); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r9); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r10); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r11); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r12); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r13); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r14); },
++    [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.r15); },
++};
++
+ void HUD()
+ {
+     if (Config::FixHUD) {
+@@ -293,16 +315,31 @@ void HUD()
+             LogSizeSetterCensus(ctx.rax);
+         });
+ 
+-        // Span at the point of consumption: hook every float load of [rax|rcx+0x1BC]
++        // Span at the point of consumption: hook EVERY float load of [reg+0x1BC]
+         // (the rect-builder family that draws full-screen backgrounds reads the struct
+-        // there; run 3 proved title/menu backgrounds never pass the sites above). Four
+-        // encoding forms cover the family; the shared helper is value-gated so the many
+-        // unrelated matches are no-ops. Installed AFTER the UI-Constraints hook so its
+-        // already-patched site can't collide (patched bytes no longer match patterns).
+-        MAKE_MIDHOOK_ALL(BGReadRax0_sh, "BG: W reader rax/xmm0", "C5 ?? 10 80 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); });
+-        MAKE_MIDHOOK_ALL(BGReadRax1_sh, "BG: W reader rax/xmm1", "C5 ?? 10 88 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); });
+-        MAKE_MIDHOOK_ALL(BGReadRax6_sh, "BG: W reader rax/xmm6", "C5 ?? 10 B0 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rax); });
+-        MAKE_MIDHOOK_ALL(BGReadRcx3_sh, "BG: W reader rcx/xmm3", "C5 ?? 10 99 BC 01 00 00", 0, [](SafetyHookContext& ctx) { SpanElementOnRead(ctx.rcx); });
++        // there; run 3 proved title/menu backgrounds never pass the sites above). One
++        // scan per VEX form, then dispatch per base register decoded from the matched
++        // bytes; the shared helper is value-gated (exactly 3840x2160) so the many
++        // unrelated matches are no-ops. Installed AFTER the UI-Constraints hook: its
++        // already-patched site no longer matches the pattern, so no collision.
++        static std::vector<SafetyHookMid> BGReaders_sh{};
++        int bgReaderCount = 0;
++        // VEX2: C5 pp 10 modrm disp32 — bases rax..rdi (no SIB/rm=4)
++        for (auto* addr : Memory::FindPatternAll("BG: W readers (VEX2)", "C5 ?? 10 ?? BC 01 00 00")) {
++            const std::uint8_t modrm = addr[3];
++            if ((modrm & 0xC0) != 0x80 || (modrm & 7) == 4) continue;
++            auto hook = safetyhook::create_mid(addr, g_bgReadCbs[modrm & 7]);
++            if (hook) { BGReaders_sh.emplace_back(std::move(hook)); bgReaderCount++; }
++        }
++        // VEX3: C4 rxb mm-vvvv 10 modrm disp32 — covers r8-r15 bases (VEX.B extends rm)
++        for (auto* addr : Memory::FindPatternAll("BG: W readers (VEX3)", "C4 ?? ?? 10 ?? BC 01 00 00")) {
++            const std::uint8_t modrm = addr[4];
++            if ((modrm & 0xC0) != 0x80 || (modrm & 7) == 4) continue;
++            const int base = (modrm & 7) + ((addr[1] & 0x20) ? 0 : 8); // VEX.B inverted
++            auto hook = safetyhook::create_mid(addr, g_bgReadCbs[base]);
++            if (hook) { BGReaders_sh.emplace_back(std::move(hook)); bgReaderCount++; }
++        }
++        LOG_INFO("BG: W readers: hooked {} load sites", bgReaderCount);
      }
  }
  
