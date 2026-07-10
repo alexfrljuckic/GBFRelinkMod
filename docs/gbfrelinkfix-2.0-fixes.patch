@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/8] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 1/9] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/8] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 2/9] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/8] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 3/9] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,7 +216,7 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 4/8] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
+Subject: [PATCH 4/9] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
  Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
@@ -547,7 +547,7 @@ index 3aff169..96b18aa 100644
 From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:44:51 -0400
-Subject: [PATCH 5/8] fix: UI spanning diagnostics v2 from run-1 evidence
+Subject: [PATCH 5/9] fix: UI spanning diagnostics v2 from run-1 evidence
  (census + struct dumps)
 
 Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
@@ -795,7 +795,7 @@ index 96b18aa..83a42af 100644
 From fe7482b1836999021462a8dddec045814f7306db Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:55:01 -0400
-Subject: [PATCH 6/8] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
+Subject: [PATCH 6/9] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
  =?UTF-8?q?kground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -967,7 +967,7 @@ index edf049d..0996d80 100644
 From ce8aae452760f0aaea7cd4eea4183db22af59d6e Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:24:56 -0400
-Subject: [PATCH 7/8] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
+Subject: [PATCH 7/9] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
  =?UTF-8?q?=E2=80=94=20span=20at=20the=20width=20readers=20(v4/v5)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1068,7 +1068,7 @@ index 0996d80..a938b9d 100644
 From c66286ab2b8625eb70442cf9031664dff6b4e499 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:31:29 -0400
-Subject: [PATCH 8/8] =?UTF-8?q?feat:=20full-coverage=20width-reader=20hook?=
+Subject: [PATCH 8/9] =?UTF-8?q?feat:=20full-coverage=20width-reader=20hook?=
  =?UTF-8?q?s=20(168=20sites)=20=E2=80=94=20Main=20Menu=20fully=20spans?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1163,6 +1163,185 @@ index a938b9d..75d7dc0 100644
      }
  }
  
+-- 
+2.55.0.windows.2
+
+
+From ea278e2b6a2ea48040f8b66fbf80d2d6e5c110ed Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Fri, 10 Jul 2026 10:00:38 -0400
+Subject: [PATCH 9/9] =?UTF-8?q?feat:=20v7-v10=20=E2=80=94=20bubble=20flick?=
+ =?UTF-8?q?er=20fix,=20generalized=20full-width=20gate,=20cut-in=20shifts?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Live-iterated with Alex on real ultrawide (3440x1440, 2026-07-10):
+
+- World-canvas exclusion: NPC speech bubbles flickered left (<1 frame) with
+  the reader hooks active — two writers (Markers hook + readers) on the
+  world-projection canvas with different timing. The Markers hook now
+  records the canvas id (g_worldCanvasId) and readers skip it. VERIFIED:
+  bubbles stable in town.
+
+- Full-width gate generalized: [3840, 4032) x any height (was ==3840x2160,
+  then ==2160-tall). Catches the 3848x2160 seam-hiding vignette and the
+  3840x400 cinematic letterbox strips (verified spanned to 5160 in log).
+  Proportional scaling keeps the gate idempotent.
+
+- Lock-on/dodge shifts RETIRED: combat verified their canvas spanning alone
+  positions them correctly; the +0x150 shift clipped Guard/Lock On
+  off-screen. FixLockOn/FixDodge now default-false diagnostics.
+
+- Cut-in 2160x2160 side squares get an outward shift at the constraints
+  site (ids 592e0f7f/7a92de7a/c69e1740) — UNVERIFIED: they rarely pass
+  that site. The in-battle BREAK/skill side vignette is confirmed NOT to
+  be a UI element (survived all reader/setter/constraints interception) —
+  it is the separate screen-effects pipeline (RetroGawd's ScreenEffects1),
+  left for a dedicated session.
+
+Diagnostics added: LogOddFullscreenOnRead (pixel-space/odd-authored census),
+edge-child census at the constraints site.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ src/dllmain.cpp | 92 ++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 87 insertions(+), 5 deletions(-)
+
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 75d7dc0..d6b2d1c 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -147,11 +147,55 @@ static void LogSizeSetterCensus(std::uintptr_t elem)
+ // 3840x2160 + the -1 sentinel at +0x1CC) so unrelated structs that happen to flow
+ // through the same code are untouched. Idempotent: after the first write the 3840
+ // check fails and the element passes through unmodified.
++// Diagnostic for the unspanned edge-vignette overlays (BREAK/skill cut-in side bars,
++// menu side dimming): those elements are NOT 3840x2160, so the span gate skips them.
++// Log every element passing the readers whose size looks full-screen-ish but non-authored
++// (pixel-space HUD size, or 2160-tall with a nonstandard width) to identify them.
++static void LogOddFullscreenOnRead(std::uintptr_t elem)
++{
++    const float w = *reinterpret_cast<float*>(elem + 0x1BC);
++    const float h = *reinterpret_cast<float*>(elem + 0x1C0);
++    const bool pixelSpace = (w == Screen::HUDWidth && h == Screen::HUDHeight);
++    const bool oddAuthored = (h == 2160.0f && w != 3840.0f && w != 2160.0f * Screen::AspectRatio);
++    if (!pixelSpace && !oddAuthored) return;
++
++    struct Entry { std::uint32_t id; float w; };
++    static Entry seen[48];
++    static int seenCount = 0;
++    const std::uint32_t id = *reinterpret_cast<std::uint32_t*>(elem + 0x1C4);
++    for (int i = 0; i < seenCount; i++)
++        if (seen[i].id == id && seen[i].w == w) return;
++    if (seenCount >= 48) return;
++    seen[seenCount].id = id;
++    seen[seenCount].w = w;
++    seenCount++;
++    LOG_INFO("BG: reader saw ODD fullscreen-ish element: id={:#010x} W={:g} H={:g} ({})",
++        id, w, h, pixelSpace ? "pixel-space" : "odd-authored");
++}
++
++// The world-projection canvas (markers + NPC speech bubbles) is owned by the Markers
++// hook, which writes its width at the exact projection site. Reader-spanning the same
++// canvas creates a second writer with different timing — one-frame disagreements made
++// bubbles flicker left (reported 2026-07-10). Learned dynamically, excluded from readers.
++static std::atomic<std::uint32_t> g_worldCanvasId{0};
++
+ static void SpanElementOnRead(std::uintptr_t elem)
+ {
+     if (!elem) return;
++    LogOddFullscreenOnRead(elem);
++
++    if (*reinterpret_cast<std::uint32_t*>(elem + 0x1C4) == g_worldCanvasId.load(std::memory_order_relaxed))
++        return;
++
++    // Full-width gate: width in [3840, 3840*1.05), any positive height. Anything spanning
++    // the full authored frame width should follow the frame — that includes 3840x2160
++    // backgrounds, slightly-oversize seam-hiding overlays (3848x2160 vignette), and the
++    // 3840x400 cinematic letterbox strips (cut-ins). Spanning scales proportionally, and
++    // the write keeps the gate idempotent: a spanned width lands outside [3840, 4032).
++    // Deliberately excluded: sub-width elements and already-oversize pan layers (4900+).
+     float* cW = reinterpret_cast<float*>(elem + 0x1BC);
+-    if (*cW != 3840.0f || *reinterpret_cast<float*>(elem + 0x1C0) != 2160.0f) return;
++    if (*reinterpret_cast<float*>(elem + 0x1C0) <= 0.0f) return;
++    if (*cW < 3840.0f || *cW >= 4032.0f) return;
+ 
+     static std::uint32_t seen[48];
+     static int seenCount = 0;
+@@ -161,16 +205,16 @@ static void SpanElementOnRead(std::uintptr_t elem)
+         if (seen[i] == id) { logged = true; break; }
+     if (!logged && seenCount < 48) {
+         seen[seenCount++] = id;
+-        LOG_INFO("BG: reader saw 3840x2160 element: id={:#010x} off0x1CC={:#010x}",
+-            id, *reinterpret_cast<std::uint32_t*>(elem + 0x1CC));
++        LOG_INFO("BG: reader saw full-frame element: id={:#010x} W={:g} off0x1CC={:#010x}",
++            id, *cW, *reinterpret_cast<std::uint32_t*>(elem + 0x1CC));
+     }
+ 
+     // No +0x1CC sentinel gate here: run 4 showed FadeBlack (0x7328174d) carries a live
+     // small int at +0x1CC when it reaches the readers — the -1 sentinel convention only
+-    // holds at the UI-Constraints site. The 3840x2160 value gate above is the filter.
++    // holds at the UI-Constraints site. The size gate above is the filter.
+     if (Screen::AspectRatio <= Screen::NativeAspect) return;
+     const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
+-    *cW = 2160.0f * bgAspect;
++    *cW = *cW * (2160.0f * bgAspect) / 3840.0f;
+ }
+ 
+ // Per-base-register trampolines for the width-reader hooks: safetyhook mid callbacks are
+@@ -223,6 +267,43 @@ void HUD()
+                 if (id == 1719602056u) // Gameplay HUD (diagnostic only; spanned by the generic path below)
+                     LogUIElementOnce(0, "GameplayHUD", ctx.rax);
+ 
++                // Cut-in side vignettes: 2160x2160 gradient squares at authored x=0 whose
++                // parent frame spans centered — so they sit at the old band edges (the
++                // "black bars" during BREAK/skills). Shift them outward with the frame.
++                // Ids from the 2026-07-10 edge-child census. Both report x=0 (the right
++                // one is mirrored, so the same negative shift moves it outward too).
++                if (Config::SpanBackgrounds
++                    && (id == 0x592e0f7fu || id == 0x7a92de7au || id == 0xc69e1740u)
++                    && Screen::AspectRatio > Screen::NativeAspect) {
++                    float* px = reinterpret_cast<float*>(ctx.rax + 0x150);
++                    const float shift = (2160.0f * hudAspect - 3840.0f) / 2.0f;
++                    if (*px == 0.0f || *px == -shift)
++                        *px = -shift;
++                }
++
++                // Edge-child census: the BREAK/skill vignette bars are suspected to be
++                // child sprites positioned at authored x=0 / x=3840 inside a spanned
++                // parent (fixed positions don't follow a spanned frame — same mechanism
++                // that once misplaced Guard/Lock-On). Log their ids to target them.
++                {
++                    const float px = *reinterpret_cast<float*>(ctx.rax + 0x150);
++                    if (px == 0.0f || px == 3840.0f) {
++                        static std::uint32_t seenEdge[64];
++                        static int seenEdgeCount = 0;
++                        bool dup = false;
++                        for (int i = 0; i < seenEdgeCount; i++)
++                            if (seenEdge[i] == id) { dup = true; break; }
++                        if (!dup && seenEdgeCount < 64) {
++                            seenEdge[seenEdgeCount++] = id;
++                            LOG_INFO("HUD: edge-child: id={:#010x} x={:g} y={:g} W={:g} H={:g}",
++                                id, px,
++                                *reinterpret_cast<float*>(ctx.rax + 0x154),
++                                *reinterpret_cast<float*>(ctx.rax + 0x1BC),
++                                *reinterpret_cast<float*>(ctx.rax + 0x1C0));
++                        }
++                    }
++                }
++
+                 // Guard/Lock-On + Dodge: run 2's struct dumps located the real position
+                 // fields at +0x150/+0x154 (authored 3840x2160 space: guard x=432, dodge
+                 // x=3008, both y=1058.67) — master's +0x1CC/+0x1D0 are byte-flags on 2.0.
+@@ -292,6 +373,7 @@ void HUD()
+         // width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0). Base reg still r14
+         // (confirmed via `vmovsd xmm1,[r14+0x1BC]` immediately preceding the hook site).
+         MAKE_MIDHOOK(Markers_sh, "HUD: Markers", "C5 ?? 59 ?? ?? ?? ?? ?? C5 ?? D0 ?? 0F B6 ?? ?? ?? ?? ??", 0, [](SafetyHookContext& ctx) {
++            g_worldCanvasId.store(*reinterpret_cast<std::uint32_t*>(ctx.r14 + 0x1C4), std::memory_order_relaxed);
+             if (Screen::AspectRatio > Screen::NativeAspect) {
+                 float width = 2160.0f * Screen::AspectRatio;
+                 if (*reinterpret_cast<float*>(ctx.r14 + 0x1BC) != width)
 -- 
 2.55.0.windows.2
 

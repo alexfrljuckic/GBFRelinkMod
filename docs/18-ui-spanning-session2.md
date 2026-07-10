@@ -59,6 +59,22 @@
 > next work item). Game display settings need re-picking (Windowed/LG was set during
 > testing). If all verifies, cut `ultrawide-v2` per CLAUDE.md release conventions.
 
+> **LIVE ULTRAWIDE SESSION WITH ALEX (2026-07-10 09:00-10:00, vendor `ea278e2`, builds
+> v7-v10): VERIFIED at 3440x1440** — main menu/pause/quest-board/load/results/title all
+> span; **lock-on/dodge correct with the shift OFF** (Span Backgrounds spanning their
+> canvas is the whole fix — the +0x150 shift clipped them and is retired to
+> default-false); **NPC bubble flicker fixed** (world-projection canvas excluded from
+> reader hooks via id learned in the Markers hook — one writer per canvas); cinematic
+> letterbox strips (3840x400) span via the generalized [3840,4032)-any-height gate.
+> **REMAINING (next session):** (1) in-battle BREAK/skill side vignette — CONFIRMED not a
+> UI element (survived reader/setter/constraints interception at 10 builds); it's the
+> separate screen-effects pipeline = RetroGawd's `ScreenEffects1`. Hunt the effect-quad
+> construction in the graphics pipeline (aspect/resolution consumers outside the UI
+> system). (2) slight left-side menu vignette (minor cosmetic, one more overlay layer).
+> Diagnostics for both are in the build: `LogOddFullscreenOnRead` + edge-child census.
+> **Release call: the verified set is `ultrawide-v2`-worthy** — vignettes are documented
+> known-issues.
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to
