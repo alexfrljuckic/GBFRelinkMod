@@ -23,13 +23,11 @@ Last updated 2026-07-09.
   Supp Dmg V+ sit unflagged at 4.2%). Community-firsts: Transmarvel Voucher =
   `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
-
-## 🧪 Built, needs live test
-- **Transmarvel Jackpot mod v1** ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/)) —
-  Transmarvel sigils always one of the 13 chase V+ (equal ~7.7%), wrightstones always
-  tier-3 Transmarveled. One-table edit (`gacha_rate_group`), 23 bytes vs vanilla,
-  installed + enabled in Reloaded-II. **Alex: do a few Transmarvel rolls to verify**
-  (also settles the "can Transmarvel give War Elemental?" lore question).
+- **Transmarvel Jackpot mod v1 — LIVE-VERIFIED 2026-07-09**
+  ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/)): Transmarvel sigils always one
+  of the 13 chase V+ (equal ~7.7%), wrightstones always tier-3 Transmarveled. One-table
+  edit (`gacha_rate_group`), 23 bytes vs vanilla. Getting it running surfaced two setup
+  landmines — see standing notes (Reloaded bootstrapper ASI + Smart App Control).
 
 ## 🔬 In design (validate before building)
 - **Voucher-per-Chaos-quest mod** (the other half of the split) — grant 1 Transmarvel
@@ -75,3 +73,12 @@ Last updated 2026-07-09.
   Overmasteries, Uncap Item Limit ⚠, gem_mix). Per-mod 2.0 breakage in [docs/10](docs/10-modding-opportunities.md).
 - Anti-debug: x64dbg crashes the game on attach → use the **in-mod diagnostic** method
   ([docs/09](docs/09-hud-markers-debugging.md)).
+- **Reloaded-II injection on GBFR needs `Reloaded.Mod.Loader.Bootstrapper.asi` in the
+  game folder** (SteamStub DRM breaks launcher injection; AppConfig has DontInject:true).
+  It's loaded by the Ultimate ASI Loader `winmm.dll`, so even plain Steam launches load
+  Reloaded mods. Missing ASI = game boots silently UNMODDED (tell-tale: no session log in
+  `%APPDATA%\Reloaded-Mod-Loader-II\Logs`).
+- **Windows Smart App Control must be OFF** to run Reloaded (unsigned community DLLs →
+  error 0x800711C7). SAC ships in silent evaluation mode on fresh Win11 installs and
+  auto-flipped to enforcing on this machine 2026-07-09/10; turning it off is one-way
+  (Windows Security → App & browser control). Turned OFF 2026-07-10.
