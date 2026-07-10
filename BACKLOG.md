@@ -24,21 +24,31 @@ Last updated 2026-07-09.
   `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
 
+## 🧪 Built, needs live test
+- **Transmarvel Jackpot mod v1** ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/)) —
+  Transmarvel sigils always one of the 13 chase V+ (equal ~7.7%), wrightstones always
+  tier-3 Transmarveled. One-table edit (`gacha_rate_group`), 23 bytes vs vanilla,
+  installed + enabled in Reloaded-II. **Alex: do a few Transmarvel rolls to verify**
+  (also settles the "can Transmarvel give War Elemental?" lore question).
+
 ## 🔬 In design (validate before building)
+- **Voucher-per-Chaos-quest mod** (the other half of the split) — grant 1 Transmarvel
+  Voucher (`ITEM_21_0001` / `58FC9B99`) from every Chaos-and-above clear.
+  Unblocked findings: `reward.tbl` 2.0 header reversed (see docs/11); reward rows are
+  `RW_<questId>_<slot>`; quest numbers recur across difficulty-band prefixes
+  (`402xxx`/`407xxx`/`40Axxx`/`40Bxxx` — Chaos/Chaos++/Defy Infinity are the 2.0 tiers).
+  Remaining: decode slot semantics (`_100` vs `_3xx` = fixed vs lottery?), pick the
+  guaranteed-grant mechanism (fill an empty `RewardLotIdN` with a single-item
+  100% group), enumerate Chaos+ quest ids (via `TXT_QR_*` in text_stage.msg +
+  `quest_difficulty.tbl`, still unreversed).
 - **Span the main-menu background to ultrawide** — feasible; master named the element
   (`Main menu bg = 2384707215`) and its 2.0 hook site still matches
   (`+0x3340b04`). Diagnostic staged (`design/GBFRelinkFix-diag-backgrounds.asi`) — run it
   with the main menu open to confirm the ID + 2.0 offsets, then port the targeted span.
   ([docs/14](docs/14-menu-background-spanning.md))
-- **RNG / Drop-rate tuner mod** — make Transmarvel/curio/boss RNG less punishing.
-  - Decided: **must be a Reloaded-II mod** (the platform the scene uses).
-  - Decided: **goodness-based**, not rarity-based — boost the buckets/items on the
-    curated good list (docs/15), don't blanket-boost `Unk4=1`.
-  - Open: which tier — (1) config-multiplier mod, (2) revive the in-game ImGui overlay,
-    (3) friendly slider panel. ([docs/12](docs/12-realtime-rng-ux-design.md))
-  - Next: **UI/UX mocks** in `design/` to validate what data/controls we need.
-  - Before publishing: verify live that FORGING_HIGH → group `27509C51` mapping holds
-    (community 1.x lore contradicts the tables on War Elemental via Transmarvel).
+- ~~RNG / Drop-rate tuner mod (sliders/overlay)~~ — SUPERSEDED 2026-07-09: Alex decided
+  no sliders needed; split into two simple data mods instead (Transmarvel Jackpot above +
+  Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
 
 ## 📋 Planned
 - **Cut GitHub Releases** for the Ultrawide Fix (attach `GBFRelinkFix.asi` to an

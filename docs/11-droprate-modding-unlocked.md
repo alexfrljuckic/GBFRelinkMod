@@ -79,10 +79,21 @@ Custom Drop Rates, More Fortitude, Slimepede) or build a fresh one.
 
 ## Upstream
 
-The two headers ([patches/headers-2.0/](../patches/headers-2.0/)) are a clean PR to
+The headers ([patches/headers-2.0/](../patches/headers-2.0/)) are a clean PR to
 [GBFRDataTools](https://github.com/Nenkai/GBFRDataTools) — they unblock every drop-rate/
 gacha mod for the whole community. Remaining changed tables that mods want next: `item`,
 `constant` (item metadata / globals — bigger schemas, not yet reversed).
+
+## `reward` (per-quest reward definitions) — 44 → 52 bytes, +2 columns (2026-07-09)
+
+RowSize 52, 6292 rows. 2.0 inserted **two hash columns at 0x28/0x2C** (populated on only
+159 rows — the Endless Ragnarok quests) between `RewardPointIdMSP` and
+`Lot1ExclusionChance`; all 1.x columns keep their order. Header:
+[patches/headers-2.0/reward.headers](../patches/headers-2.0/reward.headers) —
+round-trips byte-identical. `Key` is `RW_<questId>_<slot>` (e.g. `RW_402314_100`;
+resolves via ids.txt), and the same quest number recurs across difficulty-band id
+prefixes (`402314`/`407314`/`40A314`/`40B314`) — the hook for per-difficulty reward
+mods like "voucher per Chaos+ clear".
 
 ## Caveats
 - `ItemId` exports as the raw XXHash (e.g. `403A1E7B`) when the hash isn't in the tool's
