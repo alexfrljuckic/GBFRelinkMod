@@ -60,7 +60,8 @@ If ids come out as garbage/zero, id-gated spanning needs a different anchor (log
 Near-identical consumers reading `[rax+0x1BC]` + anchors `0x194/0x198`: `exe+0x3340615`,
 `0x3340797`, `0x3340afc` (the decoy master hooked), `0x3340d80`, `0x33415de`. If the setter
 approach fails, these are the next candidates to diagnostic-hunt. Scan tooling:
-`scan1bc.ps1` (PE-parsing byte scanner, session scratchpad; rewrite from this doc if needed).
+[tools-src/scan-disp](../tools-src/scan-disp/README.md) (tracked, documented — reproduces
+all of the above with `scan-disp.ps1 -Disp 0x1BC -PairDisp 0x1C0 -FloatOnly`).
 
 ## Deployed state (Alex's game folder)
 
