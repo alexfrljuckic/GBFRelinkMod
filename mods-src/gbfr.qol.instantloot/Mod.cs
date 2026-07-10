@@ -51,25 +51,62 @@ public class Mod : ModBase
 
     private void ApplyPatches()
     {
-        ProcessModule main = Process.GetCurrentProcess().MainModule!;
-        nint baseAddr = main.BaseAddress;
-        int size = main.ModuleMemorySize;
-        var mem = new byte[size];
-        Marshal.Copy(baseAddr, mem, 0, size);
+        nint baseAddr = Process.GetCurrentProcess().MainModule!.BaseAddress;
+
+        // Scan ONLY the .text section. Reading the whole module image would cross the
+        // inter-section alignment gaps and the non-readable .retplne section, faulting
+        // with an access violation (instant crash). .text is contiguous and readable.
+        if (!TryGetTextSection(baseAddr, out nint textAddr, out int textSize))
+        {
+            Log("ERROR: could not locate the .text section — no patches applied.");
+            return;
+        }
+        var mem = new byte[textSize];
+        Marshal.Copy(textAddr, mem, 0, textSize);
+        // matches are relative to textAddr; convert to a base offset for logging/patching
+        int textDelta = (int)(textAddr - baseAddr);
 
         if (_configuration.AutoLootChest)
-            Patch("Auto Loot Quest Chest", mem, baseAddr, AutoLootSig, 0, AutoLootPatch);
+            Patch("Auto Loot Quest Chest", mem, textAddr, textDelta, AutoLootSig, 0, AutoLootPatch);
         if (_configuration.SkipResultScreen)
-            Patch("Skip Result Screen", mem, baseAddr, SkipResultSig, SkipResultPatchOffset, SkipResultPatch);
+            Patch("Skip Result Screen", mem, textAddr, textDelta, SkipResultSig, SkipResultPatchOffset, SkipResultPatch);
     }
 
-    private void Patch(string name, byte[] mem, nint baseAddr, string sig, int patchOffset, byte[] patch)
+    /// <summary>Read the in-memory PE headers (first page, always readable) and return the
+    /// mapped address + virtual size of the .text section.</summary>
+    private static bool TryGetTextSection(nint baseAddr, out nint textAddr, out int textSize)
+    {
+        textAddr = 0; textSize = 0;
+        var hdr = new byte[0x1000];
+        Marshal.Copy(baseAddr, hdr, 0, hdr.Length);
+        int pe = BitConverter.ToInt32(hdr, 0x3C);
+        if (pe <= 0 || pe > hdr.Length - 0x40 || BitConverter.ToUInt32(hdr, pe) != 0x00004550) // "PE\0\0"
+            return false;
+        int numSec = BitConverter.ToUInt16(hdr, pe + 6);
+        int optSize = BitConverter.ToUInt16(hdr, pe + 20);
+        int secOff = pe + 24 + optSize;
+        for (int s = 0; s < numSec; s++)
+        {
+            int o = secOff + s * 40;
+            if (o + 40 > hdr.Length) break;
+            string name = System.Text.Encoding.ASCII.GetString(hdr, o, 8).TrimEnd('\0');
+            if (name == ".text")
+            {
+                textSize = BitConverter.ToInt32(hdr, o + 8);   // VirtualSize
+                textAddr = baseAddr + BitConverter.ToInt32(hdr, o + 12); // VirtualAddress
+                return textSize > 0;
+            }
+        }
+        return false;
+    }
+
+    private void Patch(string name, byte[] mem, nint scanAddr, int scanDelta, string sig, int patchOffset, byte[] patch)
     {
         int match = FindUnique(mem, sig, name);
         if (match < 0)
             return;
 
-        nint target = baseAddr + match + patchOffset;
+        nint target = scanAddr + match + patchOffset;
         if (!VirtualProtect(target, patch.Length, PAGE_EXECUTE_READWRITE, out uint old))
         {
             Log($"{name}: VirtualProtect failed — patch NOT applied.");
@@ -77,7 +114,7 @@ public class Mod : ModBase
         }
         Marshal.Copy(patch, 0, target, patch.Length);
         VirtualProtect(target, patch.Length, old, out _);
-        Log($"{name}: patched at +0x{(match + patchOffset):X} ({patch.Length} bytes).");
+        Log($"{name}: patched at .text+0x{(scanDelta + match + patchOffset):X} ({patch.Length} bytes).");
     }
 
     /// <summary>Scan for an IDA-style "AA BB ?? .." signature. Returns match start or -1;
