@@ -51,8 +51,9 @@ for (const it of ITEMS) {
   const trd = { ...goldObj };
   trd.ItemPurchasable = it.item;
   trd.ItemTierMapId = it.tierId;
+  trd.SubKey = `${it.tierId}_SUBKEY`;   // MUST be unique per row (hash_string) — the shop keys entries by this
   trd.Key = SHOP_CATEGORY;
-  trd.MinQuestId = '00000000';   // always available (once the shop category is unlocked)
+  trd.MinQuestId = '0010A002';   // an early quest id used by other Key=5 items (proven-visible)
   trd.MaxQuestId = '00000000';
   trd.SortOrder = (sortOrder++).toString(16).toUpperCase().padStart(8, '0');   // hex_uint
   q(`INSERT INTO trade (${TRD_COLS.join(',')}) VALUES (${TRD_COLS.map(c => `'${String(trd[c]).replace(/'/g, "''")}'`).join(',')});`);
