@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/5] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 1/6] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/5] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 2/6] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/5] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 3/6] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,7 +216,7 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 4/5] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
+Subject: [PATCH 4/6] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
  Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
@@ -547,7 +547,7 @@ index 3aff169..96b18aa 100644
 From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:44:51 -0400
-Subject: [PATCH 5/5] fix: UI spanning diagnostics v2 from run-1 evidence
+Subject: [PATCH 5/6] fix: UI spanning diagnostics v2 from run-1 evidence
  (census + struct dumps)
 
 Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
@@ -788,6 +788,178 @@ index 96b18aa..83a42af 100644
          return hooks.size();
      }
  
+-- 
+2.55.0.windows.2
+
+
+From fe7482b1836999021462a8dddec045814f7306db Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Thu, 9 Jul 2026 23:55:01 -0400
+Subject: [PATCH 6/6] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20bac?=
+ =?UTF-8?q?kground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Run 2 evidence (census + struct dumps) pinned both mechanisms:
+
+- [Span Backgrounds]: full-screen elements never pass the size setter and
+  keep W=3840 in the struct, so the rect-builders that draw menu/pause/
+  overlay quads never saw the register-only span. Now writes the struct
+  constraint width at the UI-Constraints site for 3840x2160 statics
+  (+0x1CC == -1), like master's SpanAllHUD did — naturally write-once.
+  The size setter hooks remain census-only diagnostics.
+
+- FixLockOn/FixDodge: the real position fields on 2.0 are +0x150/+0x154
+  in authored space (guard x=432, dodge x=3008, y=1058.67 — confirmed by
+  run-2 dumps); +0x1CC/+0x1D0 are an int index and byte-flags. Shift X by
+  -/+(2160*aspect-3840)/2 from a cached original, moving each cluster from
+  its 16:9-band position to the true screen edge (matches spanned HUD).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ GBFRelinkFix.ini |  6 ++--
+ src/config.h     |  1 -
+ src/dllmain.cpp  | 73 +++++++++++++++++++++++++++++++-----------------
+ 3 files changed, 49 insertions(+), 31 deletions(-)
+
+diff --git a/GBFRelinkFix.ini b/GBFRelinkFix.ini
+index d7322a3..45ef0b6 100644
+--- a/GBFRelinkFix.ini
++++ b/GBFRelinkFix.ini
+@@ -39,13 +39,11 @@ FixDodge = false
+ 
+ [Span Backgrounds]
+ ; EXPERIMENTAL: spans full-screen backgrounds (menu/pause/load screens, fades, overlays)
+-; to the whole screen on ultrawide by resizing them where their size is first written.
++; to the whole screen on ultrawide by widening every full-frame (3840x2160) static UI
++; element in place, so all draw paths see the new size.
+ ; AspectRatio: 0 = use your actual screen aspect (same semantics as Span HUD).
+-; PixelSpace: also span elements sized exactly to the 16:9 HUD pixel area (more
+-; aggressive; may stretch things that should stay 16:9).
+ Enabled = false
+ AspectRatio = 0
+-PixelSpace = false
+ 
+ [Fix FOV]
+ ; Fixes cropped FOV at <16:9.
+diff --git a/src/config.h b/src/config.h
+index 85d5efb..01a80b6 100644
+--- a/src/config.h
++++ b/src/config.h
+@@ -106,7 +106,6 @@ namespace Config
+ 
+     inline Item<bool> SpanBackgrounds  { "Span Backgrounds", "Enabled", false };
+     inline Item<float> BGAspectRatio   { "Span Backgrounds", "AspectRatio", 0.0f, 0.0f, 32.0f };
+-    inline Item<bool> SpanBGPixelSpace { "Span Backgrounds", "PixelSpace", false };
+ 
+     inline Item<int> ShadowResolution  { "Shadow Quality", "Resolution", 2048, 64, 16384 };
+     inline Item<float> LODDistMult     { "Level of Detail", "Multiplier", 1.0f, 0.01f, 5.0f };
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index edf049d..0996d80 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -159,7 +159,7 @@ void HUD()
+         // containers: when the HUD spans, the game still places them at the 16:9 band edges,
+         // so master pushed them out to the real screen edges via the +0x1CC/+0x1D0 position
+         // offsets. Element ids from master, read at the 2.0 id slot +0x1C4.
+-        if (Config::SpanHUD || Config::FixLockOn || Config::FixDodge) {
++        if (Config::SpanHUD || Config::SpanBackgrounds || Config::FixLockOn || Config::FixDodge) {
+             MAKE_MIDHOOK(SpanHUD_sh, "HUD: Span", "48 ?? ?? ?? ?? ?? 00 48 ?? ?? 74 ?? C5 ?? ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 EB ??", 0x1C, [](SafetyHookContext& ctx) {
+                 if (!ctx.rax) return;
+                 const float hudAspect = (Config::HUDAspectRatio > 0.0f) ? Config::HUDAspectRatio.Get() : Screen::AspectRatio;
+@@ -168,14 +168,51 @@ void HUD()
+                 if (id == 1719602056u) // Gameplay HUD (diagnostic only; spanned by the generic path below)
+                     LogUIElementOnce(0, "GameplayHUD", ctx.rax);
+ 
+-                // Guard/Lock-On + Dodge: DIAGNOSTIC ONLY for now. Run 1 proved the ids match
+-                // on 2.0 but +0x1CC/+0x1D0 are byte-flags here, not master's offset floats —
+-                // writing them is useless-at-best. The window dump locates the real fields.
+-                if (Config::FixLockOn && id == 605904162u) // Guard & Lock-On
++                // Guard/Lock-On + Dodge: run 2's struct dumps located the real position
++                // fields at +0x150/+0x154 (authored 3840x2160 space: guard x=432, dodge
++                // x=3008, both y=1058.67) — master's +0x1CC/+0x1D0 are byte-flags on 2.0.
++                // Shifting X by -/+(spanW-3840)/2 moves each cluster from its 16:9-band
++                // position to the matching true-screen-edge position (a -660 authored
++                // shift = -440px at 3440x1440, exactly the band offset). Original X is
++                // cached first-seen since we rewrite it absolutely every pass.
++                // <16:9 vertical analog unimplemented (needs a narrower-than-16:9 tester).
++                if (Config::FixLockOn && id == 605904162u) { // Guard & Lock-On
+                     LogUIElementOnce(1, "GuardLockOn", ctx.rax);
++                    if (Screen::AspectRatio > Screen::NativeAspect) {
++                        static float origX = -1.0f;
++                        float* px = reinterpret_cast<float*>(ctx.rax + 0x150);
++                        if (origX < 0.0f) origX = *px;
++                        *px = origX - ((2160.0f * hudAspect - 3840.0f) / 2.0f);
++                    }
++                }
+ 
+-                if (Config::FixDodge && id == 3550204025u) // Dodge
++                if (Config::FixDodge && id == 3550204025u) { // Dodge
+                     LogUIElementOnce(2, "Dodge", ctx.rax);
++                    if (Screen::AspectRatio > Screen::NativeAspect) {
++                        static float origX = -1.0f;
++                        float* px = reinterpret_cast<float*>(ctx.rax + 0x150);
++                        if (origX < 0.0f) origX = *px;
++                        *px = origX + ((2160.0f * hudAspect - 3840.0f) / 2.0f);
++                    }
++                }
++
++                // Span Backgrounds v3: write the STRUCT constraint width, not just the
++                // register. Run 2 proved full-screen elements never pass the size setter
++                // and keep W=3840 in the struct (StaticHUD3840 dump), so the rect-builder
++                // family that draws menu/pause/overlay quads — which reads the struct,
++                // not this site's registers — never saw the span. Master's SpanAllHUD
++                // wrote the struct too (with a +0x200 write-once marker; our width check
++                // is naturally write-once: after the write, cW != 3840).
++                if (Config::SpanBackgrounds && Screen::AspectRatio > Screen::NativeAspect) {
++                    const float scW = *reinterpret_cast<float*>(ctx.rax + 0x1BC);
++                    const float scH = *reinterpret_cast<float*>(ctx.rax + 0x1C0);
++                    if (scW == 3840.0f && scH == 2160.0f
++                        && *reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1CC) == 0xFFFFFFFFu) {
++                        const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
++                        *reinterpret_cast<float*>(ctx.rax + 0x1BC) = 2160.0f * bgAspect;
++                        ctx.xmm2.f32[0] = 2160.0f * bgAspect; // this pass's register copy too
++                    }
++                }
+ 
+                 if (!Config::SpanHUD) return;
+                 const float cW = *reinterpret_cast<float*>(ctx.rax + 0x1BC);
+@@ -213,30 +250,14 @@ void HUD()
+         });
+     }
+ 
+-    // Span full-screen backgrounds (menu/pause/load screens, fades, overlays) at the
+-    // source: the "UI Size Setter" is where an element's constraint W/H is written
+-    // ([rax+0x1BC]=W / [rax+0x1C0]=H, from an input rect). The logic is stamped out at
+-    // FOUR+ sites — three standalone copies ending in ret, plus at least one inlined
+-    // with different xmm registers (exe+0xa7fbfd) — hence MAKE_MIDHOOK_ALL, a pattern
+-    // with no trailing ret, and hooking AFTER all three stores (+0x2A) with struct
+-    // writes instead of register writes (register allocation differs per copy; the
+-    // struct fields don't). Run 1 found nothing at 3840x2160 here, so this iteration
+-    // is census-first (see LogSizeSetterCensus) with two span attempts behind it:
+-    // authored units (3840x2160) and, under PixelSpace, the 16:9 HUD pixel size.
++    // UI Size Setter (26 inlined copies): census-only since run 2 — it handles
++    // sub-element resizes in authored units and full-screen elements never pass
++    // through it, so spanning happens at the constraints site above instead.
++    // Kept for diagnostics: logs each unique W/H (+id) flowing through.
+     if (Config::SpanBackgrounds) {
+         MAKE_MIDHOOK_ALL(SizeSetter_sh, "UI Size Setter", "C5 ?? 54 ?? ?? ?? ?? ?? C5 ?? 2E ?? ?? ?? ?? ?? 77 ?? C5 ?? 11 ?? B8 01 00 00 C5 ?? 11 ?? BC 01 00 00 C5 ?? 11 ?? C0 01 00 00", 0x2A, [](SafetyHookContext& ctx) {
+             if (!ctx.rax) return;
+             LogSizeSetterCensus(ctx.rax);
+-            // Same world-positioned-element skip as Span HUD (live +0x1CC offset).
+-            if (*reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1CC) != 0xFFFFFFFFu) return;
+-            if (Screen::AspectRatio <= Screen::NativeAspect) return; // <16:9 unhandled this iteration
+-            float* cW = reinterpret_cast<float*>(ctx.rax + 0x1BC);
+-            const float cH = *reinterpret_cast<float*>(ctx.rax + 0x1C0);
+-            const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
+-            if (*cW == 3840.0f && cH == 2160.0f)
+-                *cW = 2160.0f * bgAspect;
+-            else if (Config::SpanBGPixelSpace && *cW == Screen::HUDWidth && cH == Screen::HUDHeight)
+-                *cW = Screen::HUDHeight * bgAspect;
+         });
+     }
+ }
 -- 
 2.55.0.windows.2
 

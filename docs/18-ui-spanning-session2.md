@@ -13,6 +13,20 @@
 > GuardLockOn/Dodge/StaticHUD3840, offset writes disabled, `PixelSpace` span key added.
 > **Next: run 2, then read the census + dumps in GBFRelinkFix.log.**
 
+> **RUN 2 RESULTS + v3 (2026-07-09 ~23:47):** census + struct dumps landed everything.
+> (a) Setter sizes are authored units but full-screen elements NEVER pass it — and the
+> StaticHUD3840 dump shows the struct keeps W=3840, proving menus stayed 16:9 because our
+> SpanHUD port is register-only while the menu-bg rect-builders read the STRUCT (master's
+> SpanAllHUD wrote the struct; that's the missing piece). (b) Field map corrections:
+> `+0x150/+0x154` = element position in authored space (GuardLockOn x=432, Dodge x=3008,
+> y=1058.67), `+0x1CC` = int index (-1 for full-frame statics — why the sentinel filter
+> works), `+0x1D0` = byte-flags 0x01000101, `+0x1A4..+0x1B0` = anchor min/max pairs the
+> setter compares. (c) Video frames confirm: menus/quest-board clamped to the 16:9 band,
+> big-attack cut-in seams, Guard/Lock-On cluster floating ~440px inboard while the rest of
+> the HUD spans. **v3 deployed (vendor `fe7482b`):** [Span Backgrounds] now struct-writes
+> +0x1BC at the constraints site (write-once by construction); FixLockOn/FixDodge shift
+> +0x150 X by -/+(2160*aspect-3840)/2 from a cached original; setter hooks census-only.
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to
