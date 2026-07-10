@@ -14,11 +14,14 @@ const SQL = 'tools\\sqlite\\sqlite3.exe';
 const DB = 'extracted/shop_work/s.sqlite';
 const q = (sql) => execSync(`${SQL} ${DB} "${sql.replace(/\s+/g, ' ').replace(/"/g, '""')}"`).toString().trim();
 
-// ===================== CONFIG (default prices, in rupies) =====================
+// ===================== CONFIG =====================
+// Shops charge item/badge materials, NOT rupies (no shop uses rupie CoinCost), and FREE
+// items get a ~200 default cap. So each entry has a trivial 1x MATERIAL cost -> unlimited
+// like every real shop item. Cheap 1:1 chain: common crystal -> silver -> gold -> spellbook.
 const ITEMS = [
-  { name: 'Silver Dalia Badge', item: 'ITEM_14_0031', price: 5000,   recipeKey: 990001, tierId: 'TMAP_RUPIE_SILVER_BADGE' },
-  { name: 'Gold Dalia Badge',   item: 'ITEM_14_0032', price: 50000,  recipeKey: 990002, tierId: 'TMAP_RUPIE_GOLD_BADGE' },
-  { name: 'Gold Spellbook',     item: 'ITEM_11_0002', price: 100000, recipeKey: 990003, tierId: 'TMAP_RUPIE_GOLD_SPELLBOOK' },
+  { name: 'Silver Dalia Badge', item: 'ITEM_14_0031', costItem: 'ITEM_10_0000', costCount: 1, recipeKey: 990001, tierId: 'TMAP_CHEAP_SILVER_BADGE' },
+  { name: 'Gold Dalia Badge',   item: 'ITEM_14_0032', costItem: 'ITEM_14_0031', costCount: 1, recipeKey: 990002, tierId: 'TMAP_CHEAP_GOLD_BADGE' },
+  { name: 'Gold Spellbook',     item: 'ITEM_11_0002', costItem: 'ITEM_14_0032', costCount: 1, recipeKey: 990003, tierId: 'TMAP_CHEAP_GOLD_SPELLBOOK' },
 ];
 const SHOP_CATEGORY = 5;   // Key=5 = the badge shop (where the Gold Badge already sells)
 // =============================================================================
@@ -34,11 +37,13 @@ const goldObj = Object.fromEntries(TRD_COLS.map((c, i) => [c, goldRow[i]]));
 
 let sortOrder = 200;
 for (const it of ITEMS) {
-  // 1) cost recipe: pure rupies, no item materials
+  // 1) cost recipe: a trivial material cost (shops don't honor rupies; free items cap at ~200)
   const iml = Object.fromEntries(IML_COLS.map(c => [c, 0]));
   for (const c of IML_COLS) if (c.startsWith('Item') && !c.startsWith('ItemCount') && !c.startsWith('ItemMaterialCommon') || c.startsWith('ItemMaterialCommon') && !c.includes('Count')) iml[c] = '';
   iml.Key = it.recipeKey;
-  iml.CoinCost = it.price;
+  iml.Item1 = it.costItem;
+  iml.ItemCount1 = it.costCount;
+  iml.CoinCost = 0;
   q(`INSERT INTO item_material_list (${IML_COLS.join(',')}) VALUES (${IML_COLS.map(c => typeof iml[c] === 'string' ? `'${iml[c]}'` : iml[c]).join(',')});`);
 
   // 2) tier map: MaterialId1 -> the recipe key
@@ -53,10 +58,11 @@ for (const it of ITEMS) {
   trd.ItemTierMapId = it.tierId;
   trd.SubKey = `${it.tierId}_SUBKEY`;   // MUST be unique per row (hash_string) — the shop keys entries by this
   trd.Key = SHOP_CATEGORY;
-  // Free items otherwise get a ~200 default purchase cap; make stock huge + refreshable.
-  trd.IsRefreshable = 1;
-  trd.MaxStockForRefresh = 999999;
-  trd.MaxStockOrAmountRefreshed = 999999;
+  // Stock config = vanilla unlimited-priced-item config (0/0/0). With a real cost, this is
+  // unlimited (matches the 107 cat-5 badge-cost rows). IsRefreshable=1 hid them (featured shop).
+  trd.IsRefreshable = 0;
+  trd.MaxStockForRefresh = 0;
+  trd.MaxStockOrAmountRefreshed = 0;
   trd.MinQuestId = '0010A002';   // an early quest id used by other Key=5 items (proven-visible)
   trd.MaxQuestId = '00000000';
   trd.SortOrder = (sortOrder++).toString(16).toUpperCase().padStart(8, '0');   // hex_uint

@@ -1,9 +1,9 @@
 {
   "ModId": "gbfr.shop.rupiebadges",
-  "ModName": "Badges & Spellbooks for Rupies (2.0)",
+  "ModName": "Cheap Badges & Spellbooks (2.0)",
   "ModAuthor": "alexfrljuckic",
   "ModVersion": "1.0",
-  "ModDescription": "Adds Silver Dalia Badge (5000), Gold Dalia Badge (50000), and Gold Spellbook (100000) as rupie purchases at Siero's Knickknack Shack. Built for Endless Ragnarok 2.0. (Prices will become configurable once the shop mechanism is confirmed in-game.)",
+  "ModDescription": "Adds unlimited, near-free purchases at Siero's Knickknack Shack: Silver Dalia Badge (1 common crystal), Gold Dalia Badge (1 silver badge), Gold Spellbook (1 gold badge). GBFR shops can't charge rupies and free items get a ~200 cap, so a trivial 1:1 material cost is used to make them unlimited. Built for Endless Ragnarok 2.0.",
   "ModDll": "",
   "ModIcon": "",
   "ModR2RManagedDll32": "",
