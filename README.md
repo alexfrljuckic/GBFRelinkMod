@@ -21,6 +21,7 @@ Two things live here: **ready-to-install mods** (`mods/`) and the **research** b
 | **Transmarvel Overhaul** | [mods/transmarvel-overhaul/](mods/transmarvel-overhaul/) | Transmarvel worth doing: sigil rolls come from a 41-chase-sigil jackpot pool, + sigils get curated 2nd traits, wrightstones always tier-3, and every Chaos+ clear guarantees vouchers | ✅ Released + live-verified |
 | **Mastery Points Multiplier** | [mods/msp-multiplier/](mods/msp-multiplier/) | Configurable ×1–×100 MSP from quests (default ×5) — our first C# Reloaded mod | ✅ Released + live-verified |
 | **Item Cap 9999** | [mods/item-cap/](mods/item-cap/) | Raises the 999 hold-cap to 9999 on normal item categories (key items/currencies untouched) | ✅ Released + live-verified |
+| **Instant Loot** | [mods/instant-loot/](mods/instant-loot/) | Instantly finishes the end-of-quest treasure countdown (auto-collect) and skips the result-screen ceremony — two toggles. Code/AOB mod | ✅ Released |
 
 Downloads (binaries) are attached to **[GitHub Releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)**
 under per-mod tags (e.g. `transmarvel-overhaul-v1`). Each mod folder's `README.md` has full install steps.
@@ -97,5 +98,6 @@ See **[BACKLOG.md](BACKLOG.md)** for what's done, in progress, and planned.
 | [16-retrogawd-comparison.md](docs/16-retrogawd-comparison.md) | Honest comparison with RetroGawd's ultrawide fix |
 | [17-ui-spanning-handoff.md](docs/17-ui-spanning-handoff.md) | UI-spanning research handoff: tools, struct maps, plan |
 | [18-ui-spanning-session2.md](docs/18-ui-spanning-session2.md) | **Research**: the full spanned-UI campaign + post-mortem (why we ultimately adopted zhen's GBFRUltrawide) |
+| [19-loot-countdown-research.md](docs/19-loot-countdown-research.md) | **Research**: loot countdown is engine code not data (basis of Instant Loot); `constant.tbl` 2.0 layout reversed |
 
 `design/` holds UI/UX mocks · `scripts/` holds RE helper scripts · `patches/` holds our table-header fixes.
