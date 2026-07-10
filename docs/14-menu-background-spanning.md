@@ -52,8 +52,24 @@ open** (that's when the menu-bg element passes through the hook):
    approach or Alex's loading-asset idea (`ui/atlas/loading_loading01/02` — the loading
    art that already spans).
 
+## Combat is affected too (same root cause)
+
+A 21:9 combat capture (2026-07-09) showed **intermittent vertical seams during full-screen
+overlay effects** — a white screen-flash rendered in a centered 16:9 band with dark side
+strips, and the red overdrive/"Cardinal" tint bright in the center but dimmed past a hard
+vertical seam on the sides. Most of the fight is fine (true post-process effects like bloom
+already span); only **full-screen overlay quads authored at 3840×2160** (flashes, screen
+tints, fades) seam — the same element class as the menu backgrounds and master's
+`Fade to black`/overlay IDs.
+
+So the UI-Backgrounds span isn't menu-only — it should also remove these combat seams. **When
+running the diagnostic, also trigger a big attack / overdrive** so the flash/tint element gets
+logged alongside the menu backgrounds. This raises the value of the fix: one hook addresses
+menu backgrounds *and* combat overlay seams.
+
 ## Caveats
-- Menu-only; won't touch gameplay. Lower-risk than Span HUD.
+- Not just menu — also fixes combat full-screen-overlay seams (above). Still won't touch true
+  post-process effects (those already span).
 - Still an ASI code mod → breaks on future game patches like everything else.
 - The "reuse loading asset" idea is a real fallback but heavier (asset swap in the menu
   layout) — try the element-span first; it's cleaner if the art extends without stretching.
