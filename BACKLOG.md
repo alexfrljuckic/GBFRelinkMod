@@ -50,9 +50,16 @@ Last updated 2026-07-09.
   (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
 
 ## 🔬 In design (validate before building)
-- **Complete open-source UI spanning** — **DONE 2026-07-10, all features verified at 3440x1440** (menu backgrounds, combat screen-effects,
-  speech-bubbles/nameplates, lock-on/dodge) — session log in
-  [docs/18](docs/18-ui-spanning-session2.md). **2026-07-10: menu/title/load BACKGROUNDS
+- **Complete open-source UI spanning** — **CONCLUDED 2026-07-10: Alex switched to
+  [zhen's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide) v0.2.1 for
+  stability** (installed in game folder; our build parked in
+  `scripts/_disabled_GBFRelinkFix/`). Most features verified at 3440x1440 (backgrounds/
+  menus/loading spanned, combat VFX via ScreenEffects, lock-on/dodge, bubbles), but
+  spanned-UI died on a shared-layer conflict in the quest-flow screens (same layer needs
+  opposite treatment on menus vs quest board — per-id exclusion can't reconcile; a
+  resume needs screen-context awareness). Post-mortem atop
+  [docs/18](docs/18-ui-spanning-session2.md); source: vendor `ragnarok-2.0-fixes`
+  (`5fce26f`). Session history: **2026-07-10: menu/title/load BACKGROUNDS
   SOLVED + live-verified** (span-at-the-readers, vendor `ce8aae4`; Claude ran the game
   autonomously at 2.4:1 windowed — save hash-verified untouched). Remaining before an
   ultrawide-v2 release: loading-tips bg (unhooked reader form), lock-on/dodge `+0x150`

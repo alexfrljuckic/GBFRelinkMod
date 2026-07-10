@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 01/10] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 01/11] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 02/10] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 02/11] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 03/10] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 03/11] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,7 +216,7 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 04/10] feat: Lock-On/Dodge offset port + Span Backgrounds via
+Subject: [PATCH 04/11] feat: Lock-On/Dodge offset port + Span Backgrounds via
  UI Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
@@ -547,7 +547,7 @@ index 3aff169..96b18aa 100644
 From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:44:51 -0400
-Subject: [PATCH 05/10] fix: UI spanning diagnostics v2 from run-1 evidence
+Subject: [PATCH 05/11] fix: UI spanning diagnostics v2 from run-1 evidence
  (census + struct dumps)
 
 Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
@@ -795,7 +795,7 @@ index 96b18aa..83a42af 100644
 From fe7482b1836999021462a8dddec045814f7306db Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:55:01 -0400
-Subject: [PATCH 06/10] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20b?=
+Subject: [PATCH 06/11] =?UTF-8?q?feat:=20v3=20=E2=80=94=20struct-write=20b?=
  =?UTF-8?q?ackground=20spanning=20+=20Lock-On/Dodge=20via=20+0x150?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -967,7 +967,7 @@ index edf049d..0996d80 100644
 From ce8aae452760f0aaea7cd4eea4183db22af59d6e Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:24:56 -0400
-Subject: [PATCH 07/10] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
+Subject: [PATCH 07/11] =?UTF-8?q?feat:=20Span=20Backgrounds=20VERIFIED=20?=
  =?UTF-8?q?=E2=80=94=20span=20at=20the=20width=20readers=20(v4/v5)?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1068,7 +1068,7 @@ index 0996d80..a938b9d 100644
 From c66286ab2b8625eb70442cf9031664dff6b4e499 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 00:31:29 -0400
-Subject: [PATCH 08/10] =?UTF-8?q?feat:=20full-coverage=20width-reader=20ho?=
+Subject: [PATCH 08/11] =?UTF-8?q?feat:=20full-coverage=20width-reader=20ho?=
  =?UTF-8?q?oks=20(168=20sites)=20=E2=80=94=20Main=20Menu=20fully=20spans?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -1170,7 +1170,7 @@ index a938b9d..75d7dc0 100644
 From ea278e2b6a2ea48040f8b66fbf80d2d6e5c110ed Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 10:00:38 -0400
-Subject: [PATCH 09/10] =?UTF-8?q?feat:=20v7-v10=20=E2=80=94=20bubble=20fli?=
+Subject: [PATCH 09/11] =?UTF-8?q?feat:=20v7-v10=20=E2=80=94=20bubble=20fli?=
  =?UTF-8?q?cker=20fix,=20generalized=20full-width=20gate,=20cut-in=20shift?=
  =?UTF-8?q?s?=
 MIME-Version: 1.0
@@ -1350,7 +1350,7 @@ index 75d7dc0..d6b2d1c 100644
 From 9f762a6024c7a2197dfc1306e7987c60657c4445 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Fri, 10 Jul 2026 10:11:14 -0400
-Subject: [PATCH 10/10] =?UTF-8?q?feat:=20Screen=20Effects=20port=20?=
+Subject: [PATCH 10/11] =?UTF-8?q?feat:=20Screen=20Effects=20port=20?=
  =?UTF-8?q?=E2=80=94=20combat=20VFX=20quads=20span=20(VERIFIED=20at=203440?=
  =?UTF-8?q?x1440)?=
 MIME-Version: 1.0
@@ -1399,6 +1399,225 @@ index d6b2d1c..4c23cd1 100644
          // Fix markers
          // Release 2.0 (2026-07-08): vdivss folded out of the sequence and the HUD reference
          // width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0). Base reg still r14
+-- 
+2.55.0.windows.2
+
+
+From 5fce26f4db2065a2be684cf5225e44044dcad05b Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Fri, 10 Jul 2026 13:39:01 -0400
+Subject: [PATCH 11/11] feat: ExcludeIds escape hatch + census cap raise;
+ source-write tried and reverted
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Final state of the 2026-07-10 spanned-UI push. [Span Backgrounds] gains an
+ini-driven ExcludeIds list (per-element opt-out, parsed at boot) after live
+iteration showed the quest-flow screens need ~50 layers excluded — and that
+some layers are SHARED between screens with opposite needs (menu backgrounds
+that must span vs quest-board glow that must not), which per-id exclusion
+cannot reconcile. The wash-back-defeating source-field write (+0x1B4, zhen
+ADR-0006 style) was tried and reverted: the wash-back is load-bearing for
+the reader-hook architecture (it self-limits spanning; making values stick
+offset town interaction bubbles).
+
+OUTCOME: Alex opted for stability — GBFRUltrawide (zhen469891) installed in
+the game folder; this fork's build moved to scripts/_disabled_GBFRelinkFix.
+Span Backgrounds ships default-false. The spanned-UI experiment stands as
+research: docs/18 has the full findings (element struct map, reader-hook
+architecture, per-screen id censuses, the shared-layer conflict that ended
+it).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ src/config.h    |   4 ++
+ src/dllmain.cpp | 108 +++++++++++++++++++++++++++++++++++-------------
+ 2 files changed, 83 insertions(+), 29 deletions(-)
+
+diff --git a/src/config.h b/src/config.h
+index 01a80b6..0b5c489 100644
+--- a/src/config.h
++++ b/src/config.h
+@@ -106,6 +106,10 @@ namespace Config
+ 
+     inline Item<bool> SpanBackgrounds  { "Span Backgrounds", "Enabled", false };
+     inline Item<float> BGAspectRatio   { "Span Backgrounds", "AspectRatio", 0.0f, 0.0f, 32.0f };
++    inline Item<std::string> BGExcludeIds { "Span Backgrounds", "ExcludeIds", std::string("") };
++
++    inline Item<bool> FixScreenFX      { "Fix Screen Effects", "Enabled", true };
++    inline Item<bool> FixGfxCorruption { "Fix Graphics Corruption", "Enabled", true };
+ 
+     inline Item<int> ShadowResolution  { "Shadow Quality", "Resolution", 2048, 64, 16384 };
+     inline Item<float> LODDistMult     { "Level of Detail", "Multiplier", 1.0f, 0.01f, 5.0f };
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 4c23cd1..8b7f789 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -179,31 +179,67 @@ static void LogOddFullscreenOnRead(std::uintptr_t elem)
+ // bubbles flicker left (reported 2026-07-10). Learned dynamically, excluded from readers.
+ static std::atomic<std::uint32_t> g_worldCanvasId{0};
+ 
++// (A one-run geometry census lived here during the 2026-07-10 menu-vignette hunt; it
++// established that +0x150/+0x154 are SCREEN-PIXEL center-pivot positions and mapped
++// every menu element's extent. Removed for release — see docs/18 and vendor history.)
++
++// [Span Backgrounds] ExcludeIds: element ids never to span, parsed once from the ini at
++// startup. Escape hatch for containers whose children mis-position when the frame spans
++// (found 2026-07-10: a quest-detail backing layer washes the side-goal text when
++// spanned). Iterable without a rebuild: edit the ini, restart the game.
++static std::uint32_t g_bgExcludeIds[128];
++static int g_bgExcludeCount = 0;
++
++static void ParseBGExcludeIds()
++{
++    const std::string raw = Config::BGExcludeIds.Get();
++    const char* p = raw.c_str();
++    while (*p && g_bgExcludeCount < 128) {
++        char* end = nullptr;
++        const unsigned long v = strtoul(p, &end, 0); // accepts 0x... and decimal
++        if (end == p) { p++; continue; }
++        g_bgExcludeIds[g_bgExcludeCount++] = static_cast<std::uint32_t>(v);
++        p = end;
++    }
++    for (int i = 0; i < g_bgExcludeCount; i++)
++        LOG_INFO("Span Backgrounds: excluding element id={:#010x}", g_bgExcludeIds[i]);
++}
++
+ static void SpanElementOnRead(std::uintptr_t elem)
+ {
+     if (!elem) return;
+     LogOddFullscreenOnRead(elem);
+ 
+-    if (*reinterpret_cast<std::uint32_t*>(elem + 0x1C4) == g_worldCanvasId.load(std::memory_order_relaxed))
+-        return;
++    // NOTE (2026-07-10): two attempted fixes for the residual left menu sliver were
++    // REVERTED after breaking menu layout at 3440x1440: (a) shifting the 1304x660 panel
++    // 0x0aab020a left by the band offset, (b) spanning the 4400-wide header band — both
++    // displaced unrelated child elements (objective text, list rows). The ~117px bright
++    // sliver at the window's left edge in menus stays as a documented known-issue.
+ 
+-    // Full-width gate: width in [3840, 3840*1.05), any positive height. Anything spanning
+-    // the full authored frame width should follow the frame — that includes 3840x2160
+-    // backgrounds, slightly-oversize seam-hiding overlays (3848x2160 vignette), and the
+-    // 3840x400 cinematic letterbox strips (cut-ins). Spanning scales proportionally, and
+-    // the write keeps the gate idempotent: a spanned width lands outside [3840, 4032).
+-    // Deliberately excluded: sub-width elements and already-oversize pan layers (4900+).
++    const std::uint32_t elemId = *reinterpret_cast<std::uint32_t*>(elem + 0x1C4);
++    if (elemId == g_worldCanvasId.load(std::memory_order_relaxed))
++        return;
++    for (int i = 0; i < g_bgExcludeCount; i++)
++        if (g_bgExcludeIds[i] == elemId) return;
++
++    // Full-width gate: EXACT width whitelist — 3840 (authored full-frame), 3848 (the
++    // seam-hiding vignette), 4900 (oversize menu dim layer). Any height (loading-screen
++    // layers are 3840-wide at non-2160 heights). A RANGE gate ([3840, 4032)) was tried
++    // 2026-07-10 and caused the quest-detail breakage two ways: it spanned a static
++    // 4000-wide quest panel (washing its side-goal text) and permanently corrupted an
++    // ANIMATED width caught mid-transition at 3940.72 (elements tween their widths;
++    // exact matches make that impossible). Idempotent: spanned widths never re-match.
+     float* cW = reinterpret_cast<float*>(elem + 0x1BC);
+     if (*reinterpret_cast<float*>(elem + 0x1C0) <= 0.0f) return;
+-    if (*cW < 3840.0f || *cW >= 4032.0f) return;
++    if (*cW != 3840.0f && *cW != 3848.0f && *cW != 4900.0f) return;
+ 
+-    static std::uint32_t seen[48];
++    static std::uint32_t seen[160];
+     static int seenCount = 0;
+     const std::uint32_t id = *reinterpret_cast<std::uint32_t*>(elem + 0x1C4);
+     bool logged = false;
+     for (int i = 0; i < seenCount; i++)
+         if (seen[i] == id) { logged = true; break; }
+-    if (!logged && seenCount < 48) {
++    if (!logged && seenCount < 160) {
+         seen[seenCount++] = id;
+         LOG_INFO("BG: reader saw full-frame element: id={:#010x} W={:g} off0x1CC={:#010x}",
+             id, *cW, *reinterpret_cast<std::uint32_t*>(elem + 0x1CC));
+@@ -214,6 +250,12 @@ static void SpanElementOnRead(std::uintptr_t elem)
+     // holds at the UI-Constraints site. The size gate above is the filter.
+     if (Screen::AspectRatio <= Screen::NativeAspect) return;
+     const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
++    // Deliberately write ONLY the current width (+0x1BC), NOT the source (+0x1B4).
++    // The source-write "optimization" (make the game's dirty-recalc maintain the
++    // spanned value, per zhen ADR-0006) was tried 2026-07-10 and REVERTED: the
++    // wash-back is load-bearing for us. It self-limits spanning to elements actively
++    // being consumed through hooked read paths; making the value stick spanned
++    // canvases we never intended (town interaction bubbles offset).
+     *cW = *cW * (2160.0f * bgAspect) / 3840.0f;
+ }
+ 
+@@ -267,20 +309,6 @@ void HUD()
+                 if (id == 1719602056u) // Gameplay HUD (diagnostic only; spanned by the generic path below)
+                     LogUIElementOnce(0, "GameplayHUD", ctx.rax);
+ 
+-                // Cut-in side vignettes: 2160x2160 gradient squares at authored x=0 whose
+-                // parent frame spans centered — so they sit at the old band edges (the
+-                // "black bars" during BREAK/skills). Shift them outward with the frame.
+-                // Ids from the 2026-07-10 edge-child census. Both report x=0 (the right
+-                // one is mirrored, so the same negative shift moves it outward too).
+-                if (Config::SpanBackgrounds
+-                    && (id == 0x592e0f7fu || id == 0x7a92de7au || id == 0xc69e1740u)
+-                    && Screen::AspectRatio > Screen::NativeAspect) {
+-                    float* px = reinterpret_cast<float*>(ctx.rax + 0x150);
+-                    const float shift = (2160.0f * hudAspect - 3840.0f) / 2.0f;
+-                    if (*px == 0.0f || *px == -shift)
+-                        *px = -shift;
+-                }
+-
+                 // Edge-child census: the BREAK/skill vignette bars are suspected to be
+                 // child sprites positioned at authored x=0 / x=3840 inside a spanned
+                 // parent (fixed positions don't follow a spanned frame — same mechanism
+@@ -374,10 +402,12 @@ void HUD()
+         // constant block's +0x59C factor, which sizes full-screen combat-VFX quads. The
+         // game ships 1.0 there = quads stay 16:9-wide with vertical bars at the band
+         // edges on ultrawide. Correct value at any non-16:9 aspect = aspect/(16:9).
+-        MAKE_MIDHOOK(ScreenEffects_sh, "Screen Effects", "C5 ?? ?? ?? 48 ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 C3", 0xB, [](SafetyHookContext& ctx) {
+-            if (Screen::AspectRatio != Screen::NativeAspect)
+-                ctx.xmm0.f32[0] = Screen::AspectMultiplier;
+-        });
++        if (Config::FixScreenFX) {
++            MAKE_MIDHOOK(ScreenEffects_sh, "Screen Effects", "C5 ?? ?? ?? 48 ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 C3", 0xB, [](SafetyHookContext& ctx) {
++                if (Screen::AspectRatio != Screen::NativeAspect)
++                    ctx.xmm0.f32[0] = Screen::AspectMultiplier;
++            });
++        }
+ 
+         // Fix markers
+         // Release 2.0 (2026-07-08): vdivss folded out of the sequence and the HUD reference
+@@ -403,6 +433,7 @@ void HUD()
+     // through it, so spanning happens at the constraints site above instead.
+     // Kept for diagnostics: logs each unique W/H (+id) flowing through.
+     if (Config::SpanBackgrounds) {
++        ParseBGExcludeIds();
+         MAKE_MIDHOOK_ALL(SizeSetter_sh, "UI Size Setter", "C5 ?? 54 ?? ?? ?? ?? ?? C5 ?? 2E ?? ?? ?? ?? ?? 77 ?? C5 ?? 11 ?? B8 01 00 00 C5 ?? 11 ?? BC 01 00 00 C5 ?? 11 ?? C0 01 00 00", 0x2A, [](SafetyHookContext& ctx) {
+             if (!ctx.rax) return;
+             LogSizeSetterCensus(ctx.rax);
+@@ -438,6 +469,25 @@ void HUD()
+ 
+ void Graphics()
+ {
++    // Fix graphical corruption at resolution widths not divisible by 64 (e.g. 3440):
++    // the game packs {w/64, h/60, w/32, h/30} into a cbuffer float4, and a fractional
++    // first lane corrupts downstream buffers. Round it up at every inlined branch arm
++    // of the packing (ceilf is a no-op for integral values, so over-hooking arms is
++    // harmless). Lyall-master feature this branch never ported; patterns and the
++    // w/64-not-w/32 semantics re-verified on 2.0.2 by zhen469891/gbfr-ultrawide (MIT).
++    if (Config::CustomResolution && Config::FixGfxCorruption) {
++        const float w32 = Config::CustomResX.Get() / 32.0f;
++        const float w64 = Config::CustomResX.Get() / 64.0f;
++        if (floorf(w32) != w32 || floorf(w64) != w64) {
++            MAKE_MIDHOOK_ALL(GfxCorruption1_sh, "Graphics Corruption 1", "C5 E2 59 1D ?? ?? ?? ?? C4 E3 61 21 C0 10 C4 E3 79 21 C2 20 C4 E3 79 21 C1 30 C5 F8 29 00", 0x8, [](SafetyHookContext& ctx) {
++                ctx.xmm3.f32[0] = ceilf(ctx.xmm3.f32[0]);
++            });
++            MAKE_MIDHOOK_ALL(GfxCorruption2_sh, "Graphics Corruption 2", "C5 E2 59 1D ?? ?? ?? ?? C4 E3 61 21 D2 10 C4 E3 69 21 C9 20 C4 E3 71 21 C0 30 C5 F8 29 00 C5 F8 28 05 ?? ?? ?? ?? C5 F8 29 40 10", 0x8, [](SafetyHookContext& ctx) {
++                ctx.xmm3.f32[0] = ceilf(ctx.xmm3.f32[0]);
++            });
++        }
++    }
++
+     if (Config::ShadowResolution != 2048) {
+         // Adjust shadow resolution      
+         MAKE_MIDHOOK(ShadowResolution_sh, "Shadow Resolution", "8B ?? ?? 0C 8B ?? ?? 10 8B ?? ?? ?? B9 ?? ?? ?? ?? 48 ?? ?? ??", 0, [](SafetyHookContext& ctx) {          
 -- 
 2.55.0.windows.2
 

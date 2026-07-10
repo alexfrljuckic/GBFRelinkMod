@@ -1,5 +1,22 @@
 # UI spanning session 2 (2026-07-09 late): Lock-On/Dodge port + the UI Size Setter
 
+> **FINAL OUTCOME (2026-07-10 ~14:00): Alex switched to
+> [zhen469891's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide) v0.2.1**
+> (installed in the game folder; our build parked in `scripts/_disabled_GBFRelinkFix`).
+> The spanned-UI experiment ended on the **shared-layer conflict**: quest-flow screens
+> need ~50 element layers excluded from spanning, and at least one glow/backing layer is
+> SHARED with the main menu with opposite needs (must span on menus, must not on the
+> quest board) — per-id exclusion can't reconcile that, and per-screen context isn't
+> observable from the hooks. Everything else verified: backgrounds/menus/loading spanned,
+> combat VFX (ScreenEffects), lock-on/dodge, bubbles, results screens. The research —
+> full element struct map, reader-hook architecture, id censuses, the conflict analysis —
+> lives in this doc and vendor branch `ragnarok-2.0-fixes` (final commit `5fce26f`).
+> No ultrawide-v2 release; ultrawide-v1 stays up with a pointer to zhen's mod as the
+> maintained option. If anyone resumes: the fix needs screen-context awareness (e.g.
+> hooking the screen-transition state machine to toggle exclusions per scene), or zhen's
+> canvas-table approach (span the 41 named canvases individually at 0x05A3CA70, per-canvas
+> opt-out — same conflict may exist there though).
+
 > **RUN 1 RESULTS (2026-07-09 23:36, 3440x1440):** only team icons (Span HUD) moved; menus
 > and battle UI unchanged. Log evidence: (a) all 3 setter hooks installed but ZERO elements
 > passed at 3840x2160 — and dropping the trailing-`ret` from the pattern reveals the setter
