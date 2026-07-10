@@ -36,6 +36,18 @@ Last updated 2026-07-09.
   `scripts/build-jackpot-tables.mjs` prunes already-owned Warpath+ (dupes worthless),
   keeping odds equal. Setup landmines from v1 bring-up: see standing notes
   (bootstrapper ASI + SAC).
+- **Mastery Points Multiplier v1 — RELEASED + LIVE-VERIFIED 2026-07-10**
+  ([mods/msp-multiplier/](mods/msp-multiplier/), source [mods-src/](mods-src/gbfr.quest.mspmultiplier/),
+  release `msp-multiplier-v1`): our first C# Reloaded mod — patches vanilla
+  `reward_point` MSP entries at launch via the Mod Manager's `IDataManager`;
+  Configure-Mod multiplier 1–100 (default ×5). Verified in game (Wings of
+  Conflagration ~2.3k vs ~510 vanilla ceiling). Replaced the brief static msp-x5.
+- **Item Cap 9999 v1 — RELEASED + LIVE-VERIFIED 2026-07-10**
+  ([mods/item-cap/](mods/item-cap/), release `item-cap-v1`): `item_category.MaxHoldable`
+  999→9999 on the ten normal categories (key items/currencies/consumable caps
+  untouched — unlike the old 1.x Nexus uncap mod). Un-install clamps back to 999.
+  Post-release fix: ModConfig.json JSON escape bug made Reloaded skip the mod
+  (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
 
 ## 🔬 In design (validate before building)
 - **Complete open-source UI spanning** — **DONE 2026-07-10, all features verified at 3440x1440** (menu backgrounds, combat screen-effects,
