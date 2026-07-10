@@ -38,6 +38,7 @@ That breakage is the opportunity: lots of in-demand mods need updating right now
 | [10-modding-opportunities.md](docs/10-modding-opportunities.md) | Alex's Reloaded-II setup + per-mod 2.0 breakage, what's moddable now, ranked opportunities |
 | [11-droprate-modding-unlocked.md](docs/11-droprate-modding-unlocked.md) | **Original research**: reversed the 2.0 `reward_lot`/`gacha_lot` layouts → new headers, byte-exact round-trip, drop-rate editing unlocked |
 | [12-realtime-rng-ux-design.md](docs/12-realtime-rng-ux-design.md) | Feasibility + design for an in-game real-time drop-rate UX (existing ImGui overlay, our headers as the 2.0 unlock, tiered plan) |
+| [13-rng-knob-map.md](docs/13-rng-knob-map.md) | **Original research**: exact tables/columns for Transmarvel, curios, boss drops — the Yorozu forging system + `gacha_rate_group.Unk4=1` rarity dial |
 
 ## Link index
 
