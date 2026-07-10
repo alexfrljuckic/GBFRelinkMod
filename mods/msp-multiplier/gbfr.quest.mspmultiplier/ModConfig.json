@@ -1,0 +1,32 @@
+{
+  "ModId": "gbfr.quest.mspmultiplier",
+  "ModName": "Mastery Points Multiplier (2.0)",
+  "ModAuthor": "alexfrljuckic",
+  "ModVersion": "1.0",
+  "ModDescription": "All quests grant multiplied mastery points (MSP) on clear - configurable via Configure Mod (default x5, 1-100). EXP and rupie rewards untouched. Patches the vanilla table at load time, so it survives minor game-data changes. Restart the game after changing the multiplier.",
+  "ModDll": "gbfr.quest.mspmultiplier.dll",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "gbfr.quest.mspmultiplier.ReleaseMetadata.json",
+  "IgnoreRegexes": [],
+  "IncludeRegexes": [
+    "ModConfig\\.json"
+  ],
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "gbfrelink.utility.manager"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "granblue_fantasy_relink.exe"
+  ],
+  "ProjectUrl": "https://github.com/alexfrljuckic/GBFRelinkMod"
+}

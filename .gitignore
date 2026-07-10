@@ -7,3 +7,5 @@ extracted/
 vendor/
 *.asi
 save-backups/
+mods-src/**/bin/
+mods-src/**/obj/
