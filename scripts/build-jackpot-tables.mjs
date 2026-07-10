@@ -20,7 +20,7 @@ const GAME = 'D:\\Steam\\steamapps\\common\\Granblue Fantasy Relink';
 const TOOL = 'tools\\GBFRDataTools\\GBFRDataTools.exe';
 const SQL = 'tools\\sqlite\\sqlite3.exe';
 const WORK = 'extracted/jackpot_build';
-const MOD_TABLES = 'mods/transmarvel-jackpot/gbfr.transmarvel.jackpot/GBFR/data/system/table';
+const MOD_TABLES = 'mods/transmarvel-overhaul/gbfr.transmarvel.overhaul/GBFR/data/system/table';
 const run = (cmd) => execSync(cmd, { stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, DOTNET_ROOT: 'C:\\dev\\GBF\\tools\\dotnet10' } }).toString();
 const q = (sql) => run(`${SQL} ${WORK}/j.sqlite "${sql.replace(/\s+/g, ' ').replace(/"/g, '""')}"`).trim();
 

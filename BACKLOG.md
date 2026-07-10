@@ -23,20 +23,19 @@ Last updated 2026-07-09.
   Supp Dmg V+ sit unflagged at 4.2%). Community-firsts: Transmarvel Voucher =
   `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
-- **Transmarvel Jackpot mod — v1 LIVE-VERIFIED, v1.1 RELEASED**
-  ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/), PRs #1/#3,
-  [releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)): Transmarvel sigils
-  always one of **41 chase sigils** (13 top V+ + all 28 character Warpath+, equal ~2.4%),
-  wrightstones always tier-3 Transmarveled. `scripts/build-jackpot-tables.mjs` prunes
-  already-owned Warpath+ from the pool (dupes worthless), keeping odds equal. Getting v1
-  running surfaced two setup landmines — see standing notes (bootstrapper ASI + SAC).
-- **Transmarvel Vouchers from Chaos+ Quests v1 — RELEASED** ([mods/voucher-quests/](mods/voucher-quests/),
-  PR #2): guaranteed vouchers per clear — Chaos/Chaos+ ×1, Chaos++ ×2, Infinity ×3, all
-  56 Chaos+ quests. Full quest→reward chain decoded in [docs/16](docs/16-quest-reward-chain.md)
-  (reward_lot true semantics: LotId @0x08; `quest_baseinfo_ex_data` = 4th reversed table).
-- **Good Sigil Secondary Traits v1 — RELEASED** ([mods/good-second-traits/](mods/good-second-traits/),
-  PR #4): the random 2nd trait on all + sigils rolls from a curated 18-trait list (junk
-  resistances gone). New sub-lot `SKL_TMV_GOOD` in `skill_lot`; type-lots 2/5 repointed.
+- **Transmarvel Overhaul v1 — RELEASED** ([mods/transmarvel-overhaul/](mods/transmarvel-overhaul/)):
+  the three Transmarvel features consolidated into ONE mod per Alex (originally shipped
+  as separate jackpot/vouchers/second-traits mods via PRs #1–#4, then merged):
+  1. sigil rolls = one of **41 chase sigils** (13 top V+ + all 28 character Warpath+,
+     equal ~2.4%); wrightstones always tier-3 Transmarveled; jackpot v1 was
+     live-verified in game;
+  2. random 2nd trait on + sigils = curated 18-trait list (junk resistances gone;
+     new `SKL_TMV_GOOD` sub-lot, type-lots 2/5 repointed);
+  3. guaranteed vouchers per Chaos+ clear (Chaos/Chaos+ ×1, Chaos++ ×2, Infinity ×3,
+     all 56 quests; quest→reward chain decoded in [docs/16](docs/16-quest-reward-chain.md)).
+  `scripts/build-jackpot-tables.mjs` prunes already-owned Warpath+ (dupes worthless),
+  keeping odds equal. Setup landmines from v1 bring-up: see standing notes
+  (bootstrapper ASI + SAC).
 
 ## 🔬 In design (validate before building)
 - **Complete open-source UI spanning** (menu backgrounds, combat screen-effects,
