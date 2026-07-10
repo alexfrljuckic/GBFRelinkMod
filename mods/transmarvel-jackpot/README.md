@@ -70,6 +70,15 @@ First time using Reloaded-II? Follow the community setup guide first:
   `Transmarvel Jackpot (2.0)` and the Mod Manager registering
   `system/table/gacha_rate_group.tbl`.
 
+## Removing Warpath+ sigils you already own
+Character-sigil dupes are worthless, so as you collect each Warpath+ you can prune it
+from the pool: add its GEEN id to `OWNED_WARPATH` in
+[scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs) and re-run —
+it rebalances so all remaining sigils stay exactly equal (and ships a trimmed
+`gacha_lot.tbl` alongside). Find ids with `grep _93 extracted/geen-names-en.tsv`
+(e.g. `GEEN_125_93` = Holy Knight's Warpath+). Then copy the mod folder to
+`Reloaded-II\Mods\` again.
+
 ## Uninstall
 Untick the mod in Reloaded-II (or delete `Mods\gbfr.transmarvel.jackpot\`). Your game
 files are never modified on disk — the table is injected at runtime.
