@@ -17,6 +17,11 @@ Last updated 2026-07-09.
   round-trip byte-exact. ([docs/11](docs/11-droprate-modding-unlocked.md), [patches/headers-2.0/](patches/headers-2.0/))
 - **RNG knob map** — Transmarvel/curios = the Yorozu forging system; exact tables/columns
   identified. ([docs/13](docs/13-rng-knob-map.md))
+- **Transmarvel pool fully decoded with names** — every `gacha_lot` row resolved to an
+  English sigil/item name + per-item odds (custom-XXHash32 port + 2.0 `text.msg`
+  extraction). Key finding: **rare-flag buckets ≠ good buckets** (War Elemental+ /
+  Supp Dmg V+ sit unflagged at 4.2%). Community-firsts: Transmarvel Voucher =
+  `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
 
 ## 🔬 In design (validate before building)
@@ -27,9 +32,13 @@ Last updated 2026-07-09.
   ([docs/14](docs/14-menu-background-spanning.md))
 - **RNG / Drop-rate tuner mod** — make Transmarvel/curio/boss RNG less punishing.
   - Decided: **must be a Reloaded-II mod** (the platform the scene uses).
+  - Decided: **goodness-based**, not rarity-based — boost the buckets/items on the
+    curated good list (docs/15), don't blanket-boost `Unk4=1`.
   - Open: which tier — (1) config-multiplier mod, (2) revive the in-game ImGui overlay,
     (3) friendly slider panel. ([docs/12](docs/12-realtime-rng-ux-design.md))
   - Next: **UI/UX mocks** in `design/` to validate what data/controls we need.
+  - Before publishing: verify live that FORGING_HIGH → group `27509C51` mapping holds
+    (community 1.x lore contradicts the tables on War Elemental via Transmarvel).
 
 ## 📋 Planned
 - **Cut GitHub Releases** for the Ultrawide Fix (attach `GBFRelinkFix.asi` to an
