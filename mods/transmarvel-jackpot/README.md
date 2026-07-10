@@ -6,10 +6,11 @@
 
 Makes every **Transmarvel** roll at Siero's Yorozu workshop actually worth the vouchers:
 
-- **Sigil rolls (75% of pulls)**: always one of the **13 chase V+ sigils, equal odds
-  (~7.7% each)** — War Elemental+, Supplementary Damage V+, Berserker Echo+, Spartan
-  Echo+, Greater Aegis V+, Celestial Nyx/Lumen/Terra/Incendo/Aqua/Ventus V+,
-  Fatebreaker V+, Divergence V+.
+- **Sigil rolls (75% of pulls)**: always one of **41 chase sigils, equal odds (~2.4%
+  each)** — the 13 top V+ sigils (War Elemental+, Supplementary Damage V+, Berserker
+  Echo+, Spartan Echo+, Greater Aegis V+, Celestial Nyx/Lumen/Terra/Incendo/Aqua/Ventus
+  V+, Fatebreaker V+, Divergence V+) **plus all 28 character Warpath+ sigils**
+  (max-trait lv15, new in v1.1).
 - **Wrightstone rolls (25% of pulls)**: always a **tier-3 "Transmarveled" wrightstone**
   (vanilla: a 0.1% outcome).
 - **Regular curio transmutation is untouched** — only Transmarvel is changed, and the
@@ -69,6 +70,15 @@ First time using Reloaded-II? Follow the community setup guide first:
   `Transmarvel Jackpot (2.0)` and the Mod Manager registering
   `system/table/gacha_rate_group.tbl`.
 
+## Removing Warpath+ sigils you already own
+Character-sigil dupes are worthless, so as you collect each Warpath+ you can prune it
+from the pool: add its GEEN id to `OWNED_WARPATH` in
+[scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs) and re-run —
+it rebalances so all remaining sigils stay exactly equal (and ships a trimmed
+`gacha_lot.tbl` alongside). Find ids with `grep _93 extracted/geen-names-en.tsv`
+(e.g. `GEEN_125_93` = Holy Knight's Warpath+). Then copy the mod folder to
+`Reloaded-II\Mods\` again.
+
 ## Uninstall
 Untick the mod in Reloaded-II (or delete `Mods\gbfr.transmarvel.jackpot\`). Your game
 files are never modified on disk — the table is injected at runtime.
@@ -76,10 +86,10 @@ files are never modified on disk — the table is injected at runtime.
 ## How it works / build from source
 One table edit: in `gacha_rate_group.tbl`, the two Transmarvel rate groups (`27509C51`
 gem / `67716D8A` wrightstone) have every outcome bucket zero-weighted except the chase
-buckets (`6E52A69A` w=5000 + `36879ED7` w=8000 — proportional to their 5/8 item counts so
-all 13 sigils are equal; `BD1CBF1C` w=10000). Vanilla already uses 0-weight rows, so 0 =
-never. Per-item odds inside a bucket were already uniform. The edit is 23 bytes vs
-vanilla, verified byte-exact both ways. Rebuild with GBFRDataTools + the 2.0 headers in
+buckets (`6E52A69A` w=1250 + `36879ED7` w=2000 + `F527EF32` (Warpath+) w=7000 —
+proportional to their 5/8/28 item counts so all 41 sigils are equal; `BD1CBF1C`
+w=10000). Vanilla already uses 0-weight rows, so 0 = never. Per-item odds inside a
+bucket were already uniform. The edit is 23 bytes vs vanilla, verified byte-exact. Rebuild with GBFRDataTools + the 2.0 headers in
 [patches/headers-2.0/](../../patches/headers-2.0/) — workflow in
 [docs/11](../../docs/11-droprate-modding-unlocked.md), decode methodology in
 [docs/15](../../docs/15-transmarvel-pool-decoded.md).
