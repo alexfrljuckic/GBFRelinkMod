@@ -34,9 +34,10 @@ You need two downloads plus the config in this folder.
    download `Ultimate-ASI-Loader_x64.zip` from
    [ThirteenAG releases](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases),
    extract it, and **rename `dinput8.dll` → `winmm.dll`**.
-2. **The mod** `GBFRelinkFix.asi`: download from this repo's
-   [Releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases) (attached to the
-   `ultrawide-vX` tag).
+2. **The mod**: download **`ultrawide-fix-v1.zip`** from the
+   [ultrawide-v1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/ultrawide-v1)
+   and extract it — it contains `GBFRelinkFix.asi`, `GBFRelinkFix.ini`, and `INSTALL.txt`.
+   (You already have the `.ini` in this folder too.)
 3. Open your game folder:
    `…\steamapps\common\Granblue Fantasy Relink\` (right-click the game in Steam →
    *Manage → Browse local files*).
