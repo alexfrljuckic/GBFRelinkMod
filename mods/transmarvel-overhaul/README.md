@@ -21,8 +21,12 @@ Transmarvel, fixed — one mod, three things:
    Transmarvel Vouchers: Chaos ×1, Chaos+ ×1, Chaos++ ×2, Infinity ×3 (all 56 Chaos+
    quests).
 
-Regular curio transmutation and everything below Chaos are untouched; the 75/25
-sigil-vs-wrightstone split stays vanilla.
+**Scope, precisely**: features 1 and 3 are Transmarvel/Chaos-only — curio transmutation
+keeps its vanilla sigil pools, everything below Chaos keeps vanilla rewards, and the
+75/25 sigil-vs-wrightstone split stays vanilla. Feature 2 is **game-wide by design**:
+the 2nd-trait roll is a property of the sigil itself (not of where it dropped), so any
+"+" sigil from any source — curios included — gets a curated secondary. There is no
+per-source hook in the game data; the upside is junk secondaries can't roll anywhere.
 
 ### What the secondary-trait filter changes
 
