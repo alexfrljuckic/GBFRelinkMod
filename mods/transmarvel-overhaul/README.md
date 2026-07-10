@@ -24,6 +24,31 @@ Transmarvel, fixed — one mod, three things:
 Regular curio transmutation and everything below Chaos are untouched; the 75/25
 sigil-vs-wrightstone split stays vanilla.
 
+### What the secondary-trait filter changes
+
+Vanilla rolls the 2nd trait through one of four "type lots", each spread across
+sub-lots full of filler — **only ~1 roll in 3 lands a trait worth keeping**:
+
+```mermaid
+pie showData title Vanilla 2nd-trait roll (~58 possible traits)
+    "Worth keeping" : 35
+    "Junk (resistances, Rupie Tycoon, ...)" : 65
+```
+
+The mod reroutes **every** trait lot to one curated pool, so it's 100% keepers:
+
+```mermaid
+flowchart LR
+    A["Any + sigil acquired<br/>(Transmarvel, curio, drop)"] --> B{"random<br/>2nd trait"}
+    B -. "vanilla: lots 2/3/4/5<br/>4 sub-lots × ~25%, ~58 traits" .-> V["~65% junk<br/>(12 status resistances,<br/>Rupie Tycoon, Fast Learner, ...)"]
+    B == "modded: all lots →<br/>SKL_TMV_GOOD" ==> G["18 curated traits<br/>equal ~5.6% each"]
+    G --> O["⚔️ Offense ×10<br/>DMG Cap · Tyranny · Stamina<br/>Crit DMG · Weak Point DMG<br/>Overdrive/Break Assassin<br/>Skilled Assault · Injury to Insult<br/>Quick Charge"]
+    G --> S["♻️ Sustain ×4<br/>Cascade · Quick Cooldown<br/>Regen · Uplift"]
+    G --> U["🛟 Utility ×4<br/>Guts · Autorevive<br/>Potion Hoarder · Steady Focus"]
+    style V opacity:0.55,stroke-dasharray:5 5
+    style G stroke-width:3px
+```
+
 ## Install
 
 Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases) +
