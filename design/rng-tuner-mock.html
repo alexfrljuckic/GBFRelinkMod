@@ -1,0 +1,99 @@
+<h2 class="sr-only">Interactive mock of an in-game RNG tuner overlay for Granblue Fantasy Relink, showing sliders that boost rare-outcome weights and the resulting odds computed from real 2.0 table data.</h2>
+
+<div style="min-height: 420px; background: rgba(0,0,0,0.28); border-radius: 12px; padding: 1.25rem; display: flex; justify-content: center; align-items: flex-start;">
+  <div style="width: 100%; max-width: 480px; background: var(--surface-2); border: 0.5px solid var(--border-strong); border-radius: 12px; overflow: hidden;">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 0.5px solid var(--border);">
+      <span style="font-weight: 500; font-size: 15px;"><i class="ti ti-adjustments-alt" style="font-size:18px; vertical-align:-3px; margin-right:6px" aria-hidden="true"></i>RNG tuner</span>
+      <span style="font-size: 12px; color: var(--text-muted);"><i class="ti ti-keyboard" style="font-size:14px; vertical-align:-2px; margin-right:4px" aria-hidden="true"></i>insert to toggle</span>
+    </div>
+
+    <div style="padding: 14px;">
+
+      <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 4px;">Sigil forging — tier</div>
+      <div style="display: flex; gap: 6px; margin-bottom: 14px;">
+        <span data-tier style="font-size:12px; padding:5px 10px; border-radius: var(--radius); background: var(--bg-accent); color: var(--text-accent); cursor:pointer;">Forging 03</span>
+        <span data-tier style="font-size:12px; padding:5px 10px; border-radius: var(--radius); border:0.5px solid var(--border); color: var(--text-secondary); cursor:pointer;">Forging high</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom: 6px;">
+        <label style="font-size:14px; color: var(--text-secondary); min-width:120px;">Rare outcome boost</label>
+        <input type="range" min="1" max="50" value="1" step="1" id="boost" style="flex:1;" />
+        <span id="boostOut" style="font-size:14px; font-weight:500; min-width:34px; text-align:right;">1×</span>
+      </div>
+      <div style="font-size:12px; color: var(--text-muted); margin-bottom: 12px;">
+        writes <code>gacha_rate_group.Weight</code> where <code>Unk4 = 1</code>
+      </div>
+
+      <div style="background: var(--surface-1); border-radius: var(--radius); padding: 12px; margin-bottom: 6px;">
+        <div style="display:flex; justify-content:space-between; font-size:13px; color: var(--text-secondary); margin-bottom:8px;">
+          <span>Chance of a rare sigil per forge</span>
+          <span><span id="oddsNow" style="color: var(--text-primary); font-weight:500;">5.2%</span> <i class="ti ti-arrow-right" style="font-size:13px; vertical-align:-1px;" aria-hidden="true"></i> <span id="oddsNew" style="color: var(--text-accent); font-weight:500;">5.2%</span></span>
+        </div>
+        <div style="height:10px; background: var(--surface-2); border-radius:6px; overflow:hidden; border:0.5px solid var(--border);">
+          <div id="bar" style="height:100%; width:5.2%; background: var(--fill-accent);"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:12px; color: var(--text-muted); margin-top:8px;">
+          <span>incl. max-trait (Lv15): <span id="maxTrait">0.2%</span></span>
+          <span>cost: <span id="cost">25</span> vouchers</span>
+        </div>
+      </div>
+      <div style="font-size:12px; color: var(--text-muted); margin-bottom: 18px;">odds computed live from the real group <code>57AB19DE</code> weights (total 10,000)</div>
+
+      <div style="border-top: 0.5px solid var(--border); padding-top: 14px;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom: 6px;">
+          <label style="font-size:14px; color: var(--text-secondary); min-width:120px;">Boss / quest rare drops</label>
+          <input type="range" min="1" max="20" value="1" step="1" id="drop" style="flex:1;" />
+          <span id="dropOut" style="font-size:14px; font-weight:500; min-width:34px; text-align:right;">1×</span>
+        </div>
+        <div style="font-size:12px; color: var(--text-muted);">
+          multiplies <code>reward_lot.Weight</code> on low-weight (rare) rows · e.g. a 0.3% drop <i class="ti ti-arrow-right" style="font-size:12px; vertical-align:-1px;" aria-hidden="true"></i> <span id="dropEx" style="color: var(--text-primary);">0.3%</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:flex; gap:8px; padding: 12px 14px; border-top: 0.5px solid var(--border); align-items:center;">
+      <button id="apply" style="flex:1;"><i class="ti ti-check" style="font-size:16px; vertical-align:-2px; margin-right:4px" aria-hidden="true"></i>Apply</button>
+      <button id="ask" style="flex:1;">Export as config ↗</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  const commonTotal = 9480, rareBase = 520, maxTraitBase = 20, groupTotal = 10000;
+  const boost = document.getElementById('boost'), drop = document.getElementById('drop');
+  function pct(x){ return (Math.round(x*10)/10) + '%'; }
+  function upd(){
+    const b = +boost.value;
+    document.getElementById('boostOut').textContent = b + '×';
+    const rare = rareBase * b, denom = commonTotal + rare;
+    const odds = 100 * rare / denom;
+    const mt = 100 * (maxTraitBase * b) / denom;
+    document.getElementById('oddsNew').textContent = pct(odds);
+    document.getElementById('bar').style.width = Math.min(100, odds) + '%';
+    document.getElementById('maxTrait').textContent = pct(mt);
+    const d = +drop.value;
+    document.getElementById('dropOut').textContent = d + '×';
+    document.getElementById('dropEx').textContent = pct(0.3 * d);
+  }
+  boost.addEventListener('input', upd);
+  drop.addEventListener('input', upd);
+  document.querySelectorAll('[data-tier]').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('[data-tier]').forEach(function(x){
+        x.style.background='transparent'; x.style.border='0.5px solid var(--border)'; x.style.color='var(--text-secondary)';
+      });
+      t.style.background='var(--bg-accent)'; t.style.border='none'; t.style.color='var(--text-accent)';
+      document.getElementById('cost').textContent = t.textContent.indexOf('high')>-1 ? '150 transmarvel' : '25';
+    });
+  });
+  document.getElementById('ask').addEventListener('click', function(){
+    sendPrompt('Show me what the exported [Forging] config file would look like for a '+boost.value+'x rare boost and '+drop.value+'x boss drop multiplier.');
+  });
+  document.getElementById('apply').addEventListener('click', function(){ upd(); });
+  upd();
+})();
+</script>
