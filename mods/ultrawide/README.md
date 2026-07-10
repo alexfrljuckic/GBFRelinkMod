@@ -26,37 +26,31 @@ independent. (Advanced: you can instead have Reloaded-II load it via *Edit Appli
 Advanced Tools & Options → Deploy ASI Loader*, but the standalone `winmm.dll` method below
 is simplest and is what we tested.)
 
-## Install (step by step)
+## Install (one step)
 
-You need two downloads plus the config in this folder.
+The download **includes the ASI loader** — no extra downloads, no renaming.
 
-1. **Ultimate ASI Loader** (the `winmm.dll` loader):
-   download `Ultimate-ASI-Loader_x64.zip` from
-   [ThirteenAG releases](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases),
-   extract it, and **rename `dinput8.dll` → `winmm.dll`**.
-2. **The mod**: download **`ultrawide-fix-v1.zip`** from the
-   [ultrawide-v1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/ultrawide-v1)
-   and extract it — it contains `GBFRelinkFix.asi`, `GBFRelinkFix.ini`, and `INSTALL.txt`.
-   (You already have the `.ini` in this folder too.)
-3. Open your game folder:
-   `…\steamapps\common\Granblue Fantasy Relink\` (right-click the game in Steam →
-   *Manage → Browse local files*).
-4. Put **`winmm.dll`** in that folder (next to `granblue_fantasy_relink.exe`).
-5. Make a **`scripts`** folder there, and put **`GBFRelinkFix.asi`** and
-   **`GBFRelinkFix.ini`** (from this folder) inside `scripts\`.
-6. Launch the game normally from Steam. Ultrawide should apply. In-game
-   *Graphics → Resolution*, pick your ultrawide resolution (it replaces the old
-   3840×2160 entry).
+1. Download **`ultrawide-fix-v1.zip`** from the
+   [ultrawide-v1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/ultrawide-v1).
+2. Open your game folder: right-click the game in Steam → *Manage → Browse local files*
+   (`…\steamapps\common\Granblue Fantasy Relink\`).
+3. **Extract everything in the zip into that folder** (merge with what's there).
+4. Launch from Steam. In-game *Graphics → Resolution*, pick your ultrawide resolution
+   (it replaces the old 3840×2160 entry).
 
-Your game folder should look like:
+After extracting, the folder looks like:
 ```
 Granblue Fantasy Relink\
-  granblue_fantasy_relink.exe
-  winmm.dll                     ← Ultimate ASI Loader (renamed)
+  granblue_fantasy_relink.exe   (already there)
+  winmm.dll                     ← ASI loader (included in the zip)
   scripts\
-    GBFRelinkFix.asi            ← the mod (from Releases)
-    GBFRelinkFix.ini            ← config (this folder)
+    GBFRelinkFix.asi            ← the mod
+    GBFRelinkFix.ini            ← config
 ```
+
+> The included `winmm.dll` is [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader)
+> (ThirteenAG, MIT). The game imports both `winmm` and `dinput8`, so no renaming is needed —
+> it's already named correctly.
 
 ## Configure
 Edit `scripts\GBFRelinkFix.ini`. Highlights:
