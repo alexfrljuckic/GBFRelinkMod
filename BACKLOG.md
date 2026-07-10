@@ -23,22 +23,22 @@ Last updated 2026-07-09.
   Supp Dmg V+ sit unflagged at 4.2%). Community-firsts: Transmarvel Voucher =
   `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
-- **Transmarvel Jackpot mod v1 — LIVE-VERIFIED 2026-07-09**
-  ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/)): Transmarvel sigils always one
-  of the 13 chase V+ (equal ~7.7%), wrightstones always tier-3 Transmarveled. One-table
-  edit (`gacha_rate_group`), 23 bytes vs vanilla. Getting it running surfaced two setup
-  landmines — see standing notes (Reloaded bootstrapper ASI + Smart App Control).
+- **Transmarvel Jackpot mod — v1 LIVE-VERIFIED, v1.1 RELEASED**
+  ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/), PRs #1/#3,
+  [releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)): Transmarvel sigils
+  always one of **41 chase sigils** (13 top V+ + all 28 character Warpath+, equal ~2.4%),
+  wrightstones always tier-3 Transmarveled. `scripts/build-jackpot-tables.mjs` prunes
+  already-owned Warpath+ from the pool (dupes worthless), keeping odds equal. Getting v1
+  running surfaced two setup landmines — see standing notes (bootstrapper ASI + SAC).
+- **Transmarvel Vouchers from Chaos+ Quests v1 — RELEASED** ([mods/voucher-quests/](mods/voucher-quests/),
+  PR #2): guaranteed vouchers per clear — Chaos/Chaos+ ×1, Chaos++ ×2, Infinity ×3, all
+  56 Chaos+ quests. Full quest→reward chain decoded in [docs/16](docs/16-quest-reward-chain.md)
+  (reward_lot true semantics: LotId @0x08; `quest_baseinfo_ex_data` = 4th reversed table).
+- **Good Sigil Secondary Traits v1 — RELEASED** ([mods/good-second-traits/](mods/good-second-traits/),
+  PR #4): the random 2nd trait on all + sigils rolls from a curated 18-trait list (junk
+  resistances gone). New sub-lot `SKL_TMV_GOOD` in `skill_lot`; type-lots 2/5 repointed.
 
 ## 🔬 In design (validate before building)
-- **Voucher-per-Chaos-quest mod** (the other half of the split) — grant 1 Transmarvel
-  Voucher (`ITEM_21_0001` / `58FC9B99`) from every Chaos-and-above clear.
-  Unblocked findings: `reward.tbl` 2.0 header reversed (see docs/11); reward rows are
-  `RW_<questId>_<slot>`; quest numbers recur across difficulty-band prefixes
-  (`402xxx`/`407xxx`/`40Axxx`/`40Bxxx` — Chaos/Chaos++/Defy Infinity are the 2.0 tiers).
-  Remaining: decode slot semantics (`_100` vs `_3xx` = fixed vs lottery?), pick the
-  guaranteed-grant mechanism (fill an empty `RewardLotIdN` with a single-item
-  100% group), enumerate Chaos+ quest ids (via `TXT_QR_*` in text_stage.msg +
-  `quest_difficulty.tbl`, still unreversed).
 - **Complete open-source UI spanning** (menu backgrounds, combat screen-effects,
   speech-bubbles/nameplates, lock-on/dodge) — **fresh-session handoff in
   [docs/17](docs/17-ui-spanning-handoff.md)** (read it first; everything below is summarized
