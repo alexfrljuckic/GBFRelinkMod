@@ -22,6 +22,9 @@ just what the mod is. Checklist:
    same-day hotfixes only, and REQUIRES appending a dated changelog line to the release
    notes in the same breath (`gh release edit <tag> --notes-file -`), e.g.
    `> Updated 2026-07-10: <what changed in the zip>`. Never silently swap an asset.
+   **Docs/text-only changes need NO release action at all** (per Alex 2026-07-10):
+   README, INSTALL.txt wording, ModConfig descriptions etc. just land in the repo and
+   ride along with the next behavior release — don't re-upload zips for them.
 3. **Keep versions in sync**: `ModVersion` in the mod's ModConfig.json == the tag
    version; the zip contains the mod folder + an up-to-date `INSTALL.txt`.
 4. **Point the trail at it**: update the mod's README download link if the tag name
