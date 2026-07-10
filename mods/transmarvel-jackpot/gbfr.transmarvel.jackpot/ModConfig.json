@@ -1,0 +1,34 @@
+{
+  "ModId": "gbfr.transmarvel.jackpot",
+  "ModName": "Transmarvel Jackpot (2.0)",
+  "ModAuthor": "alexfrljuckic",
+  "ModVersion": "1.0",
+  "ModDescription": "Every Transmarvel sigil is one of the 13 chase V+ sigils (equal odds); every Transmarvel wrightstone is tier-3 Transmarveled. Built for Endless Ragnarok 2.0 tables. Curios untouched.",
+  "ModDll": "",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "gbfr.transmarvel.jackpot.ReleaseMetadata.json",
+  "IgnoreRegexes": [
+    ".*\\.json"
+  ],
+  "IncludeRegexes": [
+    "ModConfig\\.json"
+  ],
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "gbfrelink.utility.manager"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "granblue_fantasy_relink.exe"
+  ],
+  "ProjectUrl": "https://github.com/alexfrljuckic/GBFRelinkMod"
+}

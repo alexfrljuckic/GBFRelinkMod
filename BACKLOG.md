@@ -23,22 +23,30 @@ Last updated 2026-07-09.
   Supp Dmg V+ sit unflagged at 4.2%). Community-firsts: Transmarvel Voucher =
   `ITEM_21_0001` / `58FC9B99`; 2.0 sigil ids `GEEN_320–327`. ([docs/15](docs/15-transmarvel-pool-decoded.md))
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
+- **Transmarvel Jackpot mod v1 — LIVE-VERIFIED 2026-07-09**
+  ([mods/transmarvel-jackpot/](mods/transmarvel-jackpot/)): Transmarvel sigils always one
+  of the 13 chase V+ (equal ~7.7%), wrightstones always tier-3 Transmarveled. One-table
+  edit (`gacha_rate_group`), 23 bytes vs vanilla. Getting it running surfaced two setup
+  landmines — see standing notes (Reloaded bootstrapper ASI + Smart App Control).
 
 ## 🔬 In design (validate before building)
+- **Voucher-per-Chaos-quest mod** (the other half of the split) — grant 1 Transmarvel
+  Voucher (`ITEM_21_0001` / `58FC9B99`) from every Chaos-and-above clear.
+  Unblocked findings: `reward.tbl` 2.0 header reversed (see docs/11); reward rows are
+  `RW_<questId>_<slot>`; quest numbers recur across difficulty-band prefixes
+  (`402xxx`/`407xxx`/`40Axxx`/`40Bxxx` — Chaos/Chaos++/Defy Infinity are the 2.0 tiers).
+  Remaining: decode slot semantics (`_100` vs `_3xx` = fixed vs lottery?), pick the
+  guaranteed-grant mechanism (fill an empty `RewardLotIdN` with a single-item
+  100% group), enumerate Chaos+ quest ids (via `TXT_QR_*` in text_stage.msg +
+  `quest_difficulty.tbl`, still unreversed).
 - **Span the main-menu background to ultrawide** — feasible; master named the element
   (`Main menu bg = 2384707215`) and its 2.0 hook site still matches
   (`+0x3340b04`). Diagnostic staged (`design/GBFRelinkFix-diag-backgrounds.asi`) — run it
   with the main menu open to confirm the ID + 2.0 offsets, then port the targeted span.
   ([docs/14](docs/14-menu-background-spanning.md))
-- **RNG / Drop-rate tuner mod** — make Transmarvel/curio/boss RNG less punishing.
-  - Decided: **must be a Reloaded-II mod** (the platform the scene uses).
-  - Decided: **goodness-based**, not rarity-based — boost the buckets/items on the
-    curated good list (docs/15), don't blanket-boost `Unk4=1`.
-  - Open: which tier — (1) config-multiplier mod, (2) revive the in-game ImGui overlay,
-    (3) friendly slider panel. ([docs/12](docs/12-realtime-rng-ux-design.md))
-  - Next: **UI/UX mocks** in `design/` to validate what data/controls we need.
-  - Before publishing: verify live that FORGING_HIGH → group `27509C51` mapping holds
-    (community 1.x lore contradicts the tables on War Elemental via Transmarvel).
+- ~~RNG / Drop-rate tuner mod (sliders/overlay)~~ — SUPERSEDED 2026-07-09: Alex decided
+  no sliders needed; split into two simple data mods instead (Transmarvel Jackpot above +
+  Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
 
 ## 📋 Planned
 - **Cut GitHub Releases** for the Ultrawide Fix (attach `GBFRelinkFix.asi` to an
@@ -65,3 +73,12 @@ Last updated 2026-07-09.
   Overmasteries, Uncap Item Limit ⚠, gem_mix). Per-mod 2.0 breakage in [docs/10](docs/10-modding-opportunities.md).
 - Anti-debug: x64dbg crashes the game on attach → use the **in-mod diagnostic** method
   ([docs/09](docs/09-hud-markers-debugging.md)).
+- **Reloaded-II injection on GBFR needs `Reloaded.Mod.Loader.Bootstrapper.asi` in the
+  game folder** (SteamStub DRM breaks launcher injection; AppConfig has DontInject:true).
+  It's loaded by the Ultimate ASI Loader `winmm.dll`, so even plain Steam launches load
+  Reloaded mods. Missing ASI = game boots silently UNMODDED (tell-tale: no session log in
+  `%APPDATA%\Reloaded-Mod-Loader-II\Logs`).
+- **Windows Smart App Control must be OFF** to run Reloaded (unsigned community DLLs →
+  error 0x800711C7). SAC ships in silent evaluation mode on fresh Win11 installs and
+  auto-flipped to enforcing on this machine 2026-07-09/10; turning it off is one-way
+  (Windows Security → App & browser control). Turned OFF 2026-07-10.
