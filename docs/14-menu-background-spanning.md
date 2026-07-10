@@ -67,6 +67,34 @@ running the diagnostic, also trigger a big attack / overdrive** so the flash/tin
 logged alongside the menu backgrounds. This raises the value of the fix: one hook addresses
 menu backgrounds *and* combat overlay seams.
 
+## Deep-dive result (2026-07-10): correct logic, wrong assumption
+
+Built a real **zydis disassembler** (`tools-src/disasm/`) and read the 2.0 "UI Backgrounds"
+function instruction-by-instruction instead of guessing. The width→output flow:
+
+```
+vmovss xmm1,[rax+0x1BC]      ; W = 3840
+vxorps xmm0, xmm1, 0x80000000 ; xmm0 = -W       (const1 = sign-flip, verified)
+vmulss xmm0, [rax+0x194], xmm0 ; left  = -0.5*W  (A = 0.5)
+vmulss xmm1, (1.0 - A), xmm1   ; right = +0.5*W  (const2 = 1.0, verified)
+... vinsertps → xmm0 rect → vmovaps [rsp+0x40] → call (apply)
+```
+
+So overriding `W` to `2160*aspect` at the hook IS provably correct for this function — my
+earlier `xmm1` change wasn't a logic error. **But the diagnostic confirmed the hook fires
+and sets the value, and the visible background still didn't move.** Conclusion: this
+particular "UI Backgrounds" function's rect is **not** the visible sky/menu background — the
+visible full-screen backgrounds, combat flashes, and nameplates route through **multiple
+distinct code sites**, each needing its own reverse + tune. (Consistent with RetroGawd's
+binary carrying *separate* `UIBackgroundsWidth` + `UIBackgroundsHeight` + `ScreenEffects1` +
+`Nameplate` hooks — 4+ individually-tuned sites, i.e. days of RE.)
+
+**Status:** background/effects/nameplate spanning is the genuine hard frontier — doable with
+the new disassembler, but it's multi-site, multi-session RE, not a one-hook fix. Our
+open-source core (crash fix, resolution, FOV, HUD, world markers) works and is the solid,
+honest deliverable; the deep UI polish is "not yet". The disassembler itself is a lasting
+win — it also accelerates the RNG/table reversing.
+
 ## Caveats
 - Not just menu — also fixes combat full-screen-overlay seams (above). Still won't touch true
   post-process effects (those already span).
