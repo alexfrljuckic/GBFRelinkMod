@@ -1,5 +1,9 @@
 # Ultrawide Fix (Endless Ragnarok / 2.0)
 
+> ⚠️ **Hobby project, not maintained.** Built for game **v2.0** — it *will* break on future
+> updates and I won't patch it every time. For maintained mods, see
+> [Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink). Use at your own risk.
+
 Ultrawide + custom-resolution, FOV, HUD, and framerate fixes for **Granblue Fantasy:
 Relink – Endless Ragnarok (game v2.0)**. This is a **2.0-updated build of
 [Lyall's GBFRelinkFix](https://codeberg.org/Lyall/GBFRelinkFix)** (MIT, © Lyall 2024) with

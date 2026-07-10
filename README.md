@@ -5,8 +5,12 @@ started 2026-07-09 (one day after the expansion launched and broke much of the m
 Two things live here: **ready-to-install mods** (`mods/`) and the **research** behind them
 (`docs/`).
 
-> Everything targets **game version 2.0 / Endless Ragnarok**. Mods break when the game
-> patches; re-check before updating.
+> ## ⚠️ Hobby project — not actively maintained
+> This is a personal, for-fun project. It targets **one game version (2.0)** and **will
+> break when the game updates** — I don't plan to chase every patch. Treat anything here as
+> a snapshot that may stop working at any time. For maintained, up-to-date mods, use
+> **[Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink)** — official support
+> for Endless Ragnarok is growing there. Use at your own risk; back up your saves.
 
 ---
 

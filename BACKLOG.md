@@ -3,6 +3,9 @@
 Single tracker for GBFRelinkMod. Targets **game v2.0 / Endless Ragnarok**.
 Last updated 2026-07-09.
 
+> ⚠️ Hobby project — not actively maintained per game patch. For maintained mods, see
+> [Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink).
+
 ## ✅ Done
 - **Toolchain up** — GBFRDataTools 1.5.1 + master filelist, .NET 10, xmake, MSVC, x64dbg,
   SQLite CLI. Game at `D:\Steam\steamapps\common\Granblue Fantasy Relink` (2.0). ([docs/06](docs/06-toolchain-setup.md))
