@@ -56,10 +56,26 @@ First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.git
   the Mod Manager registering the six tables.
 
 ## Removing Warpath+ sigils you already own
-Character-sigil dupes are worthless: add owned ids to `OWNED_WARPATH` in
-[scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs) and re-run —
-they leave the pool and the remaining sigils stay exactly equal (ships a trimmed
-`gacha_lot.tbl` into this mod). Ids: `grep _93 extracted/geen-names-en.tsv`.
+Character-sigil dupes are worthless, so as you collect them you can prune owned
+Warpath+ sigils from the pool — the remaining sigils stay exactly equal.
+
+**Requirements** (beyond the mod itself): this repo checked out with its toolchain set
+up (GBFRDataTools + 2.0 headers, sqlite CLI, .NET 10 runtime — one-time setup, see
+[docs/06](../../docs/06-toolchain-setup.md)), Node.js 18+, and the game installed.
+This is repo tooling — if you only downloaded the release zip, you can't run it.
+
+**How to run**:
+1. Open [scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs) and
+   uncomment your owned sigils in `OWNED_WARPATH` — the full id → name list (all 28)
+   is right there in the file, no ids to hunt down.
+2. From the repo root: `node scripts/build-jackpot-tables.mjs`
+3. It rebuilds from vanilla game data, writes into this mod folder, **and updates the
+   installed copy in `Reloaded-II\Mods` automatically** (if present). It validates the
+   ids and checks the toolchain, telling you exactly what's missing if anything.
+
+**When does it take effect?** On the **next game launch** — the Mod Manager reads mod
+tables once, during boot. Running the script while the game is open is harmless, but
+you must restart the game to see the change. Nothing to click in Reloaded-II.
 
 ## Uninstall
 Untick the mod (or delete `Mods\gbfr.transmarvel.overhaul\`). Game files on disk are
