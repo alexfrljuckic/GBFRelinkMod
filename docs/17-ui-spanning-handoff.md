@@ -1,5 +1,9 @@
 # Handoff: complete open-source UI spanning (start here next session)
 
+> **UPDATE 2026-07-09 (late):** steps 1 and 2 are implemented and deployed, pending one
+> in-game verification run — see [docs/18](18-ui-spanning-session2.md) for the findings
+> (the "UI Size Setter" discovery) and the test checklist.
+
 Goal: finish an **open-source, auditable** 2.0 ultrawide mod that also spans the remaining
 UI — **menu backgrounds, combat screen-effects, speech-bubbles/nameplates, lock-on/dodge** —
 by reverse-engineering the *game* ourselves (+ porting master's MIT code). **Do NOT decompile

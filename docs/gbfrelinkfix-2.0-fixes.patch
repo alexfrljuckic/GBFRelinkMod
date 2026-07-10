@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/3] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 1/4] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/3] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 2/4] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/3] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 3/4] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -209,6 +209,337 @@ index b6b874e..434a006 100644
          // Fix markers
          // Release 2.0 (2026-07-08): vdivss folded out of the sequence and the HUD reference
          // width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0). Base reg still r14
+-- 
+2.55.0.windows.2
+
+
+From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Thu, 9 Jul 2026 23:26:59 -0400
+Subject: [PATCH 4/4] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
+ Size Setter (2.0)
+
+Two new experimental ultrawide features, both derived from our own
+disassembly of the 2.0 exe (master's MIT code as algorithm reference):
+
+- [Span HUD] FixLockOn / FixDodge: port of master's Guard&Lock-On (605904162)
+  and Dodge (3550204025) offset formulas, folded into the existing
+  UI-Constraints hook (two hooks cannot share one pattern site). 2.0 struct
+  offsets: id at +0x1C4, position offsets at +0x1CC/+0x1D0. One-shot
+  diagnostics log each element's pre-write state to verify the ids on 2.0.
+
+- [Span Backgrounds]: new "UI Size Setter" hook. Static scan of the exe for
+  [reg+0x1BC] readers found the function where every UI element's constraint
+  W/H is written ([rax+0x1BC/0x1C0] <- rect W/H, then ret), stamped out at
+  three byte-identical sites (exe+0x33437b6/+0x3965bf6/+0x4259049). Overriding
+  the registers at the store resizes the element for every downstream
+  consumer - upstream of the decoy rect-builder (exe+0x3340ad5) that made the
+  register write fire without moving pixels. Logs every 3840x2160 element id
+  that passes through (capped) to map menu-bg/combat-overlay candidates.
+
+Infra: Memory::PatternScanAll/FindPatternAll + MAKE_MIDHOOK_ALL to hook every
+match of a pattern (needed for the three inlined setter copies).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ GBFRelinkFix.ini | 12 +++++++
+ src/config.h     |  5 +++
+ src/dllmain.cpp  | 91 +++++++++++++++++++++++++++++++++++++++++++++++-
+ src/memory.cpp   | 59 ++++++++++++++++++++++++++++++-
+ src/memory.h     | 23 +++++++++++-
+ 5 files changed, 187 insertions(+), 3 deletions(-)
+
+diff --git a/GBFRelinkFix.ini b/GBFRelinkFix.ini
+index d5a7088..0873693 100644
+--- a/GBFRelinkFix.ini
++++ b/GBFRelinkFix.ini
+@@ -29,8 +29,20 @@ Enabled = true
+ ; menus/backgrounds — set Enabled = false if you prefer the centered HUD.
+ ; AspectRatio: 0 = use your actual screen aspect. Or force one, e.g. 2.38888 for 21:9,
+ ; 1.7778 for 16:9, 3.5537 for 32:9.
++; FixLockOn/FixDodge (experimental): when the HUD is spanned, the guard/lock-on and dodge
++; indicators are still placed at the 16:9 band edges; these push them out to the real
++; screen edges. Pair with Enabled = true.
+ Enabled = true
+ AspectRatio = 0
++FixLockOn = false
++FixDodge = false
++
++[Span Backgrounds]
++; EXPERIMENTAL: spans full-screen backgrounds (menu/pause/load screens, fades, overlays)
++; to the whole screen on ultrawide by resizing them where their size is first written.
++; AspectRatio: 0 = use your actual screen aspect (same semantics as Span HUD).
++Enabled = false
++AspectRatio = 0
+ 
+ [Fix FOV]
+ ; Fixes cropped FOV at <16:9.
+diff --git a/src/config.h b/src/config.h
+index 342c28f..01a80b6 100644
+--- a/src/config.h
++++ b/src/config.h
+@@ -101,6 +101,11 @@ namespace Config
+ 
+     inline Item<bool> SpanHUD          { "Span HUD", "Enabled", false };
+     inline Item<float> HUDAspectRatio  { "Span HUD", "AspectRatio", 0.0f, 0.0f, 32.0f };
++    inline Item<bool> FixLockOn        { "Span HUD", "FixLockOn", false };
++    inline Item<bool> FixDodge         { "Span HUD", "FixDodge", false };
++
++    inline Item<bool> SpanBackgrounds  { "Span Backgrounds", "Enabled", false };
++    inline Item<float> BGAspectRatio   { "Span Backgrounds", "AspectRatio", 0.0f, 0.0f, 32.0f };
+ 
+     inline Item<int> ShadowResolution  { "Shadow Quality", "Resolution", 2048, 64, 16384 };
+     inline Item<float> LODDistMult     { "Level of Detail", "Multiplier", 1.0f, 0.01f, 5.0f };
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 434a006..755da19 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -91,6 +91,44 @@ void FOV()
+     }
+ }
+ 
++// One-shot diagnostic: dump a UI element's layout struct the first time each target id shows
++// up, so a single game run confirms master's element ids still live at +0x1C4 on 2.0 and shows
++// the pre-write +0x1CC/+0x1D0 offset state. (In-mod logging stands in for a debugger: the game
++// crashes x64dbg on attach.)
++static void LogUIElementOnce(int slot, const char* name, std::uintptr_t elem)
++{
++    static bool logged[3]{};
++    if (slot < 0 || slot > 2 || logged[slot]) return;
++    logged[slot] = true;
++    LOG_INFO("HUD: Span: {} seen: id={:#010x} W={} H={} off0x1CC={:#010x}({}) off0x1D0={:#010x}({})",
++        name,
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1C4),
++        *reinterpret_cast<float*>(elem + 0x1BC),
++        *reinterpret_cast<float*>(elem + 0x1C0),
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1CC),
++        *reinterpret_cast<float*>(elem + 0x1CC),
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1D0),
++        *reinterpret_cast<float*>(elem + 0x1D0));
++}
++
++// One-shot-per-id diagnostic for the UI Size Setter: records which elements pass through
++// at 3840x2160 so a single game run maps the background/effect candidates (menu bg, combat
++// overlays) without a debugger. Capped so the log stays readable.
++static void LogSizeSetterOnce(std::uintptr_t elem)
++{
++    static std::uint32_t seen[48];
++    static int seenCount = 0;
++    const std::uint32_t id = *reinterpret_cast<std::uint32_t*>(elem + 0x1C4);
++    for (int i = 0; i < seenCount; i++)
++        if (seen[i] == id) return;
++    if (seenCount >= 48) return;
++    seen[seenCount++] = id;
++    LOG_INFO("Span Backgrounds: 3840x2160 element: id={:#010x} off0x1CC={:#010x} off0x1D0={:#010x}",
++        id,
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1CC),
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1D0));
++}
++
+ void HUD()
+ {
+     if (Config::FixHUD) {
+@@ -105,10 +143,37 @@ void HUD()
+         // on 2.0. At +0x1C the element's constraint w/h are freshly loaded (vmovss xmm2,[rax+0x1BC] /
+         // xmm0,[rax+0x1C0]); for any element authored at 3840x2160, override the register so its
+         // layout spans the real aspect. Register-only writes (no struct mutation) = safe.
+-        if (Config::SpanHUD) {
++        // Guard/Lock-On and Dodge indicators ride the same hook (two hooks can't share one
++        // pattern site — the second scan fails). They are single indicators, not spanned
++        // containers: when the HUD spans, the game still places them at the 16:9 band edges,
++        // so master pushed them out to the real screen edges via the +0x1CC/+0x1D0 position
++        // offsets. Element ids from master, read at the 2.0 id slot +0x1C4.
++        if (Config::SpanHUD || Config::FixLockOn || Config::FixDodge) {
+             MAKE_MIDHOOK(SpanHUD_sh, "HUD: Span", "48 ?? ?? ?? ?? ?? 00 48 ?? ?? 74 ?? C5 ?? ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 C5 ?? ?? ?? ?? ?? ?? 00 EB ??", 0x1C, [](SafetyHookContext& ctx) {
+                 if (!ctx.rax) return;
+                 const float hudAspect = (Config::HUDAspectRatio > 0.0f) ? Config::HUDAspectRatio.Get() : Screen::AspectRatio;
++                const std::uint32_t id = *reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1C4);
++
++                if (id == 1719602056u) // Gameplay HUD (diagnostic only; spanned by the generic path below)
++                    LogUIElementOnce(0, "GameplayHUD", ctx.rax);
++
++                if (Config::FixLockOn && id == 605904162u) { // Guard & Lock-On
++                    LogUIElementOnce(1, "GuardLockOn", ctx.rax);
++                    if (Screen::AspectRatio > Screen::NativeAspect)
++                        *reinterpret_cast<float*>(ctx.rax + 0x1CC) = -((2160.0f * hudAspect - 3840.0f) / 2.0f);
++                    else if (Screen::AspectRatio < Screen::NativeAspect)
++                        *reinterpret_cast<float*>(ctx.rax + 0x1D0) = -((3840.0f / hudAspect - 2160.0f) / 2.0f);
++                }
++
++                if (Config::FixDodge && id == 3550204025u) { // Dodge
++                    LogUIElementOnce(2, "Dodge", ctx.rax);
++                    if (Screen::AspectRatio > Screen::NativeAspect)
++                        *reinterpret_cast<float*>(ctx.rax + 0x1CC) = (2160.0f * hudAspect - 3840.0f) / 2.0f;
++                    else if (Screen::AspectRatio < Screen::NativeAspect)
++                        *reinterpret_cast<float*>(ctx.rax + 0x1D0) = -((3840.0f / hudAspect - 2160.0f) / 2.0f);
++                }
++
++                if (!Config::SpanHUD) return;
+                 const float cW = *reinterpret_cast<float*>(ctx.rax + 0x1BC);
+                 const float cH = *reinterpret_cast<float*>(ctx.rax + 0x1C0);
+                 // Only span static, screen-anchored HUD elements. World-positioned elements
+@@ -142,6 +207,30 @@ void HUD()
+             }
+         });
+     }
++
++    // Span full-screen backgrounds (menu/pause/load screens, fades, overlays) at the
++    // source: the "UI Size Setter" is where every element's constraint W/H is written
++    // ([rax+0x1BC]=W / [rax+0x1C0]=H, from an input rect). The same code is stamped out
++    // at three sites in the exe (byte-identical modulo rip displacements), hence
++    // MAKE_MIDHOOK_ALL. Overriding the registers here resizes the element for every
++    // downstream consumer — unlike the earlier rect-builder attempt (exe+0x3340ad5),
++    // whose output turned out not to be the visible background. At the hook (+0x1A =
++    // the vmovss [rax+0x1BC], xmm0 store): xmm0 = W, xmm1 = H; the reference W/H
++    // stores earlier in the function keep their original 3840/2160.
++    if (Config::SpanBackgrounds) {
++        MAKE_MIDHOOK_ALL(SizeSetter_sh, "UI Size Setter", "C5 ?? 54 ?? ?? ?? ?? ?? C5 ?? 2E ?? ?? ?? ?? ?? 77 ?? C5 ?? 11 ?? B8 01 00 00 C5 ?? 11 ?? BC 01 00 00 C5 ?? 11 ?? C0 01 00 00 C3", 0x1A, [](SafetyHookContext& ctx) {
++            if (!ctx.rax) return;
++            if (ctx.xmm0.f32[0] != 3840.0f || ctx.xmm1.f32[0] != 2160.0f) return;
++            LogSizeSetterOnce(ctx.rax);
++            // Same world-positioned-element skip as Span HUD (live +0x1CC offset).
++            if (*reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1CC) != 0xFFFFFFFFu) return;
++            const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
++            if (Screen::AspectRatio > Screen::NativeAspect)
++                ctx.xmm0.f32[0] = 2160.0f * bgAspect;
++            else if (Screen::AspectRatio < Screen::NativeAspect)
++                ctx.xmm1.f32[0] = 3840.0f / bgAspect;
++        });
++    }
+ }
+ 
+ void Graphics()
+diff --git a/src/memory.cpp b/src/memory.cpp
+index 2276e4c..128416c 100644
+--- a/src/memory.cpp
++++ b/src/memory.cpp
+@@ -186,7 +186,41 @@ namespace Memory
+         return nullptr;
+     }
+ 
+-    static bool HasAVX2() 
++    // All-matches variant: same scan, accumulates instead of returning on first hit.
++    template <size_t ChunkSize>
++    std::vector<std::uint8_t*> ExecuteSIMDScanAll(const void* module, const ParsedPattern& p, bool scanAll)
++    {
++        using T = SIMDTraits<ChunkSize>;
++        const auto needle = T::Set1(static_cast<char>(p.bytes[p.anchorIdx]));
++        std::vector<std::uint8_t*> results;
++
++        for (const auto& section : GetModuleSections(module, scanAll)) {
++            if (section.size() < p.size) continue;
++
++            const uint8_t* data = section.data();
++            const size_t end = section.size() - p.size;
++
++            for (size_t offset = 0; offset < end; ++offset) {
++                if (offset + ChunkSize <= end) {
++                    uint32_t mask = T::Mask(T::Load(data + offset + p.anchorIdx), needle);
++                    while (mask) {
++                        size_t pos = offset + T::GetNextBit(mask);
++                        if (VerifyMatch(data + pos, p.verifyPairs, p.vpCount))
++                            results.push_back(const_cast<uint8_t*>(data + pos));
++                        mask &= (mask - 1);
++                    }
++                    offset += (ChunkSize - 1);
++                }
++                else if (data[offset + p.anchorIdx] == p.bytes[p.anchorIdx]) {
++                    if (VerifyMatch(data + offset, p.verifyPairs, p.vpCount))
++                        results.push_back(const_cast<uint8_t*>(data + offset));
++                }
++            }
++        }
++        return results;
++    }
++
++    static bool HasAVX2()
+     {
+         int info[4];
+         __cpuid(info, 0); 
+@@ -206,6 +240,29 @@ namespace Memory
+         return hasAVX2 ? ExecuteSIMDScan<32>(module, p, scanAll) : ExecuteSIMDScan<16>(module, p, scanAll);
+     }
+ 
++    std::vector<std::uint8_t*> PatternScanAll(void* module, const char* signature, bool scanAll) {
++        ParsedPattern p = ParsePattern(signature);
++        if (p.anchorIdx == SIZE_MAX) return {};
++
++        static const bool hasAVX2 = HasAVX2();
++        return hasAVX2 ? ExecuteSIMDScanAll<32>(module, p, scanAll) : ExecuteSIMDScanAll<16>(module, p, scanAll);
++    }
++
++    std::vector<std::uint8_t*> FindPatternAll(const char* label, HMODULE module, const char* moduleName, const char* pattern, bool scanAll)
++    {
++        if (!module) return {};
++
++        auto addrs = Memory::PatternScanAll(module, pattern, scanAll);
++        if (addrs.empty()) {
++            LOG_ERROR("{}: Pattern scan failed. Pattern: {}", label, pattern);
++            return {};
++        }
++
++        for (auto* addr : addrs)
++            LOG_INFO("{}: Address is {:s}+{:x}", label, moduleName, addr - reinterpret_cast<std::uint8_t*>(module));
++        return addrs;
++    }
++
+     std::uint8_t* FindPattern(const char* label, HMODULE module, const char* moduleName, const char* pattern, bool scanAll)
+     {
+         if (!module) return nullptr;
+diff --git a/src/memory.h b/src/memory.h
+index 3aff169..96b18aa 100644
+--- a/src/memory.h
++++ b/src/memory.h
+@@ -25,13 +25,20 @@ namespace Memory
+     }
+ 
+     std::uint8_t* PatternScan(void* module, const char* signature, bool scanAll = false);
++    std::vector<std::uint8_t*> PatternScanAll(void* module, const char* signature, bool scanAll = false);
+     std::uint8_t* FindPattern(const char* label, HMODULE module, const char* moduleName, const char* pattern, bool scanAll = false);
++    std::vector<std::uint8_t*> FindPatternAll(const char* label, HMODULE module, const char* moduleName, const char* pattern, bool scanAll = false);
+     std::uint8_t* GetRelativeAddr(std::uint8_t* address);
+ 
+-    inline std::uint8_t* FindPattern(const char* label, const char* pattern, bool scanAll = false) 
++    inline std::uint8_t* FindPattern(const char* label, const char* pattern, bool scanAll = false)
+     {
+         return FindPattern(label, ExeModule, ExeName.c_str(), pattern, scanAll);
+     }
++
++    inline std::vector<std::uint8_t*> FindPatternAll(const char* label, const char* pattern, bool scanAll = false)
++    {
++        return FindPatternAll(label, ExeModule, ExeName.c_str(), pattern, scanAll);
++    }
+ }
+ 
+ namespace Hook
+@@ -52,6 +59,16 @@ namespace Hook
+         return CreateMidHook(hook, label, ExeModule, ExeName.c_str(), pattern, offset, std::forward<F>(callback));
+     }
+ 
++    // Hook every match of a pattern (for logic duplicated/inlined at several sites).
++    // The callback must be capture-less (safetyhook mid callbacks are plain fn pointers).
++    template <typename F>
++    size_t CreateMidHookAll(std::vector<SafetyHookMid>& hooks, const char* label, const char* pattern, ptrdiff_t offset, F&& callback)
++    {
++        for (auto* addr : Memory::FindPatternAll(label, pattern))
++            hooks.emplace_back(safetyhook::create_mid(addr + offset, callback));
++        return hooks.size();
++    }
++
+     template <typename F>
+     bool CreateInlineHook(SafetyHookInline& hook, const char* label, HMODULE module, const char* moduleName, const char* pattern, ptrdiff_t offset, F&& detour)
+     {
+@@ -76,6 +93,10 @@ namespace Hook
+         static SafetyHookMid hook_name{}; \
+         Hook::CreateMidHook(hook_name, label, module, moduleName, pattern, offset, lambda);
+ 
++    #define MAKE_MIDHOOK_ALL(hook_name, label, pattern, offset, lambda) \
++        static std::vector<SafetyHookMid> hook_name{}; \
++        Hook::CreateMidHookAll(hook_name, label, pattern, offset, lambda);
++
+     #define MAKE_INLINEHOOK(hook_name, label, pattern, offset, detour) \
+         static SafetyHookInline hook_name{}; \
+         Hook::CreateInlineHook(hook_name, label, pattern, offset, detour);
 -- 
 2.55.0.windows.2
 
