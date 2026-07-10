@@ -42,3 +42,7 @@ nothing — a downloader had no way to know which behavior they had.
   fresh log in `%APPDATA%\Reloaded-Mod-Loader-II\Logs` prove a real apply.
 - PS5.1 Get/Set-Content mangles UTF-8 — use dedicated file tools. Multi-line SQL through
   `sqlite3.exe` on cmd must be flattened to one line.
+- **Never write JSON via bash heredoc** — escapes get eaten (`\\.` → `\.`), and
+  Reloaded-II SILENTLY SKIPS mods with unparseable ModConfig.json (mod just doesn't
+  appear in the launcher). Use the file-write tools, and `JSON.parse`-validate every
+  ModConfig before shipping (bit us: item-cap-v1).
