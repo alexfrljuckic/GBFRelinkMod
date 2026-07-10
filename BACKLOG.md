@@ -85,8 +85,29 @@ Last updated 2026-07-09.
   no sliders needed; split into two simple data mods instead (Transmarvel Jackpot above +
   Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
 
+## 🧪 Built, awaiting live retest
+- **Cheap Badges & Spellbooks shop mod** ([mods/badge-shop/](mods/badge-shop/),
+  `gbfr.shop.rupiebadges`): adds unlimited Silver/Gold Dalia Badge + Gold Spellbook at
+  the Knickknack Shack via a trivial 1:1 material cost. Full shop cost system decoded
+  (docs/20). v2 deployed after live-testing ruled out rupie pricing (no shop uses it) and
+  free items (~200 cap). **Alex: retest — do the 3 entries show + are they unlimited now?**
+  Then config (adjustable costs / toggles).
+
+## ✅ More done (2026-07-10 session 3)
+- **Mastery Points Multiplier** (C# Reloaded, config ×1–100) — RELEASED, live-verified.
+- **Item Cap 9999** — RELEASED, live-verified. **Instant Loot** (C# AOB code mod:
+  auto-loot chest + skip result screen) — RELEASED (fixed an instant-crash: scan .text
+  only, not the whole module). **Transmarvel Overhaul** consolidated (jackpot + traits +
+  vouchers in one). 6-mod cleanup of stale/broken Reloaded mods.
+- **4 more 2.0 tables reversed** → 7 total: `constant` (docs/19), `trade`, `item`,
+  `quest_baseinfo_ex_data`. All byte-identical round-trips; headers in
+  [patches/headers-2.0/](patches/headers-2.0/). Tool gotcha: `uint` columns holding
+  0xFFFFFFFF overflow on export — retype them `hex_uint`.
+
 ## 📋 Planned
-- **Auto-loot / skip-result mod (2.0)** — researched 2026-07-10. The Nexus mod
+- **Auto-loot / skip-result mod (2.0)** — ⚠️ SUPERSEDED by the shipped **Instant Loot**
+  mod (built clean-room from the CE table AOBs). Original research below kept for record.
+- **Auto-loot research (historical)** — researched 2026-07-10. The Nexus mod
   ([583 "Infinite Repeat and Skip Loot"](https://www.nexusmods.com/granbluefantasyrelink/mods/583),
   PokeNomz) has exactly the features (Auto Loot Chest / Skip Reward Page / Infinite
   Repeat) but is **confirmed broken on 2.0** (retitled "pre-endless ragnarok", author
@@ -103,7 +124,7 @@ Last updated 2026-07-09.
   unblocks every drop-rate mod for the community.
 - **Follow up with Lyall** now that the fix is fully working (needs a fresh Codeberg token;
   revoke the old one).
-- **Reverse `item` / `constant`** table layouts (next-most-wanted changed tables).
+- ~~Reverse `item` / `constant` table layouts~~ — DONE (both reversed 2026-07-10).
 - **Re-port broken loot mods** using the unlocked headers (Endgame Rebalance Plus, etc.).
 
 ## 🧊 Backlogged (deferred on purpose)
