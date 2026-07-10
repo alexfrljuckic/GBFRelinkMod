@@ -18,11 +18,19 @@ Two things live here: **ready-to-install mods** (`mods/`) and the **research** b
 
 | Mod | Folder | What it does | Status |
 |---|---|---|---|
-| **Ultrawide Fix** | [mods/ultrawide/](mods/ultrawide/) | Ultrawide/21:9, FOV, HUD, framerate (2.0 build of Lyall's GBFRelinkFix) | ✅ sorta working, in use |
-| **RNG / Drop-rate tuner** | *planned* | Make Transmarvel/curio/boss RNG less punishing | 🔬 Design ([docs/12](docs/12-realtime-rng-ux-design.md), [mock](design/)) |
+| **Transmarvel Overhaul** | [mods/transmarvel-overhaul/](mods/transmarvel-overhaul/) | Transmarvel worth doing: sigil rolls come from a 41-chase-sigil jackpot pool, + sigils get curated 2nd traits, wrightstones always tier-3, and every Chaos+ clear guarantees vouchers | ✅ Released + live-verified |
+| **Mastery Points Multiplier** | [mods/msp-multiplier/](mods/msp-multiplier/) | Configurable ×1–×100 MSP from quests (default ×5) — our first C# Reloaded mod | ✅ Released + live-verified |
+| **Item Cap 9999** | [mods/item-cap/](mods/item-cap/) | Raises the 999 hold-cap to 9999 on normal item categories (key items/currencies untouched) | ✅ Released + live-verified |
 
 Downloads (binaries) are attached to **[GitHub Releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)**
-under per-mod tags (e.g. `ultrawide-v1`). Each mod folder's `README.md` has full install steps.
+under per-mod tags (e.g. `transmarvel-overhaul-v1`). Each mod folder's `README.md` has full install steps.
+
+> **Ultrawide?** We shipped a 2.0 ultrawide fix (`ultrawide-v1`) and then spent a day
+> pushing spanned-UI further than any existing mod — the research is in
+> [docs/17](docs/17-ui-spanning-handoff.md)/[docs/18](docs/18-ui-spanning-session2.md) —
+> but for day-to-day play we now recommend and use
+> **[zhen469891's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide)** (MIT,
+> actively maintained for 2.0.2). Our fork's source stays available for the curious.
 
 ---
 
@@ -46,10 +54,10 @@ Most GBFR mods run through **Reloaded-II** (a mod manager) plus the **GBFR Mod M
 Turn off telemetry while modding: in-game **Options → Other → Play Log → Do Not Agree**.
 
 ### Two kinds of mods (why install steps differ)
-- **Reloaded-II mods** (table edits, QoL, C# overlays): managed inside Reloaded-II —
-  drag-drop + checkbox. This includes the planned RNG tuner.
-- **ASI mods** (the Ultrawide Fix): a `.asi` loaded by a proxy `winmm.dll` you drop in the
-  game folder. Runs **alongside** Reloaded-II — see [mods/ultrawide/](mods/ultrawide/).
+- **Reloaded-II mods** (all our released mods — table edits, QoL, C# mods): managed inside
+  Reloaded-II — drag-drop + checkbox.
+- **ASI mods** (ultrawide fixes like GBFRUltrawide): a `.asi` loaded by a proxy `winmm.dll`
+  you drop in the game folder. Runs **alongside** Reloaded-II.
 
 ---
 
@@ -83,7 +91,11 @@ See **[BACKLOG.md](BACKLOG.md)** for what's done, in progress, and planned.
 | [11-droprate-modding-unlocked.md](docs/11-droprate-modding-unlocked.md) | **Research**: reversed `reward_lot`/`gacha_lot` → drop-rate editing unlocked |
 | [12-realtime-rng-ux-design.md](docs/12-realtime-rng-ux-design.md) | In-game RNG UX feasibility + tiered plan |
 | [13-rng-knob-map.md](docs/13-rng-knob-map.md) | **Research**: exact knobs for Transmarvel, curios, boss drops |
-| [16-retrogawd-comparison.md](docs/16-retrogawd-comparison.md) | Honest comparison: RetroGawd's 2.0 ultrawide fix is more complete (screen effects, backgrounds, nameplates) — our lane is the RNG/table side |
-| [14-menu-background-spanning.md](docs/14-menu-background-spanning.md) | **Research**: spanning the main-menu background to ultrawide — feasible; 2.0 hook site found, needs one menu-open capture |
+| [14-menu-background-spanning.md](docs/14-menu-background-spanning.md) | **Research**: spanning the main-menu background to ultrawide — early feasibility work |
+| [15-transmarvel-pool-decoded.md](docs/15-transmarvel-pool-decoded.md) | **Research**: the full Transmarvel pool decoded with names + odds (basis of the Overhaul mod) |
+| [16-quest-reward-chain.md](docs/16-quest-reward-chain.md) | **Research**: quest→reward table chain decoded (basis of the voucher feature) |
+| [16-retrogawd-comparison.md](docs/16-retrogawd-comparison.md) | Honest comparison with RetroGawd's ultrawide fix |
+| [17-ui-spanning-handoff.md](docs/17-ui-spanning-handoff.md) | UI-spanning research handoff: tools, struct maps, plan |
+| [18-ui-spanning-session2.md](docs/18-ui-spanning-session2.md) | **Research**: the full spanned-UI campaign + post-mortem (why we ultimately adopted zhen's GBFRUltrawide) |
 
 `design/` holds UI/UX mocks · `scripts/` holds RE helper scripts · `patches/` holds our table-header fixes.
