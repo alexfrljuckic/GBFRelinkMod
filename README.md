@@ -83,6 +83,7 @@ See **[BACKLOG.md](BACKLOG.md)** for what's done, in progress, and planned.
 | [11-droprate-modding-unlocked.md](docs/11-droprate-modding-unlocked.md) | **Research**: reversed `reward_lot`/`gacha_lot` → drop-rate editing unlocked |
 | [12-realtime-rng-ux-design.md](docs/12-realtime-rng-ux-design.md) | In-game RNG UX feasibility + tiered plan |
 | [13-rng-knob-map.md](docs/13-rng-knob-map.md) | **Research**: exact knobs for Transmarvel, curios, boss drops |
+| [16-retrogawd-comparison.md](docs/16-retrogawd-comparison.md) | Honest comparison: RetroGawd's 2.0 ultrawide fix is more complete (screen effects, backgrounds, nameplates) — our lane is the RNG/table side |
 | [14-menu-background-spanning.md](docs/14-menu-background-spanning.md) | **Research**: spanning the main-menu background to ultrawide — feasible; 2.0 hook site found, needs one menu-open capture |
 
 `design/` holds UI/UX mocks · `scripts/` holds RE helper scripts · `patches/` holds our table-header fixes.
