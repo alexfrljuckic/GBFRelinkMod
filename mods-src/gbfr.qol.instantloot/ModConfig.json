@@ -1,0 +1,30 @@
+{
+  "ModId": "gbfr.qol.instantloot",
+  "ModName": "Instant Loot (2.0)",
+  "ModAuthor": "alexfrljuckic",
+  "ModVersion": "1.0",
+  "ModDescription": "Instantly finishes the end-of-quest treasure countdown (auto-collects loot) and skips the result-screen ceremony. Two toggles in Configure Mod, both on by default. Code-patch mod (AOB scan); signatures credit NidasBot's CE table. Built for Endless Ragnarok 2.0.",
+  "ModDll": "gbfr.qol.instantloot.dll",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "gbfr.qol.instantloot.ReleaseMetadata.json",
+  "IgnoreRegexes": [],
+  "IncludeRegexes": [
+    "ModConfig\\.json"
+  ],
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "granblue_fantasy_relink.exe"
+  ],
+  "ProjectUrl": "https://github.com/alexfrljuckic/GBFRelinkMod"
+}
