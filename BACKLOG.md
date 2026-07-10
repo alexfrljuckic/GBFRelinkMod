@@ -75,6 +75,17 @@ Last updated 2026-07-09.
   Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
 
 ## 📋 Planned
+- **Auto-loot / skip-result mod (2.0)** — researched 2026-07-10. The Nexus mod
+  ([583 "Infinite Repeat and Skip Loot"](https://www.nexusmods.com/granbluefantasyrelink/mods/583),
+  PokeNomz) has exactly the features (Auto Loot Chest / Skip Reward Page / Infinite
+  Repeat) but is **confirmed broken on 2.0** (retitled "pre-endless ragnarok", author
+  "might fix"), closed-source, restrictive perms; its one extractable AOB has 0 hits in
+  the 2.0 exe. The only working 2.0 option today:
+  **[NidasBot's CE table, FearLess t=40001](https://fearlessrevolution.com/viewtopic.php?t=40001)**
+  (v0.4.5, actively updated) — has "Auto Loot Quest Chest" + "Skip Result Screen".
+  Vanilla has no skip (chests DO auto-grant on timer; the ceremony is what drags).
+  Plan if we build our own: find the 2.0 sites with our scanner/disasm/in-mod-diagnostic
+  stack (clean-room; CE table as feature map only), ship as our own Reloaded/ASI mod.
 - **Cut GitHub Releases** for the Ultrawide Fix (attach `GBFRelinkFix.asi` to an
   `ultrawide-v1` tag) so the mod folder's download link is live.
 - **Upstream the 2.0 table headers** (`reward_lot`, `gacha_lot`) as a PR to GBFRDataTools —
