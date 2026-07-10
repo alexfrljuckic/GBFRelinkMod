@@ -18,7 +18,7 @@ Two things live here: **ready-to-install mods** (`mods/`) and the **research** b
 
 | Mod | Folder | What it does | Status |
 |---|---|---|---|
-| **Ultrawide Fix** | [mods/ultrawide/](mods/ultrawide/) | Ultrawide/21:9, FOV, HUD, framerate (2.0 build of Lyall's GBFRelinkFix) | ✅ Working, in use |
+| **Ultrawide Fix** | [mods/ultrawide/](mods/ultrawide/) | Ultrawide/21:9, FOV, HUD, framerate (2.0 build of Lyall's GBFRelinkFix) | ✅ sorta working, in use |
 | **RNG / Drop-rate tuner** | *planned* | Make Transmarvel/curio/boss RNG less punishing | 🔬 Design ([docs/12](docs/12-realtime-rng-ux-design.md), [mock](design/)) |
 
 Downloads (binaries) are attached to **[GitHub Releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)**
