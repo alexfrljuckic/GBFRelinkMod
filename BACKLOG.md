@@ -39,11 +39,22 @@ Last updated 2026-07-09.
   guaranteed-grant mechanism (fill an empty `RewardLotIdN` with a single-item
   100% group), enumerate Chaos+ quest ids (via `TXT_QR_*` in text_stage.msg +
   `quest_difficulty.tbl`, still unreversed).
-- **Span the main-menu background to ultrawide** — feasible; master named the element
-  (`Main menu bg = 2384707215`) and its 2.0 hook site still matches
-  (`+0x3340b04`). Diagnostic staged (`design/GBFRelinkFix-diag-backgrounds.asi`) — run it
-  with the main menu open to confirm the ID + 2.0 offsets, then port the targeted span.
-  ([docs/14](docs/14-menu-background-spanning.md))
+- **Complete open-source UI spanning** (menu backgrounds, combat screen-effects,
+  speech-bubbles/nameplates, lock-on/dodge) — **fresh-session handoff in
+  [docs/17](docs/17-ui-spanning-handoff.md)** (read it first; everything below is summarized
+  there). Status after this session:
+  - Built a real **zydis disassembler** (`tools/disasm/disasm.exe`, src `tools-src/disasm/`) —
+    read game code precisely, no more guessing.
+  - Confirmed 2.0 struct: object-ID @ `rax+0x1C4`, width/height @ `0x1BC/0x1C0`, master's
+    background IDs unchanged. Disassembled the UI-Backgrounds fn — the width→rect math checks
+    out but **that function isn't the visible background** (register-write fires, pixels don't
+    move). The real bg/effects/nameplates live in **multiple distinct sites** (matches
+    RetroGawd's 4+ hooks).
+  - **Next-session order**: (1) Lock-On/Dodge (near-direct port of master's offset formula —
+    quick win, do with `[Span HUD]=false`); (2) find the REAL background function; (3) screen
+    effects; (4) nameplates. Rule: verify each with a screenshot (writes can fire without
+    moving pixels). Build the mod ourselves; use RetroGawd's symbols only as a feature map,
+    never lift his code. ([docs/16](docs/16-retrogawd-comparison.md), [docs/14](docs/14-menu-background-spanning.md))
 - ~~RNG / Drop-rate tuner mod (sliders/overlay)~~ — SUPERSEDED 2026-07-09: Alex decided
   no sliders needed; split into two simple data mods instead (Transmarvel Jackpot above +
   Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
