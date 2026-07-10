@@ -20,6 +20,11 @@ Last updated 2026-07-09.
 - **Reported the ultrawide fix to Lyall** upstream (Codeberg issue #1).
 
 ## 🔬 In design (validate before building)
+- **Span the main-menu background to ultrawide** — feasible; master named the element
+  (`Main menu bg = 2384707215`) and its 2.0 hook site still matches
+  (`+0x3340b04`). Diagnostic staged (`design/GBFRelinkFix-diag-backgrounds.asi`) — run it
+  with the main menu open to confirm the ID + 2.0 offsets, then port the targeted span.
+  ([docs/14](docs/14-menu-background-spanning.md))
 - **RNG / Drop-rate tuner mod** — make Transmarvel/curio/boss RNG less punishing.
   - Decided: **must be a Reloaded-II mod** (the platform the scene uses).
   - Open: which tier — (1) config-multiplier mod, (2) revive the in-game ImGui overlay,
