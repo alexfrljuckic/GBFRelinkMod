@@ -53,6 +53,10 @@ for (const it of ITEMS) {
   trd.ItemTierMapId = it.tierId;
   trd.SubKey = `${it.tierId}_SUBKEY`;   // MUST be unique per row (hash_string) — the shop keys entries by this
   trd.Key = SHOP_CATEGORY;
+  // Free items otherwise get a ~200 default purchase cap; make stock huge + refreshable.
+  trd.IsRefreshable = 1;
+  trd.MaxStockForRefresh = 999999;
+  trd.MaxStockOrAmountRefreshed = 999999;
   trd.MinQuestId = '0010A002';   // an early quest id used by other Key=5 items (proven-visible)
   trd.MaxQuestId = '00000000';
   trd.SortOrder = (sortOrder++).toString(16).toUpperCase().padStart(8, '0');   // hex_uint
