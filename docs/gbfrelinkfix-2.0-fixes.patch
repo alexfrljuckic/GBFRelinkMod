@@ -1,7 +1,7 @@
 From 04ade02ed3696dae2af4b4a03931c7cbaa6f109d Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 15:40:42 -0400
-Subject: [PATCH 1/4] fix: repair Press Any Key signature for release 2.0 (49
+Subject: [PATCH 1/5] fix: repair Press Any Key signature for release 2.0 (49
  8B -> 49 3B)
 
 Trailing mov became cmp in the 2026-07-08 release build; new sig verified
@@ -51,7 +51,7 @@ index 6e3986d..6d36f9d 100644
 From 3c3efc65e16609c360aa7bcb70a65fcbd610637b Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 16:32:15 -0400
-Subject: [PATCH 2/4] fix: repair HUD: Markers hook for release 2.0
+Subject: [PATCH 2/5] fix: repair HUD: Markers hook for release 2.0
 
 vdivss folded out of the sequence (new unique pattern); HUD reference
 width/height struct slots shifted +0x8 (0x1B4/0x1B8 -> 0x1BC/0x1C0),
@@ -109,7 +109,7 @@ index 6d36f9d..b6b874e 100644
 From c3ebee332d33d8ea2aa6895cc803565831d900e5 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 17:01:40 -0400
-Subject: [PATCH 3/4] feat: configurable Span HUD for 2.0 (ultrawide HUD to
+Subject: [PATCH 3/5] feat: configurable Span HUD for 2.0 (ultrawide HUD to
  screen edges)
 
 Ports master's SpanAllHUD to the 2.0 rewrite. Master's UI-Constraints
@@ -216,7 +216,7 @@ index b6b874e..434a006 100644
 From ca259f6add6f2e5cb01a90052f5257ba09153d07 Mon Sep 17 00:00:00 2001
 From: alexfrljuckic <alexfrljuckic@gmail.com>
 Date: Thu, 9 Jul 2026 23:26:59 -0400
-Subject: [PATCH 4/4] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
+Subject: [PATCH 4/5] feat: Lock-On/Dodge offset port + Span Backgrounds via UI
  Size Setter (2.0)
 
 Two new experimental ultrawide features, both derived from our own
@@ -540,6 +540,254 @@ index 3aff169..96b18aa 100644
      #define MAKE_INLINEHOOK(hook_name, label, pattern, offset, detour) \
          static SafetyHookInline hook_name{}; \
          Hook::CreateInlineHook(hook_name, label, pattern, offset, detour);
+-- 
+2.55.0.windows.2
+
+
+From 1dc1d130d6cc78e615c81fa1f860a7d6c969cb5a Mon Sep 17 00:00:00 2001
+From: alexfrljuckic <alexfrljuckic@gmail.com>
+Date: Thu, 9 Jul 2026 23:44:51 -0400
+Subject: [PATCH 5/5] fix: UI spanning diagnostics v2 from run-1 evidence
+ (census + struct dumps)
+
+Run 1 (2026-07-09, 3440x1440) falsified two assumptions:
+- Nothing passes the UI Size Setter at 3840x2160 (menus did not span), and
+  dropping the trailing-ret requirement from the pattern reveals the setter
+  is inlined at 26 sites with varying register allocation (e.g. exe+0xa7fbfd
+  uses xmm4/xmm3), so: hook all 26, after the stores (+0x2A), and write the
+  struct fields directly instead of registers.
+- Master's Guard/Lock-On and Dodge ids DO exist at +0x1C4 on 2.0, but
+  +0x1CC/+0x1D0 hold byte-flags for those elements (0x03/0x33/0x01000101),
+  not position floats; the offset writes were useless and are now replaced
+  with a one-shot +0x140..+0x220 struct window dump (plus a StaticHUD3840
+  baseline dump) to locate the real offset fields.
+
+New: size census logs every unique W/H pair through the setter (units
+question: authored 3840x2160 vs HUD pixel space); [Span Backgrounds]
+PixelSpace key optionally spans HUD-pixel-sized elements; CreateMidHookAll
+logs per-site create_mid failures instead of silently dropping them.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+---
+ GBFRelinkFix.ini |   3 ++
+ src/config.h     |   1 +
+ src/dllmain.cpp  | 106 +++++++++++++++++++++++++----------------------
+ src/memory.h     |  12 +++++-
+ 4 files changed, 71 insertions(+), 51 deletions(-)
+
+diff --git a/GBFRelinkFix.ini b/GBFRelinkFix.ini
+index 0873693..d7322a3 100644
+--- a/GBFRelinkFix.ini
++++ b/GBFRelinkFix.ini
+@@ -41,8 +41,11 @@ FixDodge = false
+ ; EXPERIMENTAL: spans full-screen backgrounds (menu/pause/load screens, fades, overlays)
+ ; to the whole screen on ultrawide by resizing them where their size is first written.
+ ; AspectRatio: 0 = use your actual screen aspect (same semantics as Span HUD).
++; PixelSpace: also span elements sized exactly to the 16:9 HUD pixel area (more
++; aggressive; may stretch things that should stay 16:9).
+ Enabled = false
+ AspectRatio = 0
++PixelSpace = false
+ 
+ [Fix FOV]
+ ; Fixes cropped FOV at <16:9.
+diff --git a/src/config.h b/src/config.h
+index 01a80b6..85d5efb 100644
+--- a/src/config.h
++++ b/src/config.h
+@@ -106,6 +106,7 @@ namespace Config
+ 
+     inline Item<bool> SpanBackgrounds  { "Span Backgrounds", "Enabled", false };
+     inline Item<float> BGAspectRatio   { "Span Backgrounds", "AspectRatio", 0.0f, 0.0f, 32.0f };
++    inline Item<bool> SpanBGPixelSpace { "Span Backgrounds", "PixelSpace", false };
+ 
+     inline Item<int> ShadowResolution  { "Shadow Quality", "Resolution", 2048, 64, 16384 };
+     inline Item<float> LODDistMult     { "Level of Detail", "Multiplier", 1.0f, 0.01f, 5.0f };
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 755da19..edf049d 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -92,41 +92,52 @@ void FOV()
+ }
+ 
+ // One-shot diagnostic: dump a UI element's layout struct the first time each target id shows
+-// up, so a single game run confirms master's element ids still live at +0x1C4 on 2.0 and shows
+-// the pre-write +0x1CC/+0x1D0 offset state. (In-mod logging stands in for a debugger: the game
+-// crashes x64dbg on attach.)
++// up. Run 1 (2026-07-09) proved master's Guard/Lock-On and Dodge ids exist at +0x1C4 on 2.0
++// but ALSO that +0x1CC/+0x1D0 hold byte-flags for them (0x03/0x33/0x01000101), not the
++// position-offset floats master wrote — so the real offset fields are elsewhere. The window
++// dump below is how we find them. (In-mod logging stands in for a debugger: anti-debug.)
+ static void LogUIElementOnce(int slot, const char* name, std::uintptr_t elem)
+ {
+-    static bool logged[3]{};
+-    if (slot < 0 || slot > 2 || logged[slot]) return;
++    static bool logged[4]{};
++    if (slot < 0 || slot > 3 || logged[slot]) return;
+     logged[slot] = true;
+-    LOG_INFO("HUD: Span: {} seen: id={:#010x} W={} H={} off0x1CC={:#010x}({}) off0x1D0={:#010x}({})",
++    LOG_INFO("HUD: Span: {} seen: id={:#010x} W={} H={} off0x1CC={:#010x} off0x1D0={:#010x}",
+         name,
+         *reinterpret_cast<std::uint32_t*>(elem + 0x1C4),
+         *reinterpret_cast<float*>(elem + 0x1BC),
+         *reinterpret_cast<float*>(elem + 0x1C0),
+         *reinterpret_cast<std::uint32_t*>(elem + 0x1CC),
+-        *reinterpret_cast<float*>(elem + 0x1CC),
+-        *reinterpret_cast<std::uint32_t*>(elem + 0x1D0),
+-        *reinterpret_cast<float*>(elem + 0x1D0));
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1D0));
++    // Struct window +0x140..+0x220 as raw dwords + float view: anchors (0.5), sizes
++    // (3840/2160 or pixel units) and any position floats identify themselves on sight.
++    for (std::uintptr_t off = 0x140; off < 0x220; off += 0x10) {
++        const std::uint32_t* u = reinterpret_cast<std::uint32_t*>(elem + off);
++        const float* f = reinterpret_cast<float*>(elem + off);
++        LOG_INFO("  {} +{:#05x}: {:08x} {:08x} {:08x} {:08x} | {:g} {:g} {:g} {:g}",
++            name, off, u[0], u[1], u[2], u[3], f[0], f[1], f[2], f[3]);
++    }
+ }
+ 
+-// One-shot-per-id diagnostic for the UI Size Setter: records which elements pass through
+-// at 3840x2160 so a single game run maps the background/effect candidates (menu bg, combat
+-// overlays) without a debugger. Capped so the log stays readable.
+-static void LogSizeSetterOnce(std::uintptr_t elem)
++// Size census for the UI Size Setter: run 1 (2026-07-09) logged ZERO elements at
++// 3840x2160, so the setter evidently doesn't see authored units — this logs every unique
++// (W,H) pair passing through (capped) to establish what units/sizes actually flow here.
++static void LogSizeSetterCensus(std::uintptr_t elem)
+ {
+-    static std::uint32_t seen[48];
++    struct Entry { float w; float h; };
++    static Entry seen[64];
+     static int seenCount = 0;
+-    const std::uint32_t id = *reinterpret_cast<std::uint32_t*>(elem + 0x1C4);
++    const float w = *reinterpret_cast<float*>(elem + 0x1BC);
++    const float h = *reinterpret_cast<float*>(elem + 0x1C0);
+     for (int i = 0; i < seenCount; i++)
+-        if (seen[i] == id) return;
+-    if (seenCount >= 48) return;
+-    seen[seenCount++] = id;
+-    LOG_INFO("Span Backgrounds: 3840x2160 element: id={:#010x} off0x1CC={:#010x} off0x1D0={:#010x}",
+-        id,
+-        *reinterpret_cast<std::uint32_t*>(elem + 0x1CC),
+-        *reinterpret_cast<std::uint32_t*>(elem + 0x1D0));
++        if (seen[i].w == w && seen[i].h == h) return;
++    if (seenCount >= 64) return;
++    seen[seenCount].w = w;
++    seen[seenCount].h = h;
++    seenCount++;
++    LOG_INFO("UI Size Setter: size {:g}x{:g} id={:#010x} off0x1CC={:#010x}",
++        w, h,
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1C4),
++        *reinterpret_cast<std::uint32_t*>(elem + 0x1CC));
+ }
+ 
+ void HUD()
+@@ -157,21 +168,14 @@ void HUD()
+                 if (id == 1719602056u) // Gameplay HUD (diagnostic only; spanned by the generic path below)
+                     LogUIElementOnce(0, "GameplayHUD", ctx.rax);
+ 
+-                if (Config::FixLockOn && id == 605904162u) { // Guard & Lock-On
++                // Guard/Lock-On + Dodge: DIAGNOSTIC ONLY for now. Run 1 proved the ids match
++                // on 2.0 but +0x1CC/+0x1D0 are byte-flags here, not master's offset floats —
++                // writing them is useless-at-best. The window dump locates the real fields.
++                if (Config::FixLockOn && id == 605904162u) // Guard & Lock-On
+                     LogUIElementOnce(1, "GuardLockOn", ctx.rax);
+-                    if (Screen::AspectRatio > Screen::NativeAspect)
+-                        *reinterpret_cast<float*>(ctx.rax + 0x1CC) = -((2160.0f * hudAspect - 3840.0f) / 2.0f);
+-                    else if (Screen::AspectRatio < Screen::NativeAspect)
+-                        *reinterpret_cast<float*>(ctx.rax + 0x1D0) = -((3840.0f / hudAspect - 2160.0f) / 2.0f);
+-                }
+ 
+-                if (Config::FixDodge && id == 3550204025u) { // Dodge
++                if (Config::FixDodge && id == 3550204025u) // Dodge
+                     LogUIElementOnce(2, "Dodge", ctx.rax);
+-                    if (Screen::AspectRatio > Screen::NativeAspect)
+-                        *reinterpret_cast<float*>(ctx.rax + 0x1CC) = (2160.0f * hudAspect - 3840.0f) / 2.0f;
+-                    else if (Screen::AspectRatio < Screen::NativeAspect)
+-                        *reinterpret_cast<float*>(ctx.rax + 0x1D0) = -((3840.0f / hudAspect - 2160.0f) / 2.0f);
+-                }
+ 
+                 if (!Config::SpanHUD) return;
+                 const float cW = *reinterpret_cast<float*>(ctx.rax + 0x1BC);
+@@ -182,6 +186,7 @@ void HUD()
+                 // markers stay pinned to their world targets.
+                 const std::uint32_t posOffset = *reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1CC);
+                 if (cW == 3840.0f && cH == 2160.0f && posOffset == 0xFFFFFFFFu) {
++                    LogUIElementOnce(3, "StaticHUD3840", ctx.rax); // baseline for field-map comparison
+                     if (Screen::AspectRatio > Screen::NativeAspect)
+                         ctx.xmm2.f32[0] = 2160.0f * hudAspect;
+                     else if (Screen::AspectRatio < Screen::NativeAspect)
+@@ -209,26 +214,29 @@ void HUD()
+     }
+ 
+     // Span full-screen backgrounds (menu/pause/load screens, fades, overlays) at the
+-    // source: the "UI Size Setter" is where every element's constraint W/H is written
+-    // ([rax+0x1BC]=W / [rax+0x1C0]=H, from an input rect). The same code is stamped out
+-    // at three sites in the exe (byte-identical modulo rip displacements), hence
+-    // MAKE_MIDHOOK_ALL. Overriding the registers here resizes the element for every
+-    // downstream consumer — unlike the earlier rect-builder attempt (exe+0x3340ad5),
+-    // whose output turned out not to be the visible background. At the hook (+0x1A =
+-    // the vmovss [rax+0x1BC], xmm0 store): xmm0 = W, xmm1 = H; the reference W/H
+-    // stores earlier in the function keep their original 3840/2160.
++    // source: the "UI Size Setter" is where an element's constraint W/H is written
++    // ([rax+0x1BC]=W / [rax+0x1C0]=H, from an input rect). The logic is stamped out at
++    // FOUR+ sites — three standalone copies ending in ret, plus at least one inlined
++    // with different xmm registers (exe+0xa7fbfd) — hence MAKE_MIDHOOK_ALL, a pattern
++    // with no trailing ret, and hooking AFTER all three stores (+0x2A) with struct
++    // writes instead of register writes (register allocation differs per copy; the
++    // struct fields don't). Run 1 found nothing at 3840x2160 here, so this iteration
++    // is census-first (see LogSizeSetterCensus) with two span attempts behind it:
++    // authored units (3840x2160) and, under PixelSpace, the 16:9 HUD pixel size.
+     if (Config::SpanBackgrounds) {
+-        MAKE_MIDHOOK_ALL(SizeSetter_sh, "UI Size Setter", "C5 ?? 54 ?? ?? ?? ?? ?? C5 ?? 2E ?? ?? ?? ?? ?? 77 ?? C5 ?? 11 ?? B8 01 00 00 C5 ?? 11 ?? BC 01 00 00 C5 ?? 11 ?? C0 01 00 00 C3", 0x1A, [](SafetyHookContext& ctx) {
++        MAKE_MIDHOOK_ALL(SizeSetter_sh, "UI Size Setter", "C5 ?? 54 ?? ?? ?? ?? ?? C5 ?? 2E ?? ?? ?? ?? ?? 77 ?? C5 ?? 11 ?? B8 01 00 00 C5 ?? 11 ?? BC 01 00 00 C5 ?? 11 ?? C0 01 00 00", 0x2A, [](SafetyHookContext& ctx) {
+             if (!ctx.rax) return;
+-            if (ctx.xmm0.f32[0] != 3840.0f || ctx.xmm1.f32[0] != 2160.0f) return;
+-            LogSizeSetterOnce(ctx.rax);
++            LogSizeSetterCensus(ctx.rax);
+             // Same world-positioned-element skip as Span HUD (live +0x1CC offset).
+             if (*reinterpret_cast<std::uint32_t*>(ctx.rax + 0x1CC) != 0xFFFFFFFFu) return;
++            if (Screen::AspectRatio <= Screen::NativeAspect) return; // <16:9 unhandled this iteration
++            float* cW = reinterpret_cast<float*>(ctx.rax + 0x1BC);
++            const float cH = *reinterpret_cast<float*>(ctx.rax + 0x1C0);
+             const float bgAspect = (Config::BGAspectRatio > 0.0f) ? Config::BGAspectRatio.Get() : Screen::AspectRatio;
+-            if (Screen::AspectRatio > Screen::NativeAspect)
+-                ctx.xmm0.f32[0] = 2160.0f * bgAspect;
+-            else if (Screen::AspectRatio < Screen::NativeAspect)
+-                ctx.xmm1.f32[0] = 3840.0f / bgAspect;
++            if (*cW == 3840.0f && cH == 2160.0f)
++                *cW = 2160.0f * bgAspect;
++            else if (Config::SpanBGPixelSpace && *cW == Screen::HUDWidth && cH == Screen::HUDHeight)
++                *cW = Screen::HUDHeight * bgAspect;
+         });
+     }
+ }
+diff --git a/src/memory.h b/src/memory.h
+index 96b18aa..83a42af 100644
+--- a/src/memory.h
++++ b/src/memory.h
+@@ -61,11 +61,19 @@ namespace Hook
+ 
+     // Hook every match of a pattern (for logic duplicated/inlined at several sites).
+     // The callback must be capture-less (safetyhook mid callbacks are plain fn pointers).
++    // Individual sites can fail to hook (unrelocatable bytes at addr+offset) — those are
++    // logged and skipped rather than failing the whole set.
+     template <typename F>
+     size_t CreateMidHookAll(std::vector<SafetyHookMid>& hooks, const char* label, const char* pattern, ptrdiff_t offset, F&& callback)
+     {
+-        for (auto* addr : Memory::FindPatternAll(label, pattern))
+-            hooks.emplace_back(safetyhook::create_mid(addr + offset, callback));
++        for (auto* addr : Memory::FindPatternAll(label, pattern)) {
++            auto hook = safetyhook::create_mid(addr + offset, callback);
++            if (!hook) {
++                LOG_ERROR("{}: create_mid failed at {}+{:x}", label, ExeName, (addr + offset) - reinterpret_cast<std::uint8_t*>(ExeModule));
++                continue;
++            }
++            hooks.emplace_back(std::move(hook));
++        }
+         return hooks.size();
+     }
+ 
 -- 
 2.55.0.windows.2
 

@@ -1,5 +1,18 @@
 # UI spanning session 2 (2026-07-09 late): Lock-On/Dodge port + the UI Size Setter
 
+> **RUN 1 RESULTS (2026-07-09 23:36, 3440x1440):** only team icons (Span HUD) moved; menus
+> and battle UI unchanged. Log evidence: (a) all 3 setter hooks installed but ZERO elements
+> passed at 3840x2160 — and dropping the trailing-`ret` from the pattern reveals the setter
+> is inlined at **26 sites** with per-copy register allocation (exe+0xa7fbfd uses xmm4/xmm3);
+> (b) Guard/Lock-On (0x241d5d22) and Dodge (0xd39bd079) ids CONFIRMED at +0x1C4 on 2.0, but
+> `+0x1CC/+0x1D0` hold byte-flags for them (0x03/0x33/0x01000101), NOT master's offset floats
+> — the docs/17 "+0x1CC position offset" claim is wrong for these elements; (c) GameplayHUD
+> id 1719602056 never hits the constraints site on 2.0. Deployed **v2 (vendor `1dc1d13`)**:
+> all 26 setter sites hooked after the stores with struct writes, a size census (units
+> question: authored vs HUD-pixel space), one-shot +0x140..+0x220 struct dumps for
+> GuardLockOn/Dodge/StaticHUD3840, offset writes disabled, `PixelSpace` span key added.
+> **Next: run 2, then read the census + dumps in GBFRelinkFix.log.**
+
 Follow-up to [docs/17](17-ui-spanning-handoff.md). Both features below are built, deployed
 to the game folder, and **awaiting one in-game verification run** (checklist at the bottom).
 Vendor commit: `ca259f6` on `ragnarok-2.0-fixes`; patch re-exported to
