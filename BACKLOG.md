@@ -109,15 +109,14 @@ Last updated 2026-07-09.
 - Reloaded-II at `C:\Reloaded-II`. Enabled: loader (`gbfrelink.utility.manager`) +
   our 4 mods (`gbfr.transmarvel.overhaul`, `gbfr.quest.mspmultiplier`,
   `gbfr.qol.itemcap9999`, `gbfr.qol.instantloot`).
-- **Stale-mod cleanup (2026-07-10)**: moved 8 broken/superseded third-party mods out
-  of `Mods\` to `C:\Reloaded-II\Mods_stale_backup\` (recoverable; all re-downloadable
-  from Nexus). Broken = ships an old-layout table (verified by row size: reward_lot 56
-  vs 2.0's 60, gacha_lot 24 vs 28, constant 72 vs 84, or a 2024 item.tbl) or a
-  2.0-broken code mod: Endgame Rebalance Plus, Custom Drop Rates Behemoth, More
-  Fortitude, Slimepede Centrum, Transmarvel Wrightstone Max, Uncap Item Limit, Show
-  Curio Tier, Repeat Skip Loot. **Still work, kept**: Perfect Overmasteries + Sigil
-  Synthesis (their tables unchanged in 2.0), Return Imbued Stones (ER-updated). qqcurio
-  (2024 code mod) left in place, unverified.
+- **Mod cleanup (2026-07-10)**: `Mods\` is now ONLY the loader + our 5 mods + 4
+  required Reloaded libraries (`reloaded.sharedlib.hooks`, `reloaded.universal.redirector`,
+  `Reloaded.Memory.SigScan.ReloadedII`, `SharedScans.Reloaded` — these show as "off"
+  but are dependencies; never remove). All 13 other third-party mods (8 broken/
+  superseded + 5 other disabled ones incl. still-working Perfect Overmasteries, Sigil
+  Synthesis, Return Imbued Stones) moved to `C:\Reloaded-II\Mods_stale_backup\`
+  (recoverable; all re-downloadable from Nexus). Broken verified by table row size
+  (reward_lot 56 vs 2.0's 60, gacha_lot 24 vs 28, constant 72 vs 84).
 - Anti-debug: x64dbg crashes the game on attach → use the **in-mod diagnostic** method
   ([docs/09](docs/09-hud-markers-debugging.md)).
 - **Reloaded-II injection on GBFR needs `Reloaded.Mod.Loader.Bootstrapper.asi` in the
