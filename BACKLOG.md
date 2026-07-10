@@ -50,7 +50,7 @@ Last updated 2026-07-09.
   (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
 
 ## 🔬 In design (validate before building)
-- **Complete open-source UI spanning** — **CONCLUDED 2026-07-10: Alex switched to
+- **Complete open-source UI spanning** — **CONCLUDED 2026-07-10 (final): ALL ultrawide mods UNINSTALLED — game runs vanilla rendering.** Both builds parked in save-backups/parked-ultrawide-mods/. Earlier that day: switched to
   [zhen's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide) v0.2.1 for
   stability** (installed in game folder; our build parked in
   `scripts/_disabled_GBFRelinkFix/`). Most features verified at 3440x1440 (backgrounds/
