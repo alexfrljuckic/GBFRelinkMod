@@ -22,6 +22,7 @@ Two things live here: **ready-to-install mods** (`mods/`) and the **research** b
 | **Mastery Points Multiplier** | [mods/msp-multiplier/](mods/msp-multiplier/) | Configurable ×1–×100 MSP from quests (default ×5) — our first C# Reloaded mod | ✅ Released + live-verified |
 | **Item Cap 9999** | [mods/item-cap/](mods/item-cap/) | Raises the 999 hold-cap to 9999 on normal item categories (key items/currencies untouched) | ✅ Released + live-verified |
 | **Instant Loot** | [mods/instant-loot/](mods/instant-loot/) | Instantly finishes the end-of-quest treasure countdown (auto-collect) and skips the result-screen ceremony — two toggles. Code/AOB mod | ✅ Released |
+| **Badges & Spellbooks for Vouchers** | [mods/badge-shop/](mods/badge-shop/) | Unlimited Silver/Gold Dalia Badge + Gold Spellbook in the shack's Treasure Trade tab, paid in Knickknack Vouchers | ✅ Released + live-verified |
 
 Downloads (binaries) are attached to **[GitHub Releases](https://github.com/alexfrljuckic/GBFRelinkMod/releases)**
 under per-mod tags (e.g. `transmarvel-overhaul-v1`). Each mod folder's `README.md` has full install steps.

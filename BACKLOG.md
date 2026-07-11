@@ -85,24 +85,20 @@ Last updated 2026-07-09.
   no sliders needed; split into two simple data mods instead (Transmarvel Jackpot above +
   Voucher-per-Chaos-quest). docs/12's overlay research stays shelved for later.
 
-## 🧪 Built, awaiting live retest
-- **Cheap Badges & Spellbooks shop mod** ([mods/badge-shop/](mods/badge-shop/),
-  `gbfr.shop.rupiebadges`): adds unlimited Silver/Gold Dalia Badge + Gold Spellbook at
-  the Knickknack Shack via a trivial 1:1 material cost. Full shop cost system decoded
-  (docs/20). v2 deployed after live-testing ruled out rupie pricing (no shop uses it) and
-  free items (~200 cap). **Alex: retest — do the 3 entries show + are they unlimited now?**
-  Then config (adjustable costs / toggles).
-
 ## ✅ More done (2026-07-10 session 3)
 - **Mastery Points Multiplier** (C# Reloaded, config ×1–100) — RELEASED, live-verified.
 - **Item Cap 9999** — RELEASED, live-verified. **Instant Loot** (C# AOB code mod:
   auto-loot chest + skip result screen) — RELEASED (fixed an instant-crash: scan .text
   only, not the whole module). **Transmarvel Overhaul** consolidated (jackpot + traits +
   vouchers in one). 6-mod cleanup of stale/broken Reloaded mods.
+- **Badges & Spellbooks for Vouchers** ([mods/badge-shop/](mods/badge-shop/)) — RELEASED
+  + live-verified: unlimited Silver/Gold Dalia Badge + Gold Spellbook in the Treasure
+  Trade tab for Knickknack Vouchers. Decoded the whole shop cost system (docs/20).
 - **4 more 2.0 tables reversed** → 7 total: `constant` (docs/19), `trade`, `item`,
   `quest_baseinfo_ex_data`. All byte-identical round-trips; headers in
   [patches/headers-2.0/](patches/headers-2.0/). Tool gotcha: `uint` columns holding
-  0xFFFFFFFF overflow on export — retype them `hex_uint`.
+  0xFFFFFFFF overflow on export — retype them `hex_uint`. Also corrected the community
+  `trade.tbl` header: its "SortOrder" column is really the per-entry stock cap.
 
 ## 📋 Planned
 - **Auto-loot / skip-result mod (2.0)** — ⚠️ SUPERSEDED by the shipped **Instant Loot**
