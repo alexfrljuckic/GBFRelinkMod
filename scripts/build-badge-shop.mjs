@@ -15,15 +15,16 @@ const DB = 'extracted/shop_work/s.sqlite';
 const q = (sql) => execSync(`${SQL} ${DB} "${sql.replace(/\s+/g, ' ').replace(/"/g, '""')}"`).toString().trim();
 
 // ===================== CONFIG =====================
-// Shops charge item/badge materials, NOT rupies (no shop uses rupie CoinCost), and FREE
-// items get a ~200 default cap. So each entry has a trivial 1x MATERIAL cost -> unlimited
-// like every real shop item. Cheap 1:1 chain: common crystal -> silver -> gold -> spellbook.
+// Sold in the TREASURE TRADE tab (Key=3, which trades item-materials), cost = Knickknack
+// Vouchers (ITEM_21_0000). A real cost makes them unlimited (free items cap at ~200; no
+// shop honors rupies). Adjust costCount to taste.
 const ITEMS = [
-  { name: 'Silver Dalia Badge', item: 'ITEM_14_0031', costItem: 'ITEM_10_0000', costCount: 1, recipeKey: 990001, tierId: 'TMAP_CHEAP_SILVER_BADGE' },
-  { name: 'Gold Dalia Badge',   item: 'ITEM_14_0032', costItem: 'ITEM_14_0031', costCount: 1, recipeKey: 990002, tierId: 'TMAP_CHEAP_GOLD_BADGE' },
-  { name: 'Gold Spellbook',     item: 'ITEM_11_0002', costItem: 'ITEM_14_0032', costCount: 1, recipeKey: 990003, tierId: 'TMAP_CHEAP_GOLD_SPELLBOOK' },
+  { name: 'Silver Dalia Badge', item: 'ITEM_14_0031', costItem: 'ITEM_21_0000', costCount: 1, recipeKey: 990001, tierId: 'TMAP_VOUCHER_SILVER_BADGE' },
+  { name: 'Gold Dalia Badge',   item: 'ITEM_14_0032', costItem: 'ITEM_21_0000', costCount: 3, recipeKey: 990002, tierId: 'TMAP_VOUCHER_GOLD_BADGE' },
+  { name: 'Gold Spellbook',     item: 'ITEM_11_0002', costItem: 'ITEM_21_0000', costCount: 5, recipeKey: 990003, tierId: 'TMAP_VOUCHER_GOLD_SPELLBOOK' },
 ];
-const SHOP_CATEGORY = 5;   // Key=5 = the badge shop (where the Gold Badge already sells)
+const SHOP_CATEGORY = 3;   // Key=3 = the Treasure Trade tab (item-material costs)
+const TEMPLATE_WHERE = `Key=3 AND ItemPurchasable!='' AND IsRefreshable=0`;  // clone a real Key=3 row
 // =============================================================================
 
 // column lists (from the 2.0 headers)
@@ -32,8 +33,8 @@ const ITM_COLS = q(`PRAGMA table_info(item_tier_map);`).split('\n').map(l => l.s
 const TRD_COLS = q(`PRAGMA table_info(trade);`).split('\n').map(l => l.split('|')[1]);
 
 // a real Key=5 trade row to clone the non-essential fields from
-const goldRow = q(`SELECT ${TRD_COLS.join(',')} FROM trade WHERE ItemPurchasable='ITEM_14_0032' AND Key=5 LIMIT 1;`).split('|');
-const goldObj = Object.fromEntries(TRD_COLS.map((c, i) => [c, goldRow[i]]));
+const tmplRow = q(`SELECT ${TRD_COLS.join(',')} FROM trade WHERE ${TEMPLATE_WHERE} LIMIT 1;`).split('|');
+const goldObj = Object.fromEntries(TRD_COLS.map((c, i) => [c, tmplRow[i]]));
 
 let sortOrder = 200;
 for (const it of ITEMS) {
@@ -63,8 +64,8 @@ for (const it of ITEMS) {
   trd.IsRefreshable = 0;
   trd.MaxStockForRefresh = 0;
   trd.MaxStockOrAmountRefreshed = 0;
-  trd.MinQuestId = '0010A002';   // an early quest id used by other Key=5 items (proven-visible)
-  trd.MaxQuestId = '00000000';
+  trd.MinQuestId = '00100000';   // early quest id used by Key=3 items (proven-visible)
+  trd.MaxQuestId = '00000000';   // no upper gate — always available
   trd.SortOrder = (sortOrder++).toString(16).toUpperCase().padStart(8, '0');   // hex_uint
   q(`INSERT INTO trade (${TRD_COLS.join(',')}) VALUES (${TRD_COLS.map(c => `'${String(trd[c]).replace(/'/g, "''")}'`).join(',')});`);
 
