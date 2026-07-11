@@ -15,5 +15,7 @@ add_column|IsRandomFeatured|uint
 add_column|FeaturedWeight|uint
 add_column|GemLevel|uint
 add_column|Unk17|uint
+// NOT sort order — this is the per-entry STOCK / purchase cap (confirmed live: setting it
+// to 200/201/202 capped the shop stock at exactly those; FFFFFFFF = unlimited).
 add_column|SortOrder|hex_uint
 add_column|Unk_v2_0|uint
