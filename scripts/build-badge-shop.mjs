@@ -1,10 +1,11 @@
-// Build the "Badge & Spellbook Shop" mod: add Silver Dalia Badge, Gold Dalia Badge, and
-// Gold Spellbook as rupie-priced purchases at the Knickknack Shack.
+// Build the "Badge & Spellbook Shop" mod: sell Silver/Gold Dalia Badge + Gold Spellbook in
+// the Knickknack Shack's Treasure Trade tab, paid in Knickknack Vouchers, unlimited stock.
 //
-// The shop cost chain is: trade.tbl (ItemPurchasable, ItemTierMapId) -> item_tier_map
-// (MaterialId1 = a recipe key) -> item_material_list (the cost recipe: item materials +
-// CoinCost rupies). We add, per item: one pure-rupie recipe (CoinCost only), one tier-map
-// row pointing at it, and one trade row selling the item for that cost.
+// The shop cost chain is: trade.tbl (ItemPurchasable, ItemTierMapId, unique SubKey,
+// Key=shop tab) -> item_tier_map (MaterialId1 = a recipe key) -> item_material_list (the
+// cost recipe: item materials; CoinCost=rupies is IGNORED by shops). Per item we add one
+// recipe, one tier-map row, one trade row. The "SortOrder" column is really the STOCK cap
+// (FFFFFFFF = unlimited). Shops don't honor rupies and free items cap at ~200.
 //
 // Reads extracted/shop_work/s.sqlite (trade + item_tier_map + item_material_list),
 // edits in place, exports to extracted/shop_work/out. Verify then ship the 3 .tbl files.
@@ -36,7 +37,6 @@ const TRD_COLS = q(`PRAGMA table_info(trade);`).split('\n').map(l => l.split('|'
 const tmplRow = q(`SELECT ${TRD_COLS.join(',')} FROM trade WHERE ${TEMPLATE_WHERE} LIMIT 1;`).split('|');
 const goldObj = Object.fromEntries(TRD_COLS.map((c, i) => [c, tmplRow[i]]));
 
-let sortOrder = 200;
 for (const it of ITEMS) {
   // 1) cost recipe: a trivial material cost (shops don't honor rupies; free items cap at ~200)
   const iml = Object.fromEntries(IML_COLS.map(c => [c, 0]));
@@ -66,10 +66,13 @@ for (const it of ITEMS) {
   trd.MaxStockOrAmountRefreshed = 0;
   trd.MinQuestId = '00100000';   // early quest id used by Key=3 items (proven-visible)
   trd.MaxQuestId = '00000000';   // no upper gate — always available
-  trd.SortOrder = (sortOrder++).toString(16).toUpperCase().padStart(8, '0');   // hex_uint
+  // NOTE: the header calls this "SortOrder" but it's actually the STOCK / purchase cap.
+  // Small values = limited stock (Alex saw exactly 200/201/202 = our old counter);
+  // FFFFFFFF = unlimited (matches vanilla items that show no stock line).
+  trd.SortOrder = 'FFFFFFFF';
   q(`INSERT INTO trade (${TRD_COLS.join(',')}) VALUES (${TRD_COLS.map(c => `'${String(trd[c]).replace(/'/g, "''")}'`).join(',')});`);
 
-  console.log(`+ ${it.name}: ${it.price} rupies (recipe ${it.recipeKey}, tier ${it.tierId})`);
+  console.log(`+ ${it.name}: ${it.costCount}x ${it.costItem}, unlimited (recipe ${it.recipeKey})`);
 }
 
 console.log('\nVerify counts:');
