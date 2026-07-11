@@ -9,3 +9,5 @@ vendor/
 save-backups/
 mods-src/**/bin/
 mods-src/**/obj/
+tools-src/**/bin/
+tools-src/**/obj/

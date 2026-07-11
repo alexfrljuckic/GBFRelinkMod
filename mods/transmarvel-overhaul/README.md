@@ -4,54 +4,23 @@
 > updates and I won't patch it every time. For maintained mods, see
 > [Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink). Use at your own risk.
 
-Transmarvel, fixed — one mod, three things:
+Transmarvel, fixed — and **fully configurable in Reloaded-II** (right-click the mod
+→ *Configure Mod*). Everything below is a checkbox or a number; the mod rebuilds the
+game's tables from vanilla data + your settings at **every game launch**, so nothing
+on disk is ever modified and your settings apply instantly on the next launch.
 
-1. **Jackpot sigil pool.** Every Transmarvel sigil roll is one of **41 chase sigils at
-   equal ~2.4% odds**: the 13 top V+ generics (War Elemental+, Supplementary Damage V+,
-   Berserker Echo+, Spartan Echo+, Greater Aegis V+, Celestial ×6 V+, Fatebreaker V+,
-   Divergence V+) plus **all 28 character Warpath+ sigils** (max trait). Wrightstone
-   rolls are always **tier-3 Transmarveled** (vanilla: 0.1%).
-2. **No junk secondary traits.** The random 2nd trait on any "+" sigil (V+ or
-   character+) rolls only from a curated 18-trait list, equal odds — 10 offense
-   (DMG Cap, Tyranny, Stamina, Critical Hit DMG, Weak Point DMG, Overdrive Assassin,
-   Break Assassin, Skilled Assault, Injury to Insult, Quick Charge), 4 sustain (Cascade,
-   Quick Cooldown, Regen, Uplift), 4 utility (Guts, Autorevive, Potion Hoarder, Steady
-   Focus). No resistances, no filler. Applies at acquisition from any source.
-3. **Voucher income.** Every quest clear at **Chaos and above** grants guaranteed
-   Transmarvel Vouchers: Chaos ×1, Chaos+ ×1, Chaos++ ×2, Infinity ×3 (all 56 Chaos+
-   quests).
+| Feature | Vanilla | With this mod |
+|---|---|---|
+| Transmarvel sigil roll | ~1000-entry pool, chase odds 0.2–4% | only the chase sigils **you tick** (up to 41), equal odds |
+| Random 2nd trait on "+" sigils | ~65% junk (resistances, Rupie Tycoon…) | only the traits **you tick**, always vanilla-legal combos |
+| Transmarvel wrightstones | tier-3 "Transmarveled" at 0.1% | **always** tier-3 Transmarveled |
+| Duplicate protection | none | completed Warpath+ combos **auto-leave the pool** (reads your save) |
+| Voucher income | none from quests | configurable per-clear grants, down to any difficulty tier |
+| Roll cost | 150 points | configurable (1–9999) |
 
-**Scope, precisely**: features 1 and 3 are Transmarvel/Chaos-only — curio transmutation
-keeps its vanilla sigil pools, everything below Chaos keeps vanilla rewards, and the
-75/25 sigil-vs-wrightstone split stays vanilla. Feature 2 is **game-wide by design**:
-the 2nd-trait roll is a property of the sigil itself (not of where it dropped), so any
-"+" sigil from any source — curios included — gets a curated secondary. There is no
-per-source hook in the game data; the upside is junk secondaries can't roll anywhere.
-
-### What the secondary-trait filter changes
-
-Vanilla rolls the 2nd trait through one of four "type lots", each spread across
-sub-lots full of filler — **only ~1 roll in 3 lands a trait worth keeping**:
-
-```mermaid
-pie showData title Vanilla 2nd-trait roll (~58 possible traits)
-    "Worth keeping" : 35
-    "Junk (resistances, Rupie Tycoon, ...)" : 65
-```
-
-The mod reroutes **every** trait lot to one curated pool, so it's 100% keepers:
-
-```mermaid
-flowchart LR
-    A["Any + sigil acquired<br/>(Transmarvel, curio, drop)"] --> B{"random<br/>2nd trait"}
-    B -. "vanilla: lots 2/3/4/5<br/>4 sub-lots × ~25%, ~58 traits" .-> V["~65% junk<br/>(12 status resistances,<br/>Rupie Tycoon, Fast Learner, ...)"]
-    B == "modded: all lots →<br/>SKL_TMV_GOOD" ==> G["18 curated traits<br/>equal ~5.6% each"]
-    G --> O["⚔️ Offense ×10<br/>DMG Cap · Tyranny · Stamina<br/>Crit DMG · Weak Point DMG<br/>Overdrive/Break Assassin<br/>Skilled Assault · Injury to Insult<br/>Quick Charge"]
-    G --> S["♻️ Sustain ×4<br/>Cascade · Quick Cooldown<br/>Regen · Uplift"]
-    G --> U["🛟 Utility ×4<br/>Guts · Autorevive<br/>Potion Hoarder · Steady Focus"]
-    style V opacity:0.55,stroke-dasharray:5 5
-    style G stroke-width:3px
-```
+Quick references generated from the actual game data:
+[DROP-TABLES.md](DROP-TABLES.md) (what can drop with the current settings) ·
+[LEGAL-COMBOS.md](LEGAL-COMBOS.md) (every combo the vanilla game can produce).
 
 ## Install
 
@@ -59,14 +28,144 @@ Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases)
 [GBFR Mod Manager](https://www.nexusmods.com/granbluefantasyrelink/mods/526) (**2.0.1+**).
 First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.github.io/relink-modding/modding/installing_mods/).
 
-1. Download **`transmarvel-overhaul-v1.zip`** from the
-   [transmarvel-overhaul-v1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v1).
+1. Download **`transmarvel-overhaul-v2.zip`** from the
+   [transmarvel-overhaul-v2 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2).
 2. Extract into `Reloaded-II\Mods\` → `Mods\gbfr.transmarvel.overhaul\`.
 3. Enable **Transmarvel Overhaul (2.0)** in the game's mod list; launch.
 
-> ⚠️ Disable any other mod shipping `gacha_rate_group.tbl`, `gacha_lot.tbl`,
+> ⚠️ Disable any other mod shipping `gacha_rate_group.tbl`, `gacha_lot.tbl`, `gacha.tbl`,
 > `reward.tbl`, `reward_lot.tbl`, `skill_lot.tbl`, or `skill_type_lot.tbl`
-> (e.g. Endgame Rebalance Plus, Transmarvel Wrightstone Max Level).
+> (e.g. Endgame Rebalance Plus, Transmarvel Wrightstone Max Level) — this mod
+> generates all of them.
+
+## Configuration guide (Configure Mod)
+
+Every setting needs a **game restart** — the game reads tables once, at launch.
+The Reloaded console prints exactly what was applied, e.g.:
+
+```
+[gbfr.transmarvel.overhaul] Voucher income applied: 25x Transmarvel Voucher (5+5+5+5+5 across slots) on 302 rows across 175 quests (tier >= 1).
+[gbfr.transmarvel.overhaul] Auto-prune: read 2311 sigils from the save; no Warpath+ is combo-complete yet.
+[gbfr.transmarvel.overhaul] Sigil pool applied: 13/41 sigils at ~7.69% each; wrightstones pinned tier-3 Transmarveled.
+[gbfr.transmarvel.overhaul] 2nd-trait filter applied: 7 traits ticked (…); 390 lot entries remapped across 36 sub-lots.
+[gbfr.transmarvel.overhaul] Transmarvel cost set to 150 points.
+```
+
+### Sigil Pool (41 checkboxes, all on by default)
+The 13 top V+ generics (War Elemental+, Supplementary Damage V+, Berserker Echo+,
+Spartan Echo+, Greater Aegis V+, Celestial ×6 V+, Fatebreaker V+, Divergence V+) and
+all 28 character **Warpath+** (max trait). Ticked sigils share the pool at equal
+odds; untick to remove. **Untick everything = vanilla pool** (overhaul off).
+The 75/25 sigil-vs-wrightstone split stays vanilla.
+
+### Sigil Pool — Auto (duplicate protection)
+*Auto-remove completed Warpath+* (default on): at every launch the mod reads your
+newest save — **read-only, it never writes your save** — and takes any ticked
+Warpath+ out of the pool once you own it with *every* 2nd trait it can still roll
+(your ticked traits). A pull of it could give you nothing new, so it stops
+occupying pool odds. Pruned sigils come back by themselves when you tick more
+traits (new combos to chase). Your manual unticks always win. If the save can't
+be parsed (e.g. after a game update changes the format), the mod **fails open**:
+pool left unpruned, reason printed to the console.
+
+### 2nd Traits (72 checkboxes)
+One checkbox per trait that can roll as a random secondary on any "+" sigil.
+Default: a curated 11 (DMG Cap, Tyranny, Stamina, Quick Charge, Cascade, Quick
+Cooldown, Uplift, Guts, Autorevive, Potion Hoarder, Steady Focus) — no
+resistances, no filler. **Untick everything = vanilla trait lots** (filter off).
+
+Two guarantees, enforced by construction:
+- **Only your ticks can roll.** Verified live: an 80-pull test produced 67/67
+  sigils inside the ticked sets.
+- **Only vanilla-legal combos are generated.** A (sigil × 2nd trait) pair is
+  produced only if the unmodded game could produce it. Ten "supreme" traits
+  (Supplementary DMG, Glass Cannon, Berserker, …) can never roll on Transmarvel
+  pulls in vanilla, so ticking them doesn't add them there — the checkbox
+  descriptions mark these. See [LEGAL-COMBOS.md](LEGAL-COMBOS.md) for the full
+  legality table (41 mains × 62 legal secondaries = 2,542 combos).
+
+Scope note: the 2nd-trait roll is a property of the sigil, not of where it
+dropped — so the filter applies to "+" sigils from **any** source (curios
+included). There is no per-source hook in the game data; the upside is junk
+secondaries can't roll anywhere.
+
+### Voucher Income
+- *Vouchers per quest clear* (default 10): guaranteed Transmarvel Vouchers on
+  every eligible quest clear. **Engine limit**: the game clamps each reward
+  grant to 5 and a reward row has at most 5 slots, so the effective ceiling is
+  **25 per clear** — and quests whose reward rows are already full of vanilla
+  drops grant less. Counterintuitively, **easy early-board quests pay the most**
+  (their reward rows are nearly empty).
+- *Voucher quests: minimum difficulty tier* (default 8 = Chaos and above):
+  lower it to farm on easier boards — tier 1 covers everything from the PWR-200
+  starter quests up. Tiers above Chaos always grant.
+- *Transmarvel cost* (default 150 = vanilla): points per roll. Set **1** to make
+  every curio transmute fund 1–15 rolls (they earn 1/5/15 points) — the fastest
+  way to bulk-test your settings. Don't ask for 0; the game's menu divides by
+  the cost, so the mod clamps to 1 to protect you from a crash we found the
+  hard way.
+
+## How it works (for the curious / other modders)
+
+**Nothing is patched on disk and no static tables ship with the mod.** A single
+C# Reloaded-II mod runs at game launch, reads the *vanilla* tables out of the
+game archive via the GBFR Mod Manager's `IDataManager`, applies your config, and
+registers the rebuilt tables in memory. Because everything derives from vanilla
+data each launch, the mod survives minor game-data updates — and every patch
+step is guarded by table-layout checks that **refuse to patch** (loudly, in the
+console) if a game update changes a row size, rather than corrupting anything.
+
+The four generators, in launch order:
+
+1. **Voucher income** (`ApplyVouchers`) — enumerates quest-board quests from
+   `quest_baseinfo_ex_data.tbl` (key band `0040T3xx`, `T` = difficulty tier
+   1–B), appends guaranteed-voucher lots to `reward_lot.tbl` (split into ≤5
+   chunks because the engine clamps any single grant to 5), and wires them into
+   the free `RewardLotId` slots of each quest's per-clear reward rows in
+   `reward.tbl`. New quests added by game updates are covered automatically.
+   Reward-chain decode: [docs/16](../../docs/16-quest-reward-chain.md).
+2. **Sigil pool** (`ApplySigilPool`) — filters the three Transmarvel chase
+   buckets in `gacha_lot.tbl` to your ticked sigils and reweights
+   `gacha_rate_group.tbl` at 250/sigil (equal per-item odds; wrightstone side
+   pinned to the tier-3 Transmarveled lot). Before filtering, the auto-pruner
+   parses your save's sigil inventory + per-copy trait assignments
+   (`SaveReader.cs`; save format reverse-engineered in
+   [docs/21](../../docs/21-save-sigil-inventory.md)) and drops combo-complete
+   Warpath+. The parser self-validates on every read — a sigil's innate-trait id
+   number always equals its sigil id number in vanilla data, and if less than
+   99% of the inventory satisfies that, the parse is rejected and pruning is
+   skipped. Pool decode: [docs/15](../../docs/15-transmarvel-pool-decoded.md).
+3. **2nd-trait filter** (`ApplyTraitFilter`) — the subtle one. The game rolls a
+   secondary by picking a *sub-lot* (a weighted bucket in `skill_lot.tbl`) and
+   then a trait inside it. Pointer-level rerouting of the bucket *selection*
+   (`skill_type_lot.tbl`) turned out not to affect live rolls, so the filter
+   works at **content level**: every trait entry inside every sub-lot that isn't
+   ticked is remapped onto ticked traits — with a **legality rule**: a sub-lot
+   only receives traits that the vanilla game could roll through the paths
+   referencing that sub-lot (strict: legal on *every* referencing path; if no
+   ticked trait qualifies, relaxed: legal on *at least one*). Whatever bucket
+   the game picks, only ticked, vanilla-legal traits can come out. The full
+   diagnosis story — including the single unfiltered bucket that leaked
+   resistances at a 33% rate until an 80-pull live test pinned it — is in
+   [docs/13](../../docs/13-rng-knob-map.md).
+4. **Roll cost** (`ApplyTransmarvelCost`) — one cell in `gacha.tbl`
+   (the Transmarvel tier's `TransmarvelCost`), clamped to ≥1.
+
+The checkbox catalogs (`SigilCatalog.cs`, `TraitCatalog.cs`) and the JSON
+mirrors (`sigil-catalog.json`, `trait-catalog.json`) are **generated from the
+game's own data + English text dump** — no hand-typed ids anywhere. Hashing is
+the game's custom XXHash32 (seed `0x178A54A4`; decode in
+[docs/15](../../docs/15-transmarvel-pool-decoded.md)).
+
+Source: [mods-src/gbfr.transmarvel.overhaul/](../../mods-src/gbfr.transmarvel.overhaul/)
+(build: `tools\dotnet9sdk\dotnet.exe build -c Release`). Save-parser test
+harness: [tools-src/savereader-test/](../../tools-src/savereader-test/) —
+differentially tested against an independent JS implementation (byte-identical
+on real saves); run it after game updates before trusting auto-prune.
+Verification tooling: `scripts/snapshot-save.mjs` before a pull session, then
+`scripts/audit-save-sigil-traits.mjs --since <snapshot>` for a per-pull verdict
+of everything you rolled. Architecture rationale (config = preferences,
+mechanics = programmatic): [docs/22](../../docs/22-config-vs-programmatic.md).
 
 ## If something blows up (troubleshooting)
 
@@ -77,60 +176,17 @@ First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.git
   SAC silently flips itself to enforcing.
 - **Mods silently don't apply** (rolls look vanilla, no Reloaded console window):
   Reloaded never injected — GBFR's Steam DRM breaks launcher injection. In Reloaded-II:
-  *Edit Application → Advanced Tools & Options → Deploy ASI Loader*. With the deployed
-  `Reloaded.Mod.Loader.Bootstrapper.asi` + `winmm.dll` in the game folder, mods load
-  even from plain Steam launches. Tell: no new log in
+  *Edit Application → Advanced Tools & Options → Deploy ASI Loader*. Tell: no new log in
   `%APPDATA%\Reloaded-Mod-Loader-II\Logs` = no injection.
-- **Verify it's on**: the Reloaded console should list `Transmarvel Overhaul (2.0)` and
-  the Mod Manager registering the six tables.
-
-## Removing Warpath+ sigils that can't roll anything new
-A dupe is only worthless per **combo**: Warpath + DMG Cap is a different sigil
-than Warpath + Cascade (the random 2nd trait, 18 possible with this mod). A
-Warpath+ only stops being worth pulling once you own it with **all 18**
-secondaries — at that point you can prune it from the pool, and the remaining
-sigils stay exactly equal.
-
-**Requirements** (beyond the mod itself): this repo checked out with its toolchain set
-up (GBFRDataTools + 2.0 headers, sqlite CLI, .NET 10 runtime — one-time setup, see
-[docs/06](../../docs/06-toolchain-setup.md)), Node.js 18+, and the game installed.
-This is repo tooling — if you only downloaded the release zip, you can't run it.
-
-**How to run**:
-1. From the repo root: `node scripts/build-jackpot-tables.mjs`
-2. That's it — the script **reads your save file** (read-only; it never writes the
-   save), works out which secondary combos you own per Warpath+, prints a per-sigil
-   `X/18` coverage report, prunes only the fully-covered ones, rebuilds from vanilla
-   game data, writes into this mod folder, **and updates the installed copy in
-   `Reloaded-II\Mods` automatically** (if present).
-3. Prefer deciding yourself (or the save format changed in a game update)? Open
-   [scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs), set
-   `OWNED_WARPATH = MANUAL_WARPATH`, and uncomment each sigil to prune outright —
-   the full id → name list (all 28) is right there in the file.
-
-Auto-detect reads the newest `SaveData<N>.dat` in `%localappdata%\GBFR\Saved\SaveGames`
-(sigil-inventory format: [docs/21](../../docs/21-save-sigil-inventory.md)) and refuses
-loudly — rather than guessing — if the layout doesn't match.
-
-**When does it take effect?** On the **next game launch** — the Mod Manager reads mod
-tables once, during boot. Running the script while the game is open is harmless, but
-you must restart the game to see the change. Nothing to click in Reloaded-II.
+- **A setting didn't take** — check the console lines (screenshot above): every
+  generator logs what it applied or *why it refused*. Two known traps:
+  changing config requires a **game restart**, and after updating the mod's dll,
+  restart the **Reloaded launcher too** before opening Configure Mod (a stale
+  launcher session silently drops config fields it doesn't know yet).
+- **Verify it's on**: the Reloaded console should show the five
+  `[gbfr.transmarvel.overhaul]` lines from the configuration guide above.
 
 ## Uninstall
-Untick the mod (or delete `Mods\gbfr.transmarvel.overhaul\`). Game files on disk are
-never modified — tables are injected at runtime.
-
-## How it works
-Six data tables, all byte-diff verified against vanilla 2.0:
-- `gacha_rate_group.tbl` — Transmarvel groups `27509C51`/`67716D8A`: only the chase
-  buckets keep weight (1250/2000/7000 ∝ 5/8/28 items = all sigils equal; wrightstone
-  `BD1CBF1C` = 10000). Decode: [docs/15](../../docs/15-transmarvel-pool-decoded.md).
-- `skill_lot.tbl` + `skill_type_lot.tbl` — new curated sub-lot `SKL_TMV_GOOD` (+18
-  rows); type-lots 2 (generic V+) & 5 (character+) point at it 100%. Shared vanilla
-  sub-lots untouched.
-- `reward.tbl` + `reward_lot.tbl` — 3 appended guaranteed lots (`RWL_TMV_1/2/3` →
-  Transmarvel Voucher ×1/×2/×3) wired into 112 per-clear reward slots across the 56
-  Chaos+ quests. Decode: [docs/16](../../docs/16-quest-reward-chain.md).
-
-Rebuild: `scripts/build-jackpot-tables.mjs` (pool), `scripts/build-voucher-mod.mjs`
-(vouchers), 2.0 headers in [patches/headers-2.0/](../../patches/headers-2.0/).
+Untick the mod (or delete `Mods\gbfr.transmarvel.overhaul\`). Game files and your
+save are never modified — all tables are injected in memory at launch, and the
+save is only ever read.

@@ -1,0 +1,43 @@
+Transmarvel Overhaul v2 (Endless Ragnarok / 2.0)
+================================================
+Transmarvel, fixed - fully configurable in Reloaded-II (right-click the
+mod -> Configure Mod). All tables are generated from vanilla game data +
+your settings at every game launch; nothing on disk is modified.
+
+1. Sigil pool: only the chase sigils YOU tick (up to 41: 13 top V+
+   generics + all 28 character Warpath+), equal odds. Wrightstone rolls
+   are always tier-3 Transmarveled.
+2. Duplicate protection: Warpath+ you own with every rollable 2nd trait
+   leave the pool automatically (the mod reads your save at launch -
+   READ-ONLY, it never writes your save). Untick "Auto-remove completed
+   Warpath+" to disable.
+3. 2nd traits: only the traits YOU tick can roll (default: a curated 11,
+   no resistances/filler) - and only in (sigil x trait) combos the
+   vanilla game could naturally produce.
+4. Voucher income: configurable guaranteed Transmarvel Vouchers per
+   quest clear, down to any difficulty tier (engine caps grants at
+   ~25/clear; easy early-board quests pay the most). Roll cost also
+   configurable (set 1 to bulk-roll via curio transmutes).
+
+Every setting change needs a game restart. The Reloaded console prints
+exactly what was applied at each launch.
+
+Install:
+1. Copy the gbfr.transmarvel.overhaul folder into Reloaded-II\Mods\
+2. Reloaded-II -> Granblue Fantasy Relink -> enable "Transmarvel Overhaul (2.0)"
+3. Launch. Disable other mods shipping gacha/reward/skill tables
+   (gacha.tbl, gacha_rate_group, gacha_lot, reward, reward_lot,
+   skill_lot, skill_type_lot) - this mod generates all of them.
+
+Requires GBFR Mod Manager 2.0.1+ (Nexus mod 526).
+
+If Reloaded fails with "Application Control policy has blocked this file
+(0x800711C7)": Windows Security -> App & browser control -> Smart App
+Control -> Off (one-way switch; SmartScreen stays on).
+If mods silently don't apply (no Reloaded console): Reloaded-II ->
+Edit Application -> Advanced Tools & Options -> Deploy ASI Loader.
+After UPDATING the mod: restart the Reloaded launcher before opening
+Configure Mod (stale launchers drop new config fields on save).
+
+Full README + drop tables:
+https://github.com/alexfrljuckic/GBFRelinkMod/tree/main/mods/transmarvel-overhaul

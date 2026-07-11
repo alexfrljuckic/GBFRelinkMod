@@ -1,0 +1,371 @@
+[
+  {
+    "id": "GEEN_114_93",
+    "hash": "0713D928",
+    "name": "Fearless Heart+",
+    "prop": "PoolFearlessHeart",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_115_93",
+    "hash": "AC175924",
+    "name": "Guardian's Warpath+",
+    "prop": "PoolGuardiansWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_116_93",
+    "hash": "BC53CE24",
+    "name": "Helmsman's Warpath+",
+    "prop": "PoolHelmsmansWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_117_93",
+    "hash": "43F26A91",
+    "name": "Mage's Warpath+",
+    "prop": "PoolMagesWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_118_93",
+    "hash": "CAAE3F9C",
+    "name": "Veteran's Warpath+",
+    "prop": "PoolVeteransWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_119_93",
+    "hash": "515E693C",
+    "name": "Rose's Warpath+",
+    "prop": "PoolRosesWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_125_93",
+    "hash": "4C28585A",
+    "name": "Holy Knight's Warpath+",
+    "prop": "PoolHolyKnightsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_128_93",
+    "hash": "3069C2FE",
+    "name": "Eternal Rage's Warpath+",
+    "prop": "PoolEternalRagesWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_120_93",
+    "hash": "E496D882",
+    "name": "Phantasm's Warpath+",
+    "prop": "PoolPhantasmsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_127_93",
+    "hash": "CEF31894",
+    "name": "Butterfly's Warpath+",
+    "prop": "PoolButterflysWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_121_93",
+    "hash": "8A3819C0",
+    "name": "White Dragon's Warpath+",
+    "prop": "PoolWhiteDragonsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_122_93",
+    "hash": "A490BADF",
+    "name": "Hero's Warpath+",
+    "prop": "PoolHerosWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_123_93",
+    "hash": "4CDCE25B",
+    "name": "Lord's Warpath+",
+    "prop": "PoolLordsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_124_93",
+    "hash": "E21A4170",
+    "name": "Dragonslayer's Warpath+",
+    "prop": "PoolDragonslayersWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_129_93",
+    "hash": "66F1B128",
+    "name": "Founder's Warpath+",
+    "prop": "PoolFoundersWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_126_93",
+    "hash": "76D4716B",
+    "name": "Swordmaster's Warpath+",
+    "prop": "PoolSwordmastersWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_131_93",
+    "hash": "BFDF838C",
+    "name": "Crimson's Warpath+",
+    "prop": "PoolCrimsonsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_132_93",
+    "hash": "B3AB43F3",
+    "name": "Ebony's Warpath+",
+    "prop": "PoolEbonysWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_170_93",
+    "hash": "9F72BAE0",
+    "name": "Spirit Edge's Warpath+",
+    "prop": "PoolSpiritEdgesWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_171_93",
+    "hash": "AD8CAEFB",
+    "name": "Dark Huntress's Warpath+",
+    "prop": "PoolDarkHuntresssWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_172_93",
+    "hash": "5D592FDD",
+    "name": "Supreme Primarch's Warpath+",
+    "prop": "PoolSupremePrimarchsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_130_93",
+    "hash": "98E9E6EF",
+    "name": "Versalis Heart+",
+    "prop": "PoolVersalisHeart",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_173_93",
+    "hash": "41AC1082",
+    "name": "Gladiator's Warpath+",
+    "prop": "PoolGladiatorsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_174_93",
+    "hash": "EB766D87",
+    "name": "Bladequeen's Warpath+",
+    "prop": "PoolBladequeensWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_175_93",
+    "hash": "51E98A7C",
+    "name": "Ultramarine's Warpath+",
+    "prop": "PoolUltramarinesWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_176_93",
+    "hash": "D8C61507",
+    "name": "Thunderwolf's Warpath+",
+    "prop": "PoolThunderwolfsWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_177_93",
+    "hash": "2D70C37D",
+    "name": "Enchantress's Warpath+",
+    "prop": "PoolEnchantresssWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_178_93",
+    "hash": "9ABD2DA5",
+    "name": "The Black's Warpath+",
+    "prop": "PoolTheBlacksWarpath",
+    "bucket": "Warpath+",
+    "bucketKey": "F527EF32",
+    "default": true
+  },
+  {
+    "id": "GEEN_320_24",
+    "hash": "8B8085C0",
+    "name": "Celestial Nyx V+",
+    "prop": "PoolCelestialNyxV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_321_24",
+    "hash": "20492635",
+    "name": "Celestial Lumen V+",
+    "prop": "PoolCelestialLumenV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_322_24",
+    "hash": "D29CD8E0",
+    "name": "Celestial Terra V+",
+    "prop": "PoolCelestialTerraV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_323_24",
+    "hash": "74061B0C",
+    "name": "Celestial Incendo V+",
+    "prop": "PoolCelestialIncendoV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_324_24",
+    "hash": "E14E1598",
+    "name": "Celestial Aqua V+",
+    "prop": "PoolCelestialAquaV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_325_24",
+    "hash": "5BF84FD1",
+    "name": "Fatebreaker V+",
+    "prop": "PoolFatebreakerV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_326_24",
+    "hash": "9300FADB",
+    "name": "Celestial Ventus V+",
+    "prop": "PoolCelestialVentusV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_327_24",
+    "hash": "7B4AAB30",
+    "name": "Divergence V+",
+    "prop": "PoolDivergenceV",
+    "bucket": "Chase V+ (2.0)",
+    "bucketKey": "36879ED7",
+    "default": true
+  },
+  {
+    "id": "GEEN_146_24",
+    "hash": "00612B10",
+    "name": "War Elemental+",
+    "prop": "PoolWarElemental",
+    "bucket": "Chase V+",
+    "bucketKey": "6E52A69A",
+    "default": true
+  },
+  {
+    "id": "GEEN_151_24",
+    "hash": "035A4DDD",
+    "name": "Supplementary Damage V+",
+    "prop": "PoolSupplementaryDamageV",
+    "bucket": "Chase V+",
+    "bucketKey": "6E52A69A",
+    "default": true
+  },
+  {
+    "id": "GEEN_233_24",
+    "hash": "332E9B30",
+    "name": "Berserker Echo+",
+    "prop": "PoolBerserkerEcho",
+    "bucket": "Chase V+",
+    "bucketKey": "6E52A69A",
+    "default": true
+  },
+  {
+    "id": "GEEN_234_24",
+    "hash": "938DB625",
+    "name": "Spartan Echo+",
+    "prop": "PoolSpartanEcho",
+    "bucket": "Chase V+",
+    "bucketKey": "6E52A69A",
+    "default": true
+  },
+  {
+    "id": "GEEN_166_24",
+    "hash": "6F1D0870",
+    "name": "Greater Aegis V+",
+    "prop": "PoolGreaterAegisV",
+    "bucket": "Chase V+",
+    "bucketKey": "6E52A69A",
+    "default": true
+  }
+]

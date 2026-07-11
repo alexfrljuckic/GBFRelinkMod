@@ -1,3 +1,8 @@
+// ⚠️ SUPERSEDED 2026-07-10: voucher income is now generated at load time by the
+// C# component in mods-src/gbfr.transmarvel.overhaul (count configurable in
+// Reloaded-II, default x10). Kept for reference — the C# port was verified to
+// patch the exact same 112 reward rows/slots this script did.
+//
 // Build the "Transmarvel Vouchers from Chaos+ quests" mod tables.
 // Adds guaranteed Transmarvel Voucher (ITEM_21_0001) lots to every Chaos-and-above
 // quest's per-clear reward rows (RW_<qid>_100 / _101), scaled by tier:

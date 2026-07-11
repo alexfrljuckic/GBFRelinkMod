@@ -1,0 +1,778 @@
+{
+  "generated": "2026-07-11",
+  "grantPath": "transmarvel (skill_type_lot 14)",
+  "note": "Every pool sigil rolls its random 2nd trait through the same lot-14 union; a (main, secondary) combo is vanilla-legal iff the secondary is in this set. Odds are the VANILLA roll chances (the mod redistributes onto the ticked subset, equal-ish via per-sub-lot round-robin).",
+  "legalSecondaries": [
+    {
+      "id": "SKILL_000_00",
+      "name": "ATK",
+      "hash": "50079A1C",
+      "category": "Offense",
+      "vanillaPct": 5
+    },
+    {
+      "id": "SKILL_001_00",
+      "name": "HP",
+      "hash": "F372F096",
+      "category": "Defense & Sustain",
+      "vanillaPct": 5
+    },
+    {
+      "id": "SKILL_003_00",
+      "name": "Critical Hit Rate",
+      "hash": "8D78A19B",
+      "category": "Offense",
+      "vanillaPct": 5
+    },
+    {
+      "id": "SKILL_004_00",
+      "name": "Stun Power",
+      "hash": "CEB700EE",
+      "category": "Offense",
+      "vanillaPct": 5
+    },
+    {
+      "id": "SKILL_065_00",
+      "name": "Improved Healing",
+      "hash": "9389CC06",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_066_00",
+      "name": "Regen",
+      "hash": "6085DA25",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_067_00",
+      "name": "Drain",
+      "hash": "7CCFF74F",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_069_00",
+      "name": "Quick Cooldown",
+      "hash": "318D12E9",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_070_00",
+      "name": "Cascade",
+      "hash": "05F2ECDC",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_072_00",
+      "name": "Uplift",
+      "hash": "B5FF9FD3",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_106_00",
+      "name": "Nimble Onslaught",
+      "hash": "D2C8E10A",
+      "category": "Offense",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_109_00",
+      "name": "Precise Wrath",
+      "hash": "7EDD69D0",
+      "category": "Offense",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_045_00",
+      "name": "Guts",
+      "hash": "E69A4694",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_068_00",
+      "name": "Autorevive",
+      "hash": "95F3FA86",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_073_00",
+      "name": "Potion Hoarder",
+      "hash": "24883AF3",
+      "category": "Utility",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_077_00",
+      "name": "Low Profile",
+      "hash": "DC607D75",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_078_00",
+      "name": "Provoke",
+      "hash": "6018372B",
+      "category": "Defense & Sustain",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_079_00",
+      "name": "Fast Learner",
+      "hash": "F687C5EF",
+      "category": "Utility",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_080_00",
+      "name": "Rupie Tycoon",
+      "hash": "C86F3082",
+      "category": "Utility",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_094_00",
+      "name": "Steady Focus",
+      "hash": "0053599E",
+      "category": "Utility",
+      "vanillaPct": 2.5
+    },
+    {
+      "id": "SKILL_005_00",
+      "name": "Enmity",
+      "hash": "3F488339",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_006_00",
+      "name": "Stamina",
+      "hash": "2FC8FBFF",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_008_00",
+      "name": "Charged Attack DMG",
+      "hash": "1C360C63",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_009_00",
+      "name": "Linked Together",
+      "hash": "3FEC5F80",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_012_00",
+      "name": "Throw DMG",
+      "hash": "8D078597",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_013_00",
+      "name": "Critical Hit DMG",
+      "hash": "C0979A17",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_014_00",
+      "name": "Weak Point DMG",
+      "hash": "6B694D6D",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_017_00",
+      "name": "Combo Finisher DMG",
+      "hash": "A7A45F28",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_018_00",
+      "name": "Concentrated Fire",
+      "hash": "B360801D",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_020_00",
+      "name": "DMG Cap",
+      "hash": "DC584F60",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_024_00",
+      "name": "Combo Booster",
+      "hash": "F17850B9",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_027_00",
+      "name": "Tyranny",
+      "hash": "71F11A9B",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_028_00",
+      "name": "Lucky Charge",
+      "hash": "C35B111B",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_029_00",
+      "name": "Injury to Insult",
+      "hash": "4F1A3683",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_030_00",
+      "name": "Overdrive Assassin",
+      "hash": "A9D17F55",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_031_00",
+      "name": "Break Assassin",
+      "hash": "AC9674C1",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_061_00",
+      "name": "Guard Payback",
+      "hash": "3C2B57B0",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_064_00",
+      "name": "Dodge Payback",
+      "hash": "7C2E4D64",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_083_00",
+      "name": "Skilled Assault",
+      "hash": "EAE321EB",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_110_00",
+      "name": "Life on the Line",
+      "hash": "8F502F0D",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_111_00",
+      "name": "Quick Charge",
+      "hash": "84078CB0",
+      "category": "Offense",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_036_00",
+      "name": "Garrison",
+      "hash": "E6CDBA9C",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_046_00",
+      "name": "Poison Resistance",
+      "hash": "973B49AF",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_047_00",
+      "name": "Burn Resistance",
+      "hash": "7C84A6B3",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_051_00",
+      "name": "Sandtomb Resistance",
+      "hash": "D54F8CA7",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_052_00",
+      "name": "Glaciate Resistance",
+      "hash": "FB572681",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_054_00",
+      "name": "Dizzy Resistance",
+      "hash": "3759A5B9",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_055_00",
+      "name": "Paralysis Resistance",
+      "hash": "2242921F",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_057_00",
+      "name": "Skill Sealed Resistance",
+      "hash": "50B453DD",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_058_00",
+      "name": "SBA Sealed Resistance",
+      "hash": "CFB48782",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_060_00",
+      "name": "Improved Guard",
+      "hash": "0AA20846",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_085_00",
+      "name": "Aegis",
+      "hash": "E0ABFDFE",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_086_00",
+      "name": "Slow Resistance",
+      "hash": "A2FA9685",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_087_00",
+      "name": "Firm Stance",
+      "hash": "B6E31F76",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_088_00",
+      "name": "Blight Resistance",
+      "hash": "9702860F",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_096_00",
+      "name": "Steel Nerves",
+      "hash": "1470F860",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_104_00",
+      "name": "Nimble Defense",
+      "hash": "09AA7DB5",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_107_00",
+      "name": "Precise Resilience",
+      "hash": "29B292A8",
+      "category": "Defense & Sustain",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_136_00",
+      "name": "Held Under Resistance",
+      "hash": "1DC9D7E7",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_137_00",
+      "name": "Darkflame Resistance",
+      "hash": "DD4A701E",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_138_00",
+      "name": "ATK↓ Resistance",
+      "hash": "4BF2E191",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    },
+    {
+      "id": "SKILL_139_00",
+      "name": "DEF↓ Resistance",
+      "hash": "66DE60B1",
+      "category": "Resistances",
+      "vanillaPct": 0.952
+    }
+  ],
+  "mains": [
+    {
+      "id": "GEEN_114_93",
+      "name": "Fearless Heart+",
+      "hash": "0713D928",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_115_93",
+      "name": "Guardian's Warpath+",
+      "hash": "AC175924",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_116_93",
+      "name": "Helmsman's Warpath+",
+      "hash": "BC53CE24",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_117_93",
+      "name": "Mage's Warpath+",
+      "hash": "43F26A91",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_118_93",
+      "name": "Veteran's Warpath+",
+      "hash": "CAAE3F9C",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_119_93",
+      "name": "Rose's Warpath+",
+      "hash": "515E693C",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_125_93",
+      "name": "Holy Knight's Warpath+",
+      "hash": "4C28585A",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_128_93",
+      "name": "Eternal Rage's Warpath+",
+      "hash": "3069C2FE",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_120_93",
+      "name": "Phantasm's Warpath+",
+      "hash": "E496D882",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_127_93",
+      "name": "Butterfly's Warpath+",
+      "hash": "CEF31894",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_121_93",
+      "name": "White Dragon's Warpath+",
+      "hash": "8A3819C0",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_122_93",
+      "name": "Hero's Warpath+",
+      "hash": "A490BADF",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_123_93",
+      "name": "Lord's Warpath+",
+      "hash": "4CDCE25B",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_124_93",
+      "name": "Dragonslayer's Warpath+",
+      "hash": "E21A4170",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_129_93",
+      "name": "Founder's Warpath+",
+      "hash": "66F1B128",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_126_93",
+      "name": "Swordmaster's Warpath+",
+      "hash": "76D4716B",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_131_93",
+      "name": "Crimson's Warpath+",
+      "hash": "BFDF838C",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_132_93",
+      "name": "Ebony's Warpath+",
+      "hash": "B3AB43F3",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_170_93",
+      "name": "Spirit Edge's Warpath+",
+      "hash": "9F72BAE0",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_171_93",
+      "name": "Dark Huntress's Warpath+",
+      "hash": "AD8CAEFB",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_172_93",
+      "name": "Supreme Primarch's Warpath+",
+      "hash": "5D592FDD",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_130_93",
+      "name": "Versalis Heart+",
+      "hash": "98E9E6EF",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_173_93",
+      "name": "Gladiator's Warpath+",
+      "hash": "41AC1082",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_174_93",
+      "name": "Bladequeen's Warpath+",
+      "hash": "EB766D87",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_175_93",
+      "name": "Ultramarine's Warpath+",
+      "hash": "51E98A7C",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_176_93",
+      "name": "Thunderwolf's Warpath+",
+      "hash": "D8C61507",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_177_93",
+      "name": "Enchantress's Warpath+",
+      "hash": "2D70C37D",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_178_93",
+      "name": "The Black's Warpath+",
+      "hash": "9ABD2DA5",
+      "bucket": "Warpath+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_320_24",
+      "name": "Celestial Nyx V+",
+      "hash": "8B8085C0",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_321_24",
+      "name": "Celestial Lumen V+",
+      "hash": "20492635",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_322_24",
+      "name": "Celestial Terra V+",
+      "hash": "D29CD8E0",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_323_24",
+      "name": "Celestial Incendo V+",
+      "hash": "74061B0C",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_324_24",
+      "name": "Celestial Aqua V+",
+      "hash": "E14E1598",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_325_24",
+      "name": "Fatebreaker V+",
+      "hash": "5BF84FD1",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_326_24",
+      "name": "Celestial Ventus V+",
+      "hash": "9300FADB",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_327_24",
+      "name": "Divergence V+",
+      "hash": "7B4AAB30",
+      "bucket": "Chase V+ (2.0)",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_146_24",
+      "name": "War Elemental+",
+      "hash": "00612B10",
+      "bucket": "Chase V+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_151_24",
+      "name": "Supplementary Damage V+",
+      "hash": "035A4DDD",
+      "bucket": "Chase V+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_233_24",
+      "name": "Berserker Echo+",
+      "hash": "332E9B30",
+      "bucket": "Chase V+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_234_24",
+      "name": "Spartan Echo+",
+      "hash": "938DB625",
+      "bucket": "Chase V+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_166_24",
+      "name": "Greater Aegis V+",
+      "hash": "6F1D0870",
+      "bucket": "Chase V+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    }
+  ],
+  "totals": {
+    "mains": 41,
+    "characterMains": 28,
+    "genericMains": 13,
+    "legalSecondaries": 62,
+    "totalLegalCombos": 2542
+  }
+}

@@ -58,6 +58,35 @@ it's in `gacha_rate_group`. `TraitLevel 15` rows are the max-trait sigils.
 `endlessmode_treasurebox_point`, `endlessmode_buff_rank_lot`, `chest_reality_lot` — the
 Conflux/endgame loot. All **OK/unchanged** → moddable now with the same workflow.
 
+## Random 2nd trait on + sigils (corrected 2026-07-10)
+
+The 2nd-trait chain `gem.SkillTypeLotIdForRandom2ndSkill → skill_type_lot → skill_lot`
+only covers the gem-referenced type-lots **1–5**. **Transmarvel max-trait grants roll
+through `skill_type_lot` Key=14 instead** (5 sub-lots × 20%), which no `gem` row
+references — the grant path selects it directly. Proven empirically: with lots 2–5
+rerouted and staged (manager log confirmed), fresh Transmarvel pulls still rolled
+junk from exactly lot 14's five sub-lot families
+(`scripts/audit-save-sigil-traits.mjs` against the save, docs/21 format).
+
+**Second correction, same day**: rerouting lot 14 too was staged (log-verified) and
+junk STILL rolled — so the grant path's lot selection doesn't honor `skill_type_lot`
+keys the way any of our models assumed (row-index lookup? exe-side copy of the
+routing? unknown). What DOES hold: the rolled traits always come from the
+`skill_lot` sub-lot pool. The reliable knob is therefore **`skill_lot` row content**
+(SkillId @+4, Weight @+8, 12-byte rows), not the type-lot pointers. transmarvel-overhaul
+now enforces its trait filter there.
+
+**Third correction — RESOLVED (2026-07-11)**: content-level filtering was live-proven
+to drive the roll, and the residual ~33-35% junk across two live batches (30+ pulls,
+snapshot-diffed) was traced to a single cause: sub-lot **`8F952AC1`** — the one the
+strict per-path legality intersection left vanilla (its six referencing type-lots
+5/6/15/16/26/27 share no common ticked trait). Every junk trait observed post-fix
+survives ONLY there. So the roll consumes `skill_lot` content through some
+`8F952AC1`-referencing lot (consistent with a row-INDEX lookup: index 5 = key-6 row,
+whose 8F952AC1 slice is 33% ≈ observed junk rate) — and the lot-14 attribution was
+family-overlap coincidence. Fix: relaxed legality fallback for empty-intersection
+sub-lots (ticked ∩ union-of-referencing-unions). The exe never needed disassembling.
+
 ## Caveat: hash resolution
 `ItemId`/`Key` are XXHash32 values; the tool's `Data/ids.txt` (26k entries) resolves mostly
 ability/text IDs, not item names — so **item-level** targeting inside `reward_lot` means

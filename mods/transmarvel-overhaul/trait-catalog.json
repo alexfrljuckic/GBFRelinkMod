@@ -1,0 +1,650 @@
+[
+  {
+    "id": "SKILL_085_00",
+    "hash": "E0ABFDFE",
+    "name": "Aegis",
+    "prop": "Aegis",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_068_00",
+    "hash": "95F3FA86",
+    "name": "Autorevive",
+    "prop": "Autorevive",
+    "category": "Defense & Sustain",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_070_00",
+    "hash": "05F2ECDC",
+    "name": "Cascade",
+    "prop": "Cascade",
+    "category": "Defense & Sustain",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_067_00",
+    "hash": "7CCFF74F",
+    "name": "Drain",
+    "prop": "Drain",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_087_00",
+    "hash": "B6E31F76",
+    "name": "Firm Stance",
+    "prop": "FirmStance",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_036_00",
+    "hash": "E6CDBA9C",
+    "name": "Garrison",
+    "prop": "Garrison",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_166_00",
+    "hash": "48A95B8D",
+    "name": "Greater Aegis",
+    "prop": "GreaterAegis",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_045_00",
+    "hash": "E69A4694",
+    "name": "Guts",
+    "prop": "Guts",
+    "category": "Defense & Sustain",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_001_00",
+    "hash": "F372F096",
+    "name": "HP",
+    "prop": "Hp",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_063_00",
+    "hash": "8B3BF60C",
+    "name": "Improved Dodge",
+    "prop": "ImprovedDodge",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_060_00",
+    "hash": "0AA20846",
+    "name": "Improved Guard",
+    "prop": "ImprovedGuard",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_065_00",
+    "hash": "9389CC06",
+    "name": "Improved Healing",
+    "prop": "ImprovedHealing",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_077_00",
+    "hash": "DC607D75",
+    "name": "Low Profile",
+    "prop": "LowProfile",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_104_00",
+    "hash": "09AA7DB5",
+    "name": "Nimble Defense",
+    "prop": "NimbleDefense",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_107_00",
+    "hash": "29B292A8",
+    "name": "Precise Resilience",
+    "prop": "PreciseResilience",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_078_00",
+    "hash": "6018372B",
+    "name": "Provoke",
+    "prop": "Provoke",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_069_00",
+    "hash": "318D12E9",
+    "name": "Quick Cooldown",
+    "prop": "QuickCooldown",
+    "category": "Defense & Sustain",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_066_00",
+    "hash": "6085DA25",
+    "name": "Regen",
+    "prop": "Regen",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_096_00",
+    "hash": "1470F860",
+    "name": "Steel Nerves",
+    "prop": "SteelNerves",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_144_00",
+    "hash": "74AA75D6",
+    "name": "Stronghold",
+    "prop": "Stronghold",
+    "category": "Defense & Sustain",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_072_00",
+    "hash": "B5FF9FD3",
+    "name": "Uplift",
+    "prop": "Uplift",
+    "category": "Defense & Sustain",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_000_00",
+    "hash": "50079A1C",
+    "name": "ATK",
+    "prop": "Atk",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_154_00",
+    "hash": "70395731",
+    "name": "Berserker",
+    "prop": "Berserker",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_031_00",
+    "hash": "AC9674C1",
+    "name": "Break Assassin",
+    "prop": "BreakAssassin",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_008_00",
+    "hash": "1C360C63",
+    "name": "Charged Attack DMG",
+    "prop": "ChargedAttackDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_024_00",
+    "hash": "F17850B9",
+    "name": "Combo Booster",
+    "prop": "ComboBooster",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_017_00",
+    "hash": "A7A45F28",
+    "name": "Combo Finisher DMG",
+    "prop": "ComboFinisherDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_018_00",
+    "hash": "B360801D",
+    "name": "Concentrated Fire",
+    "prop": "ConcentratedFire",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_013_00",
+    "hash": "C0979A17",
+    "name": "Critical Hit DMG",
+    "prop": "CriticalHitDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_003_00",
+    "hash": "8D78A19B",
+    "name": "Critical Hit Rate",
+    "prop": "CriticalHitRate",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_020_00",
+    "hash": "DC584F60",
+    "name": "DMG Cap",
+    "prop": "DmgCap",
+    "category": "Offense",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_064_00",
+    "hash": "7C2E4D64",
+    "name": "Dodge Payback",
+    "prop": "DodgePayback",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_005_00",
+    "hash": "3F488339",
+    "name": "Enmity",
+    "prop": "Enmity",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_158_00",
+    "hash": "A8A3163B",
+    "name": "Glass Cannon",
+    "prop": "GlassCannon",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_061_00",
+    "hash": "3C2B57B0",
+    "name": "Guard Payback",
+    "prop": "GuardPayback",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_153_00",
+    "hash": "1568E0E4",
+    "name": "Head Start",
+    "prop": "HeadStart",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_029_00",
+    "hash": "4F1A3683",
+    "name": "Injury to Insult",
+    "prop": "InjuryToInsult",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_152_00",
+    "hash": "82CE278D",
+    "name": "Less Is More",
+    "prop": "LessIsMore",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_110_00",
+    "hash": "8F502F0D",
+    "name": "Life on the Line",
+    "prop": "LifeOnTheLine",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_009_00",
+    "hash": "3FEC5F80",
+    "name": "Linked Together",
+    "prop": "LinkedTogether",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_028_00",
+    "hash": "C35B111B",
+    "name": "Lucky Charge",
+    "prop": "LuckyCharge",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_106_00",
+    "hash": "D2C8E10A",
+    "name": "Nimble Onslaught",
+    "prop": "NimbleOnslaught",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_030_00",
+    "hash": "A9D17F55",
+    "name": "Overdrive Assassin",
+    "prop": "OverdriveAssassin",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_145_00",
+    "hash": "DC225C96",
+    "name": "Power Hungry",
+    "prop": "PowerHungry",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_109_00",
+    "hash": "7EDD69D0",
+    "name": "Precise Wrath",
+    "prop": "PreciseWrath",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_111_00",
+    "hash": "84078CB0",
+    "name": "Quick Charge",
+    "prop": "QuickCharge",
+    "category": "Offense",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_083_00",
+    "hash": "EAE321EB",
+    "name": "Skilled Assault",
+    "prop": "SkilledAssault",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_006_00",
+    "hash": "2FC8FBFF",
+    "name": "Stamina",
+    "prop": "Stamina",
+    "category": "Offense",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_004_00",
+    "hash": "CEB700EE",
+    "name": "Stun Power",
+    "prop": "StunPower",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_151_00",
+    "hash": "57AB5B10",
+    "name": "Supplementary DMG",
+    "prop": "SupplementaryDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_012_00",
+    "hash": "8D078597",
+    "name": "Throw DMG",
+    "prop": "ThrowDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_027_00",
+    "hash": "71F11A9B",
+    "name": "Tyranny",
+    "prop": "Tyranny",
+    "category": "Offense",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_014_00",
+    "hash": "6B694D6D",
+    "name": "Weak Point DMG",
+    "prop": "WeakPointDmg",
+    "category": "Offense",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_138_00",
+    "hash": "4BF2E191",
+    "name": "ATK↓ Resistance",
+    "prop": "AtkDownResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_088_00",
+    "hash": "9702860F",
+    "name": "Blight Resistance",
+    "prop": "BlightResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_047_00",
+    "hash": "7C84A6B3",
+    "name": "Burn Resistance",
+    "prop": "BurnResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_137_00",
+    "hash": "DD4A701E",
+    "name": "Darkflame Resistance",
+    "prop": "DarkflameResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_139_00",
+    "hash": "66DE60B1",
+    "name": "DEF↓ Resistance",
+    "prop": "DefDownResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_054_00",
+    "hash": "3759A5B9",
+    "name": "Dizzy Resistance",
+    "prop": "DizzyResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_052_00",
+    "hash": "FB572681",
+    "name": "Glaciate Resistance",
+    "prop": "GlaciateResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_136_00",
+    "hash": "1DC9D7E7",
+    "name": "Held Under Resistance",
+    "prop": "HeldUnderResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_055_00",
+    "hash": "2242921F",
+    "name": "Paralysis Resistance",
+    "prop": "ParalysisResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_046_00",
+    "hash": "973B49AF",
+    "name": "Poison Resistance",
+    "prop": "PoisonResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_051_00",
+    "hash": "D54F8CA7",
+    "name": "Sandtomb Resistance",
+    "prop": "SandtombResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_058_00",
+    "hash": "CFB48782",
+    "name": "SBA Sealed Resistance",
+    "prop": "SbaSealedResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_057_00",
+    "hash": "50B453DD",
+    "name": "Skill Sealed Resistance",
+    "prop": "SkillSealedResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_086_00",
+    "hash": "A2FA9685",
+    "name": "Slow Resistance",
+    "prop": "SlowResistance",
+    "category": "Resistances",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_079_00",
+    "hash": "F687C5EF",
+    "name": "Fast Learner",
+    "prop": "FastLearner",
+    "category": "Utility",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_147_00",
+    "hash": "5E422AE5",
+    "name": "Path to Mastery",
+    "prop": "PathToMastery",
+    "category": "Utility",
+    "default": false,
+    "legalOnTransmarvel": false
+  },
+  {
+    "id": "SKILL_073_00",
+    "hash": "24883AF3",
+    "name": "Potion Hoarder",
+    "prop": "PotionHoarder",
+    "category": "Utility",
+    "default": true,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_080_00",
+    "hash": "C86F3082",
+    "name": "Rupie Tycoon",
+    "prop": "RupieTycoon",
+    "category": "Utility",
+    "default": false,
+    "legalOnTransmarvel": true
+  },
+  {
+    "id": "SKILL_094_00",
+    "hash": "0053599E",
+    "name": "Steady Focus",
+    "prop": "SteadyFocus",
+    "category": "Utility",
+    "default": true,
+    "legalOnTransmarvel": true
+  }
+]

@@ -27,6 +27,11 @@ just what the mod is. Checklist:
    ride along with the next behavior release — don't re-upload zips for them.
 3. **Keep versions in sync**: `ModVersion` in the mod's ModConfig.json == the tag
    version; the zip contains the mod folder + an up-to-date `INSTALL.txt`.
+   **Between releases** (per Alex 2026-07-10): every behavior change installed into
+   Reloaded bumps ModVersion to `<next-release>-devN` (e.g. `2.0-dev1`, `-dev2`, …)
+   via `node scripts/set-mod-version.mjs <ModId> <version>` — it stamps the repo,
+   mods-src, and installed copies together so the loader always shows what's
+   actually running. At release, stamp the final version (strip `-devN`).
 4. **Point the trail at it**: update the mod's README download link if the tag name
    changed, and the BACKLOG "Done" entry with the release link.
 

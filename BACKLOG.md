@@ -104,6 +104,124 @@ Last updated 2026-07-09.
   archive-locked-while-playing now falls back to the `extracted/2.0/` vanilla cache.
   Alex's current coverage: best 3/18 → nothing prunable yet, pool stays 41
   (repo-tooling change only — released zip unaffected, no release action).
+- **Transmarvel Overhaul: 2nd-trait filter leak — escalated to content-level fix** —
+  Alex reported junk secondaries still rolling. Investigation trail (new
+  [scripts/audit-save-sigil-traits.mjs](scripts/audit-save-sigil-traits.mjs) + Reloaded
+  logs): (1) v1's reroute of gem-referenced type-lots 2/3/4/5 never worked in game —
+  fresh pulls rolled junk matching **skill_type_lot 14**'s five sub-lot families
+  (lot 14 is referenced by the grant path, not by any `gem` row); (2) rerouting lot 14
+  → `SKL_TMV_GOOD` was staged (log-verified 22:36 launch) and **junk STILL rolled** —
+  so the grant path doesn't select trait lots via the skill_type_lot keys we assumed.
+  Final fix at the altitude that can't miss: **cleansed skill_lot.tbl contents** —
+  all 314 non-curated SkillIds across the 36 vanilla sub-lots replaced with curated-18
+  traits (per-sub-lot round-robin; keys/weights/row-count untouched, byte-diff
+  verified: 314 SkillId dwords + the 18 appended rows). Whatever lot the game picks,
+  it can only contain curated traits. Side effect (documented): anything else rolling
+  from these sub-lots (wrightstone traits?) now also rolls curated. Type-lot reroutes
+  kept for equal odds where they do apply. ⚠️ needs restart + fresh-pull audit; if
+  junk STILL appears, the roll bypasses skill_lot entirely → exe disasm next. Part of
+  pending v2 release.
+- **Transmarvel Overhaul 2.0-dev9: auto-prune baked into the dll + legal-combo
+  library** (overnight session per Alex; full evaluation in
+  [docs/22](docs/22-config-vs-programmatic.md)) — answer to "is config too
+  restricting?": hybrid. Config = preferences only (trait/sigil taste, voucher knobs);
+  mechanics = programmatic: legality already derived from vanilla tables (dev6), and
+  now **combo-completion pruning runs in the dll at every launch** via new
+  `SaveReader.cs` (C# port of the docs/21 save parser; `AutoPruneCompleted` default
+  on, fail-open with console log). Generated
+  [legal-combos.json](mods/transmarvel-overhaul/legal-combos.json) /
+  [LEGAL-COMBOS.md](mods/transmarvel-overhaul/LEGAL-COMBOS.md): 41 mains × 62 legal
+  secondaries = 2,542 combos with vanilla odds. Tests: C# vs JS differential
+  byte-identical on 2 save fixtures; wrong-file + truncated-save refuse cleanly;
+  auto-prune simulation respects user unticks, prunes 0 (correct for current save).
+  New harness [tools-src/savereader-test/](tools-src/savereader-test/).
+  `build-jackpot-tables.mjs` now redundant as pruner (kept for inspection).
+- **Transmarvel Overhaul 2.0-dev11: LIVE-VERIFIED CLEAN — 80-pull test, 67/67 sigils
+  within ticked sets, ZERO junk** (under the old 33% leak the odds of that are
+  ~(2/3)^67 ≈ 10⁻¹²). Every subsystem now field-verified: sigil pool (3 clean batches),
+  trait filter + relaxed legality, auto-prune, cost knob (=1), chunked vouchers.
+  Feature-complete state for the v2 release.
+- **Transmarvel Overhaul 2.0-dev11: TRAIT JUNK ROOT CAUSE FOUND & FIXED** — 30-pull
+  snapshot-diff test (first clean live sample): pool 20/20 within ticked 13 ✓;
+  traits 13/20 ticked + 7 junk, junk = EXCLUSIVELY the defense/resist family →
+  traced to sub-lot `8F952AC1`, the ONE bucket strict legality left vanilla; every
+  observed junk trait survives post-remap ONLY there (docs/13 third correction).
+  Pre-rolled-stock theory dead; content filtering PROVEN to drive the roll. Fix:
+  relaxed legality fallback (ticked ∩ union of referencing lots' unions) when the
+  strict intersection is empty — still vanilla-legal per combo. Expect 0 junk next
+  batch; if any appears, model's wrong again.
+- **Transmarvel Overhaul dev10: voucher grant clamp SOLVED = 5/grant** — two live
+  data points (single lot AmountGiven=99 → 5; five ≤20-chunk lots on a slot-starved
+  Extreme row → 5) pin it: **the engine clamps every reward-lot item grant to 5**,
+  and rows vary in free slots (207/302 rows slot-starved). dev10 chunks at ≤5 → real
+  ceiling 25/clear on empty rows; VouchersPerClear description documents the limit.
+  **Bulk-roll lever is the cost knob instead**: TransmarvelCost=1 → every curio
+  transmute funds 1–15 rolls (Alex's config set: cost=1, vouchers=25). Also dev9
+  auto-prune got its first LIVE verification this launch ("read 2289 sigils; no
+  Warpath+ combo-complete"). dev10 dll install pending game close (background watcher).
+- **Transmarvel Overhaul 2.0-dev8: voucher difficulty floor** — quest-board key scheme
+  decoded: band `0040T3xx`, T = tier nibble 1–B (1 = PWR 200 starter board … 8 = Chaos,
+  9/A/B = Chaos+/++/Infinity). New Configure Mod setting `VoucherMinTier` (1–8,
+  default 8 = old Chaos-only behavior); Alex set to 1 + VouchersPerClear 99 for fast
+  farming (99 vouchers per trivial PWR-200 clear).
+- **Transmarvel Overhaul 2.0-dev7: Transmarvel cost knob** — `gacha.tbl` decoded (48B
+  rows; Transmarvel tier = row with GemRateGroup `27509C51`; TransmarvelCost @+0x24,
+  vanilla 150) → new Configure Mod setting. ⚠️ **GOTCHA: cost=0 CRASHES the
+  Transmarvel menu** (live-confirmed; presumably rolls-available = points/cost
+  div-by-zero) — the mod now clamps to min 1. Also: the Reloaded launcher SILENTLY
+  DROPS unknown config keys when saving Configure Mod from a stale (pre-update)
+  session — restart the launcher after installing a dll with new config fields.
+  Wide-test route instead: VouchersPerClear=99. **Live-verified from Alex's 10-pull video (dev6)**:
+  sigil pool 9/9 within his ticked 14, wrightstone tier-3 traits ✓; 2nd traits 6/9
+  ticked + 3 junk that are IMPOSSIBLE from the registered tables → leading theory:
+  the game PRE-ROLLS results into the "Transmarvel Stock" (junk = stale pre-rolls
+  from older builds); wide free-roll test will confirm (junk should drain to zero).
+- **Transmarvel Overhaul 2.0-dev6: sigil-pool checkboxes + combo legality** — per
+  Alex: pick the primaries too, and never generate combos vanilla couldn't. Configure
+  Mod now has 41 sigil checkboxes (pool rebuilt from vanilla gacha tables at launch,
+  `Mod.ApplySigilPool`; layouts: rate rows 16B [Group,LotId,Weight,Flag], lot rows 28B
+  [QMin,QMax,Key,ItemId,Weight,TraitLevel,Unk]) + 72 trait checkboxes with **legality
+  enforcement**: per sub-lot, remap targets = ticked ∩ (∩ vanilla unions of referencing
+  type-lots). Key decode: lot-14 union = 62 traits = what Transmarvel pulls can roll;
+  10 supreme traits (Supplementary DMG, Glass Cannon, …) are curio/drop-path-only;
+  Perfect Dodge is in NO vanilla lot → dropped (was dev5's experimental inject).
+  Defaults: curated 11 — simulation-verified to cover all 5 Transmarvel sub-lots
+  (one shared sub-lot `8F952AC1` on lots 5/6/15/16/26/27 stays vanilla under defaults,
+  logged at launch). Mod ships NO static tables now. `build-jackpot-tables.mjs`
+  repurposed: save → unticks combo-complete Warpath+ in the Reloaded Config.json
+  (denominator = ticked ∩ transmarvel-legal). New `snapshot-save.mjs` +
+  `audit --since <snapshot>` (multiset diff) because **instance ids get recycled
+  after selling** — seq-based recency is unreliable. ⚠️ STILL no live-verified pull
+  under ANY table-level trait filter; Alex's "Eternal Rage + HP" report from the
+  dev4-cleanse session suggests the roll may not read staged skill_lot at all —
+  next failed verification = exe disasm (docs/13).
+- **Transmarvel Overhaul: per-trait checkboxes in Configure Mod (2.0-dev5)** — the
+  2nd-trait filter moved into the C# component (`Mod.ApplyTraitFilter`): rebuilds the
+  skill tables from vanilla at every launch with only the ticked traits (73 checkboxes
+  — all 72 vanilla-rollable + experimental Super Ultimate Perfect Dodge `SKILL_235_00`,
+  which vanilla never rolls; ⚠️ injection unverified in game). Defaults = curated 12
+  with Regen→off, Perfect Dodge→on per Alex. Static skill tables removed from the mod
+  (generated now); `build-trait-filter.mjs` superseded same-day; catalog generated into
+  `TraitCatalog.cs` + `mods/transmarvel-overhaul/trait-catalog.json`; jackpot/audit
+  scripts read the LIVE selection (catalog defaults + `Reloaded-II\User\Mods\...\Config.json`).
+  ⚠️ trait filter still needs its first live-verified pull (restart + audit).
+- **Transmarvel Overhaul: curated trait list trimmed 18 → 12** (per Alex 2026-07-10:
+  dropped Crit Hit DMG, Weak Point DMG, Overdrive/Break Assassin, Skilled Assault,
+  Injury to Insult → 4 offense / 4 sustain / 4 utility at ~8.33% each). Trait-filter
+  tables now built by the new [scripts/build-trait-filter.mjs](scripts/build-trait-filter.mjs)
+  (rebuilds both skill tables from vanilla — the filter finally has a proper builder;
+  355 remapped entries, +12 SKL_TMV_GOOD rows). CURATED list must stay in sync across
+  build-trait-filter / build-jackpot-tables / audit-save-sigil-traits (all note it).
+  Installed as 2.0-dev4. [DROP-TABLES.md](mods/transmarvel-overhaul/DROP-TABLES.md)
+  added — player-facing reference of the 41-sigil pool + curated secondaries.
+- **Transmarvel Overhaul: configurable voucher income (×10 default)** — voucher drops
+  moved from static `reward.tbl`/`reward_lot.tbl` (fixed 1/1/2/3) to a C# component
+  ([mods-src/gbfr.transmarvel.overhaul/](mods-src/gbfr.transmarvel.overhaul/), msp-multiplier
+  pattern): patches vanilla tables at load via IDataManager, count set in Reloaded-II
+  Configure Mod (0–99, 0 = off), Chaos+ quests enumerated live from
+  `quest_baseinfo_ex_data.tbl`. Node-simulated: patches the exact 112 rows/slots v1 did.
+  Built + installed locally; ⚠️ NOT yet live-verified in game, NOT yet released as v2
+  (needs tag `transmarvel-overhaul-v2` + zip + comparative notes when shipped).
   `quest_baseinfo_ex_data`. All byte-identical round-trips; headers in
   [patches/headers-2.0/](patches/headers-2.0/). Tool gotcha: `uint` columns holding
   0xFFFFFFFF overflow on export — retype them `hex_uint`. Also corrected the community
