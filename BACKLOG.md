@@ -136,11 +136,14 @@ Last updated 2026-07-09.
   auto-prune simulation respects user unticks, prunes 0 (correct for current save).
   New harness [tools-src/savereader-test/](tools-src/savereader-test/).
   `build-jackpot-tables.mjs` now redundant as pruner (kept for inspection).
-- **Transmarvel Overhaul 2.0-dev11: LIVE-VERIFIED CLEAN — 80-pull test, 67/67 sigils
-  within ticked sets, ZERO junk** (under the old 33% leak the odds of that are
-  ~(2/3)^67 ≈ 10⁻¹²). Every subsystem now field-verified: sigil pool (3 clean batches),
-  trait filter + relaxed legality, auto-prune, cost knob (=1), chunked vouchers.
-  Feature-complete state for the v2 release.
+- **Transmarvel Overhaul v2 — RELEASED**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2),
+  commit `fb6e2ef`): fully configurable (41 sigil + 72 trait checkboxes, voucher
+  count/tier, cost knob), combo-legality enforced, auto-prune via save reading, no
+  static tables (all generated at launch). LIVE-VERIFIED with an 80-pull test:
+  67/67 within ticked sets, ZERO junk (under the old 33% leak that's ~(2/3)^67 ≈
+  10⁻¹²). README/INSTALL rewritten for the public; player docs DROP-TABLES.md +
+  LEGAL-COMBOS.md generated from game data.
 - **Transmarvel Overhaul 2.0-dev11: TRAIT JUNK ROOT CAUSE FOUND & FIXED** — 30-pull
   snapshot-diff test (first clean live sample): pool 20/20 within ticked 13 ✓;
   traits 13/20 ticked + 7 junk, junk = EXCLUSIVELY the defense/resist family →
