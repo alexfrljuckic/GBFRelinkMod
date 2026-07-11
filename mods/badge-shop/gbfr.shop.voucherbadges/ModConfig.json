@@ -1,5 +1,5 @@
 {
-  "ModId": "gbfr.shop.rupiebadges",
+  "ModId": "gbfr.shop.voucherbadges",
   "ModName": "Badges & Spellbooks for Vouchers (2.0)",
   "ModAuthor": "alexfrljuckic",
   "ModVersion": "1.0",
@@ -14,7 +14,7 @@
   "CanUnload": null,
   "HasExports": null,
   "IsLibrary": false,
-  "ReleaseMetadataFileName": "gbfr.shop.rupiebadges.ReleaseMetadata.json",
+  "ReleaseMetadataFileName": "gbfr.shop.voucherbadges.ReleaseMetadata.json",
   "IgnoreRegexes": [ ".*\\.json" ],
   "IncludeRegexes": [ "ModConfig\\.json" ],
   "PluginData": {},
