@@ -84,9 +84,12 @@ First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.git
 - **Verify it's on**: the Reloaded console should list `Transmarvel Overhaul (2.0)` and
   the Mod Manager registering the six tables.
 
-## Removing Warpath+ sigils you already own
-Character-sigil dupes are worthless, so as you collect them you can prune owned
-Warpath+ sigils from the pool — the remaining sigils stay exactly equal.
+## Removing Warpath+ sigils that can't roll anything new
+A dupe is only worthless per **combo**: Warpath + DMG Cap is a different sigil
+than Warpath + Cascade (the random 2nd trait, 18 possible with this mod). A
+Warpath+ only stops being worth pulling once you own it with **all 18**
+secondaries — at that point you can prune it from the pool, and the remaining
+sigils stay exactly equal.
 
 **Requirements** (beyond the mod itself): this repo checked out with its toolchain set
 up (GBFRDataTools + 2.0 headers, sqlite CLI, .NET 10 runtime — one-time setup, see
@@ -94,13 +97,20 @@ up (GBFRDataTools + 2.0 headers, sqlite CLI, .NET 10 runtime — one-time setup,
 This is repo tooling — if you only downloaded the release zip, you can't run it.
 
 **How to run**:
-1. Open [scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs) and
-   uncomment your owned sigils in `OWNED_WARPATH` — the full id → name list (all 28)
-   is right there in the file, no ids to hunt down.
-2. From the repo root: `node scripts/build-jackpot-tables.mjs`
-3. It rebuilds from vanilla game data, writes into this mod folder, **and updates the
-   installed copy in `Reloaded-II\Mods` automatically** (if present). It validates the
-   ids and checks the toolchain, telling you exactly what's missing if anything.
+1. From the repo root: `node scripts/build-jackpot-tables.mjs`
+2. That's it — the script **reads your save file** (read-only; it never writes the
+   save), works out which secondary combos you own per Warpath+, prints a per-sigil
+   `X/18` coverage report, prunes only the fully-covered ones, rebuilds from vanilla
+   game data, writes into this mod folder, **and updates the installed copy in
+   `Reloaded-II\Mods` automatically** (if present).
+3. Prefer deciding yourself (or the save format changed in a game update)? Open
+   [scripts/build-jackpot-tables.mjs](../../scripts/build-jackpot-tables.mjs), set
+   `OWNED_WARPATH = MANUAL_WARPATH`, and uncomment each sigil to prune outright —
+   the full id → name list (all 28) is right there in the file.
+
+Auto-detect reads the newest `SaveData<N>.dat` in `%localappdata%\GBFR\Saved\SaveGames`
+(sigil-inventory format: [docs/21](../../docs/21-save-sigil-inventory.md)) and refuses
+loudly — rather than guessing — if the layout doesn't match.
 
 **When does it take effect?** On the **next game launch** — the Mod Manager reads mod
 tables once, during boot. Running the script while the game is open is harmless, but

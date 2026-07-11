@@ -94,7 +94,16 @@ Last updated 2026-07-09.
 - **Badges & Spellbooks for Vouchers** ([mods/badge-shop/](mods/badge-shop/)) — RELEASED
   + live-verified: unlimited Silver/Gold Dalia Badge + Gold Spellbook in the Treasure
   Trade tab for Knickknack Vouchers. Decoded the whole shop cost system (docs/20).
-- **4 more 2.0 tables reversed** → 7 total: `constant` (docs/19), `trade`, `item`,
+- **Save-file sigil inventory + per-copy traits decoded** ([docs/21](docs/21-save-sigil-inventory.md)) —
+  `build-jackpot-tables.mjs` now auto-detects from `SaveData<N>.dat` (read-only, loud
+  sanity checks) and prunes per **combo** (per Alex: Warpath+DMG Cap ≠ Warpath+Cascade):
+  a Warpath+ leaves the pool only when all 18 curated secondaries are owned for it.
+  Key decode: trait pool seq = instance×100+slot; innate SKILL number == sigil GEEN
+  number (2927/2928 cross-validation). Also fixed: stale GBFRDataTools ids.txt made
+  `GEEN_173_93+` export as raw hashes, silently surviving the dedup DELETE; and
+  archive-locked-while-playing now falls back to the `extracted/2.0/` vanilla cache.
+  Alex's current coverage: best 3/18 → nothing prunable yet, pool stays 41
+  (repo-tooling change only — released zip unaffected, no release action).
   `quest_baseinfo_ex_data`. All byte-identical round-trips; headers in
   [patches/headers-2.0/](patches/headers-2.0/). Tool gotcha: `uint` columns holding
   0xFFFFFFFF overflow on export — retype them `hex_uint`. Also corrected the community
