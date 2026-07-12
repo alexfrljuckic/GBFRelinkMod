@@ -56,6 +56,8 @@ are ever generated.
 | Veteran's Warpath+ | Warpath+ | Veteran's Warpath |
 | White Dragon's Warpath+ | Warpath+ | White Dragon's Warpath |
 
+Unticked (out of the pool): Fearless Soul+, Guardian's Awakening+, Helmsman's Awakening+, Mage's Awakening+, Veteran's Awakening+, Rose's Awakening+, Phantasm's Awakening+, White Dragon's Awakening+, Hero's Awakening+, Lord's Awakening+, Dragonslayer's Awakening+, Holy Knight's Awakening+, Swordmaster's Awakening+, Butterfly's Awakening+, Eternal Rage's Awakening+, Founder's Awakening+, Versalis Soul+, Crimson's Awakening+, Ebony's Awakening+, Attack Power V+, Health V+, Critical Hit Rate V+, Stun Power V+, Spirit Edge's Awakening+, Dark Huntress's Awakening+, Supreme Primarch's Awakening+, Gladiator's Awakening+, Bladequeen's Awakening+, Ultramarine's Awakening+, Thunderwolf's Awakening+, Enchantress's Awakening+, The Black's Awakening+.
+
 ## 2. Random 2nd trait — 11 ticked
 
 On **Transmarvel pulls**, 11 of these can roll (~9.09% each):

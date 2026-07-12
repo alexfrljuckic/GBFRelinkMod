@@ -28,8 +28,8 @@ Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases)
 [GBFR Mod Manager](https://www.nexusmods.com/granbluefantasyrelink/mods/526) (**2.0.1+**).
 First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.github.io/relink-modding/modding/installing_mods/).
 
-1. Download **`transmarvel-overhaul-v2.zip`** from the
-   [transmarvel-overhaul-v2 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2).
+1. Download **`transmarvel-overhaul-v2.1.zip`** from the
+   [transmarvel-overhaul-v2.1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.1).
 2. Extract into `Reloaded-II\Mods\` → `Mods\gbfr.transmarvel.overhaul\`.
 3. Enable **Transmarvel Overhaul (2.0)** in the game's mod list; launch.
 
@@ -51,22 +51,27 @@ The Reloaded console prints exactly what was applied, e.g.:
 [gbfr.transmarvel.overhaul] Transmarvel cost set to 150 points.
 ```
 
-### Sigil Pool (41 checkboxes, all on by default)
-The 13 top V+ generics (War Elemental+, Supplementary Damage V+, Berserker Echo+,
-Spartan Echo+, Greater Aegis V+, Celestial ×6 V+, Fatebreaker V+, Divergence V+) and
-all 28 character **Warpath+** (max trait). Ticked sigils share the pool at equal
+### Sigil Pool (73 checkboxes; 41 on by default)
+On by default: the 13 top V+ generics (War Elemental+, Supplementary Damage V+,
+Berserker Echo+, Spartan Echo+, Greater Aegis V+, Celestial ×6 V+, Fatebreaker V+,
+Divergence V+) and all 28 character **Warpath+** (max trait). **Opt-in bucket
+(off by default): the 28 character Awakening+** (max trait; the bucket's four
+stat-V+ singles are also listed, also off). Ticked sigils share the pool at equal
 odds; untick to remove. **Untick everything = vanilla pool** (overhaul off).
 The 75/25 sigil-vs-wrightstone split stays vanilla.
 
 ### Sigil Pool — Auto (duplicate protection)
-*Auto-remove completed Warpath+* (default on): at every launch the mod reads your
-newest save — **read-only, it never writes your save** — and takes any ticked
-Warpath+ out of the pool once you own it with *every* 2nd trait it can still roll
-(your ticked traits). A pull of it could give you nothing new, so it stops
-occupying pool odds. Pruned sigils come back by themselves when you tick more
-traits (new combos to chase). Your manual unticks always win. If the save can't
-be parsed (e.g. after a game update changes the format), the mod **fails open**:
-pool left unpruned, reason printed to the console.
+*Auto-remove completed sigils* (default on): at every launch the mod reads your
+newest save — **read-only, it never writes your save** — and removes from the pool:
+- any ticked **Warpath+** you own with *every* 2nd trait it can still roll (your
+  ticked traits) — a pull could give you nothing new; it returns automatically
+  when you tick more traits (new combos to chase);
+- any ticked **Awakening+** you own **at all** — duplicates are useless, so one
+  copy retires it.
+
+Your manual unticks always win. If the save can't be parsed (e.g. after a game
+update changes the format), the mod **fails open**: pool left unpruned, reason
+printed to the console.
 
 ### 2nd Traits (72 checkboxes)
 One checkbox per trait that can roll as a random secondary on any "+" sigil.

@@ -40,15 +40,172 @@ public class Config : Configurable<Config>
     public int VoucherMinTier { get; set; } = 8;
 
     [Category("Sigil Pool - Auto")]
-    [DisplayName("Auto-remove completed Warpath+ (reads your save)")]
+    [DisplayName("Auto-remove completed sigils (reads your save)")]
     [Description("At every game launch the mod reads your newest save (read-only) and\n" +
-        "removes from the Transmarvel pool any TICKED Warpath+ sigil you already own\n" +
-        "with EVERY 2nd trait it can still roll (your ticked traits) - a pull of it\n" +
-        "could give you nothing new. Sigils regain pool slots automatically when you\n" +
-        "tick more traits (new combos to chase). Unticked sigils stay out regardless.\n" +
-        "If the save can't be read the pool is left unpruned (see the Reloaded console).")]
+        "removes from the Transmarvel pool: any TICKED Warpath+ you already own with\n" +
+        "EVERY 2nd trait it can still roll (your ticked traits), and any TICKED\n" +
+        "Awakening+ you own AT ALL (duplicates are useless). Warpath+ regain pool\n" +
+        "slots automatically when you tick more traits (new combos to chase).\n" +
+        "Unticked sigils stay out regardless. If the save can't be read the pool is\n" +
+        "left unpruned (see the Reloaded console).")]
     [DefaultValue(true)]
     public bool AutoPruneCompleted { get; set; } = true;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Fearless Soul+")]
+    [Description("Include Fearless Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolFearlessSoul { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Guardian's Awakening+")]
+    [Description("Include Guardian's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGuardiansAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Helmsman's Awakening+")]
+    [Description("Include Helmsman's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHelmsmansAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Mage's Awakening+")]
+    [Description("Include Mage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolMagesAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Veteran's Awakening+")]
+    [Description("Include Veteran's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolVeteransAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Rose's Awakening+")]
+    [Description("Include Rose's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolRosesAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Phantasm's Awakening+")]
+    [Description("Include Phantasm's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPhantasmsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("White Dragon's Awakening+")]
+    [Description("Include White Dragon's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolWhiteDragonsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Hero's Awakening+")]
+    [Description("Include Hero's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHerosAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Lord's Awakening+")]
+    [Description("Include Lord's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLordsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Dragonslayer's Awakening+")]
+    [Description("Include Dragonslayer's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDragonslayersAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Holy Knight's Awakening+")]
+    [Description("Include Holy Knight's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHolyKnightsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Swordmaster's Awakening+")]
+    [Description("Include Swordmaster's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSwordmastersAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Butterfly's Awakening+")]
+    [Description("Include Butterfly's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolButterflysAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Eternal Rage's Awakening+")]
+    [Description("Include Eternal Rage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEternalRagesAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Founder's Awakening+")]
+    [Description("Include Founder's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolFoundersAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Versalis Soul+")]
+    [Description("Include Versalis Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolVersalisSoul { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Crimson's Awakening+")]
+    [Description("Include Crimson's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolCrimsonsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Ebony's Awakening+")]
+    [Description("Include Ebony's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEbonysAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+ (bucket extras)")]
+    [DisplayName("Attack Power V+")]
+    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolAttackPowerV { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+ (bucket extras)")]
+    [DisplayName("Health V+")]
+    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHealthV { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+ (bucket extras)")]
+    [DisplayName("Critical Hit Rate V+")]
+    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolCriticalHitRateV { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+ (bucket extras)")]
+    [DisplayName("Stun Power V+")]
+    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolStunPowerV { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Spirit Edge's Awakening+")]
+    [Description("Include Spirit Edge's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSpiritEdgesAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Dark Huntress's Awakening+")]
+    [Description("Include Dark Huntress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDarkHuntresssAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Supreme Primarch's Awakening+")]
+    [Description("Include Supreme Primarch's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSupremePrimarchsAwakening { get; set; } = false;
 
     [Category("Sigil Pool - Warpath+")]
     [DisplayName("Fearless Heart+")]
@@ -181,6 +338,42 @@ public class Config : Configurable<Config>
     [Description("Keep Versalis Heart+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolVersalisHeart { get; set; } = true;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Gladiator's Awakening+")]
+    [Description("Include Gladiator's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGladiatorsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Bladequeen's Awakening+")]
+    [Description("Include Bladequeen's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolBladequeensAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Ultramarine's Awakening+")]
+    [Description("Include Ultramarine's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolUltramarinesAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Thunderwolf's Awakening+")]
+    [Description("Include Thunderwolf's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolThunderwolfsAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("Enchantress's Awakening+")]
+    [Description("Include Enchantress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEnchantresssAwakening { get; set; } = false;
+
+    [Category("Sigil Pool - Awakening+")]
+    [DisplayName("The Black's Awakening+")]
+    [Description("Include The Black's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolTheBlacksAwakening { get; set; } = false;
 
     [Category("Sigil Pool - Warpath+")]
     [DisplayName("Gladiator's Warpath+")]

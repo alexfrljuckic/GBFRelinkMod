@@ -440,6 +440,214 @@
   ],
   "mains": [
     {
+      "id": "GEEN_114_90",
+      "name": "Fearless Soul+",
+      "hash": "52A6E299",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_115_90",
+      "name": "Guardian's Awakening+",
+      "hash": "9ADA3E00",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_116_90",
+      "name": "Helmsman's Awakening+",
+      "hash": "98A6D249",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_117_90",
+      "name": "Mage's Awakening+",
+      "hash": "E2B380E5",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_118_90",
+      "name": "Veteran's Awakening+",
+      "hash": "1BBE919C",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_119_90",
+      "name": "Rose's Awakening+",
+      "hash": "9BD1CC24",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_120_90",
+      "name": "Phantasm's Awakening+",
+      "hash": "B441275D",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_121_90",
+      "name": "White Dragon's Awakening+",
+      "hash": "E19B1965",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_122_90",
+      "name": "Hero's Awakening+",
+      "hash": "673C5D8F",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_123_90",
+      "name": "Lord's Awakening+",
+      "hash": "02472C43",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_124_90",
+      "name": "Dragonslayer's Awakening+",
+      "hash": "AB835493",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_125_90",
+      "name": "Holy Knight's Awakening+",
+      "hash": "AEEF8343",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_126_90",
+      "name": "Swordmaster's Awakening+",
+      "hash": "119B24A8",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_127_90",
+      "name": "Butterfly's Awakening+",
+      "hash": "1A57AEF1",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_128_90",
+      "name": "Eternal Rage's Awakening+",
+      "hash": "CE16D68B",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_129_90",
+      "name": "Founder's Awakening+",
+      "hash": "02B1F8C0",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_130_90",
+      "name": "Versalis Soul+",
+      "hash": "AF8E7E7E",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_131_90",
+      "name": "Crimson's Awakening+",
+      "hash": "4F01D6CA",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_132_90",
+      "name": "Ebony's Awakening+",
+      "hash": "E4F986D9",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_000_14",
+      "name": "Attack Power V+",
+      "hash": "08DA7279",
+      "bucket": "Awakening+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_001_14",
+      "name": "Health V+",
+      "hash": "B5B23F02",
+      "bucket": "Awakening+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_003_14",
+      "name": "Critical Hit Rate V+",
+      "hash": "459DD2C2",
+      "bucket": "Awakening+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_004_14",
+      "name": "Stun Power V+",
+      "hash": "39BEA99B",
+      "bucket": "Awakening+",
+      "mainClass": "offensive-generic",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_170_90",
+      "name": "Spirit Edge's Awakening+",
+      "hash": "6AAE4B8F",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_171_90",
+      "name": "Dark Huntress's Awakening+",
+      "hash": "8ECBB0A3",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_172_90",
+      "name": "Supreme Primarch's Awakening+",
+      "hash": "B8C44D5E",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
       "id": "GEEN_114_93",
       "name": "Fearless Heart+",
       "hash": "0713D928",
@@ -616,6 +824,54 @@
       "comboCount": 62
     },
     {
+      "id": "GEEN_173_90",
+      "name": "Gladiator's Awakening+",
+      "hash": "895ABBF6",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_174_90",
+      "name": "Bladequeen's Awakening+",
+      "hash": "D8A464F1",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_175_90",
+      "name": "Ultramarine's Awakening+",
+      "hash": "95CC3CB8",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_176_90",
+      "name": "Thunderwolf's Awakening+",
+      "hash": "23953FD4",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_177_90",
+      "name": "Enchantress's Awakening+",
+      "hash": "5A360EA8",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
+      "id": "GEEN_178_90",
+      "name": "The Black's Awakening+",
+      "hash": "A8A0CBFF",
+      "bucket": "Awakening+",
+      "mainClass": "character-specific",
+      "comboCount": 62
+    },
+    {
       "id": "GEEN_173_93",
       "name": "Gladiator's Warpath+",
       "hash": "41AC1082",
@@ -769,10 +1025,10 @@
     }
   ],
   "totals": {
-    "mains": 41,
-    "characterMains": 28,
-    "genericMains": 13,
+    "mains": 73,
+    "characterMains": 56,
+    "genericMains": 17,
     "legalSecondaries": 62,
-    "totalLegalCombos": 2542
+    "totalLegalCombos": 4526
   }
 }

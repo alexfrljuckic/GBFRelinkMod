@@ -1,16 +1,17 @@
-Transmarvel Overhaul v2 (Endless Ragnarok / 2.0)
-================================================
+Transmarvel Overhaul v2.1 (Endless Ragnarok / 2.0)
+==================================================
 Transmarvel, fixed - fully configurable in Reloaded-II (right-click the
 mod -> Configure Mod). All tables are generated from vanilla game data +
 your settings at every game launch; nothing on disk is modified.
 
-1. Sigil pool: only the chase sigils YOU tick (up to 41: 13 top V+
-   generics + all 28 character Warpath+), equal odds. Wrightstone rolls
-   are always tier-3 Transmarveled.
+1. Sigil pool: only the chase sigils YOU tick (13 top V+ generics +
+   28 character Warpath+ on by default, plus an OPT-IN bucket with the
+   28 character Awakening+), equal odds. Wrightstone rolls are always
+   tier-3 Transmarveled.
 2. Duplicate protection: Warpath+ you own with every rollable 2nd trait
-   leave the pool automatically (the mod reads your save at launch -
-   READ-ONLY, it never writes your save). Untick "Auto-remove completed
-   Warpath+" to disable.
+   leave the pool automatically, and Awakening+ leave as soon as you own
+   ONE copy (the mod reads your save at launch - READ-ONLY, it never
+   writes your save). Untick "Auto-remove completed sigils" to disable.
 3. 2nd traits: only the traits YOU tick can roll (default: a curated 11,
    no resistances/filler) - and only in (sigil x trait) combos the
    vanilla game could naturally produce.

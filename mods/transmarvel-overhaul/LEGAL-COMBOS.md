@@ -1,8 +1,8 @@
 # Legal Transmarvel combos (vanilla-derived library)
 
 Generated from vanilla 2.0 tables. A Transmarvel pull = one **main** (the sigil,
-28 character-specific + 13 offensive-generic) × one random
-**secondary** from the lot-14 union below. 41 × 62 = **2542 legal combos**.
+56 character-specific + 17 offensive-generic) × one random
+**secondary** from the lot-14 union below. 73 × 62 = **4526 legal combos**.
 Anything outside this table cannot occur in vanilla and the mod will never generate it.
 
 ## Legal secondaries (62) with vanilla roll odds
@@ -72,10 +72,36 @@ Anything outside this table cannot occur in vanilla and the mod will never gener
 | ATK↓ Resistance | Resistances | 0.952% |
 | DEF↓ Resistance | Resistances | 0.952% |
 
-## Mains (41)
+## Mains (73)
 
 | Main | Class | Bucket |
 |---|---|---|
+| Fearless Soul+ | character-specific | Awakening+ |
+| Guardian's Awakening+ | character-specific | Awakening+ |
+| Helmsman's Awakening+ | character-specific | Awakening+ |
+| Mage's Awakening+ | character-specific | Awakening+ |
+| Veteran's Awakening+ | character-specific | Awakening+ |
+| Rose's Awakening+ | character-specific | Awakening+ |
+| Phantasm's Awakening+ | character-specific | Awakening+ |
+| White Dragon's Awakening+ | character-specific | Awakening+ |
+| Hero's Awakening+ | character-specific | Awakening+ |
+| Lord's Awakening+ | character-specific | Awakening+ |
+| Dragonslayer's Awakening+ | character-specific | Awakening+ |
+| Holy Knight's Awakening+ | character-specific | Awakening+ |
+| Swordmaster's Awakening+ | character-specific | Awakening+ |
+| Butterfly's Awakening+ | character-specific | Awakening+ |
+| Eternal Rage's Awakening+ | character-specific | Awakening+ |
+| Founder's Awakening+ | character-specific | Awakening+ |
+| Versalis Soul+ | character-specific | Awakening+ |
+| Crimson's Awakening+ | character-specific | Awakening+ |
+| Ebony's Awakening+ | character-specific | Awakening+ |
+| Attack Power V+ | offensive-generic | Awakening+ |
+| Health V+ | offensive-generic | Awakening+ |
+| Critical Hit Rate V+ | offensive-generic | Awakening+ |
+| Stun Power V+ | offensive-generic | Awakening+ |
+| Spirit Edge's Awakening+ | character-specific | Awakening+ |
+| Dark Huntress's Awakening+ | character-specific | Awakening+ |
+| Supreme Primarch's Awakening+ | character-specific | Awakening+ |
 | Fearless Heart+ | character-specific | Warpath+ |
 | Guardian's Warpath+ | character-specific | Warpath+ |
 | Helmsman's Warpath+ | character-specific | Warpath+ |
@@ -98,6 +124,12 @@ Anything outside this table cannot occur in vanilla and the mod will never gener
 | Dark Huntress's Warpath+ | character-specific | Warpath+ |
 | Supreme Primarch's Warpath+ | character-specific | Warpath+ |
 | Versalis Heart+ | character-specific | Warpath+ |
+| Gladiator's Awakening+ | character-specific | Awakening+ |
+| Bladequeen's Awakening+ | character-specific | Awakening+ |
+| Ultramarine's Awakening+ | character-specific | Awakening+ |
+| Thunderwolf's Awakening+ | character-specific | Awakening+ |
+| Enchantress's Awakening+ | character-specific | Awakening+ |
+| The Black's Awakening+ | character-specific | Awakening+ |
 | Gladiator's Warpath+ | character-specific | Warpath+ |
 | Bladequeen's Warpath+ | character-specific | Warpath+ |
 | Ultramarine's Warpath+ | character-specific | Warpath+ |

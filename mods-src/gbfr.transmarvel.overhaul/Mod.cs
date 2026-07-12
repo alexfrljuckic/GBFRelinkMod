@@ -258,6 +258,7 @@ public class Mod : ModBase
     private const uint WrightstoneGroupKey = 0x67716D8A; // Transmarvel wrightstone-side rate group
     private const uint Tier3WrightstoneLot = 0xBD1CBF1C;
     private const uint WarpathBucketKey = 0xF527EF32;    // the 28-character-Warpath+ chase bucket
+    private const uint AwakeningBucketKey = 0x5AD4ADAD;  // 28 character Awakening+ (+4 stat V+ singles), opt-in
 
     /// <summary>Ticked traits that can actually roll on Transmarvel pulls (ticked ∩ vanilla lot-14 union).</summary>
     private HashSet<uint> RollableSecondaries()
@@ -342,26 +343,39 @@ public class Mod : ModBase
                 {
                     string saveDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GBFR", "Saved", "SaveGames");
                     var save = SaveReader.ReadNewest(saveDir);
-                    var pruned = new List<string>();
+                    var prunedWarpath = new List<string>();
+                    var prunedAwakening = new List<string>();
                     var remaining = kept.Where(s =>
                     {
-                        if (s.BucketKey != WarpathBucketKey) return true;
-                        save.CombosBySigil.TryGetValue(s.Hash, out var owned);
-                        bool complete = owned is not null && rollable.All(owned.Contains);
-                        if (complete) pruned.Add(s.Name);
-                        return !complete;
+                        if (s.BucketKey == WarpathBucketKey)
+                        {
+                            // combo rule: out once every rollable secondary is owned
+                            save.CombosBySigil.TryGetValue(s.Hash, out var owned);
+                            bool complete = owned is not null && rollable.All(owned.Contains);
+                            if (complete) prunedWarpath.Add(s.Name);
+                            return !complete;
+                        }
+                        if (s.BucketKey == AwakeningBucketKey)
+                        {
+                            // own-any rule: duplicates are useless, one copy = done
+                            bool ownedAny = save.CopiesBySigil.ContainsKey(s.Hash);
+                            if (ownedAny) prunedAwakening.Add(s.Name);
+                            return !ownedAny;
+                        }
+                        return true;
                     }).ToArray();
                     if (remaining.Length == 0)
                     {
-                        Log($"Auto-prune would empty the pool ({pruned.Count} completed) — keeping the un-pruned pool instead.");
+                        Log($"Auto-prune would empty the pool ({prunedWarpath.Count + prunedAwakening.Count} completed) — keeping the un-pruned pool instead.");
                     }
                     else
                     {
                         kept = remaining;
+                        var parts = new List<string>();
+                        if (prunedWarpath.Count > 0) parts.Add($"{prunedWarpath.Count} combo-complete Warpath+ ({string.Join(", ", prunedWarpath)})");
+                        if (prunedAwakening.Count > 0) parts.Add($"{prunedAwakening.Count} owned Awakening+ ({string.Join(", ", prunedAwakening)})");
                         Log($"Auto-prune: read {save.SigilCount} sigils from the save; " +
-                            (pruned.Count > 0
-                                ? $"removed {pruned.Count} completed Warpath+ ({string.Join(", ", pruned)})."
-                                : "no Warpath+ is combo-complete yet."));
+                            (parts.Count > 0 ? $"removed {string.Join(" and ", parts)}." : "nothing is complete yet."));
                     }
                 }
             }
@@ -415,7 +429,7 @@ public class Mod : ModBase
         _dataManager.AddOrUpdateExternalFile("system/table/gacha_rate_group.tbl", rates);
         _dataManager.AddOrUpdateExternalFile("system/table/gacha_lot.tbl", newLots);
         _dataManager.UpdateIndex();
-        Log($"Sigil pool applied: {kept.Length}/41 sigils at ~{100.0 / kept.Length:F2}% each; wrightstones pinned tier-3 Transmarveled.");
+        Log($"Sigil pool applied: {kept.Length}/{SigilCatalog.Pool.Length} sigils at ~{100.0 / kept.Length:F2}% each; wrightstones pinned tier-3 Transmarveled.");
     }
 
     /// <summary>

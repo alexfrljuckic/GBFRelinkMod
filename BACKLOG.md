@@ -136,6 +136,15 @@ Last updated 2026-07-09.
   auto-prune simulation respects user unticks, prunes 0 (correct for current save).
   New harness [tools-src/savereader-test/](tools-src/savereader-test/).
   `build-jackpot-tables.mjs` now redundant as pruner (kept for inspection).
+- **Transmarvel Overhaul v2.1 — RELEASED**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.1)):
+  Awakening+ bucket (per Alex) — vanilla bucket `5AD4ADAD` decoded: 28 character
+  Awakening+ (`GEEN_1xx_90`, incl. Fearless/Versalis "Soul+" names) + 4 stat-V+
+  singles (surfaced honestly as "bucket extras" checkboxes). OPT-IN (default off →
+  v2 defaults unchanged; Alex's config: 28 awakening ticked). Auto-prune per-bucket
+  rules: Warpath+ = combo-complete, **Awakening+ = own-any** (dupes useless).
+  Simulated on Alex's save: 21/28 owned → pruned instantly, 7 join the chase.
+  Catalogs/docs regenerated (73 mains × 62 = 4,526 legal combos).
 - **Transmarvel Overhaul v2 — RELEASED**
   ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2),
   commit `fb6e2ef`): fully configurable (41 sigil + 72 trait checkboxes, voucher
