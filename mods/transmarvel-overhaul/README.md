@@ -13,7 +13,7 @@ on disk is ever modified and your settings apply instantly on the next launch.
 |---|---|---|
 | Transmarvel sigil roll | ~1000-entry pool, chase odds 0.2–4% | only the chase sigils **you tick** (up to 41), equal odds |
 | Random 2nd trait on "+" sigils | ~65% junk (resistances, Rupie Tycoon…) | only the traits **you tick**, always vanilla-legal combos |
-| Transmarvel wrightstones | tier-3 "Transmarveled" at 0.1% | **always** tier-3 Transmarveled |
+| Transmarvel wrightstones | Lv20-main stones at 0.1–25% | **always Lv20 main**, subs fixed or rolled from your ticked traits (knob) |
 | Duplicate protection | none | completed Warpath+ combos **auto-leave the pool** (reads your save) |
 | Voucher income | none from quests | configurable per-clear grants, down to any difficulty tier |
 | Roll cost | 150 points | configurable (1–9999) |
@@ -28,8 +28,8 @@ Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases)
 [GBFR Mod Manager](https://www.nexusmods.com/granbluefantasyrelink/mods/526) (**2.0.1+**).
 First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.github.io/relink-modding/modding/installing_mods/).
 
-1. Download **`transmarvel-overhaul-v2.1.zip`** from the
-   [transmarvel-overhaul-v2.1 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.1).
+1. Download **`transmarvel-overhaul-v2.2.zip`** from the
+   [transmarvel-overhaul-v2.2 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.2).
 2. Extract into `Reloaded-II\Mods\` → `Mods\gbfr.transmarvel.overhaul\`.
 3. Enable **Transmarvel Overhaul (2.0)** in the game's mod list; launch.
 
@@ -59,6 +59,15 @@ Divergence V+) and all 28 character **Warpath+** (max trait). **Opt-in bucket
 stat-V+ singles are also listed, also off). Ticked sigils share the pool at equal
 odds; untick to remove. **Untick everything = vanilla pool** (overhaul off).
 The 75/25 sigil-vs-wrightstone split stays vanilla.
+
+### Wrightstone drops
+Wrightstone skills are **not rolled from the sigil trait pool** — each wrightstone
+item has its skills defined in `item_pendulum.tbl`. The *Wrightstone drops* setting
+picks which Lv20-main stones the 25% wrightstone side can grant:
+`0` = the Transmarveled fixed-sub stones (always Aegis 15 / ATK 10; vanilla's 0.1%
+tier, default), `1` = the vanilla high-tier stones whose **two subs roll at
+Lv15/Lv10 — from your ticked 2nd traits**, since their sub rolls go through the
+same filtered trait lots, `2` = both 50/50. Either way, no more sub-Lv20 mains.
 
 ### Sigil Pool — Auto (duplicate protection)
 *Auto-remove completed sigils* (default on): at every launch the mod reads your

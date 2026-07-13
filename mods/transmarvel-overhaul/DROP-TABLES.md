@@ -9,8 +9,9 @@ are ever generated.
 
 ## 1. Sigil pool — 41 ticked, equal ~2.44% each
 
-75% of Transmarvels roll a sigil from this pool; 25% roll a wrightstone
-(always tier-3 Transmarveled).
+75% of Transmarvels roll a sigil from this pool; 25% roll a wrightstone —
+always a Lv20 main skill, with subs either fixed (Aegis 15/ATK 10) or rolled
+at Lv15/Lv10 from your ticked traits, per the *Wrightstone drops* setting.
 
 | Sigil | Bucket | Innate trait |
 |---|---|---|

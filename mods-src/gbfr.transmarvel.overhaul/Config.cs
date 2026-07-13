@@ -40,6 +40,18 @@ public class Config : Configurable<Config>
     public int VoucherMinTier { get; set; } = 8;
 
     [Category("Sigil Pool - Auto")]
+    [DisplayName("Wrightstone drops")]
+    [Description("Which wrightstones the 25% wrightstone side of a Transmarvel can roll.\n" +
+        "All options guarantee a LEVEL 20 main skill:\n" +
+        "  0 = Transmarveled fixed subs: always Aegis 15 / ATK 10 (vanilla 0.1% stones; default)\n" +
+        "  1 = RANDOM subs at Lv15/Lv10 - the sub skills roll from your ticked 2nd traits\n" +
+        "      (vanilla high-tier stones; the mod's trait filter applies to them)\n" +
+        "  2 = both, 50/50\n\n" +
+        "RESTART THE GAME after changing this.")]
+    [DefaultValue(0)]
+    public int WrightstoneDrops { get; set; } = 0;
+
+    [Category("Sigil Pool - Auto")]
     [DisplayName("Auto-remove completed sigils (reads your save)")]
     [Description("At every game launch the mod reads your newest save (read-only) and\n" +
         "removes from the Transmarvel pool: any TICKED Warpath+ you already own with\n" +

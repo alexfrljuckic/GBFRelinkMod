@@ -256,7 +256,8 @@ public class Mod : ModBase
     private const int GachaLotRowSize = 28;      // QuestIDMin, QuestIDMax, Key, ItemId, Weight, TraitLevel, Unk18
     private const uint SigilGroupKey = 0x27509C51;      // Transmarvel sigil-side rate group
     private const uint WrightstoneGroupKey = 0x67716D8A; // Transmarvel wrightstone-side rate group
-    private const uint Tier3WrightstoneLot = 0xBD1CBF1C;
+    private const uint Tier3WrightstoneLot = 0xBD1CBF1C;  // ITEM_2x_0132: Lv20 main, FIXED Aegis15/ATK10 subs
+    private const uint HighWrightstoneLot = 0xD2CCD4EC;   // ITEM_2x_0131: Lv20 main, RANDOM subs Lv15/Lv10
     private const uint WarpathBucketKey = 0xF527EF32;    // the 28-character-Warpath+ chase bucket
     private const uint AwakeningBucketKey = 0x5AD4ADAD;  // 28 character Awakening+ (+4 stat V+ singles), opt-in
 
@@ -422,14 +423,25 @@ public class Mod : ModBase
             }
             else if (group == WrightstoneGroupKey)
             {
-                BinaryPrimitives.WriteInt32LittleEndian(rates.AsSpan(off + 8, 4), lotId == Tier3WrightstoneLot ? 10000 : 0);
+                // all modes guarantee Lv20-main stones; the knob picks fixed vs random subs
+                int mode = Math.Clamp(_configuration.WrightstoneDrops, 0, 2);
+                int w = lotId == Tier3WrightstoneLot ? (mode == 0 ? 10000 : mode == 2 ? 5000 : 0)
+                      : lotId == HighWrightstoneLot ? (mode == 1 ? 10000 : mode == 2 ? 5000 : 0)
+                      : 0;
+                BinaryPrimitives.WriteInt32LittleEndian(rates.AsSpan(off + 8, 4), w);
             }
         }
 
         _dataManager.AddOrUpdateExternalFile("system/table/gacha_rate_group.tbl", rates);
         _dataManager.AddOrUpdateExternalFile("system/table/gacha_lot.tbl", newLots);
         _dataManager.UpdateIndex();
-        Log($"Sigil pool applied: {kept.Length}/{SigilCatalog.Pool.Length} sigils at ~{100.0 / kept.Length:F2}% each; wrightstones pinned tier-3 Transmarveled.");
+        string wsMode = Math.Clamp(_configuration.WrightstoneDrops, 0, 2) switch
+        {
+            0 => "fixed subs (Aegis15/ATK10)",
+            1 => "RANDOM subs from ticked traits",
+            _ => "fixed + random subs 50/50",
+        };
+        Log($"Sigil pool applied: {kept.Length}/{SigilCatalog.Pool.Length} sigils at ~{100.0 / kept.Length:F2}% each; wrightstones Lv20-main, {wsMode}.");
     }
 
     /// <summary>
