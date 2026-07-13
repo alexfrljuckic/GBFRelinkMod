@@ -136,14 +136,15 @@ Last updated 2026-07-09.
   auto-prune simulation respects user unticks, prunes 0 (correct for current save).
   New harness [tools-src/savereader-test/](tools-src/savereader-test/).
   `build-jackpot-tables.mjs` now redundant as pruner (kept for inspection).
-- **Transmarvel Overhaul 2.1-dev3: wrightstone drops knob** — `item_pendulum.tbl`
-  decoded (wrightstone = "pendulum"; per-item FIXED Main/Sub skills + levels; 74 defs).
-  Key find: tier `_0131` (gacha lot `D2CCD4EC`) = **guaranteed Lv20 main** (level lot
-  17 = 100% Lv20) + TWO RANDOM subs Lv15/Lv10 — sub skills roll through the trait-lot
-  system, i.e. THE MOD'S FILTER APPLIES to them. New `WrightstoneDrops` config:
-  0 = fixed Aegis15/ATK10 (`_0132`, default), 1 = random subs (`_0131`), 2 = 50/50.
-  Alex set to 1. Explains "identical stones": `_0132` defs are fully deterministic.
-  Rides toward v2.2.
+- **Transmarvel Overhaul v2.2 — RELEASED**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.2),
+  commit `f29e08f`): wrightstone drops knob. `item_pendulum.tbl` decoded (wrightstone
+  = "pendulum"; per-item FIXED Main/Sub skills + level lots; 74 defs). Key find: tier
+  `_0131` (gacha lot `D2CCD4EC`) = **guaranteed Lv20 main** (level lot 17 = 100% Lv20)
+  + TWO RANDOM subs Lv15/Lv10 rolled through the trait lots THE MOD ALREADY FILTERS →
+  random subs come from ticked traits. `WrightstoneDrops`: 0 = fixed Aegis15/ATK10
+  (`_0132`, default), 1 = random subs (`_0131`, Alex's setting, live-verified), 2 =
+  50/50. Explains the "identical stones" mystery: `_0132` defs are fully deterministic.
 - **Transmarvel Overhaul v2.1 — RELEASED**
   ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.1)):
   Awakening+ bucket (per Alex) — vanilla bucket `5AD4ADAD` decoded: 28 character
