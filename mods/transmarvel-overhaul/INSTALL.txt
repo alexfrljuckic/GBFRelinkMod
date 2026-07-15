@@ -1,21 +1,31 @@
-Transmarvel Overhaul v2.2 (Endless Ragnarok / 2.0)
+Transmarvel Overhaul v3.0 (Endless Ragnarok / 2.0)
 ==================================================
 Transmarvel, fixed - fully configurable in Reloaded-II (right-click the
 mod -> Configure Mod). All tables are generated from vanilla game data +
 your settings at every game launch; nothing on disk is modified.
 
-1. Sigil pool: only the chase sigils YOU tick (13 top V+ generics +
-   28 character Warpath+ on by default, plus an OPT-IN bucket with the
-   28 character Awakening+), equal odds. Wrightstone rolls always have
-   a LEVEL 20 main skill - with a knob for fixed Aegis/ATK subs or
-   RANDOM subs rolled from your ticked traits.
-2. Duplicate protection: Warpath+ you own with every rollable 2nd trait
-   leave the pool automatically, and Awakening+ leave as soon as you own
-   ONE copy (the mod reads your save at launch - READ-ONLY, it never
-   writes your save). Untick "Auto-remove completed sigils" to disable.
-3. 2nd traits: only the traits YOU tick can roll (default: a curated 11,
-   no resistances/filler) - and only in (sigil x trait) combos the
-   vanilla game could naturally produce.
+NEW IN v3: the config is organized like the game's own skill list
+(1. Basic Stats / 2. Attack / 3. Defense / 4. Support / 5. Special),
+and every skill has up to two toggles:
+  (primary sigil) - the skill's V+ sigil rolls as a Transmarvel MAIN.
+      Works for ANY ordinary skill now (Aegis V+, Cascade V+, ... - a mod
+      extension; vanilla Transmarvel only offers the chase sigils), plus
+      the usual chase sigils and character Warpath+/Awakening+ (under
+      5. Special, where the game files them).
+  (2nd trait) - the skill can roll as the random secondary on + sigils.
+
+1. Sigil pool: only the sigils YOU tick, equal odds. Defaults unchanged
+   from v2 (13 top V+ generics + 28 Warpath+ on; everything else off).
+   Wrightstone rolls always have a LEVEL 20 main skill - with a knob for
+   fixed Aegis/ATK subs or RANDOM subs rolled from your ticked traits.
+2. Duplicate protection: Warpath+ and mod-added V+ mains you own with
+   every rollable 2nd trait leave the pool automatically; Awakening+ and
+   stat V+ leave as soon as you own ONE copy (the mod reads your save at
+   launch - READ-ONLY, it never writes your save). Untick "Auto-remove
+   completed sigils" to disable.
+3. 2nd traits: your ticked traits are the ONLY secondaries that can roll,
+   from any source - every trait lot is rewritten to them (tick several
+   for variety; a single ticked trait means every sigil rolls that trait).
 4. Voucher income: configurable guaranteed Transmarvel Vouchers per
    quest clear, down to any difficulty tier (engine caps grants at
    ~25/clear; easy early-board quests pay the most). Roll cost also

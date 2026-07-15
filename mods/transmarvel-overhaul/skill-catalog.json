@@ -1,0 +1,3028 @@
+[
+ {
+  "family": "0",
+  "name": "ATK",
+  "category": 0,
+  "categoryName": "Basic Stats",
+  "sortOrder": 1010,
+  "primary": {
+   "prop": "PoolAttackPowerV",
+   "displayName": "Attack Power V+",
+   "hash": "0x08DA7279",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Atk",
+   "displayName": "ATK",
+   "hash": "0x50079A1C",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "1",
+  "name": "HP",
+  "category": 0,
+  "categoryName": "Basic Stats",
+  "sortOrder": 1020,
+  "primary": {
+   "prop": "PoolHealthV",
+   "displayName": "Health V+",
+   "hash": "0xB5B23F02",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Hp",
+   "displayName": "HP",
+   "hash": "0xF372F096",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "3",
+  "name": "Critical Hit Rate",
+  "category": 0,
+  "categoryName": "Basic Stats",
+  "sortOrder": 1030,
+  "primary": {
+   "prop": "PoolCriticalHitRateV",
+   "displayName": "Critical Hit Rate V+",
+   "hash": "0x459DD2C2",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": {
+   "prop": "CriticalHitRate",
+   "displayName": "Critical Hit Rate",
+   "hash": "0x8D78A19B",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "4",
+  "name": "Stun Power",
+  "category": 0,
+  "categoryName": "Basic Stats",
+  "sortOrder": 1040,
+  "primary": {
+   "prop": "PoolStunPowerV",
+   "displayName": "Stun Power V+",
+   "hash": "0x39BEA99B",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": {
+   "prop": "StunPower",
+   "displayName": "Stun Power",
+   "hash": "0xCEB700EE",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "5",
+  "name": "Enmity",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2010,
+  "primary": {
+   "prop": "PoolEnmityV",
+   "displayName": "Enmity V+",
+   "hash": "0xA3021B5E",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Enmity",
+   "displayName": "Enmity",
+   "hash": "0x3F488339",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "320",
+  "name": "Celestial Nyx",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2015,
+  "primary": {
+   "prop": "PoolCelestialNyxV",
+   "displayName": "Celestial Nyx V+",
+   "hash": "0x8B8085C0",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "6",
+  "name": "Stamina",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2020,
+  "primary": {
+   "prop": "PoolStaminaV",
+   "displayName": "Stamina V+",
+   "hash": "0xE8454459",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Stamina",
+   "displayName": "Stamina",
+   "hash": "0x2FC8FBFF",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "321",
+  "name": "Celestial Lumen",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2025,
+  "primary": {
+   "prop": "PoolCelestialLumenV",
+   "displayName": "Celestial Lumen V+",
+   "hash": "0x20492635",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "13",
+  "name": "Critical Hit DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2030,
+  "primary": {
+   "prop": "PoolCriticalDamageV",
+   "displayName": "Critical Damage V+",
+   "hash": "0x9D3093AE",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "CriticalHitDmg",
+   "displayName": "Critical Hit DMG",
+   "hash": "0xC0979A17",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "14",
+  "name": "Weak Point DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2040,
+  "primary": {
+   "prop": "PoolExploiterV",
+   "displayName": "Exploiter V+",
+   "hash": "0xBFAA447E",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "WeakPointDmg",
+   "displayName": "Weak Point DMG",
+   "hash": "0x6B694D6D",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "27",
+  "name": "Tyranny",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2050,
+  "primary": {
+   "prop": "PoolTyrannyV",
+   "displayName": "Tyranny V+",
+   "hash": "0xA492FFAC",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Tyranny",
+   "displayName": "Tyranny",
+   "hash": "0x71F11A9B",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "322",
+  "name": "Celestial Terra",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2055,
+  "primary": {
+   "prop": "PoolCelestialTerraV",
+   "displayName": "Celestial Terra V+",
+   "hash": "0xD29CD8E0",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "110",
+  "name": "Life on the Line",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2060,
+  "primary": {
+   "prop": "PoolLifeOnTheLineV",
+   "displayName": "Life on the Line V+",
+   "hash": "0xF610E3B9",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "LifeOnTheLine",
+   "displayName": "Life on the Line",
+   "hash": "0x8F502F0D",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "326",
+  "name": "Celestial Ventus",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2065,
+  "primary": {
+   "prop": "PoolCelestialVentusV",
+   "displayName": "Celestial Ventus V+",
+   "hash": "0x9300FADB",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "20",
+  "name": "DMG Cap",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2070,
+  "primary": {
+   "prop": "PoolDamageCapV",
+   "displayName": "Damage Cap V+",
+   "hash": "0x54D8EA04",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "DmgCap",
+   "displayName": "DMG Cap",
+   "hash": "0xDC584F60",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "83",
+  "name": "Skilled Assault",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2080,
+  "primary": {
+   "prop": "PoolSkilledAssaultV",
+   "displayName": "Skilled Assault V+",
+   "hash": "0x2A85A4C2",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SkilledAssault",
+   "displayName": "Skilled Assault",
+   "hash": "0xEAE321EB",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "9",
+  "name": "Linked Together",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2090,
+  "primary": {
+   "prop": "PoolLinkedTogetherV",
+   "displayName": "Linked Together V+",
+   "hash": "0x59E5335B",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "LinkedTogether",
+   "displayName": "Linked Together",
+   "hash": "0x3FEC5F80",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "24",
+  "name": "Combo Booster",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2100,
+  "primary": {
+   "prop": "PoolComboBoosterV",
+   "displayName": "Combo Booster V+",
+   "hash": "0x6A3B2653",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ComboBooster",
+   "displayName": "Combo Booster",
+   "hash": "0xF17850B9",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "151",
+  "name": "Supplementary DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2110,
+  "primary": {
+   "prop": "PoolSupplementaryDamageV",
+   "displayName": "Supplementary Damage V+",
+   "hash": "0x035A4DDD",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": {
+   "prop": "SupplementaryDmg",
+   "displayName": "Supplementary DMG",
+   "hash": "0x57AB5B10",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "233",
+  "name": "Berserker Echo",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2120,
+  "primary": {
+   "prop": "PoolBerserkerEcho",
+   "displayName": "Berserker Echo+",
+   "hash": "0x332E9B30",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "234",
+  "name": "Spartan Echo",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2130,
+  "primary": {
+   "prop": "PoolSpartanEcho",
+   "displayName": "Spartan Echo+",
+   "hash": "0x938DB625",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "17",
+  "name": "Combo Finisher DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2140,
+  "primary": {
+   "prop": "PoolComboFinisherV",
+   "displayName": "Combo Finisher V+",
+   "hash": "0x130508AC",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ComboFinisherDmg",
+   "displayName": "Combo Finisher DMG",
+   "hash": "0xA7A45F28",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "8",
+  "name": "Charged Attack DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2150,
+  "primary": {
+   "prop": "PoolChargedAttackV",
+   "displayName": "Charged Attack V+",
+   "hash": "0x02C67F5E",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ChargedAttackDmg",
+   "displayName": "Charged Attack DMG",
+   "hash": "0x1C360C63",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "28",
+  "name": "Lucky Charge",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2160,
+  "primary": {
+   "prop": "PoolLuckyChargeV",
+   "displayName": "Lucky Charge V+",
+   "hash": "0x8224E6E0",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "LuckyCharge",
+   "displayName": "Lucky Charge",
+   "hash": "0xC35B111B",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "111",
+  "name": "Quick Charge",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2170,
+  "primary": {
+   "prop": "PoolQuickChargeV",
+   "displayName": "Quick Charge V+",
+   "hash": "0x91956B39",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "QuickCharge",
+   "displayName": "Quick Charge",
+   "hash": "0x84078CB0",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "18",
+  "name": "Concentrated Fire",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2180,
+  "primary": {
+   "prop": "PoolConcentratedFireV",
+   "displayName": "Concentrated Fire V+",
+   "hash": "0xB7C4535A",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ConcentratedFire",
+   "displayName": "Concentrated Fire",
+   "hash": "0xB360801D",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "12",
+  "name": "Throw DMG",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2190,
+  "primary": {
+   "prop": "PoolThrowV",
+   "displayName": "Throw V+",
+   "hash": "0xB4ADDDC5",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ThrowDmg",
+   "displayName": "Throw DMG",
+   "hash": "0x8D078597",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "29",
+  "name": "Injury to Insult",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2200,
+  "primary": {
+   "prop": "PoolInjuryToInsultV",
+   "displayName": "Injury to Insult V+",
+   "hash": "0xC37A0842",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "InjuryToInsult",
+   "displayName": "Injury to Insult",
+   "hash": "0x4F1A3683",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "30",
+  "name": "Overdrive Assassin",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2210,
+  "primary": {
+   "prop": "PoolOverdriveAssassinV",
+   "displayName": "Overdrive Assassin V+",
+   "hash": "0x3973C1C4",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "OverdriveAssassin",
+   "displayName": "Overdrive Assassin",
+   "hash": "0xA9D17F55",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "323",
+  "name": "Celestial Incendo",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2215,
+  "primary": {
+   "prop": "PoolCelestialIncendoV",
+   "displayName": "Celestial Incendo V+",
+   "hash": "0x74061B0C",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "31",
+  "name": "Break Assassin",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2220,
+  "primary": {
+   "prop": "PoolBreakAssassinV",
+   "displayName": "Break Assassin V+",
+   "hash": "0x104CD6EA",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "BreakAssassin",
+   "displayName": "Break Assassin",
+   "hash": "0xAC9674C1",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "324",
+  "name": "Celestial Aqua",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2225,
+  "primary": {
+   "prop": "PoolCelestialAquaV",
+   "displayName": "Celestial Aqua V+",
+   "hash": "0xE14E1598",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "325",
+  "name": "Fatebreaker",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2226,
+  "primary": {
+   "prop": "PoolFatebreakerV",
+   "displayName": "Fatebreaker V+",
+   "hash": "0x5BF84FD1",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "153",
+  "name": "Head Start",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2230,
+  "primary": {
+   "prop": "PoolHeadStartV",
+   "displayName": "Head Start V+",
+   "hash": "0xBE6B6288",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "HeadStart",
+   "displayName": "Head Start",
+   "hash": "0x1568E0E4",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "145",
+  "name": "Power Hungry",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2240,
+  "primary": {
+   "prop": "PoolPowerHungryV",
+   "displayName": "Power Hungry V+",
+   "hash": "0xF1CAFFA6",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PowerHungry",
+   "displayName": "Power Hungry",
+   "hash": "0xDC225C96",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "61",
+  "name": "Guard Payback",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2250,
+  "primary": {
+   "prop": "PoolGuardPaybackV",
+   "displayName": "Guard Payback V+",
+   "hash": "0x522C13B8",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "GuardPayback",
+   "displayName": "Guard Payback",
+   "hash": "0x3C2B57B0",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "64",
+  "name": "Dodge Payback",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2260,
+  "primary": {
+   "prop": "PoolDodgePaybackV",
+   "displayName": "Dodge Payback V+",
+   "hash": "0xA278238E",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "DodgePayback",
+   "displayName": "Dodge Payback",
+   "hash": "0x7C2E4D64",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "235",
+  "name": "Super Ultimate Perfect Dodge",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2270,
+  "primary": {
+   "prop": "PoolSuperUltimatePerfectDodge",
+   "displayName": "Super Ultimate Perfect Dodge+",
+   "hash": "0xBBE831B2",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "152",
+  "name": "Less Is More",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2280,
+  "primary": {
+   "prop": "PoolLessIsMoreV",
+   "displayName": "Less Is More V+",
+   "hash": "0x533D337B",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "LessIsMore",
+   "displayName": "Less Is More",
+   "hash": "0x82CE278D",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "154",
+  "name": "Berserker",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2290,
+  "primary": {
+   "prop": "PoolBerserkerV",
+   "displayName": "Berserker V+",
+   "hash": "0x83E5006E",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Berserker",
+   "displayName": "Berserker",
+   "hash": "0x70395731",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "158",
+  "name": "Glass Cannon",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2300,
+  "primary": {
+   "prop": "PoolGlassCannonV",
+   "displayName": "Glass Cannon V+",
+   "hash": "0x1D409445",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "GlassCannon",
+   "displayName": "Glass Cannon",
+   "hash": "0xA8A3163B",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "157",
+  "name": "Roll of the Die",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2310,
+  "primary": {
+   "prop": "PoolRollOfTheDie",
+   "displayName": "Roll of the Die+",
+   "hash": "0xB1D40170",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "146",
+  "name": "War Elemental",
+  "category": 1,
+  "categoryName": "Attack",
+  "sortOrder": 2320,
+  "primary": {
+   "prop": "PoolWarElemental",
+   "displayName": "War Elemental+",
+   "hash": "0x00612B10",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "85",
+  "name": "Aegis",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5010,
+  "primary": {
+   "prop": "PoolAegisV",
+   "displayName": "Aegis V+",
+   "hash": "0x9C2399DA",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Aegis",
+   "displayName": "Aegis",
+   "hash": "0xE0ABFDFE",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "166",
+  "name": "Greater Aegis",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5020,
+  "primary": {
+   "prop": "PoolGreaterAegisV",
+   "displayName": "Greater Aegis V+",
+   "hash": "0x6F1D0870",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": {
+   "prop": "GreaterAegis",
+   "displayName": "Greater Aegis",
+   "hash": "0x48A95B8D",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "36",
+  "name": "Garrison",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5030,
+  "primary": {
+   "prop": "PoolGarrisonV",
+   "displayName": "Garrison V+",
+   "hash": "0x381BBE64",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Garrison",
+   "displayName": "Garrison",
+   "hash": "0xE6CDBA9C",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "144",
+  "name": "Stronghold",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5040,
+  "primary": {
+   "prop": "PoolStrongholdV",
+   "displayName": "Stronghold V+",
+   "hash": "0xD4EBB836",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Stronghold",
+   "displayName": "Stronghold",
+   "hash": "0x74AA75D6",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "96",
+  "name": "Steel Nerves",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5050,
+  "primary": {
+   "prop": "PoolSteelNervesV",
+   "displayName": "Steel Nerves V+",
+   "hash": "0xEDA2116A",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SteelNerves",
+   "displayName": "Steel Nerves",
+   "hash": "0x1470F860",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "60",
+  "name": "Improved Guard",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5060,
+  "primary": {
+   "prop": "PoolImprovedGuardV",
+   "displayName": "Improved Guard V+",
+   "hash": "0xB832E7A7",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ImprovedGuard",
+   "displayName": "Improved Guard",
+   "hash": "0x0AA20846",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "63",
+  "name": "Improved Dodge",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5070,
+  "primary": {
+   "prop": "PoolImprovedDodge",
+   "displayName": "Improved Dodge+",
+   "hash": "0xE89224A1",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ImprovedDodge",
+   "displayName": "Improved Dodge",
+   "hash": "0x8B3BF60C",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "107",
+  "name": "Precise Resilience",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5080,
+  "primary": {
+   "prop": "PoolPreciseResilienceV",
+   "displayName": "Precise Resilience V+",
+   "hash": "0x1D3B007A",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PreciseResilience",
+   "displayName": "Precise Resilience",
+   "hash": "0x29B292A8",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "104",
+  "name": "Nimble Defense",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5090,
+  "primary": {
+   "prop": "PoolNimbleDefenseV",
+   "displayName": "Nimble Defense V+",
+   "hash": "0xA4B849A0",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "NimbleDefense",
+   "displayName": "Nimble Defense",
+   "hash": "0x09AA7DB5",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "150",
+  "name": "Untouchable",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5100,
+  "primary": {
+   "prop": "PoolUntouchable",
+   "displayName": "Untouchable+",
+   "hash": "0x49745934",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "159",
+  "name": "Flight over Fight",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5110,
+  "primary": {
+   "prop": "PoolFlightOverFight",
+   "displayName": "Flight over Fight+",
+   "hash": "0x0A4651BB",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "87",
+  "name": "Firm Stance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5120,
+  "primary": {
+   "prop": "PoolFirmStanceV",
+   "displayName": "Firm Stance V+",
+   "hash": "0xB1CCC211",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "FirmStance",
+   "displayName": "Firm Stance",
+   "hash": "0xB6E31F76",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "54",
+  "name": "Dizzy Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5130,
+  "primary": {
+   "prop": "PoolDizzyResistanceV",
+   "displayName": "Dizzy Resistance V+",
+   "hash": "0x20BCDB1B",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "DizzyResistance",
+   "displayName": "Dizzy Resistance",
+   "hash": "0x3759A5B9",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "52",
+  "name": "Glaciate Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5140,
+  "primary": {
+   "prop": "PoolGlaciateResistanceV",
+   "displayName": "Glaciate Resistance V+",
+   "hash": "0xEF70CA76",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "GlaciateResistance",
+   "displayName": "Glaciate Resistance",
+   "hash": "0xFB572681",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "136",
+  "name": "Held Under Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5150,
+  "primary": {
+   "prop": "PoolHeldUnderResistanceV",
+   "displayName": "Held Under Resistance V+",
+   "hash": "0xEF5D0D16",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "HeldUnderResistance",
+   "displayName": "Held Under Resistance",
+   "hash": "0x1DC9D7E7",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "51",
+  "name": "Sandtomb Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5160,
+  "primary": {
+   "prop": "PoolSandtombResistanceV",
+   "displayName": "Sandtomb Resistance V+",
+   "hash": "0x614FB550",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SandtombResistance",
+   "displayName": "Sandtomb Resistance",
+   "hash": "0xD54F8CA7",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "46",
+  "name": "Poison Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5170,
+  "primary": {
+   "prop": "PoolPoisonResistanceV",
+   "displayName": "Poison Resistance V+",
+   "hash": "0x176FE02C",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PoisonResistance",
+   "displayName": "Poison Resistance",
+   "hash": "0x973B49AF",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "86",
+  "name": "Slow Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5180,
+  "primary": {
+   "prop": "PoolSlowResistanceV",
+   "displayName": "Slow Resistance V+",
+   "hash": "0x22115F71",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SlowResistance",
+   "displayName": "Slow Resistance",
+   "hash": "0xA2FA9685",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "47",
+  "name": "Burn Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5190,
+  "primary": {
+   "prop": "PoolBurnResistanceV",
+   "displayName": "Burn Resistance V+",
+   "hash": "0x27F0408A",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "BurnResistance",
+   "displayName": "Burn Resistance",
+   "hash": "0x7C84A6B3",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "55",
+  "name": "Paralysis Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5200,
+  "primary": {
+   "prop": "PoolParalysisResistanceV",
+   "displayName": "Paralysis Resistance V+",
+   "hash": "0x6AC327A2",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ParalysisResistance",
+   "displayName": "Paralysis Resistance",
+   "hash": "0x2242921F",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "88",
+  "name": "Blight Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5210,
+  "primary": {
+   "prop": "PoolBlightResistanceV",
+   "displayName": "Blight Resistance V+",
+   "hash": "0xAA45CD2D",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "BlightResistance",
+   "displayName": "Blight Resistance",
+   "hash": "0x9702860F",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "57",
+  "name": "Skill Sealed Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5220,
+  "primary": {
+   "prop": "PoolSkillSealedResistanceV",
+   "displayName": "Skill Sealed Resistance V+",
+   "hash": "0x19CB4EB9",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SkillSealedResistance",
+   "displayName": "Skill Sealed Resistance",
+   "hash": "0x50B453DD",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "58",
+  "name": "SBA Sealed Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5230,
+  "primary": {
+   "prop": "PoolSBASealedResistanceV",
+   "displayName": "SBA Sealed Resistance V+",
+   "hash": "0x464099CD",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SbaSealedResistance",
+   "displayName": "SBA Sealed Resistance",
+   "hash": "0xCFB48782",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "137",
+  "name": "Darkflame Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5240,
+  "primary": {
+   "prop": "PoolDarkflameResistanceV",
+   "displayName": "Darkflame Resistance V+",
+   "hash": "0xD3071D85",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "DarkflameResistance",
+   "displayName": "Darkflame Resistance",
+   "hash": "0xDD4A701E",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "138",
+  "name": "ATK↓ Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5250,
+  "primary": {
+   "prop": "PoolAttackDownResistanceV",
+   "displayName": "Attack Down Resistance V+",
+   "hash": "0x7291A3F9",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "AtkDownResistance",
+   "displayName": "ATK↓ Resistance",
+   "hash": "0x4BF2E191",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "139",
+  "name": "DEF↓ Resistance",
+  "category": 2,
+  "categoryName": "Defense",
+  "sortOrder": 5260,
+  "primary": {
+   "prop": "PoolDefenseDownResistanceV",
+   "displayName": "Defense Down Resistance V+",
+   "hash": "0x5048C546",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "DefDownResistance",
+   "displayName": "DEF↓ Resistance",
+   "hash": "0x66DE60B1",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "65",
+  "name": "Improved Healing",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4010,
+  "primary": {
+   "prop": "PoolImprovedHealingV",
+   "displayName": "Improved Healing V+",
+   "hash": "0x7E13A72D",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "ImprovedHealing",
+   "displayName": "Improved Healing",
+   "hash": "0x9389CC06",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "66",
+  "name": "Regen",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4020,
+  "primary": {
+   "prop": "PoolRegenV",
+   "displayName": "Regen V+",
+   "hash": "0x1E69C3D0",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Regen",
+   "displayName": "Regen",
+   "hash": "0x6085DA25",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "327",
+  "name": "Divergence",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4025,
+  "primary": {
+   "prop": "PoolDivergenceV",
+   "displayName": "Divergence V+",
+   "hash": "0x7B4AAB30",
+   "bucketKey": "0x36879ED7",
+   "bucket": "Chase V+ (2.0)",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "67",
+  "name": "Drain",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4030,
+  "primary": {
+   "prop": "PoolDrainV",
+   "displayName": "Drain V+",
+   "hash": "0x95C88E4F",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Drain",
+   "displayName": "Drain",
+   "hash": "0x7CCFF74F",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "69",
+  "name": "Quick Cooldown",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4040,
+  "primary": {
+   "prop": "PoolQuickCooldownV",
+   "displayName": "Quick Cooldown V+",
+   "hash": "0x65909E04",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "QuickCooldown",
+   "displayName": "Quick Cooldown",
+   "hash": "0x318D12E9",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "70",
+  "name": "Cascade",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4050,
+  "primary": {
+   "prop": "PoolCascadeV",
+   "displayName": "Cascade V+",
+   "hash": "0x6FD12E61",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Cascade",
+   "displayName": "Cascade",
+   "hash": "0x05F2ECDC",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "72",
+  "name": "Uplift",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4060,
+  "primary": {
+   "prop": "PoolUpliftV",
+   "displayName": "Uplift V+",
+   "hash": "0xE5C9F685",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Uplift",
+   "displayName": "Uplift",
+   "hash": "0xB5FF9FD3",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "109",
+  "name": "Precise Wrath",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4070,
+  "primary": {
+   "prop": "PoolPreciseWrathV",
+   "displayName": "Precise Wrath V+",
+   "hash": "0xCE6C62CF",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PreciseWrath",
+   "displayName": "Precise Wrath",
+   "hash": "0x7EDD69D0",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "106",
+  "name": "Nimble Onslaught",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4080,
+  "primary": {
+   "prop": "PoolNimbleOnslaughtV",
+   "displayName": "Nimble Onslaught V+",
+   "hash": "0x295219F9",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "NimbleOnslaught",
+   "displayName": "Nimble Onslaught",
+   "hash": "0xD2C8E10A",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "156",
+  "name": "Potent Greens",
+  "category": 3,
+  "categoryName": "Support",
+  "sortOrder": 4090,
+  "primary": {
+   "prop": "PoolPotentGreens",
+   "displayName": "Potent Greens+",
+   "hash": "0x4AA48417",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "73",
+  "name": "Potion Hoarder",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7010,
+  "primary": {
+   "prop": "PoolPotionHoarderV",
+   "displayName": "Potion Hoarder V+",
+   "hash": "0x23C84E82",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PotionHoarder",
+   "displayName": "Potion Hoarder",
+   "hash": "0x24883AF3",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "167",
+  "name": "Auto Potion",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7020,
+  "primary": {
+   "prop": "PoolAutoPotion",
+   "displayName": "Auto Potion+",
+   "hash": "0x9D4F66D7",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "45",
+  "name": "Guts",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7030,
+  "primary": {
+   "prop": "PoolGutsV",
+   "displayName": "Guts V+",
+   "hash": "0x91AC1DDD",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Guts",
+   "displayName": "Guts",
+   "hash": "0xE69A4694",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "68",
+  "name": "Autorevive",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7040,
+  "primary": {
+   "prop": "PoolAutoreviveV",
+   "displayName": "Autorevive V+",
+   "hash": "0x2D5F3437",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Autorevive",
+   "displayName": "Autorevive",
+   "hash": "0x95F3FA86",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "94",
+  "name": "Steady Focus",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7050,
+  "primary": {
+   "prop": "PoolSteadyFocusV",
+   "displayName": "Steady Focus V+",
+   "hash": "0x0B456DEF",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "SteadyFocus",
+   "displayName": "Steady Focus",
+   "hash": "0x0053599E",
+   "default": true,
+   "legal": true
+  }
+ },
+ {
+  "family": "78",
+  "name": "Provoke",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7060,
+  "primary": {
+   "prop": "PoolProvokeV",
+   "displayName": "Provoke V+",
+   "hash": "0xC63C8DDF",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "Provoke",
+   "displayName": "Provoke",
+   "hash": "0x6018372B",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "77",
+  "name": "Low Profile",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7070,
+  "primary": {
+   "prop": "PoolLowProfileV",
+   "displayName": "Low Profile V+",
+   "hash": "0xFF2CBCD0",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "LowProfile",
+   "displayName": "Low Profile",
+   "hash": "0xDC607D75",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "79",
+  "name": "Fast Learner",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7080,
+  "primary": {
+   "prop": "PoolFastLearnerV",
+   "displayName": "Fast Learner V+",
+   "hash": "0xD7ABBDCA",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "FastLearner",
+   "displayName": "Fast Learner",
+   "hash": "0xF687C5EF",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "80",
+  "name": "Rupie Tycoon",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7090,
+  "primary": {
+   "prop": "PoolRupieTycoonV",
+   "displayName": "Rupie Tycoon V+",
+   "hash": "0x9E62759D",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "RupieTycoon",
+   "displayName": "Rupie Tycoon",
+   "hash": "0xC86F3082",
+   "default": false,
+   "legal": true
+  }
+ },
+ {
+  "family": "147",
+  "name": "Path to Mastery",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7100,
+  "primary": {
+   "prop": "PoolPathToMasteryV",
+   "displayName": "Path to Mastery V+",
+   "hash": "0x2E3351E3",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": {
+   "prop": "PathToMastery",
+   "displayName": "Path to Mastery",
+   "hash": "0x5E422AE5",
+   "default": false,
+   "legal": false
+  }
+ },
+ {
+  "family": "44",
+  "name": "Stout Heart",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 7400,
+  "primary": {
+   "prop": "PoolStoutHeart",
+   "displayName": "Stout Heart+",
+   "hash": "0x26DDCD39",
+   "bucketKey": "0x6E52A69A",
+   "bucket": "Chase V+",
+   "addToPool": true,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "114",
+  "name": "Fearless Drive",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8010,
+  "character": "Gran/Djeeta",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolFearlessHeart",
+   "displayName": "Fearless Heart+",
+   "hash": "0x0713D928",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "114",
+  "name": "Fearless Drive",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8010,
+  "character": "Gran/Djeeta",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolFearlessSoul",
+   "displayName": "Fearless Soul+",
+   "hash": "0x52A6E299",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "115",
+  "name": "Guardian's Conviction",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8040,
+  "character": "Katalina",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolGuardiansWarpath",
+   "displayName": "Guardian's Warpath+",
+   "hash": "0xAC175924",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "115",
+  "name": "Guardian's Conviction",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8040,
+  "character": "Katalina",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolGuardiansAwakening",
+   "displayName": "Guardian's Awakening+",
+   "hash": "0x9ADA3E00",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "116",
+  "name": "Helmsman's Navigation",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8070,
+  "character": "Lancelot",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolHelmsmansWarpath",
+   "displayName": "Helmsman's Warpath+",
+   "hash": "0xBC53CE24",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "116",
+  "name": "Helmsman's Navigation",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8070,
+  "character": "Lancelot",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolHelmsmansAwakening",
+   "displayName": "Helmsman's Awakening+",
+   "hash": "0x98A6D249",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "117",
+  "name": "Mage's Aspiration",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8100,
+  "character": "Io",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolMagesWarpath",
+   "displayName": "Mage's Warpath+",
+   "hash": "0x43F26A91",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "117",
+  "name": "Mage's Aspiration",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8100,
+  "character": "Io",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolMagesAwakening",
+   "displayName": "Mage's Awakening+",
+   "hash": "0xE2B380E5",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "118",
+  "name": "Veteran's Insight",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8130,
+  "character": "Eugen",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolVeteransWarpath",
+   "displayName": "Veteran's Warpath+",
+   "hash": "0xCAAE3F9C",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "118",
+  "name": "Veteran's Insight",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8130,
+  "character": "Eugen",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolVeteransAwakening",
+   "displayName": "Veteran's Awakening+",
+   "hash": "0x1BBE919C",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "119",
+  "name": "Rose's Blooming",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8160,
+  "character": "Rosetta",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolRosesWarpath",
+   "displayName": "Rose's Warpath+",
+   "hash": "0x515E693C",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "119",
+  "name": "Rose's Blooming",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8160,
+  "character": "Rosetta",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolRosesAwakening",
+   "displayName": "Rose's Awakening+",
+   "hash": "0x9BD1CC24",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "125",
+  "name": "Holy Knight's Luster",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8190,
+  "character": "Charlotta",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolHolyKnightsWarpath",
+   "displayName": "Holy Knight's Warpath+",
+   "hash": "0x4C28585A",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "125",
+  "name": "Holy Knight's Luster",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8190,
+  "character": "Charlotta",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolHolyKnightsAwakening",
+   "displayName": "Holy Knight's Awakening+",
+   "hash": "0xAEEF8343",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "128",
+  "name": "Eternal Rage's Mettle",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8220,
+  "character": null,
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolEternalRagesWarpath",
+   "displayName": "Eternal Rage's Warpath+",
+   "hash": "0x3069C2FE",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "128",
+  "name": "Eternal Rage's Mettle",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8220,
+  "character": null,
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolEternalRagesAwakening",
+   "displayName": "Eternal Rage's Awakening+",
+   "hash": "0xCE16D68B",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "120",
+  "name": "Phantasm's Concord",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8250,
+  "character": "Ferry",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolPhantasmsWarpath",
+   "displayName": "Phantasm's Warpath+",
+   "hash": "0xE496D882",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "120",
+  "name": "Phantasm's Concord",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8250,
+  "character": "Ferry",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolPhantasmsAwakening",
+   "displayName": "Phantasm's Awakening+",
+   "hash": "0xB441275D",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "127",
+  "name": "Butterfly's Grace",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8280,
+  "character": "Narmaya",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolButterflysWarpath",
+   "displayName": "Butterfly's Warpath+",
+   "hash": "0xCEF31894",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "127",
+  "name": "Butterfly's Grace",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8280,
+  "character": "Narmaya",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolButterflysAwakening",
+   "displayName": "Butterfly's Awakening+",
+   "hash": "0x1A57AEF1",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "121",
+  "name": "White Dragon's Oath",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8310,
+  "character": "Lancelot",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolWhiteDragonsWarpath",
+   "displayName": "White Dragon's Warpath+",
+   "hash": "0x8A3819C0",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "121",
+  "name": "White Dragon's Oath",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8310,
+  "character": "Lancelot",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolWhiteDragonsAwakening",
+   "displayName": "White Dragon's Awakening+",
+   "hash": "0xE19B1965",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "122",
+  "name": "Hero's Creed",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8340,
+  "character": "Vane",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolHerosWarpath",
+   "displayName": "Hero's Warpath+",
+   "hash": "0xA490BADF",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "122",
+  "name": "Hero's Creed",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8340,
+  "character": "Vane",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolHerosAwakening",
+   "displayName": "Hero's Awakening+",
+   "hash": "0x673C5D8F",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "123",
+  "name": "Lord's Procession",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8370,
+  "character": "Percival",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolLordsWarpath",
+   "displayName": "Lord's Warpath+",
+   "hash": "0x4CDCE25B",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "123",
+  "name": "Lord's Procession",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8370,
+  "character": "Percival",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolLordsAwakening",
+   "displayName": "Lord's Awakening+",
+   "hash": "0x02472C43",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "124",
+  "name": "Dragonslayer's Dominance",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8400,
+  "character": null,
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolDragonslayersWarpath",
+   "displayName": "Dragonslayer's Warpath+",
+   "hash": "0xE21A4170",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "124",
+  "name": "Dragonslayer's Dominance",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8400,
+  "character": null,
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolDragonslayersAwakening",
+   "displayName": "Dragonslayer's Awakening+",
+   "hash": "0xAB835493",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "129",
+  "name": "Founder's Strategy",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8430,
+  "character": "Rackam",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolFoundersWarpath",
+   "displayName": "Founder's Warpath+",
+   "hash": "0x66F1B128",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "129",
+  "name": "Founder's Strategy",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8430,
+  "character": "Rackam",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolFoundersAwakening",
+   "displayName": "Founder's Awakening+",
+   "hash": "0x02B1F8C0",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "126",
+  "name": "Swordmaster's Prowess",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8460,
+  "character": "Zeta",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolSwordmastersWarpath",
+   "displayName": "Swordmaster's Warpath+",
+   "hash": "0x76D4716B",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "126",
+  "name": "Swordmaster's Prowess",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8460,
+  "character": "Zeta",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolSwordmastersAwakening",
+   "displayName": "Swordmaster's Awakening+",
+   "hash": "0x119B24A8",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "131",
+  "name": "Crimson's Clout",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8490,
+  "character": "Yodarha",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolCrimsonsWarpath",
+   "displayName": "Crimson's Warpath+",
+   "hash": "0xBFDF838C",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "131",
+  "name": "Crimson's Clout",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8490,
+  "character": "Yodarha",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolCrimsonsAwakening",
+   "displayName": "Crimson's Awakening+",
+   "hash": "0x4F01D6CA",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "132",
+  "name": "Ebony's Presence",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8520,
+  "character": "Narmaya",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolEbonysWarpath",
+   "displayName": "Ebony's Warpath+",
+   "hash": "0xB3AB43F3",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "132",
+  "name": "Ebony's Presence",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8520,
+  "character": "Narmaya",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolEbonysAwakening",
+   "displayName": "Ebony's Awakening+",
+   "hash": "0xE4F986D9",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "175",
+  "name": "Ultramarine's Flash",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8550,
+  "character": "Sandalphon",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolUltramarinesWarpath",
+   "displayName": "Ultramarine's Warpath+",
+   "hash": "0x51E98A7C",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "175",
+  "name": "Ultramarine's Flash",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8550,
+  "character": "Sandalphon",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolUltramarinesAwakening",
+   "displayName": "Ultramarine's Awakening+",
+   "hash": "0x95CC3CB8",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "176",
+  "name": "Thunderwolf's Recharge",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8580,
+  "character": "Eustace",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolThunderwolfsWarpath",
+   "displayName": "Thunderwolf's Warpath+",
+   "hash": "0xD8C61507",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "176",
+  "name": "Thunderwolf's Recharge",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8580,
+  "character": "Eustace",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolThunderwolfsAwakening",
+   "displayName": "Thunderwolf's Awakening+",
+   "hash": "0x23953FD4",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "170",
+  "name": "Spirit Edge's Rally",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8610,
+  "character": "Id",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolSpiritEdgesWarpath",
+   "displayName": "Spirit Edge's Warpath+",
+   "hash": "0x9F72BAE0",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "170",
+  "name": "Spirit Edge's Rally",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8610,
+  "character": "Id",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolSpiritEdgesAwakening",
+   "displayName": "Spirit Edge's Awakening+",
+   "hash": "0x6AAE4B8F",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "171",
+  "name": "Dark Huntress's Volley",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8650,
+  "character": "Vaseraga",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolDarkHuntresssWarpath",
+   "displayName": "Dark Huntress's Warpath+",
+   "hash": "0xAD8CAEFB",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "171",
+  "name": "Dark Huntress's Volley",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8650,
+  "character": "Vaseraga",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolDarkHuntresssAwakening",
+   "displayName": "Dark Huntress's Awakening+",
+   "hash": "0x8ECBB0A3",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "172",
+  "name": "Supreme Primarch's Awe",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8690,
+  "character": "Seofon",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolSupremePrimarchsWarpath",
+   "displayName": "Supreme Primarch's Warpath+",
+   "hash": "0x5D592FDD",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "172",
+  "name": "Supreme Primarch's Awe",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8690,
+  "character": "Seofon",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolSupremePrimarchsAwakening",
+   "displayName": "Supreme Primarch's Awakening+",
+   "hash": "0xB8C44D5E",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "177",
+  "name": "Enchantress's Blessing",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8730,
+  "character": "Beatrix",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolEnchantresssWarpath",
+   "displayName": "Enchantress's Warpath+",
+   "hash": "0x2D70C37D",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "177",
+  "name": "Enchantress's Blessing",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8730,
+  "character": "Beatrix",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolEnchantresssAwakening",
+   "displayName": "Enchantress's Awakening+",
+   "hash": "0x5A360EA8",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "178",
+  "name": "The Black's Mark",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8760,
+  "character": "Ferry",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolTheBlacksWarpath",
+   "displayName": "The Black's Warpath+",
+   "hash": "0x9ABD2DA5",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "178",
+  "name": "The Black's Mark",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8760,
+  "character": "Ferry",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolTheBlacksAwakening",
+   "displayName": "The Black's Awakening+",
+   "hash": "0xA8A0CBFF",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "130",
+  "name": "Versalis Foundation",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8790,
+  "character": "Cagliostro",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolVersalisHeart",
+   "displayName": "Versalis Heart+",
+   "hash": "0x98E9E6EF",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "130",
+  "name": "Versalis Foundation",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8790,
+  "character": "Cagliostro",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolVersalisSoul",
+   "displayName": "Versalis Soul+",
+   "hash": "0xAF8E7E7E",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "173",
+  "name": "Gladiator's Frenzy",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8820,
+  "character": "Tweyen",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolGladiatorsWarpath",
+   "displayName": "Gladiator's Warpath+",
+   "hash": "0x41AC1082",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "173",
+  "name": "Gladiator's Frenzy",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8820,
+  "character": "Tweyen",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolGladiatorsAwakening",
+   "displayName": "Gladiator's Awakening+",
+   "hash": "0x895ABBF6",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ },
+ {
+  "family": "174",
+  "name": "Bladequeen's Serenade",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8850,
+  "character": "Nier",
+  "variant": "Warpath+",
+  "primary": {
+   "prop": "PoolBladequeensWarpath",
+   "displayName": "Bladequeen's Warpath+",
+   "hash": "0xEB766D87",
+   "bucketKey": "0xF527EF32",
+   "bucket": "Warpath+",
+   "addToPool": false,
+   "default": true
+  },
+  "secondary": null
+ },
+ {
+  "family": "174",
+  "name": "Bladequeen's Serenade",
+  "category": 4,
+  "categoryName": "Special",
+  "sortOrder": 8850,
+  "character": "Nier",
+  "variant": "Awakening+",
+  "primary": {
+   "prop": "PoolBladequeensAwakening",
+   "displayName": "Bladequeen's Awakening+",
+   "hash": "0xD8A464F1",
+   "bucketKey": "0x5AD4ADAD",
+   "bucket": "Awakening+",
+   "addToPool": false,
+   "default": false
+  },
+  "secondary": null
+ }
+]

@@ -3,7 +3,10 @@
 Generated from vanilla 2.0 tables. A Transmarvel pull = one **main** (the sigil,
 56 character-specific + 17 offensive-generic) × one random
 **secondary** from the lot-14 union below. 73 × 62 = **4526 legal combos**.
-Anything outside this table cannot occur in vanilla and the mod will never generate it.
+Anything outside this table cannot occur in vanilla. (Historical reference:
+since mod v3 the trait filter enforces your ticked set everywhere — live pulls
+proved the engine consumes rewritten lot content regardless of this table — and
+ticked V+ mains beyond the 73 are added to the pool as a mod extension.)
 
 ## Legal secondaries (62) with vanilla roll odds
 

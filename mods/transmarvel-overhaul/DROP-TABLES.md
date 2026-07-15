@@ -4,8 +4,10 @@
 Reloaded-II → Transmarvel Overhaul → Configure Mod change all of it — the
 Reloaded console prints your effective settings at every launch.
 Two independent rolls decide a sigil: the **sigil** (table 1) and its random
-**2nd trait** (table 2). Only combos the vanilla game could naturally produce
-are ever generated.
+**2nd trait** (table 2). Since v3, ticked 2nd traits are the ONLY secondaries
+that can roll (the filter rewrites every trait lot to them), and any ordinary
+skill's V+ sigil can be ticked as a main — both are mod extensions beyond the
+vanilla combo table where needed.
 
 ## 1. Sigil pool — 41 ticked, equal ~2.44% each
 

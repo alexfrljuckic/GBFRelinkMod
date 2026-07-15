@@ -2,7 +2,7 @@
   "ModId": "gbfr.transmarvel.overhaul",
   "ModName": "Transmarvel Overhaul (2.0)",
   "ModAuthor": "alexfrljuckic",
-  "ModVersion": "2.2",
+  "ModVersion": "3.0",
   "ModDescription": "Transmarvel, fixed - fully configurable in Configure Mod: tick which chase sigils stay in the pool (41 on by default + an opt-in Awakening+ bucket, equal odds); wrightstones always roll a LEVEL 20 main, with a knob for fixed Aegis/ATK subs or RANDOM subs from your ticked traits; tick which 2nd traits can roll (default: a curated 11 - no junk resistances; only combos the vanilla game could naturally produce are ever generated); auto-remove completed sigils by reading your save (Warpath+ when every ticked combo is owned, Awakening+ as soon as you own one); and guaranteed Transmarvel Vouchers per quest clear with a difficulty floor and roll-cost knob. Restart the game after changing any setting - all tables are generated at launch. Built for Endless Ragnarok 2.0. Curio pools and sub-Chaos rewards untouched.",
   "ModDll": "gbfr.transmarvel.overhaul.dll",
   "ModIcon": "",

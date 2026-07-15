@@ -50,6 +50,21 @@ Last updated 2026-07-09.
   (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
 
 ## 🔬 In design (validate before building)
+- **Summon skill drop rates** (research started 2026-07-14, per Alex): 2.0's summon
+  inventory decoded — full chain `reward.tbl → reward_summon → reward_summon_lot →
+  summon.tbl (189 summons, 2 skill slots, rarity 3–5★) → summon_lot (weighted skill
+  pools, basis points) → summon_curve (skill LEVEL distribution)`. Slot 1 rolls the
+  SAME `SKILL_xxx_00` hashes as the sigil trait system (+ 9-skill legend tier at 8%,
+  `summon_legend_skill.tbl`); slot 2 = 22 summon-exclusive ids (unresolved). Mod
+  knobs identified: summon_lot weights (skill filter/boost), summon_curve (level
+  floor/Lv15 boost), reward_summon_lot + Chance (which summon, how often). Same
+  IDataManager launch-rebuild architecture as transmarvel. ([docs/23](docs/23-summon-skill-drops.md))
+  UPDATE later that session: `text_sum.msg` extracted → `extracted/summon-names-en.tsv`;
+  summons are enemy-based (77 So-ids == summon_info rows; names like Lucilius, Proto
+  Bahamut, Goblin Gladiator); `summon_info@0x30` = name-text hash; slot-2 skills =
+  summon CALL EFFECTS (`TXT_SMN_BDY_So####`: potions/Regen/Stout Heart/crit gauge…).
+  Still open: summon.tbl↔So-id link (per-summon config names), live confirm skills
+  roll at drop time.
 - **Complete open-source UI spanning** — **CONCLUDED 2026-07-10 (final): ALL ultrawide
   mods UNINSTALLED — game runs vanilla rendering** (both builds parked in
   `save-backups/parked-ultrawide-mods/`; a persistent town-bubble offset survived every
@@ -136,6 +151,44 @@ Last updated 2026-07-09.
   auto-prune simulation respects user unticks, prunes 0 (correct for current save).
   New harness [tools-src/savereader-test/](tools-src/savereader-test/).
   `build-jackpot-tables.mjs` now redundant as pruner (kept for inspection).
+- **Transmarvel Overhaul 3.0-dev1: game-mirrored config + any skill as a main**
+  (2026-07-14, per Alex — "organize like the game; two toggles per skill"). Config
+  reorganized into the game's own skill categories (**1. Basic Stats / 2. Attack /
+  3. Defense / 4. Support / 5. Special**, order included — decoded from `skill.tbl`:
+  GemCategory u32 @ row offset 92, SortOrder @ 100, 112-byte 2.0 rows); every skill
+  now has **(primary sigil)** + **(2nd trait)** toggles. NEW capability: 73 ordinary
+  skills' V+ sigils (vanilla `GEEN_<fam>_24` dual-slot forms — same form as War
+  Elemental+; `_14` = the single-slot stat V+) can join the pool as mains —
+  `ApplySigilPool` appends cloned Chase-V+-bucket rows; combo auto-prune applies to
+  them like Warpath+. Catalog pipeline now in-repo:
+  `scripts/gen-unified-skill-catalog.mjs` → [skill-catalog.json](mods/transmarvel-overhaul/skill-catalog.json)
+  → `scripts/gen-transmarvel-code.mjs` → Config/SigilCatalog/TraitCatalog.cs
+  (146 primary + 72 secondary toggles; old prop names kept so user configs survive).
+  Defaults unchanged from v2.2. Installed as 3.0-dev1. ⚠️ needs a live pull test of
+  an added V+ main (e.g. tick Aegis V+) before release as v3.
+- **Transmarvel Overhaul v3.0 — RELEASED**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v3.0)):
+  the dev1 (game-mirrored two-toggle config + any skill as a main) + dev2 (forced
+  trait-filter coverage) work below, shipped after Alex's live verification
+  (12-trait config, full coverage, added V+ mains dropping correctly).
+- **Transmarvel Overhaul 3.0-dev2: trait filter reevaluated after live evidence**
+  (2026-07-14, from Alex's "majority supp damage + random stamina" report). Alex's
+  live config (only SupplementaryDmg ticked as 2nd trait + 21 primaries) exposed two
+  things: (1) the 10 sub-lots left VANILLA (no legal ticked trait) leaked unticked
+  junk (Stamina) — now closed with a third **forced** remap tier (ticked set written
+  even where not vanilla-legal → full coverage, only ticked traits can EVER roll);
+  (2) **the "vanilla-legal combos only" guarantee is empirically dead** — save audit
+  showed SuppDmg (not lot-14-legal) landing on Celestial/Fatebreaker/added-V+ mains
+  via the relaxed tier, i.e. the engine consumes lot content regardless of the
+  reference model. RollableSecondaries simplified to = ticked (auto-prune no longer
+  self-disables on non-lot-14 tick sets). Config descriptions + README guarantees
+  rewritten; generator now escapes C# strings (a literal quote in the new text broke
+  Config.cs — caught before build). Also live-confirmed from the same save audit:
+  **3.0-dev1 mod-added V+ mains DROP CORRECTLY** (Damage Cap V+, Precise Wrath V+,
+  Quick Cooldown V+, Cascade V+ etc. rolled with secondaries) — the v3 release gate
+  test is done. Side note for Alex's config: his old curated trait ticks are gone
+  (only SuppDmg ticked); re-tick desired "(2nd trait)" boxes. Installed as 3.0-dev2
+  (watcher pending game exit).
 - **Transmarvel Overhaul v2.2 — RELEASED**
   ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.2),
   commit `f29e08f`): wrightstone drops knob. `item_pendulum.tbl` decoded (wrightstone

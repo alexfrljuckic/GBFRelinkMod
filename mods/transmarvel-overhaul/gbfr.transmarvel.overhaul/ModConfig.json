@@ -2,7 +2,7 @@
   "ModId": "gbfr.transmarvel.overhaul",
   "ModName": "Transmarvel Overhaul (2.0)",
   "ModAuthor": "alexfrljuckic",
-  "ModVersion": "2.2",
+  "ModVersion": "3.0",
   "ModDescription": "Transmarvel, fixed - fully configurable in Configure Mod: tick which of the 41 chase sigils stay in the pool (equal odds, wrightstones always tier-3 Transmarveled); tick which 2nd traits can roll (default: a curated 11 - no junk resistances; only combos the vanilla game could naturally produce are ever generated); and guaranteed Transmarvel Vouchers per Chaos+ clear (default x10, 0-99, 0 = off). Restart the game after changing any setting - all tables are generated at launch. Built for Endless Ragnarok 2.0. Curio pools and sub-Chaos rewards untouched.",
   "ModDll": "gbfr.transmarvel.overhaul.dll",
   "ModIcon": "",

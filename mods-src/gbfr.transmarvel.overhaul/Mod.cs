@@ -21,13 +21,16 @@ namespace gbfr.transmarvel.overhaul;
 ///    4083/4093/40A3/40B3), so quests added by game updates are covered.
 ///
 /// 2. Sigil pool — rebuilds the gacha tables from vanilla with only the
-///    ticked chase sigils, equal odds (SigilCatalog.cs checkboxes).
+///    ticked sigils, equal odds (SigilCatalog.cs checkboxes). Ticked sigils
+///    vanilla Transmarvel doesn't offer (AddToPool: the V+ dual-slot forms of
+///    ordinary skills) get a gacha_lot row appended to the Chase V+ bucket,
+///    cloned from a vanilla row of that bucket.
 ///
 /// 3. 2nd-trait filter — rebuilds skill_lot.tbl from vanilla with non-ticked
-///    trait entries remapped, per sub-lot, onto ticked traits that are LEGAL
-///    for every path referencing that sub-lot — no (sigil, trait) combo the
-///    vanilla game couldn't produce. Content-level because pointer-level
-///    rerouting proved insufficient in game (docs/13). TraitCatalog.cs.
+///    trait entries remapped onto ticked traits (strict → relaxed → forced
+///    legality tiers; full coverage, so ONLY ticked traits ever roll).
+///    Content-level because pointer-level rerouting proved insufficient in
+///    game (docs/13). TraitCatalog.cs.
 ///
 /// The mod ships no static tables — everything is generated at launch.
 /// </summary>
@@ -261,42 +264,15 @@ public class Mod : ModBase
     private const uint WarpathBucketKey = 0xF527EF32;    // the 28-character-Warpath+ chase bucket
     private const uint AwakeningBucketKey = 0x5AD4ADAD;  // 28 character Awakening+ (+4 stat V+ singles), opt-in
 
-    /// <summary>Ticked traits that can actually roll on Transmarvel pulls (ticked ∩ vanilla lot-14 union).</summary>
-    private HashSet<uint> RollableSecondaries()
-    {
-        byte[] lots = _dataManager.GetArchiveFile("system/table/skill_lot.tbl");
-        byte[] types = _dataManager.GetArchiveFile("system/table/skill_type_lot.tbl");
-        long lotRows = BinaryPrimitives.ReadInt64LittleEndian(lots);
-        long typeRows = BinaryPrimitives.ReadInt64LittleEndian(types);
-        if (8 + lotRows * SkillLotRowSize != lots.Length || 8 + typeRows * SkillTypeLotRowSize != types.Length)
-            throw new InvalidDataException("skill table layout changed");
-        var contents = new Dictionary<uint, HashSet<uint>>();
-        for (long r = 0; r < lotRows; r++)
-        {
-            int off = (int)(8 + r * SkillLotRowSize);
-            uint key = BinaryPrimitives.ReadUInt32LittleEndian(lots.AsSpan(off, 4));
-            uint sid = BinaryPrimitives.ReadUInt32LittleEndian(lots.AsSpan(off + 4, 4));
-            if (sid == EmptyHash || sid == 0) continue;
-            if (!contents.TryGetValue(key, out var set)) contents[key] = set = new HashSet<uint>();
-            set.Add(sid);
-        }
-        var union = new HashSet<uint>();
-        for (long r = 0; r < typeRows; r++)
-        {
-            int off = (int)(8 + r * SkillTypeLotRowSize);
-            if (BinaryPrimitives.ReadInt32LittleEndian(types.AsSpan(off + 0x30, 4)) != 14) continue;
-            for (int k = 0; k < 6; k++)
-            {
-                uint sub = BinaryPrimitives.ReadUInt32LittleEndian(types.AsSpan(off + 4 * k, 4));
-                int chance = BinaryPrimitives.ReadInt32LittleEndian(types.AsSpan(off + 0x18 + 4 * k, 4));
-                if (sub != EmptyHash && sub != 0 && chance > 0 && contents.TryGetValue(sub, out var c))
-                    union.UnionWith(c);
-            }
-        }
-        var rollable = new HashSet<uint>(TraitCatalog.All.Where(t => t.Enabled(_configuration)).Select(t => t.Hash));
-        rollable.IntersectWith(union);
-        return rollable;
-    }
+    /// <summary>
+    /// Ticked traits that can roll on Transmarvel pulls. Since the trait filter
+    /// guarantees full lot coverage (strict → relaxed → forced tiers), every
+    /// ticked trait is rollable — live-proven 2026-07-14: relaxed-tier writes
+    /// (e.g. Supplementary DMG, not lot-14-legal) roll on real pulls, so the old
+    /// "ticked ∩ lot-14 union" model under-counted.
+    /// </summary>
+    private HashSet<uint> RollableSecondaries() =>
+        new(TraitCatalog.All.Where(t => t.Enabled(_configuration)).Select(t => t.Hash));
 
     /// <summary>
     /// Rebuilds the Transmarvel sigil pool from vanilla with only the ticked
@@ -338,7 +314,7 @@ public class Mod : ModBase
                 var rollable = RollableSecondaries();
                 if (rollable.Count == 0)
                 {
-                    Log("Auto-prune skipped: no ticked trait can roll on Transmarvel pulls.");
+                    Log("Auto-prune skipped: no 2nd traits ticked (trait filter off, vanilla lots).");
                 }
                 else
                 {
@@ -348,9 +324,11 @@ public class Mod : ModBase
                     var prunedAwakening = new List<string>();
                     var remaining = kept.Where(s =>
                     {
-                        if (s.BucketKey == WarpathBucketKey)
+                        if (s.BucketKey == WarpathBucketKey || s.AddToPool)
                         {
                             // combo rule: out once every rollable secondary is owned
+                            // (applies to Warpath+ and to the mod-added V+ sigils,
+                            // which roll 2nd traits the same way)
                             save.CombosBySigil.TryGetValue(s.Hash, out var owned);
                             bool complete = owned is not null && rollable.All(owned.Contains);
                             if (complete) prunedWarpath.Add(s.Name);
@@ -373,7 +351,7 @@ public class Mod : ModBase
                     {
                         kept = remaining;
                         var parts = new List<string>();
-                        if (prunedWarpath.Count > 0) parts.Add($"{prunedWarpath.Count} combo-complete Warpath+ ({string.Join(", ", prunedWarpath)})");
+                        if (prunedWarpath.Count > 0) parts.Add($"{prunedWarpath.Count} combo-complete ({string.Join(", ", prunedWarpath)})");
                         if (prunedAwakening.Count > 0) parts.Add($"{prunedAwakening.Count} owned Awakening+ ({string.Join(", ", prunedAwakening)})");
                         Log($"Auto-prune: read {save.SigilCount} sigils from the save; " +
                             (parts.Count > 0 ? $"removed {string.Join(" and ", parts)}." : "nothing is complete yet."));
@@ -388,15 +366,19 @@ public class Mod : ModBase
         var keptHashes = new HashSet<uint>(kept.Select(s => s.Hash));
         var buckets = new HashSet<uint>(SigilCatalog.Pool.Select(s => s.BucketKey));
 
-        // 1) gacha_lot: drop chase-bucket rows for unticked sigils
+        // 1) gacha_lot: drop chase-bucket rows for unticked sigils. Keep one
+        //    vanilla row per managed bucket as a clone template for step 1b.
         var outRows = new List<byte[]>((int)lotRows);
         var bucketCounts = new Dictionary<uint, int>();
+        var templates = new Dictionary<uint, byte[]>();
         for (long r = 0; r < lotRows; r++)
         {
             var row = lots.AsSpan((int)(8 + r * GachaLotRowSize), GachaLotRowSize).ToArray();
             uint key = BinaryPrimitives.ReadUInt32LittleEndian(row.AsSpan(8, 4));
             if (buckets.Contains(key))
             {
+                if (!templates.ContainsKey(key))
+                    templates[key] = row;
                 uint item = BinaryPrimitives.ReadUInt32LittleEndian(row.AsSpan(0xC, 4));
                 if (!keptHashes.Contains(item))
                     continue;
@@ -404,6 +386,29 @@ public class Mod : ModBase
                 bucketCounts[key] = n + 1;
             }
             outRows.Add(row);
+        }
+
+        // 1b) append rows for ticked sigils vanilla Transmarvel doesn't offer
+        //     (the V+ dual-slot forms of ordinary skills). Cloning a vanilla row
+        //     of the target bucket keeps the tier scope (QuestIDMin/Max) and 2.0
+        //     flags exactly vanilla; TraitLevel 0 matches the vanilla-attested V+
+        //     rows in this bucket (the sigil form itself carries the maxed trait).
+        int added = 0;
+        foreach (var s in kept.Where(s => s.AddToPool))
+        {
+            if (!templates.TryGetValue(s.BucketKey, out var tmpl))
+            {
+                Log($"WARNING: no vanilla template row in bucket {s.BucketKey:X8} — cannot add {s.Name} to the pool.");
+                continue;
+            }
+            var row = (byte[])tmpl.Clone();
+            BinaryPrimitives.WriteUInt32LittleEndian(row.AsSpan(0xC, 4), s.Hash); // ItemId
+            BinaryPrimitives.WriteInt32LittleEndian(row.AsSpan(0x10, 4), 50);     // Weight (uniform, vanilla)
+            BinaryPrimitives.WriteInt32LittleEndian(row.AsSpan(0x14, 4), 0);      // TraitLevel
+            outRows.Add(row);
+            bucketCounts.TryGetValue(s.BucketKey, out int n);
+            bucketCounts[s.BucketKey] = n + 1;
+            added++;
         }
         byte[] newLots = new byte[8 + outRows.Count * GachaLotRowSize];
         BinaryPrimitives.WriteInt64LittleEndian(newLots, outRows.Count);
@@ -441,16 +446,20 @@ public class Mod : ModBase
             1 => "RANDOM subs from ticked traits",
             _ => "fixed + random subs 50/50",
         };
-        Log($"Sigil pool applied: {kept.Length}/{SigilCatalog.Pool.Length} sigils at ~{100.0 / kept.Length:F2}% each; wrightstones Lv20-main, {wsMode}.");
+        Log($"Sigil pool applied: {kept.Length}/{SigilCatalog.Pool.Length} sigils at ~{100.0 / kept.Length:F2}% each" +
+            (added > 0 ? $" ({added} mod-added V+ mains)" : "") + $"; wrightstones Lv20-main, {wsMode}.");
     }
 
     /// <summary>
-    /// 2nd-trait filter with combo legality: each vanilla sub-lot's non-ticked
-    /// entries are remapped only onto ticked traits that are LEGAL for every
-    /// roll path referencing that sub-lot (the intersection of the vanilla
-    /// trait unions of all referencing type-lots). A sigil can therefore never
-    /// receive a (sigil, 2nd trait) combo the vanilla game couldn't produce.
-    /// Sub-lots with no legal ticked trait are left vanilla (logged).
+    /// 2nd-trait filter: every sub-lot's non-ticked entries are remapped onto
+    /// ticked traits, preferring vanilla-legal targets (strict tier: legal on
+    /// every referencing path; relaxed tier: legal on at least one) and falling
+    /// back to the full ticked set (forced tier) so NO sub-lot is left vanilla.
+    /// Guarantee as of 3.0: only ticked traits can roll as secondaries, from any
+    /// source. The pre-3.0 "vanilla-legal combos only" guarantee is retired —
+    /// live pulls proved relaxed-tier writes reach Transmarvel rolls anyway, and
+    /// leaving uncovered sub-lots vanilla leaked unticked junk (docs/13 + the
+    /// 2026-07-14 one-trait-config batch).
     /// </summary>
     private void ApplyTraitFilter()
     {
@@ -511,15 +520,19 @@ public class Mod : ModBase
             }
             typeUnion[key] = union;
         }
-        // legal remap targets per sub-lot = allowed ∩ (∩ unions of all referencing
-        // type-lots); if that strict intersection is empty, relax to allowed ∩
-        // (∪ of the unions) — every written trait is still vanilla-rollable for
-        // sigils using this sub-lot via at least one referencing path. Leaving
-        // such sub-lots vanilla instead was the live-verified junk leak
-        // (8F952AC1, ~33% of rolls — see docs/13).
+        // remap targets per sub-lot, three tiers:
+        //   strict — allowed ∩ (∩ unions of all referencing type-lots)
+        //   relaxed — allowed ∩ (∪ of the unions), when strict is empty
+        //   forced — ALL ticked traits, when even relaxed is empty. Leaving such
+        //     sub-lots vanilla was the junk leak: unticked traits (Stamina etc.)
+        //     kept rolling from them (live-observed 2026-07-14 with a 1-trait
+        //     config, 10 vanilla-kept sub-lots). The same live batch proved
+        //     relaxed-tier writes land on real pulls, so the reference model
+        //     doesn't bind the engine anyway — enforcing the ticked set
+        //     everywhere is the only way "only my ticks roll" actually holds.
         var targets = new Dictionary<uint, List<uint>>();
         var relaxed = new List<uint>();
-        var vanillaKept = new List<uint>();
+        var forced = new List<uint>();
         foreach (var (sub, users) in subLotUsers)
         {
             IEnumerable<uint> strict = allowed.Select(t => t.Hash);
@@ -532,8 +545,12 @@ public class Mod : ModBase
                     .Where(h => users.Any(u => typeUnion[u].Contains(h))).ToList();
                 if (list.Count > 0) relaxed.Add(sub);
             }
-            if (list.Count == 0) vanillaKept.Add(sub);
-            else targets[sub] = list;
+            if (list.Count == 0)
+            {
+                list = allowed.Select(t => t.Hash).ToList();
+                forced.Add(sub);
+            }
+            targets[sub] = list;
         }
 
         // remap pass (per-sub-lot round-robin over its legal targets)
@@ -560,8 +577,10 @@ public class Mod : ModBase
         var names = allowed.Select(t => t.Name);
         Log($"2nd-trait filter applied: {allowed.Length} traits ticked ({string.Join(", ", names)}); " +
             $"{replaced} lot entries remapped across {targets.Count} sub-lots" +
-            (relaxed.Count > 0 ? $"; {relaxed.Count} sub-lot(s) used relaxed legality ({string.Join(", ", relaxed.Select(s => s.ToString("X8")))})" : "") +
-            (vanillaKept.Count > 0 ? $"; {vanillaKept.Count} sub-lot(s) left VANILLA (no ticked trait is legal there — tick more traits to cover them)" : "") + ".");
+            (relaxed.Count > 0 ? $"; {relaxed.Count} sub-lot(s) used relaxed legality" : "") +
+            (forced.Count > 0 ? $"; {forced.Count} sub-lot(s) FORCED to the ticked set (no ticked trait was vanilla-legal there)" : "") +
+            ". Only ticked traits can roll anywhere." +
+            (allowed.Length < 4 ? $" NOTE: with only {allowed.Length} trait(s) ticked, most sigils will carry the same secondaries — tick more for variety." : ""));
     }
 
     // GBFR's custom XXHash32: seed 0x178A54A4, hardcoded accumulators (docs/15)

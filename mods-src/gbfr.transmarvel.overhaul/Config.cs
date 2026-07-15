@@ -3,8 +3,11 @@ using gbfr.transmarvel.overhaul.Template.Configuration;
 
 namespace gbfr.transmarvel.overhaul.Configuration;
 
-// The sigil/trait checkboxes below are GENERATED from game data (scratchpad
-// gen-config-v2.mjs) — regenerate rather than hand-editing the lists.
+// The per-skill toggles below are GENERATED from game data:
+//   node scripts/gen-unified-skill-catalog.mjs   (game tables -> skill-catalog.json)
+//   node scripts/gen-transmarvel-code.mjs        (skill-catalog.json -> C#)
+// Regenerate rather than hand-editing the lists. Categories and ordering mirror
+// the in-game skill list (skill.tbl GemCategory/SortOrder).
 public class Config : Configurable<Config>
 {
     [Category("Voucher Income")]
@@ -39,7 +42,7 @@ public class Config : Configurable<Config>
     [DefaultValue(8)]
     public int VoucherMinTier { get; set; } = 8;
 
-    [Category("Sigil Pool - Auto")]
+    [Category("General")]
     [DisplayName("Wrightstone drops")]
     [Description("Which wrightstones the 25% wrightstone side of a Transmarvel can roll.\n" +
         "All options guarantee a LEVEL 20 main skill:\n" +
@@ -51,888 +54,1325 @@ public class Config : Configurable<Config>
     [DefaultValue(0)]
     public int WrightstoneDrops { get; set; } = 0;
 
-    [Category("Sigil Pool - Auto")]
+    [Category("General")]
     [DisplayName("Auto-remove completed sigils (reads your save)")]
     [Description("At every game launch the mod reads your newest save (read-only) and\n" +
-        "removes from the Transmarvel pool: any TICKED Warpath+ you already own with\n" +
-        "EVERY 2nd trait it can still roll (your ticked traits), and any TICKED\n" +
-        "Awakening+ you own AT ALL (duplicates are useless). Warpath+ regain pool\n" +
-        "slots automatically when you tick more traits (new combos to chase).\n" +
-        "Unticked sigils stay out regardless. If the save can't be read the pool is\n" +
-        "left unpruned (see the Reloaded console).")]
+        "removes from the Transmarvel pool: any TICKED Warpath+ or mod-added V+ sigil\n" +
+        "you already own with EVERY 2nd trait it can still roll (your ticked traits),\n" +
+        "and any TICKED Awakening+/stat V+ you own AT ALL (duplicates are useless).\n" +
+        "Pruned sigils regain pool slots automatically when you tick more traits\n" +
+        "(new combos to chase). Unticked sigils stay out regardless. If the save\n" +
+        "can't be read the pool is left unpruned (see the Reloaded console).")]
     [DefaultValue(true)]
     public bool AutoPruneCompleted { get; set; } = true;
 
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Fearless Soul+")]
-    [Description("Include Fearless Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolFearlessSoul { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Guardian's Awakening+")]
-    [Description("Include Guardian's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolGuardiansAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Helmsman's Awakening+")]
-    [Description("Include Helmsman's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolHelmsmansAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Mage's Awakening+")]
-    [Description("Include Mage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolMagesAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Veteran's Awakening+")]
-    [Description("Include Veteran's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolVeteransAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Rose's Awakening+")]
-    [Description("Include Rose's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolRosesAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Phantasm's Awakening+")]
-    [Description("Include Phantasm's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolPhantasmsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("White Dragon's Awakening+")]
-    [Description("Include White Dragon's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolWhiteDragonsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Hero's Awakening+")]
-    [Description("Include Hero's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolHerosAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Lord's Awakening+")]
-    [Description("Include Lord's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolLordsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Dragonslayer's Awakening+")]
-    [Description("Include Dragonslayer's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolDragonslayersAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Holy Knight's Awakening+")]
-    [Description("Include Holy Knight's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolHolyKnightsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Swordmaster's Awakening+")]
-    [Description("Include Swordmaster's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolSwordmastersAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Butterfly's Awakening+")]
-    [Description("Include Butterfly's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolButterflysAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Eternal Rage's Awakening+")]
-    [Description("Include Eternal Rage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolEternalRagesAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Founder's Awakening+")]
-    [Description("Include Founder's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolFoundersAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Versalis Soul+")]
-    [Description("Include Versalis Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolVersalisSoul { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Crimson's Awakening+")]
-    [Description("Include Crimson's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolCrimsonsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Ebony's Awakening+")]
-    [Description("Include Ebony's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolEbonysAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+ (bucket extras)")]
-    [DisplayName("Attack Power V+")]
-    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [Category("1. Basic Stats")]
+    [DisplayName("Attack Power V+ (primary sigil)")]
+    [Description("Roll Attack Power V+ as a Transmarvel main. Vanilla keeps this stat single (no 2nd trait slot) in the same chase bucket as the Awakening+ sigils, so it is opt-in like them, with the same own-any auto-prune. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool PoolAttackPowerV { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+ (bucket extras)")]
-    [DisplayName("Health V+")]
-    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [Category("1. Basic Stats")]
+    [DisplayName("ATK (2nd trait)")]
+    [Description("Allow ATK to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Atk { get; set; } = false;
+
+    [Category("1. Basic Stats")]
+    [DisplayName("Health V+ (primary sigil)")]
+    [Description("Roll Health V+ as a Transmarvel main. Vanilla keeps this stat single (no 2nd trait slot) in the same chase bucket as the Awakening+ sigils, so it is opt-in like them, with the same own-any auto-prune. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool PoolHealthV { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+ (bucket extras)")]
-    [DisplayName("Critical Hit Rate V+")]
-    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [Category("1. Basic Stats")]
+    [DisplayName("HP (2nd trait)")]
+    [Description("Allow HP to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Hp { get; set; } = false;
+
+    [Category("1. Basic Stats")]
+    [DisplayName("Critical Hit Rate V+ (primary sigil)")]
+    [Description("Roll Critical Hit Rate V+ as a Transmarvel main. Vanilla keeps this stat single (no 2nd trait slot) in the same chase bucket as the Awakening+ sigils, so it is opt-in like them, with the same own-any auto-prune. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool PoolCriticalHitRateV { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+ (bucket extras)")]
-    [DisplayName("Stun Power V+")]
-    [Description("Not an Awakening sigil - vanilla keeps this stat single in the same chase bucket as the Awakening+, so it is listed here. Off by default; tick to add it to the pool (own-any auto-prune applies like the rest of the bucket). RESTART THE GAME after changing.")]
+    [Category("1. Basic Stats")]
+    [DisplayName("Critical Hit Rate (2nd trait)")]
+    [Description("Allow Critical Hit Rate to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool CriticalHitRate { get; set; } = false;
+
+    [Category("1. Basic Stats")]
+    [DisplayName("Stun Power V+ (primary sigil)")]
+    [Description("Roll Stun Power V+ as a Transmarvel main. Vanilla keeps this stat single (no 2nd trait slot) in the same chase bucket as the Awakening+ sigils, so it is opt-in like them, with the same own-any auto-prune. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool PoolStunPowerV { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Spirit Edge's Awakening+")]
-    [Description("Include Spirit Edge's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [Category("1. Basic Stats")]
+    [DisplayName("Stun Power (2nd trait)")]
+    [Description("Allow Stun Power to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool PoolSpiritEdgesAwakening { get; set; } = false;
+    public bool StunPower { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Dark Huntress's Awakening+")]
-    [Description("Include Dark Huntress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [Category("2. Attack")]
+    [DisplayName("Enmity V+ (primary sigil)")]
+    [Description("Roll Enmity V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool PoolDarkHuntresssAwakening { get; set; } = false;
+    public bool PoolEnmityV { get; set; } = false;
 
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Supreme Primarch's Awakening+")]
-    [Description("Include Supreme Primarch's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [Category("2. Attack")]
+    [DisplayName("Enmity (2nd trait)")]
+    [Description("Allow Enmity to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool PoolSupremePrimarchsAwakening { get; set; } = false;
+    public bool Enmity { get; set; } = false;
 
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Fearless Heart+")]
-    [Description("Keep Fearless Heart+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolFearlessHeart { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Guardian's Warpath+")]
-    [Description("Keep Guardian's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolGuardiansWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Helmsman's Warpath+")]
-    [Description("Keep Helmsman's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolHelmsmansWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Mage's Warpath+")]
-    [Description("Keep Mage's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolMagesWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Veteran's Warpath+")]
-    [Description("Keep Veteran's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolVeteransWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Rose's Warpath+")]
-    [Description("Keep Rose's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolRosesWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Holy Knight's Warpath+")]
-    [Description("Keep Holy Knight's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolHolyKnightsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Eternal Rage's Warpath+")]
-    [Description("Keep Eternal Rage's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolEternalRagesWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Phantasm's Warpath+")]
-    [Description("Keep Phantasm's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolPhantasmsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Butterfly's Warpath+")]
-    [Description("Keep Butterfly's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolButterflysWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("White Dragon's Warpath+")]
-    [Description("Keep White Dragon's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolWhiteDragonsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Hero's Warpath+")]
-    [Description("Keep Hero's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolHerosWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Lord's Warpath+")]
-    [Description("Keep Lord's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolLordsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Dragonslayer's Warpath+")]
-    [Description("Keep Dragonslayer's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolDragonslayersWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Founder's Warpath+")]
-    [Description("Keep Founder's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolFoundersWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Swordmaster's Warpath+")]
-    [Description("Keep Swordmaster's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolSwordmastersWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Crimson's Warpath+")]
-    [Description("Keep Crimson's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolCrimsonsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Ebony's Warpath+")]
-    [Description("Keep Ebony's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolEbonysWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Spirit Edge's Warpath+")]
-    [Description("Keep Spirit Edge's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolSpiritEdgesWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Dark Huntress's Warpath+")]
-    [Description("Keep Dark Huntress's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolDarkHuntresssWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Supreme Primarch's Warpath+")]
-    [Description("Keep Supreme Primarch's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolSupremePrimarchsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Versalis Heart+")]
-    [Description("Keep Versalis Heart+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolVersalisHeart { get; set; } = true;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Gladiator's Awakening+")]
-    [Description("Include Gladiator's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolGladiatorsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Bladequeen's Awakening+")]
-    [Description("Include Bladequeen's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolBladequeensAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Ultramarine's Awakening+")]
-    [Description("Include Ultramarine's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolUltramarinesAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Thunderwolf's Awakening+")]
-    [Description("Include Thunderwolf's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolThunderwolfsAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("Enchantress's Awakening+")]
-    [Description("Include Enchantress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolEnchantresssAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Awakening+")]
-    [DisplayName("The Black's Awakening+")]
-    [Description("Include The Black's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoolTheBlacksAwakening { get; set; } = false;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Gladiator's Warpath+")]
-    [Description("Keep Gladiator's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolGladiatorsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Bladequeen's Warpath+")]
-    [Description("Keep Bladequeen's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolBladequeensWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Ultramarine's Warpath+")]
-    [Description("Keep Ultramarine's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolUltramarinesWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Thunderwolf's Warpath+")]
-    [Description("Keep Thunderwolf's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolThunderwolfsWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("Enchantress's Warpath+")]
-    [Description("Keep Enchantress's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolEnchantresssWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Warpath+")]
-    [DisplayName("The Black's Warpath+")]
-    [Description("Keep The Black's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolTheBlacksWarpath { get; set; } = true;
-
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Nyx V+")]
+    [Category("2. Attack")]
+    [DisplayName("Celestial Nyx V+ (primary sigil)")]
     [Description("Keep Celestial Nyx V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolCelestialNyxV { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Lumen V+")]
+    [Category("2. Attack")]
+    [DisplayName("Stamina V+ (primary sigil)")]
+    [Description("Roll Stamina V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolStaminaV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Stamina (2nd trait)")]
+    [Description("Allow Stamina to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Stamina { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Celestial Lumen V+ (primary sigil)")]
     [Description("Keep Celestial Lumen V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolCelestialLumenV { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Terra V+")]
+    [Category("2. Attack")]
+    [DisplayName("Critical Damage V+ (primary sigil)")]
+    [Description("Roll Critical Damage V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolCriticalDamageV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Critical Hit DMG (2nd trait)")]
+    [Description("Allow Critical Hit DMG to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool CriticalHitDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Exploiter V+ (primary sigil)")]
+    [Description("Roll Exploiter V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolExploiterV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Weak Point DMG (2nd trait)")]
+    [Description("Allow Weak Point DMG to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool WeakPointDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Tyranny V+ (primary sigil)")]
+    [Description("Roll Tyranny V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolTyrannyV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Tyranny (2nd trait)")]
+    [Description("Allow Tyranny to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Tyranny { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Celestial Terra V+ (primary sigil)")]
     [Description("Keep Celestial Terra V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolCelestialTerraV { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Incendo V+")]
-    [Description("Keep Celestial Incendo V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolCelestialIncendoV { get; set; } = true;
+    [Category("2. Attack")]
+    [DisplayName("Life on the Line V+ (primary sigil)")]
+    [Description("Roll Life on the Line V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLifeOnTheLineV { get; set; } = false;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Aqua V+")]
-    [Description("Keep Celestial Aqua V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolCelestialAquaV { get; set; } = true;
+    [Category("2. Attack")]
+    [DisplayName("Life on the Line (2nd trait)")]
+    [Description("Allow Life on the Line to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool LifeOnTheLine { get; set; } = false;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Fatebreaker V+")]
-    [Description("Keep Fatebreaker V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolFatebreakerV { get; set; } = true;
-
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Celestial Ventus V+")]
+    [Category("2. Attack")]
+    [DisplayName("Celestial Ventus V+ (primary sigil)")]
     [Description("Keep Celestial Ventus V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolCelestialVentusV { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+ (2.0)")]
-    [DisplayName("Divergence V+")]
-    [Description("Keep Divergence V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool PoolDivergenceV { get; set; } = true;
+    [Category("2. Attack")]
+    [DisplayName("Damage Cap V+ (primary sigil)")]
+    [Description("Roll Damage Cap V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDamageCapV { get; set; } = false;
 
-    [Category("Sigil Pool - Chase V+")]
-    [DisplayName("War Elemental+")]
-    [Description("Keep War Elemental+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [Category("2. Attack")]
+    [DisplayName("DMG Cap (2nd trait)")]
+    [Description("Allow DMG Cap to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
-    public bool PoolWarElemental { get; set; } = true;
+    public bool DmgCap { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+")]
-    [DisplayName("Supplementary Damage V+")]
+    [Category("2. Attack")]
+    [DisplayName("Skilled Assault V+ (primary sigil)")]
+    [Description("Roll Skilled Assault V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSkilledAssaultV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Skilled Assault (2nd trait)")]
+    [Description("Allow Skilled Assault to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool SkilledAssault { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Linked Together V+ (primary sigil)")]
+    [Description("Roll Linked Together V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLinkedTogetherV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Linked Together (2nd trait)")]
+    [Description("Allow Linked Together to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool LinkedTogether { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Combo Booster V+ (primary sigil)")]
+    [Description("Roll Combo Booster V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolComboBoosterV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Combo Booster (2nd trait)")]
+    [Description("Allow Combo Booster to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ComboBooster { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Supplementary Damage V+ (primary sigil)")]
     [Description("Keep Supplementary Damage V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolSupplementaryDamageV { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+")]
-    [DisplayName("Berserker Echo+")]
+    [Category("2. Attack")]
+    [DisplayName("Supplementary DMG (2nd trait)")]
+    [Description("Allow Supplementary DMG to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool SupplementaryDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Berserker Echo+ (primary sigil)")]
     [Description("Keep Berserker Echo+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolBerserkerEcho { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+")]
-    [DisplayName("Spartan Echo+")]
+    [Category("2. Attack")]
+    [DisplayName("Spartan Echo+ (primary sigil)")]
     [Description("Keep Spartan Echo+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolSpartanEcho { get; set; } = true;
 
-    [Category("Sigil Pool - Chase V+")]
-    [DisplayName("Greater Aegis V+")]
+    [Category("2. Attack")]
+    [DisplayName("Combo Finisher V+ (primary sigil)")]
+    [Description("Roll Combo Finisher V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolComboFinisherV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Combo Finisher DMG (2nd trait)")]
+    [Description("Allow Combo Finisher DMG to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ComboFinisherDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Charged Attack V+ (primary sigil)")]
+    [Description("Roll Charged Attack V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolChargedAttackV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Charged Attack DMG (2nd trait)")]
+    [Description("Allow Charged Attack DMG to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ChargedAttackDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Lucky Charge V+ (primary sigil)")]
+    [Description("Roll Lucky Charge V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLuckyChargeV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Lucky Charge (2nd trait)")]
+    [Description("Allow Lucky Charge to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool LuckyCharge { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Quick Charge V+ (primary sigil)")]
+    [Description("Roll Quick Charge V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolQuickChargeV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Quick Charge (2nd trait)")]
+    [Description("Allow Quick Charge to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool QuickCharge { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Concentrated Fire V+ (primary sigil)")]
+    [Description("Roll Concentrated Fire V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolConcentratedFireV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Concentrated Fire (2nd trait)")]
+    [Description("Allow Concentrated Fire to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ConcentratedFire { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Throw V+ (primary sigil)")]
+    [Description("Roll Throw V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolThrowV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Throw DMG (2nd trait)")]
+    [Description("Allow Throw DMG to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ThrowDmg { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Injury to Insult V+ (primary sigil)")]
+    [Description("Roll Injury to Insult V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolInjuryToInsultV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Injury to Insult (2nd trait)")]
+    [Description("Allow Injury to Insult to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool InjuryToInsult { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Overdrive Assassin V+ (primary sigil)")]
+    [Description("Roll Overdrive Assassin V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolOverdriveAssassinV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Overdrive Assassin (2nd trait)")]
+    [Description("Allow Overdrive Assassin to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool OverdriveAssassin { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Celestial Incendo V+ (primary sigil)")]
+    [Description("Keep Celestial Incendo V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolCelestialIncendoV { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Break Assassin V+ (primary sigil)")]
+    [Description("Roll Break Assassin V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolBreakAssassinV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Break Assassin (2nd trait)")]
+    [Description("Allow Break Assassin to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool BreakAssassin { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Celestial Aqua V+ (primary sigil)")]
+    [Description("Keep Celestial Aqua V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolCelestialAquaV { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Fatebreaker V+ (primary sigil)")]
+    [Description("Keep Fatebreaker V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolFatebreakerV { get; set; } = true;
+
+    [Category("2. Attack")]
+    [DisplayName("Head Start V+ (primary sigil)")]
+    [Description("Roll Head Start V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHeadStartV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Head Start (2nd trait)")]
+    [Description("Allow Head Start to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool HeadStart { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Power Hungry V+ (primary sigil)")]
+    [Description("Roll Power Hungry V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPowerHungryV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Power Hungry (2nd trait)")]
+    [Description("Allow Power Hungry to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PowerHungry { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Guard Payback V+ (primary sigil)")]
+    [Description("Roll Guard Payback V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGuardPaybackV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Guard Payback (2nd trait)")]
+    [Description("Allow Guard Payback to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool GuardPayback { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Dodge Payback V+ (primary sigil)")]
+    [Description("Roll Dodge Payback V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDodgePaybackV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Dodge Payback (2nd trait)")]
+    [Description("Allow Dodge Payback to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool DodgePayback { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Super Ultimate Perfect Dodge+ (primary sigil)")]
+    [Description("Roll Super Ultimate Perfect Dodge+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSuperUltimatePerfectDodge { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Less Is More V+ (primary sigil)")]
+    [Description("Roll Less Is More V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLessIsMoreV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Less Is More (2nd trait)")]
+    [Description("Allow Less Is More to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool LessIsMore { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Berserker V+ (primary sigil)")]
+    [Description("Roll Berserker V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolBerserkerV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Berserker (2nd trait)")]
+    [Description("Allow Berserker to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Berserker { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Glass Cannon V+ (primary sigil)")]
+    [Description("Roll Glass Cannon V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGlassCannonV { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Glass Cannon (2nd trait)")]
+    [Description("Allow Glass Cannon to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool GlassCannon { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("Roll of the Die+ (primary sigil)")]
+    [Description("Roll Roll of the Die+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolRollOfTheDie { get; set; } = false;
+
+    [Category("2. Attack")]
+    [DisplayName("War Elemental+ (primary sigil)")]
+    [Description("Keep War Elemental+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolWarElemental { get; set; } = true;
+
+    [Category("3. Defense")]
+    [DisplayName("Aegis V+ (primary sigil)")]
+    [Description("Roll Aegis V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolAegisV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Aegis (2nd trait)")]
+    [Description("Allow Aegis to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Aegis { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Greater Aegis V+ (primary sigil)")]
     [Description("Keep Greater Aegis V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PoolGreaterAegisV { get; set; } = true;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Aegis")]
-    [Description("Allow Aegis as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool Aegis { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Autorevive")]
-    [Description("Allow Autorevive as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Autorevive { get; set; } = true;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Cascade")]
-    [Description("Allow Cascade as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Cascade { get; set; } = true;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Drain")]
-    [Description("Allow Drain as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool Drain { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Firm Stance")]
-    [Description("Allow Firm Stance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool FirmStance { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Garrison")]
-    [Description("Allow Garrison as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool Garrison { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Greater Aegis")]
-    [Description("Allow Greater Aegis as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Greater Aegis (2nd trait)")]
+    [Description("Allow Greater Aegis to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool GreaterAegis { get; set; } = false;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Guts")]
-    [Description("Allow Guts as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Guts { get; set; } = true;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("HP")]
-    [Description("Allow HP as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Garrison V+ (primary sigil)")]
+    [Description("Roll Garrison V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool Hp { get; set; } = false;
+    public bool PoolGarrisonV { get; set; } = false;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Improved Dodge")]
-    [Description("Allow Improved Dodge as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Garrison (2nd trait)")]
+    [Description("Allow Garrison to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ImprovedDodge { get; set; } = false;
+    public bool Garrison { get; set; } = false;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Improved Guard")]
-    [Description("Allow Improved Guard as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Stronghold V+ (primary sigil)")]
+    [Description("Roll Stronghold V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ImprovedGuard { get; set; } = false;
+    public bool PoolStrongholdV { get; set; } = false;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Improved Healing")]
-    [Description("Allow Improved Healing as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool ImprovedHealing { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Low Profile")]
-    [Description("Allow Low Profile as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool LowProfile { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Nimble Defense")]
-    [Description("Allow Nimble Defense as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool NimbleDefense { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Precise Resilience")]
-    [Description("Allow Precise Resilience as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PreciseResilience { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Provoke")]
-    [Description("Allow Provoke as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool Provoke { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Quick Cooldown")]
-    [Description("Allow Quick Cooldown as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool QuickCooldown { get; set; } = true;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Regen")]
-    [Description("Allow Regen as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool Regen { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Steel Nerves")]
-    [Description("Allow Steel Nerves as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool SteelNerves { get; set; } = false;
-
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Stronghold")]
-    [Description("Allow Stronghold as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Stronghold (2nd trait)")]
+    [Description("Allow Stronghold to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool Stronghold { get; set; } = false;
 
-    [Category("2nd Traits - Defense & Sustain")]
-    [DisplayName("Uplift")]
-    [Description("Allow Uplift as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Uplift { get; set; } = true;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("ATK")]
-    [Description("Allow ATK as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Steel Nerves V+ (primary sigil)")]
+    [Description("Roll Steel Nerves V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool Atk { get; set; } = false;
+    public bool PoolSteelNervesV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Berserker")]
-    [Description("Allow Berserker as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Steel Nerves (2nd trait)")]
+    [Description("Allow Steel Nerves to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool Berserker { get; set; } = false;
+    public bool SteelNerves { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Break Assassin")]
-    [Description("Allow Break Assassin as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Improved Guard V+ (primary sigil)")]
+    [Description("Roll Improved Guard V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool BreakAssassin { get; set; } = false;
+    public bool PoolImprovedGuardV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Charged Attack DMG")]
-    [Description("Allow Charged Attack DMG as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Improved Guard (2nd trait)")]
+    [Description("Allow Improved Guard to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ChargedAttackDmg { get; set; } = false;
+    public bool ImprovedGuard { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Combo Booster")]
-    [Description("Allow Combo Booster as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Improved Dodge+ (primary sigil)")]
+    [Description("Roll Improved Dodge+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ComboBooster { get; set; } = false;
+    public bool PoolImprovedDodge { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Combo Finisher DMG")]
-    [Description("Allow Combo Finisher DMG as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Improved Dodge (2nd trait)")]
+    [Description("Allow Improved Dodge to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ComboFinisherDmg { get; set; } = false;
+    public bool ImprovedDodge { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Concentrated Fire")]
-    [Description("Allow Concentrated Fire as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Precise Resilience V+ (primary sigil)")]
+    [Description("Roll Precise Resilience V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ConcentratedFire { get; set; } = false;
+    public bool PoolPreciseResilienceV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Critical Hit DMG")]
-    [Description("Allow Critical Hit DMG as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Precise Resilience (2nd trait)")]
+    [Description("Allow Precise Resilience to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool CriticalHitDmg { get; set; } = false;
+    public bool PreciseResilience { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Critical Hit Rate")]
-    [Description("Allow Critical Hit Rate as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Nimble Defense V+ (primary sigil)")]
+    [Description("Roll Nimble Defense V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool CriticalHitRate { get; set; } = false;
+    public bool PoolNimbleDefenseV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("DMG Cap")]
-    [Description("Allow DMG Cap as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool DmgCap { get; set; } = true;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Dodge Payback")]
-    [Description("Allow Dodge Payback as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Nimble Defense (2nd trait)")]
+    [Description("Allow Nimble Defense to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool DodgePayback { get; set; } = false;
+    public bool NimbleDefense { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Enmity")]
-    [Description("Allow Enmity as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Untouchable+ (primary sigil)")]
+    [Description("Roll Untouchable+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool Enmity { get; set; } = false;
+    public bool PoolUntouchable { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Glass Cannon")]
-    [Description("Allow Glass Cannon as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Flight over Fight+ (primary sigil)")]
+    [Description("Roll Flight over Fight+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool GlassCannon { get; set; } = false;
+    public bool PoolFlightOverFight { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Guard Payback")]
-    [Description("Allow Guard Payback as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Firm Stance V+ (primary sigil)")]
+    [Description("Roll Firm Stance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool GuardPayback { get; set; } = false;
+    public bool PoolFirmStanceV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Head Start")]
-    [Description("Allow Head Start as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Firm Stance (2nd trait)")]
+    [Description("Allow Firm Stance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool HeadStart { get; set; } = false;
+    public bool FirmStance { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Injury to Insult")]
-    [Description("Allow Injury to Insult as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Dizzy Resistance V+ (primary sigil)")]
+    [Description("Roll Dizzy Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool InjuryToInsult { get; set; } = false;
+    public bool PoolDizzyResistanceV { get; set; } = false;
 
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Less Is More")]
-    [Description("Allow Less Is More as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool LessIsMore { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Life on the Line")]
-    [Description("Allow Life on the Line as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool LifeOnTheLine { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Linked Together")]
-    [Description("Allow Linked Together as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool LinkedTogether { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Lucky Charge")]
-    [Description("Allow Lucky Charge as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool LuckyCharge { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Nimble Onslaught")]
-    [Description("Allow Nimble Onslaught as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool NimbleOnslaught { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Overdrive Assassin")]
-    [Description("Allow Overdrive Assassin as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool OverdriveAssassin { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Power Hungry")]
-    [Description("Allow Power Hungry as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PowerHungry { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Precise Wrath")]
-    [Description("Allow Precise Wrath as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PreciseWrath { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Quick Charge")]
-    [Description("Allow Quick Charge as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool QuickCharge { get; set; } = true;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Skilled Assault")]
-    [Description("Allow Skilled Assault as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool SkilledAssault { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Stamina")]
-    [Description("Allow Stamina as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Stamina { get; set; } = true;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Stun Power")]
-    [Description("Allow Stun Power as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool StunPower { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Supplementary DMG")]
-    [Description("Allow Supplementary DMG as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool SupplementaryDmg { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Throw DMG")]
-    [Description("Allow Throw DMG as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool ThrowDmg { get; set; } = false;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Tyranny")]
-    [Description("Allow Tyranny as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(true)]
-    public bool Tyranny { get; set; } = true;
-
-    [Category("2nd Traits - Offense")]
-    [DisplayName("Weak Point DMG")]
-    [Description("Allow Weak Point DMG as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool WeakPointDmg { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("ATK↓ Resistance")]
-    [Description("Allow ATK↓ Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool AtkDownResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Blight Resistance")]
-    [Description("Allow Blight Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool BlightResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Burn Resistance")]
-    [Description("Allow Burn Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool BurnResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Darkflame Resistance")]
-    [Description("Allow Darkflame Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool DarkflameResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("DEF↓ Resistance")]
-    [Description("Allow DEF↓ Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool DefDownResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Dizzy Resistance")]
-    [Description("Allow Dizzy Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Dizzy Resistance (2nd trait)")]
+    [Description("Allow Dizzy Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool DizzyResistance { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Glaciate Resistance")]
-    [Description("Allow Glaciate Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Glaciate Resistance V+ (primary sigil)")]
+    [Description("Roll Glaciate Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGlaciateResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Glaciate Resistance (2nd trait)")]
+    [Description("Allow Glaciate Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool GlaciateResistance { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Held Under Resistance")]
-    [Description("Allow Held Under Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Held Under Resistance V+ (primary sigil)")]
+    [Description("Roll Held Under Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHeldUnderResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Held Under Resistance (2nd trait)")]
+    [Description("Allow Held Under Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool HeldUnderResistance { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Paralysis Resistance")]
-    [Description("Allow Paralysis Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Sandtomb Resistance V+ (primary sigil)")]
+    [Description("Roll Sandtomb Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool ParalysisResistance { get; set; } = false;
+    public bool PoolSandtombResistanceV { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Poison Resistance")]
-    [Description("Allow Poison Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
-    [DefaultValue(false)]
-    public bool PoisonResistance { get; set; } = false;
-
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Sandtomb Resistance")]
-    [Description("Allow Sandtomb Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Sandtomb Resistance (2nd trait)")]
+    [Description("Allow Sandtomb Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool SandtombResistance { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("SBA Sealed Resistance")]
-    [Description("Allow SBA Sealed Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Poison Resistance V+ (primary sigil)")]
+    [Description("Roll Poison Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool SbaSealedResistance { get; set; } = false;
+    public bool PoolPoisonResistanceV { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Skill Sealed Resistance")]
-    [Description("Allow Skill Sealed Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Poison Resistance (2nd trait)")]
+    [Description("Allow Poison Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool SkillSealedResistance { get; set; } = false;
+    public bool PoisonResistance { get; set; } = false;
 
-    [Category("2nd Traits - Resistances")]
-    [DisplayName("Slow Resistance")]
-    [Description("Allow Slow Resistance as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Slow Resistance V+ (primary sigil)")]
+    [Description("Roll Slow Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSlowResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Slow Resistance (2nd trait)")]
+    [Description("Allow Slow Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
     public bool SlowResistance { get; set; } = false;
 
-    [Category("2nd Traits - Utility")]
-    [DisplayName("Fast Learner")]
-    [Description("Allow Fast Learner as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Burn Resistance V+ (primary sigil)")]
+    [Description("Roll Burn Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool FastLearner { get; set; } = false;
+    public bool PoolBurnResistanceV { get; set; } = false;
 
-    [Category("2nd Traits - Utility")]
-    [DisplayName("Path to Mastery")]
-    [Description("Allow Path to Mastery as a random 2nd trait, wherever it can naturally roll. NOTE: vanilla never rolls this on Transmarvel pulls (curio/drop-path sigils only) - ticking it does NOT add it to Transmarvel rolls. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Burn Resistance (2nd trait)")]
+    [Description("Allow Burn Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool PathToMastery { get; set; } = false;
+    public bool BurnResistance { get; set; } = false;
 
-    [Category("2nd Traits - Utility")]
-    [DisplayName("Potion Hoarder")]
-    [Description("Allow Potion Hoarder as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("3. Defense")]
+    [DisplayName("Paralysis Resistance V+ (primary sigil)")]
+    [Description("Roll Paralysis Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolParalysisResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Paralysis Resistance (2nd trait)")]
+    [Description("Allow Paralysis Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ParalysisResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Blight Resistance V+ (primary sigil)")]
+    [Description("Roll Blight Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolBlightResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Blight Resistance (2nd trait)")]
+    [Description("Allow Blight Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool BlightResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Skill Sealed Resistance V+ (primary sigil)")]
+    [Description("Roll Skill Sealed Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSkillSealedResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Skill Sealed Resistance (2nd trait)")]
+    [Description("Allow Skill Sealed Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool SkillSealedResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("SBA Sealed Resistance V+ (primary sigil)")]
+    [Description("Roll SBA Sealed Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSBASealedResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("SBA Sealed Resistance (2nd trait)")]
+    [Description("Allow SBA Sealed Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool SbaSealedResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Darkflame Resistance V+ (primary sigil)")]
+    [Description("Roll Darkflame Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDarkflameResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Darkflame Resistance (2nd trait)")]
+    [Description("Allow Darkflame Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool DarkflameResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Attack Down Resistance V+ (primary sigil)")]
+    [Description("Roll Attack Down Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolAttackDownResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("ATK↓ Resistance (2nd trait)")]
+    [Description("Allow ATK↓ Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool AtkDownResistance { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("Defense Down Resistance V+ (primary sigil)")]
+    [Description("Roll Defense Down Resistance V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDefenseDownResistanceV { get; set; } = false;
+
+    [Category("3. Defense")]
+    [DisplayName("DEF↓ Resistance (2nd trait)")]
+    [Description("Allow DEF↓ Resistance to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool DefDownResistance { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Improved Healing V+ (primary sigil)")]
+    [Description("Roll Improved Healing V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolImprovedHealingV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Improved Healing (2nd trait)")]
+    [Description("Allow Improved Healing to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool ImprovedHealing { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Regen V+ (primary sigil)")]
+    [Description("Roll Regen V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolRegenV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Regen (2nd trait)")]
+    [Description("Allow Regen to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Regen { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Divergence V+ (primary sigil)")]
+    [Description("Keep Divergence V+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolDivergenceV { get; set; } = true;
+
+    [Category("4. Support")]
+    [DisplayName("Drain V+ (primary sigil)")]
+    [Description("Roll Drain V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDrainV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Drain (2nd trait)")]
+    [Description("Allow Drain to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Drain { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Quick Cooldown V+ (primary sigil)")]
+    [Description("Roll Quick Cooldown V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolQuickCooldownV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Quick Cooldown (2nd trait)")]
+    [Description("Allow Quick Cooldown to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool QuickCooldown { get; set; } = true;
+
+    [Category("4. Support")]
+    [DisplayName("Cascade V+ (primary sigil)")]
+    [Description("Roll Cascade V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolCascadeV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Cascade (2nd trait)")]
+    [Description("Allow Cascade to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Cascade { get; set; } = true;
+
+    [Category("4. Support")]
+    [DisplayName("Uplift V+ (primary sigil)")]
+    [Description("Roll Uplift V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolUpliftV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Uplift (2nd trait)")]
+    [Description("Allow Uplift to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Uplift { get; set; } = true;
+
+    [Category("4. Support")]
+    [DisplayName("Precise Wrath V+ (primary sigil)")]
+    [Description("Roll Precise Wrath V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPreciseWrathV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Precise Wrath (2nd trait)")]
+    [Description("Allow Precise Wrath to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PreciseWrath { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Nimble Onslaught V+ (primary sigil)")]
+    [Description("Roll Nimble Onslaught V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolNimbleOnslaughtV { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Nimble Onslaught (2nd trait)")]
+    [Description("Allow Nimble Onslaught to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool NimbleOnslaught { get; set; } = false;
+
+    [Category("4. Support")]
+    [DisplayName("Potent Greens+ (primary sigil)")]
+    [Description("Roll Potent Greens+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPotentGreens { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Potion Hoarder V+ (primary sigil)")]
+    [Description("Roll Potion Hoarder V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPotionHoarderV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Potion Hoarder (2nd trait)")]
+    [Description("Allow Potion Hoarder to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool PotionHoarder { get; set; } = true;
 
-    [Category("2nd Traits - Utility")]
-    [DisplayName("Rupie Tycoon")]
-    [Description("Allow Rupie Tycoon as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("5. Special")]
+    [DisplayName("Auto Potion+ (primary sigil)")]
+    [Description("Roll Auto Potion+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
     [DefaultValue(false)]
-    public bool RupieTycoon { get; set; } = false;
+    public bool PoolAutoPotion { get; set; } = false;
 
-    [Category("2nd Traits - Utility")]
-    [DisplayName("Steady Focus")]
-    [Description("Allow Steady Focus as a random 2nd trait, wherever it can naturally roll. RESTART THE GAME after changing.")]
+    [Category("5. Special")]
+    [DisplayName("Guts V+ (primary sigil)")]
+    [Description("Roll Guts V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGutsV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Guts (2nd trait)")]
+    [Description("Allow Guts to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Guts { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Autorevive V+ (primary sigil)")]
+    [Description("Roll Autorevive V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolAutoreviveV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Autorevive (2nd trait)")]
+    [Description("Allow Autorevive to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool Autorevive { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Steady Focus V+ (primary sigil)")]
+    [Description("Roll Steady Focus V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSteadyFocusV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Steady Focus (2nd trait)")]
+    [Description("Allow Steady Focus to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
     [DefaultValue(true)]
     public bool SteadyFocus { get; set; } = true;
 
+    [Category("5. Special")]
+    [DisplayName("Provoke V+ (primary sigil)")]
+    [Description("Roll Provoke V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolProvokeV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Provoke (2nd trait)")]
+    [Description("Allow Provoke to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool Provoke { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Low Profile V+ (primary sigil)")]
+    [Description("Roll Low Profile V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLowProfileV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Low Profile (2nd trait)")]
+    [Description("Allow Low Profile to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool LowProfile { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Fast Learner V+ (primary sigil)")]
+    [Description("Roll Fast Learner V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolFastLearnerV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Fast Learner (2nd trait)")]
+    [Description("Allow Fast Learner to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool FastLearner { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Rupie Tycoon V+ (primary sigil)")]
+    [Description("Roll Rupie Tycoon V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolRupieTycoonV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Rupie Tycoon (2nd trait)")]
+    [Description("Allow Rupie Tycoon to roll as the random 2nd trait on '+' sigils. Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool RupieTycoon { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Path to Mastery V+ (primary sigil)")]
+    [Description("Roll Path to Mastery V+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPathToMasteryV { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Path to Mastery (2nd trait)")]
+    [Description("Allow Path to Mastery to roll as the random 2nd trait on '+' sigils. (Vanilla itself never rolls this on Transmarvel pulls - the mod's filter makes it rollable, a mod extension.) Your ticked 2nd traits are the ONLY secondaries that can roll, from any source - tick several for variety (a single ticked trait means every sigil rolls that one trait). RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PathToMastery { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Stout Heart+ (primary sigil)")]
+    [Description("Roll Stout Heart+ as a Transmarvel main - a mod extension: vanilla Transmarvel never offers this sigil (the item itself is a vanilla V+ sigil obtainable elsewhere). It joins the pool at equal odds and gets a random 2nd trait from your ticked traits; with auto-prune on it leaves the pool once you own every rollable combo. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolStoutHeart { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Fearless Heart+ (primary sigil)")]
+    [Description("Gran/Djeeta's character sigil. Keep Fearless Heart+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolFearlessHeart { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Fearless Soul+ (primary sigil)")]
+    [Description("Gran/Djeeta's character sigil. Include Fearless Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolFearlessSoul { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Guardian's Warpath+ (primary sigil)")]
+    [Description("Katalina's character sigil. Keep Guardian's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolGuardiansWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Guardian's Awakening+ (primary sigil)")]
+    [Description("Katalina's character sigil. Include Guardian's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGuardiansAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Helmsman's Warpath+ (primary sigil)")]
+    [Description("Lancelot's character sigil. Keep Helmsman's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolHelmsmansWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Helmsman's Awakening+ (primary sigil)")]
+    [Description("Lancelot's character sigil. Include Helmsman's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHelmsmansAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Mage's Warpath+ (primary sigil)")]
+    [Description("Io's character sigil. Keep Mage's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolMagesWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Mage's Awakening+ (primary sigil)")]
+    [Description("Io's character sigil. Include Mage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolMagesAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Veteran's Warpath+ (primary sigil)")]
+    [Description("Eugen's character sigil. Keep Veteran's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolVeteransWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Veteran's Awakening+ (primary sigil)")]
+    [Description("Eugen's character sigil. Include Veteran's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolVeteransAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Rose's Warpath+ (primary sigil)")]
+    [Description("Rosetta's character sigil. Keep Rose's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolRosesWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Rose's Awakening+ (primary sigil)")]
+    [Description("Rosetta's character sigil. Include Rose's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolRosesAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Holy Knight's Warpath+ (primary sigil)")]
+    [Description("Charlotta's character sigil. Keep Holy Knight's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolHolyKnightsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Holy Knight's Awakening+ (primary sigil)")]
+    [Description("Charlotta's character sigil. Include Holy Knight's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHolyKnightsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Eternal Rage's Warpath+ (primary sigil)")]
+    [Description("A character sigil. Keep Eternal Rage's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolEternalRagesWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Eternal Rage's Awakening+ (primary sigil)")]
+    [Description("A character sigil. Include Eternal Rage's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEternalRagesAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Phantasm's Warpath+ (primary sigil)")]
+    [Description("Ferry's character sigil. Keep Phantasm's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolPhantasmsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Phantasm's Awakening+ (primary sigil)")]
+    [Description("Ferry's character sigil. Include Phantasm's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolPhantasmsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Butterfly's Warpath+ (primary sigil)")]
+    [Description("Narmaya's character sigil. Keep Butterfly's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolButterflysWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Butterfly's Awakening+ (primary sigil)")]
+    [Description("Narmaya's character sigil. Include Butterfly's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolButterflysAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("White Dragon's Warpath+ (primary sigil)")]
+    [Description("Lancelot's character sigil. Keep White Dragon's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolWhiteDragonsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("White Dragon's Awakening+ (primary sigil)")]
+    [Description("Lancelot's character sigil. Include White Dragon's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolWhiteDragonsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Hero's Warpath+ (primary sigil)")]
+    [Description("Vane's character sigil. Keep Hero's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolHerosWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Hero's Awakening+ (primary sigil)")]
+    [Description("Vane's character sigil. Include Hero's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolHerosAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Lord's Warpath+ (primary sigil)")]
+    [Description("Percival's character sigil. Keep Lord's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolLordsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Lord's Awakening+ (primary sigil)")]
+    [Description("Percival's character sigil. Include Lord's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolLordsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Dragonslayer's Warpath+ (primary sigil)")]
+    [Description("A character sigil. Keep Dragonslayer's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolDragonslayersWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Dragonslayer's Awakening+ (primary sigil)")]
+    [Description("A character sigil. Include Dragonslayer's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDragonslayersAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Founder's Warpath+ (primary sigil)")]
+    [Description("Rackam's character sigil. Keep Founder's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolFoundersWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Founder's Awakening+ (primary sigil)")]
+    [Description("Rackam's character sigil. Include Founder's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolFoundersAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Swordmaster's Warpath+ (primary sigil)")]
+    [Description("Zeta's character sigil. Keep Swordmaster's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolSwordmastersWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Swordmaster's Awakening+ (primary sigil)")]
+    [Description("Zeta's character sigil. Include Swordmaster's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSwordmastersAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Crimson's Warpath+ (primary sigil)")]
+    [Description("Yodarha's character sigil. Keep Crimson's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolCrimsonsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Crimson's Awakening+ (primary sigil)")]
+    [Description("Yodarha's character sigil. Include Crimson's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolCrimsonsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Ebony's Warpath+ (primary sigil)")]
+    [Description("Narmaya's character sigil. Keep Ebony's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolEbonysWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Ebony's Awakening+ (primary sigil)")]
+    [Description("Narmaya's character sigil. Include Ebony's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEbonysAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Ultramarine's Warpath+ (primary sigil)")]
+    [Description("Sandalphon's character sigil. Keep Ultramarine's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolUltramarinesWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Ultramarine's Awakening+ (primary sigil)")]
+    [Description("Sandalphon's character sigil. Include Ultramarine's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolUltramarinesAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Thunderwolf's Warpath+ (primary sigil)")]
+    [Description("Eustace's character sigil. Keep Thunderwolf's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolThunderwolfsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Thunderwolf's Awakening+ (primary sigil)")]
+    [Description("Eustace's character sigil. Include Thunderwolf's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolThunderwolfsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Spirit Edge's Warpath+ (primary sigil)")]
+    [Description("Id's character sigil. Keep Spirit Edge's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolSpiritEdgesWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Spirit Edge's Awakening+ (primary sigil)")]
+    [Description("Id's character sigil. Include Spirit Edge's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSpiritEdgesAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Dark Huntress's Warpath+ (primary sigil)")]
+    [Description("Vaseraga's character sigil. Keep Dark Huntress's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolDarkHuntresssWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Dark Huntress's Awakening+ (primary sigil)")]
+    [Description("Vaseraga's character sigil. Include Dark Huntress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolDarkHuntresssAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Supreme Primarch's Warpath+ (primary sigil)")]
+    [Description("Seofon's character sigil. Keep Supreme Primarch's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolSupremePrimarchsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Supreme Primarch's Awakening+ (primary sigil)")]
+    [Description("Seofon's character sigil. Include Supreme Primarch's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolSupremePrimarchsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Enchantress's Warpath+ (primary sigil)")]
+    [Description("Beatrix's character sigil. Keep Enchantress's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolEnchantresssWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Enchantress's Awakening+ (primary sigil)")]
+    [Description("Beatrix's character sigil. Include Enchantress's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolEnchantresssAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("The Black's Warpath+ (primary sigil)")]
+    [Description("Ferry's character sigil. Keep The Black's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolTheBlacksWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("The Black's Awakening+ (primary sigil)")]
+    [Description("Ferry's character sigil. Include The Black's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolTheBlacksAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Versalis Heart+ (primary sigil)")]
+    [Description("Cagliostro's character sigil. Keep Versalis Heart+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolVersalisHeart { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Versalis Soul+ (primary sigil)")]
+    [Description("Cagliostro's character sigil. Include Versalis Soul+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolVersalisSoul { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Gladiator's Warpath+ (primary sigil)")]
+    [Description("Tweyen's character sigil. Keep Gladiator's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolGladiatorsWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Gladiator's Awakening+ (primary sigil)")]
+    [Description("Tweyen's character sigil. Include Gladiator's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolGladiatorsAwakening { get; set; } = false;
+
+    [Category("5. Special")]
+    [DisplayName("Bladequeen's Warpath+ (primary sigil)")]
+    [Description("Nier's character sigil. Keep Bladequeen's Warpath+ in the Transmarvel sigil pool. Unticked = removed; remaining sigils stay at equal odds. Untick everything = vanilla pool (overhaul off). RESTART THE GAME after changing.")]
+    [DefaultValue(true)]
+    public bool PoolBladequeensWarpath { get; set; } = true;
+
+    [Category("5. Special")]
+    [DisplayName("Bladequeen's Awakening+ (primary sigil)")]
+    [Description("Nier's character sigil. Include Bladequeen's Awakening+ in the Transmarvel sigil pool (opt-in bucket, off by default). With auto-prune on, it leaves the pool as soon as you own ANY copy - duplicates are useless. RESTART THE GAME after changing.")]
+    [DefaultValue(false)]
+    public bool PoolBladequeensAwakening { get; set; } = false;
 }
 
 /// <summary>

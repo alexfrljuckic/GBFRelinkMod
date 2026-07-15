@@ -11,7 +11,7 @@ on disk is ever modified and your settings apply instantly on the next launch.
 
 | Feature | Vanilla | With this mod |
 |---|---|---|
-| Transmarvel sigil roll | ~1000-entry pool, chase odds 0.2–4% | only the chase sigils **you tick** (up to 41), equal odds |
+| Transmarvel sigil roll | ~1000-entry pool, chase odds 0.2–4% | only the sigils **you tick**, equal odds — including **any ordinary skill's V+ sigil** as a main (a mod extension; vanilla Transmarvel only offers the chase sigils) |
 | Random 2nd trait on "+" sigils | ~65% junk (resistances, Rupie Tycoon…) | only the traits **you tick**, always vanilla-legal combos |
 | Transmarvel wrightstones | Lv20-main stones at 0.1–25% | **always Lv20 main**, subs fixed or rolled from your ticked traits (knob) |
 | Duplicate protection | none | completed Warpath+ combos **auto-leave the pool** (reads your save) |
@@ -28,8 +28,8 @@ Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases)
 [GBFR Mod Manager](https://www.nexusmods.com/granbluefantasyrelink/mods/526) (**2.0.1+**).
 First Reloaded-II setup: [Installing Mods — relink-modding](https://nenkai.github.io/relink-modding/modding/installing_mods/).
 
-1. Download **`transmarvel-overhaul-v2.2.zip`** from the
-   [transmarvel-overhaul-v2.2 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v2.2).
+1. Download **`transmarvel-overhaul-v3.0.zip`** from the
+   [transmarvel-overhaul-v3.0 release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/transmarvel-overhaul-v3.0).
 2. Extract into `Reloaded-II\Mods\` → `Mods\gbfr.transmarvel.overhaul\`.
 3. Enable **Transmarvel Overhaul (2.0)** in the game's mod list; launch.
 
@@ -51,14 +51,25 @@ The Reloaded console prints exactly what was applied, e.g.:
 [gbfr.transmarvel.overhaul] Transmarvel cost set to 150 points.
 ```
 
-### Sigil Pool (73 checkboxes; 41 on by default)
-On by default: the 13 top V+ generics (War Elemental+, Supplementary Damage V+,
-Berserker Echo+, Spartan Echo+, Greater Aegis V+, Celestial ×6 V+, Fatebreaker V+,
-Divergence V+) and all 28 character **Warpath+** (max trait). **Opt-in bucket
-(off by default): the 28 character Awakening+** (max trait; the bucket's four
-stat-V+ singles are also listed, also off). Ticked sigils share the pool at equal
-odds; untick to remove. **Untick everything = vanilla pool** (overhaul off).
-The 75/25 sigil-vs-wrightstone split stays vanilla.
+### Skills (categories 1–5, organized like the game's skill list)
+Since v3 the config mirrors the in-game skill list: **1. Basic Stats, 2. Attack,
+3. Defense, 4. Support, 5. Special** — same categories, same order (both read
+from the game's own `skill.tbl`). Each skill has up to two toggles:
+
+- **`(primary sigil)`** — the skill's V+ sigil can roll as a Transmarvel *main*.
+  For the vanilla chase sigils (War Elemental+, Celestials, character
+  Warpath+/Awakening+, …) this is the same keep/remove toggle as before. For
+  every other skill it's a **mod extension**: vanilla Transmarvel never offers
+  e.g. Aegis V+ as a main; ticking it appends that vanilla sigil to the pool
+  at equal odds, and it rolls a random 2nd trait like the other "+" sigils.
+- **`(2nd trait)`** — the skill may roll as the random secondary on "+" sigils
+  (the trait filter; unchanged behavior).
+
+Defaults are unchanged from v2: 13 V+ generics + 28 Warpath+ on, Awakening+
+and everything new off. Ticked sigils share the pool at equal odds; **untick
+every primary = vanilla pool** (overhaul off). The 75/25 sigil-vs-wrightstone
+split stays vanilla. Character sigils sit under *5. Special* (where the game
+itself files them), one toggle per Warpath+/Awakening+ form.
 
 ### Wrightstone drops
 Wrightstone skills are **not rolled from the sigil trait pool** — each wrightstone
@@ -69,14 +80,14 @@ tier, default), `1` = the vanilla high-tier stones whose **two subs roll at
 Lv15/Lv10 — from your ticked 2nd traits**, since their sub rolls go through the
 same filtered trait lots, `2` = both 50/50. Either way, no more sub-Lv20 mains.
 
-### Sigil Pool — Auto (duplicate protection)
+### General — duplicate protection
 *Auto-remove completed sigils* (default on): at every launch the mod reads your
 newest save — **read-only, it never writes your save** — and removes from the pool:
-- any ticked **Warpath+** you own with *every* 2nd trait it can still roll (your
-  ticked traits) — a pull could give you nothing new; it returns automatically
-  when you tick more traits (new combos to chase);
-- any ticked **Awakening+** you own **at all** — duplicates are useless, so one
-  copy retires it.
+- any ticked **Warpath+ or mod-added V+ main** you own with *every* 2nd trait it
+  can still roll (your ticked traits) — a pull could give you nothing new; it
+  returns automatically when you tick more traits (new combos to chase);
+- any ticked **Awakening+ or stat V+ single** you own **at all** — duplicates
+  are useless, so one copy retires it.
 
 Your manual unticks always win. If the save can't be parsed (e.g. after a game
 update changes the format), the mod **fails open**: pool left unpruned, reason
@@ -88,15 +99,21 @@ Default: a curated 11 (DMG Cap, Tyranny, Stamina, Quick Charge, Cascade, Quick
 Cooldown, Uplift, Guts, Autorevive, Potion Hoarder, Steady Focus) — no
 resistances, no filler. **Untick everything = vanilla trait lots** (filter off).
 
-Two guarantees, enforced by construction:
-- **Only your ticks can roll.** Verified live: an 80-pull test produced 67/67
-  sigils inside the ticked sets.
-- **Only vanilla-legal combos are generated.** A (sigil × 2nd trait) pair is
-  produced only if the unmodded game could produce it. Ten "supreme" traits
-  (Supplementary DMG, Glass Cannon, Berserker, …) can never roll on Transmarvel
-  pulls in vanilla, so ticking them doesn't add them there — the checkbox
-  descriptions mark these. See [LEGAL-COMBOS.md](LEGAL-COMBOS.md) for the full
-  legality table (41 mains × 62 legal secondaries = 2,542 combos).
+One guarantee, enforced by construction (since v3):
+- **Only your ticks can roll — from any source, with no junk leak.** Every trait
+  lot is rewritten to your ticked set: vanilla-legal placements are preferred
+  (strict, then relaxed tier), and lots where no ticked trait is vanilla-legal
+  are **forced** onto the ticked set rather than left vanilla. Tick several
+  traits for variety — with a single ticked trait, every sigil rolls that trait.
+
+The pre-v3 "only vanilla-legal combos" guarantee is retired: live pulls proved
+the engine consumes rewritten lot content regardless of the reference-path
+legality model (a one-trait config produced Supplementary DMG — not
+Transmarvel-legal in vanilla — on most mains), while the lots that model kept
+vanilla leaked unticked junk. [LEGAL-COMBOS.md](LEGAL-COMBOS.md) still documents
+what *vanilla* could produce; the ten "supreme" traits it lists as
+non-Transmarvel are now rollable when ticked (marked as a mod extension in the
+checkbox descriptions).
 
 Scope note: the 2nd-trait roll is a property of the sigil, not of where it
 dropped — so the filter applies to "+" sigils from **any** source (curios
@@ -139,7 +156,10 @@ The four generators, in launch order:
    `reward.tbl`. New quests added by game updates are covered automatically.
    Reward-chain decode: [docs/16](../../docs/16-quest-reward-chain.md).
 2. **Sigil pool** (`ApplySigilPool`) — filters the three Transmarvel chase
-   buckets in `gacha_lot.tbl` to your ticked sigils and reweights
+   buckets in `gacha_lot.tbl` to your ticked sigils, **appends rows for ticked
+   V+ mains vanilla doesn't offer** (cloned from a vanilla row of the Chase V+
+   bucket, so tier scope and flags stay vanilla; the sigil items themselves are
+   vanilla `GEEN_<skill>_24` dual-slot forms), and reweights
    `gacha_rate_group.tbl` at 250/sigil (equal per-item odds; wrightstone side
    pinned to the tier-3 Transmarveled lot). Before filtering, the auto-pruner
    parses your save's sigil inventory + per-copy trait assignments
@@ -165,11 +185,14 @@ The four generators, in launch order:
 4. **Roll cost** (`ApplyTransmarvelCost`) — one cell in `gacha.tbl`
    (the Transmarvel tier's `TransmarvelCost`), clamped to ≥1.
 
-The checkbox catalogs (`SigilCatalog.cs`, `TraitCatalog.cs`) and the JSON
-mirrors (`sigil-catalog.json`, `trait-catalog.json`) are **generated from the
-game's own data + English text dump** — no hand-typed ids anywhere. Hashing is
-the game's custom XXHash32 (seed `0x178A54A4`; decode in
-[docs/15](../../docs/15-transmarvel-pool-decoded.md)).
+The checkbox catalogs (`Config.cs`, `SigilCatalog.cs`, `TraitCatalog.cs`) are
+**generated from the game's own data + English text dump** — no hand-typed ids
+anywhere: `scripts/gen-unified-skill-catalog.mjs` derives the unified
+[skill-catalog.json](skill-catalog.json) (categories/order from `skill.tbl`,
+sigil forms from the text dump, plus the older `sigil-catalog.json` /
+`trait-catalog.json` inputs), and `scripts/gen-transmarvel-code.mjs` renders
+the C# from it. Hashing is the game's custom XXHash32 (seed `0x178A54A4`;
+decode in [docs/15](../../docs/15-transmarvel-pool-decoded.md)).
 
 Source: [mods-src/gbfr.transmarvel.overhaul/](../../mods-src/gbfr.transmarvel.overhaul/)
 (build: `tools\dotnet9sdk\dotnet.exe build -c Release`). Save-parser test
