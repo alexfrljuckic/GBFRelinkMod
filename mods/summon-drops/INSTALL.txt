@@ -1,0 +1,32 @@
+Summon Drops Maxed v1.0 (Endless Ragnarok / 2.0)
+================================================
+Two knobs for 2.0's summon inventory, both ON by default and toggleable
+in Reloaded-II (right-click the mod -> Configure Mod):
+
+1. Guaranteed summon drops: every source that can drop a summon always
+   does (vanilla rolls 35/50/70% depending on the source).
+2. Max skill levels: skills rolled on dropped summons always come out
+   at the highest level their pool allows (vanilla lowballs - e.g.
+   Lv11-15 pools roll Lv15 only ~10% of the time).
+
+Which summon drops and which skills appear stay vanilla-random.
+Every setting change needs a game restart. The Reloaded console prints
+what was applied at each launch.
+
+Install:
+1. Copy the gbfr.summon.drops folder into Reloaded-II\Mods\
+2. Reloaded-II -> Granblue Fantasy Relink -> enable "Summon Drops Maxed (2.0)"
+3. Launch. Disable other mods shipping reward_summon.tbl or
+   summon_curve.tbl - this mod generates both. (Safe alongside
+   Transmarvel Overhaul - no shared tables.)
+
+Requires GBFR Mod Manager 2.0.1+ (Nexus mod 526).
+
+If Reloaded fails with "Application Control policy has blocked this file
+(0x800711C7)": Windows Security -> App & browser control -> Smart App
+Control -> Off (one-way switch; SmartScreen stays on).
+If mods silently don't apply (no Reloaded console): Reloaded-II ->
+Edit Application -> Advanced Tools & Options -> Deploy ASI Loader.
+
+Full README + the summon drop-chain decode:
+https://github.com/alexfrljuckic/GBFRelinkMod/tree/main/mods/summon-drops

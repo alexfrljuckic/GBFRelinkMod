@@ -1,0 +1,32 @@
+{
+  "ModId": "gbfr.summon.drops",
+  "ModName": "Summon Drops Maxed (2.0)",
+  "ModAuthor": "alexfrljuckic",
+  "ModVersion": "1.0",
+  "ModDescription": "Summons, guaranteed and maxed: every quest/source that can drop a summon always drops one (the vanilla 35/50/70% chances become 100%), and the skills rolled on dropped summons always come out at the highest level their pool allows (vanilla rolls e.g. Lv11-15 with Lv15 rarest - this pins the top level). Both knobs are toggleable in Configure Mod. Restart the game after changing a setting - tables are generated from vanilla data at every launch; nothing on disk is modified. Built for Endless Ragnarok 2.0. Which summon drops and which skills appear in its pools stay vanilla.",
+  "ModDll": "gbfr.summon.drops.dll",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "gbfr.summon.drops.ReleaseMetadata.json",
+  "IgnoreRegexes": [],
+  "IncludeRegexes": [
+    "ModConfig\\.json"
+  ],
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "gbfrelink.utility.manager"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "granblue_fantasy_relink.exe"
+  ],
+  "ProjectUrl": "https://github.com/alexfrljuckic/GBFRelinkMod"
+}

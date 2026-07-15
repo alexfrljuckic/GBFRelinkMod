@@ -50,6 +50,19 @@ Last updated 2026-07-09.
   (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
 
 ## 🔬 In design (validate before building)
+- **Summon Drops Maxed v1.0 — RELEASED (live verify pending, per Alex "release now,
+  test tomorrow")**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/summon-drops-v1.0)):
+  new mod [mods/summon-drops/](mods/summon-drops/) /
+  [mods-src/gbfr.summon.drops/](mods-src/gbfr.summon.drops/), per Alex: "quests that
+  can drop summons always drop them, stats the highest value possible".
+  (1) reward_summon.tbl chances 35/50/70 → 100 (71/177 sources raised);
+  (2) summon_curve.tbl level lots pinned to their top level (37 lots, 10 real
+  ranges — Lv4-6→6, Lv7-10→10, Lv11-15→15). Both toggleable, on by default;
+  layout-guarded; simulated against vanilla tables; release notes flag the pending
+  live verification. ⚠️ VERIFY (Alex, tomorrow): enable in Reloaded, clear a
+  summon-dropping quest, check the two console lines + a dropped summon's skill
+  levels; hotfix/note per CLAUDE.md rules if anything's off.
 - **Summon skill drop rates** (research started 2026-07-14, per Alex): 2.0's summon
   inventory decoded — full chain `reward.tbl → reward_summon → reward_summon_lot →
   summon.tbl (189 summons, 2 skill slots, rarity 3–5★) → summon_lot (weighted skill
