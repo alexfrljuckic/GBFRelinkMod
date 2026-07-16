@@ -1,0 +1,33 @@
+{
+  "ModId": "gbfr.synthesis.control",
+  "ModName": "Sigil Synthesis Control (2.0)",
+  "ModAuthor": "alexfrljuckic",
+  "ModVersion": "1.0",
+  "ModDescription": "Sigil synthesis at Siero's, fully under your control - two features, both optional.  (1) ALWAYS GRAND SUCCESS: every synthesis is a Grand Success, so the result's traits come out maxed at Lv15. Vanilla rolls Success/Great/Grand with Grand between 45% and 85% depending on your inputs' Prospect score; this pins Grand to 100% at every score.  (2) CHOOSE RESULT TRAITS: vanilla picks the result's two traits at random from the four traits of your two input sigils - that's the '1/12 Prospects' the screen cycles through. Turn this on and you decide exactly which two, every time (defaults to trait 1 of the first sigil + trait 2 of the second). The first trait also decides which sigil you get. Traits apply instantly; the Grand Success toggle needs a game restart (tables are generated from vanilla data at every launch - nothing on disk is modified). Built for Endless Ragnarok 2.0; the trait feature disables itself safely if a game update moves the code it hooks.",
+  "ModDll": "gbfr.synthesis.control.dll",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "gbfr.synthesis.control.ReleaseMetadata.json",
+  "IgnoreRegexes": [],
+  "IncludeRegexes": [
+    "ModConfig\\.json"
+  ],
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "gbfrelink.utility.manager",
+    "reloaded.sharedlib.hooks"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "granblue_fantasy_relink.exe"
+  ],
+  "ProjectUrl": "https://github.com/alexfrljuckic/GBFRelinkMod"
+}

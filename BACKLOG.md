@@ -1,7 +1,7 @@
 # Backlog
 
 Single tracker for GBFRelinkMod. Targets **game v2.0 / Endless Ragnarok**.
-Last updated 2026-07-09.
+Last updated 2026-07-16.
 
 > ⚠️ Hobby project — not actively maintained per game patch. For maintained mods, see
 > [Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink).
@@ -48,6 +48,29 @@ Last updated 2026-07-09.
   untouched — unlike the old 1.x Nexus uncap mod). Un-install clamps back to 999.
   Post-release fix: ModConfig.json JSON escape bug made Reloaded skip the mod
   (now a CLAUDE.md convention: validate every ModConfig, no heredoc JSON).
+- **Badge Shop v2.0 — RELEASED + LIVE-VERIFIED 2026-07-16**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/badge-shop-v2)),
+  per Alex: "include silver centrums; config for the voucher cost of each item".
+  gbfr.shop.voucherbadges converted from static tables to a C# launch-time mod
+  ([mods-src/gbfr.shop.voucherbadges/](mods-src/gbfr.shop.voucherbadges/)):
+  per-item voucher costs in Configure Mod (defaults 1/3/5 unchanged + Silver Centrum
+  `ITEM_14_0003` at 5; cost 0 = removed from shop, min real cost 1 per the free-cap-200
+  rule), recipe-key collision guard (990001–990004), layout guards. Generated rows
+  byte-diffed IDENTICAL (9/9) to the live-verified v1 static tables; static GBFR/data
+  tables removed from repo + installed copies. Verified live: `Voucher shop applied
+  (4 items, unlimited stock)` console line + all 4 entries in the Treasure Trade tab.
+- **Sigil Synthesis Control v1.0 — RELEASED + LIVE-VERIFIED 2026-07-16**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/synthesis-control-v1.0)),
+  per Alex: "a mod that can allow us to control the results of sigil synthesis" →
+  "always takes the first trait on the first sigil and the second trait on the second".
+  Two features in one mod ([mods/sigil-synthesis/](mods/sigil-synthesis/) /
+  [mods-src/gbfr.synthesis.control/](mods-src/gbfr.synthesis.control/)):
+  (1) **Always Grand Success** — `gem_mix_success.tbl` all 28 Prospect rows → 0/10000,
+  so results are always Lv15;
+  (2) **Choose result traits** — two pure-asm hooks defeat the RNG that picks the
+  result's two traits from the 4 input traits, making any of the game's 12 "Prospects"
+  deterministic (selector: innate + secondary each from A1/A2/B1/B2; live, no restart).
+  Full decode + crash post-mortem: [docs/24](docs/24-sigil-synthesis-recon.md).
 
 ## 🔬 In design (validate before building)
 - **Summon Drops Maxed v1.0 — RELEASED (live verify pending, per Alex "release now,
@@ -63,6 +86,24 @@ Last updated 2026-07-09.
   live verification. ⚠️ VERIFY (Alex, tomorrow): enable in Reloaded, clear a
   summon-dropping quest, check the two console lines + a dropped summon's skill
   levels; hotfix/note per CLAUDE.md rules if anything's off.
+- **Sigil synthesis — RELEASED as Sigil Synthesis Control v1.0** (see the Done
+  entry above). Full write-up — decoded addresses, the shipped hook design, and both
+  crash post-mortems: [docs/24](docs/24-sigil-synthesis-recon.md). Durable lessons
+  worth carrying into the next code mod:
+  - **A VEH must return `EXCEPTION_CONTINUE_SEARCH` for guard-page faults it did not
+    set.** Windows grows thread stacks via guard pages; swallowing those kills boot.
+  - **Scan only `IMAGE_SCN_MEM_EXECUTE` sections, mirroring
+    `vendor/GBFRelinkFix/src/memory.cpp` (`GetModuleSections`).** A module-wide byte
+    walk over `SizeOfImage` hits non-readable pages → an access violation, which .NET
+    CANNOT catch → instant death inside the mod constructor. Signature of that failure:
+    the Reloaded log stops right after `Loading: <mod>` with no `LoadTime` line.
+  - Mid-function hooks from a Reloaded C# mod: prefer **pure asm with no managed
+    callback** (dodges shadow-space / stack-alignment / XMM-preservation hazards), and
+    reach config through a pointer the C# side rewrites.
+  - Locate code by **unique byte pattern, never a hardcoded RVA**, so a game patch
+    self-disables the feature instead of injecting into whatever moved there.
+  - New reusable tools: `scripts/find-xrefs.mjs` (RIP-relative xref scan),
+    `scripts/func-bounds.mjs` (.pdata function bounds).
 - **Summon skill drop rates** (research started 2026-07-14, per Alex): 2.0's summon
   inventory decoded — full chain `reward.tbl → reward_summon → reward_summon_lot →
   summon.tbl (189 summons, 2 skill slots, rarity 3–5★) → summon_lot (weighted skill

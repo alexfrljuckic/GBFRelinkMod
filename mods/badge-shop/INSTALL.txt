@@ -1,0 +1,27 @@
+Badges, Spellbooks & Centrums for Vouchers (2.0) — v2.0
+
+Adds four unlimited purchases to the Treasure Trade tab at Siero's Knickknack
+Shack, paid in Knickknack Vouchers. Every price is adjustable in Configure Mod.
+
+  Silver Dalia Badge   1 voucher   (default)
+  Gold Dalia Badge     3 vouchers  (default)
+  Gold Spellbook       5 vouchers  (default)
+  Silver Centrum       5 vouchers  (default, NEW in v2)
+
+Set any cost to 0 to remove that item from the shop entirely.
+
+INSTALL
+1. Install Reloaded-II and the GBFR Mod Manager (gbfrelink.utility.manager):
+   https://github.com/Reloaded-Project/Reloaded-II
+   https://www.nexusmods.com/granbluefantasyrelink/mods/526
+2. Copy the folder gbfr.shop.voucherbadges into Reloaded-II\Mods\
+3. In Reloaded, enable "Badges, Spellbooks & Centrums for Vouchers (2.0)" for
+   Granblue Fantasy: Relink, then launch the game through Reloaded.
+4. Change prices any time via Configure Mod, then RESTART the game (shop tables
+   are generated from vanilla data at every launch).
+
+NOTE: conflicts with other mods that ship trade.tbl, item_tier_map.tbl or
+item_material_list.tbl. Nothing on disk is modified - tables are generated at
+launch from the game's own vanilla data.
+
+Built for Granblue Fantasy: Relink 2.0 (Endless Ragnarok).

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0-windows7.0</TargetFramework>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <LangVersion>12</LangVersion>
+        <Nullable>disable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <!-- SynthesisHook pokes the asm hooks' shared buffer through raw pointers -->
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DebugType>none</DebugType>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="ModConfig.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Reloaded.Mod.Interfaces" Version="2.5.0" ExcludeAssets="runtime" />
+        <!-- IAsmHook, for the mid-function trait override (docs/24) -->
+        <PackageReference Include="Reloaded.Hooks.Definitions" Version="1.10.0" ExcludeAssets="runtime" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Shared interfaces published by the GBFR Mod Manager (loaded from its mod at runtime) -->
+        <Reference Include="gbfrelink.utility.manager.Interfaces">
+            <HintPath>C:\Reloaded-II\Mods\gbfrelink.utility.manager\gbfrelink.utility.manager.Interfaces.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+
+</Project>

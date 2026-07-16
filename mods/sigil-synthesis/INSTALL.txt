@@ -1,0 +1,17 @@
+Sigil Synthesis Control (2.0) — v1.0
+
+Every sigil synthesis at Siero's is a Grand Success (skills maxed at Lv15).
+Toggleable in Configure Mod; restart the game after changing it.
+
+INSTALL
+1. Install Reloaded-II and the GBFR Mod Manager (gbfrelink.utility.manager):
+   https://github.com/Reloaded-Project/Reloaded-II
+   https://github.com/Nenkai/gbfrelink.utility.manager
+2. Copy the folder gbfr.synthesis.control into Reloaded-II\Mods\
+3. In Reloaded, enable "Sigil Synthesis Control (2.0)" for
+   Granblue Fantasy: Relink, then launch the game through Reloaded.
+
+NOTE: disable the Nexus mod "Sigil Synthesis All Grand Success" if you have
+it installed — both mods modify the same table.
+
+Built for Granblue Fantasy: Relink 2.0 (Endless Ragnarok).
