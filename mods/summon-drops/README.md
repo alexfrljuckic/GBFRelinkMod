@@ -15,6 +15,10 @@ Reloaded-II (right-click the mod → *Configure Mod*):
 Which summon drops and which skills appear in its pools stay vanilla-random —
 this mod only removes the drop coin-flip and the level lowball.
 
+**Full reference generated from the game data**: [DROP-TABLES.md](DROP-TABLES.md) —
+every stage that can drop a summon, which summons (with weights), and each
+summon's complete skill pools with odds and level ranges.
+
 ## Install
 
 Requires [Reloaded-II](https://github.com/Reloaded-Project/Reloaded-II/releases) +

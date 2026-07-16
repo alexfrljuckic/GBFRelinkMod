@@ -115,15 +115,25 @@ All knobs are plain `.tbl` content → launch-time rebuild via the GBFR Mod Mana
   string scheme is still unguessed (no `SKILL_/SMN_/SUMMON_+So####` pattern
   hashes to them), but semantically slot 2 = the summon's active call effect.
 
+## Name links CRACKED (2026-07-15) — full drop tables generated
+
+- **Summon names, 189/189**: `summon.tbl@0x14 → summon_param@0x34` (its species
+  number `@0x40`) `→ summon_info@0x48` (name-text hash `@0x30`) `→ TXT_SMN_So####`.
+- **Reward sources, 117/177 quest-named**: reward keys resolve as
+  `RW_<qid>_100/_400/_403` (the `_400/_403` rows are 2.0 additions, semantics
+  unconfirmed; 60 keys remain hash-only — no other table references them, so
+  they're code-addressed by unguessed id strings).
+- Generated reference: [mods/summon-drops/DROP-TABLES.md](../mods/summon-drops/DROP-TABLES.md)
+  (`scripts/gen-summon-drop-tables.mjs`) — every stage → summons (weights), every
+  summon → slot-1 skill pool (odds + level ranges) and slot-2 call effects.
+
 ## Open items (before building)
 
-1. Link `summon.tbl` rows ↔ `summon_info`/So-ids (no shared hash column found
-   yet; try `summon_param` or the int series id @0x1C) — needed only for
-   per-summon config names; global skill/level knobs don't require it.
-2. Slot-2 (call effect) id scheme — brute patterns failed; not needed for a
+1. ~~Link summon.tbl ↔ So-ids~~ **DONE** (see above).
+2. Slot-2 (call effect) id scheme — brute patterns failed; most summons share
+   11-variant call-effect pools, level-tiered by rarity. Not needed for a
    slot-1 skill-rate mod.
-3. Resolve the remaining 154 `reward_summon` keys (what non-quest sources drop
-   summons — Endless packages?).
+3. ~~Resolve reward_summon keys~~ 117/177 done (`_100/_400/_403`); 60 remain.
 4. **When is the skill rolled?** Presumably at drop time (like sigil traits) —
    confirm live: edit a summon_lot group to a single skill, drop a summon, check.
 5. Save-side summon inventory format (for a future auto-prune analog) — docs/21
