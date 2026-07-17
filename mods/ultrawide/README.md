@@ -1,5 +1,14 @@
 # Ultrawide Fix (Endless Ragnarok / 2.0)
 
+> 🪦 **DEPRECATED (2026-07-16) — no longer developed or used.** The spanned-UI work hit a
+> dead end (a shared UI layer needs opposite treatment on menus vs the quest board, which
+> per-id exclusion can't reconcile — see [docs/18](../../docs/18-ui-spanning-session2.md)),
+> and it's now uninstalled here. The `ultrawide-v1` release is left up for anyone already
+> using it, but expect nothing further.
+>
+> **If you want a maintained ultrawide mod, use
+> [zhen's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide) instead.**
+
 > ⚠️ **Hobby project, not maintained.** Built for game **v2.0** — it *will* break on future
 > updates and I won't patch it every time. For maintained mods, see
 > [Nexus Mods](https://www.nexusmods.com/games/granbluefantasyrelink). Use at your own risk.

@@ -119,13 +119,26 @@ Last updated 2026-07-16.
   summon CALL EFFECTS (`TXT_SMN_BDY_So####`: potions/Regen/Stout Heart/crit gauge…).
   Still open: summon.tbl↔So-id link (per-summon config names), live confirm skills
   roll at drop time.
-- **Complete open-source UI spanning** — **CONCLUDED 2026-07-10 (final): ALL ultrawide
-  mods UNINSTALLED — game runs vanilla rendering** (both builds parked in
-  `save-backups/parked-ultrawide-mods/`; a persistent town-bubble offset survived every
-  mod configuration INCLUDING [zhen's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide)
-  v0.2.1, so Alex pulled everything — first vanilla launch should confirm whether the
-  bubbles were ever a mod bug at all; NOTE the mid-day tests were contaminated by
-  Ultimate ASI Loader loading .asi from scripts SUBFOLDERS, i.e. "parked" mods co-ran).
+- **Complete open-source UI spanning** — **DEPRECATED + ACTUALLY UNINSTALLED 2026-07-16**
+  (per Alex: "we have effectively deprecated the widescreen mod"). The game's
+  `scripts/` folder is now empty; only Reloaded's bootstrapper `.asi` remains in the
+  game root, so rendering is finally, genuinely vanilla.
+  ⚠️ **This entry claimed "ALL ultrawide mods UNINSTALLED — game runs vanilla
+  rendering" from 2026-07-10, and that was NOT true.** `GBFRUltrawide.asi` sat in
+  `scripts/` and kept loading and spanning the HUD right up to 2026-07-16 (its log was
+  still being written during that day's test launches). Worse, the live copy was a
+  *newer* build (Jul 12, 1097216 B) than the one "parked" as its backup (Jul 10,
+  1093632 B) — so the park never covered what was actually running, and deleting on the
+  strength of that backup would have lost the newer build. The live build+ini+log are
+  now parked at `save-backups/parked-ultrawide-mods/GBFRUltrawide-live-2026-07-16/`.
+  **Lesson: "uninstalled" means the file is gone from `scripts/` — verify, don't
+  assume; and diff a backup against the live copy before trusting it.** Any conclusion
+  drawn from a "vanilla" launch before 2026-07-16 (notably the persistent town-bubble
+  offset) is suspect — it was measured with this mod still active.
+  Older context: a town-bubble offset survived every mod configuration INCLUDING
+  [zhen's GBFRUltrawide](https://github.com/zhen469891/gbfr-ultrawide) v0.2.1, which is
+  why Alex pulled everything; the mid-day tests were also contaminated by Ultimate ASI
+  Loader loading .asi from scripts SUBFOLDERS, i.e. "parked" mods co-ran.
   Most features verified at 3440x1440 (backgrounds/
   menus/loading spanned, combat VFX via ScreenEffects, lock-on/dodge, bubbles), but
   spanned-UI died on a shared-layer conflict in the quest-flow screens (same layer needs
