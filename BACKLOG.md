@@ -73,19 +73,25 @@ Last updated 2026-07-16.
   Full decode + crash post-mortem: [docs/24](docs/24-sigil-synthesis-recon.md).
 
 ## 🔬 In design (validate before building)
-- **Summon Drops Maxed v1.0 — RELEASED (live verify pending, per Alex "release now,
-  test tomorrow")**
-  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/summon-drops-v1.0)):
-  new mod [mods/summon-drops/](mods/summon-drops/) /
-  [mods-src/gbfr.summon.drops/](mods-src/gbfr.summon.drops/), per Alex: "quests that
-  can drop summons always drop them, stats the highest value possible".
-  (1) reward_summon.tbl chances 35/50/70 → 100 (71/177 sources raised);
-  (2) summon_curve.tbl level lots pinned to their top level (37 lots, 10 real
-  ranges — Lv4-6→6, Lv7-10→10, Lv11-15→15). Both toggleable, on by default;
-  layout-guarded; simulated against vanilla tables; release notes flag the pending
-  live verification. ⚠️ VERIFY (Alex, tomorrow): enable in Reloaded, clear a
-  summon-dropping quest, check the two console lines + a dropped summon's skill
-  levels; hotfix/note per CLAUDE.md rules if anything's off.
+- **Summon Drops Maxed v1.1 — RELEASED 2026-07-19**
+  ([release](https://github.com/alexfrljuckic/GBFRelinkMod/releases/tag/summon-drops-v1.1)),
+  [mods/summon-drops/](mods/summon-drops/) / [mods-src/](mods-src/gbfr.summon.drops/).
+  v1.0 (per Alex "quests that can drop summons always drop them, stats the highest
+  value possible"): (1) reward_summon chances 35/50/70 → 100 (71/177 sources);
+  (2) summon_curve level lots pinned to top (37 lots, 73 rows) — verified maxing ALL
+  slot-1 passive AND slot-2 call-effect curves (0 unmaxed). **v1.1 adds (3) Boost 5★
+  chase skills** (per Alex "the best passive should occur the most often"): every 5★
+  summon's slot-1 pool has one premium skill throttled to 8% (the unique-min-weight
+  entry — Berserker Echo/War Elemental/Spartan Echo/Stout Heart/Auto Potion/Improved
+  Dodge/Natural Defenses/Potent Greens/Crabvestment Returns across 19 summons; 44 flat
+  pools + 0 ambiguous, verified `scripts/analyze-summon-chase-skills.mjs`). Rescales
+  that entry in `summon_lot.tbl` to a configurable share (default 40%; **100 = true
+  guarantee**, fillers zeroed). Patch math simulated against vanilla → all 19 go
+  8%→target exactly. Alex runs it at 100%. Chase-skill reference table added to
+  [README](mods/summon-drops/README.md) + [DROP-TABLES.md](mods/summon-drops/DROP-TABLES.md).
+  NOTE (answered for Alex): summon base stats/aura (`summon_param`, 229 rows) are a
+  SEPARATE system the mod deliberately never touches — leveled by upgrading the summon
+  in-game, not by drops.
 - **Sigil synthesis — RELEASED as Sigil Synthesis Control v1.0** (see the Done
   entry above). Full write-up — decoded addresses, the shipped hook design, and both
   crash post-mortems: [docs/24](docs/24-sigil-synthesis-recon.md). Durable lessons

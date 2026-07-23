@@ -1,9 +1,13 @@
 # Summon drop tables — every stage, every summon, every stat
 
 **Generated from the vanilla 2.0 tables** by `scripts/gen-summon-drop-tables.mjs`
-(chain decode: [docs/23](../../docs/23-summon-skill-drops.md)). Drop % and skill
-levels shown are VANILLA; with [Summon Drops Maxed](README.md) every listed source
-drops at **100%** and every skill rolls at the **top of its level range**.
+(chain decode: [docs/23](../../docs/23-summon-skill-drops.md)). Drop %, skill odds,
+and skill levels shown are VANILLA. With [Summon Drops Maxed](README.md): every listed
+source drops at **100%**, every skill rolls at the **top of its level range**, and
+(v1.1) each 5★ summon's throttled 8% **chase skill** (the `<<CHASE` / lone 8% entry —
+Berserker Echo, War Elemental, Spartan Echo, Stout Heart, …) is raised to a
+configurable share (default **40%**). The 19 chase skills and the heuristic are in
+`scripts/analyze-summon-chase-skills.mjs`.
 
 ```mermaid
 flowchart LR

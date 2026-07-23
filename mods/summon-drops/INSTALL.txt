@@ -1,6 +1,6 @@
-Summon Drops Maxed v1.0 (Endless Ragnarok / 2.0)
+Summon Drops Maxed v1.1 (Endless Ragnarok / 2.0)
 ================================================
-Two knobs for 2.0's summon inventory, both ON by default and toggleable
+Three knobs for 2.0's summon inventory, all ON by default and toggleable
 in Reloaded-II (right-click the mod -> Configure Mod):
 
 1. Guaranteed summon drops: every source that can drop a summon always
@@ -8,8 +8,13 @@ in Reloaded-II (right-click the mod -> Configure Mod):
 2. Max skill levels: skills rolled on dropped summons always come out
    at the highest level their pool allows (vanilla lowballs - e.g.
    Lv11-15 pools roll Lv15 only ~10% of the time).
+3. Boost 5-star chase skills (NEW): each top summon has one premium
+   passive throttled to 8% (Berserker Echo on Lucilius, War Elemental
+   on Goldslime, Spartan Echo on Beelzebub, Stout Heart on Behemoth,
+   ...). This raises it to a configurable share (default 40%; set to
+   100 to make it the ONLY passive that can roll). 19 summons affected.
 
-Which summon drops and which skills appear stay vanilla-random.
+Which summon drops from each source stays vanilla-random.
 Every setting change needs a game restart. The Reloaded console prints
 what was applied at each launch.
 

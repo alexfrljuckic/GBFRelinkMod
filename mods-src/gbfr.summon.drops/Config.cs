@@ -23,6 +23,27 @@ public class Config : Configurable<Config>
         "RESTART THE GAME after changing this.")]
     [DefaultValue(true)]
     public bool MaxSkillLevels { get; set; } = true;
+
+    [Category("Summon Drops")]
+    [DisplayName("Boost 5-star chase-skill odds")]
+    [Description("Every top-tier (5-star) summon has ONE premium 'chase' skill in its\n" +
+        "passive pool throttled to 8% (Berserker Echo on Lucilius, War Elemental on\n" +
+        "Goldslime/Lilith/Rolan, Spartan Echo on Beelzebub, Stout Heart on Behemoth,\n" +
+        "etc.), while its filler skills sit at ~18-31%. This raises that one skill's\n" +
+        "odds to the percentage below. Only 5-star pools with a throttled skill are\n" +
+        "touched (19 summons); flat pools stay vanilla.\n\n" +
+        "RESTART THE GAME after changing this.")]
+    [DefaultValue(true)]
+    public bool BoostChaseSkills { get; set; } = true;
+
+    [Category("Summon Drops")]
+    [DisplayName("  ... chase-skill odds %")]
+    [Description("The share the chase skill gets when 'Boost 5-star chase-skill odds'\n" +
+        "is on. Vanilla is 8. The filler skills split the rest, keeping their relative\n" +
+        "proportions. 100 = the chase skill is the ONLY thing that can roll.\n\n" +
+        "RESTART THE GAME after changing this.")]
+    [DefaultValue(40)]
+    public int ChaseSkillPercent { get; set; } = 40;
 }
 
 /// <summary>

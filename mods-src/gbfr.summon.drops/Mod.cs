@@ -34,6 +34,9 @@ public class Mod : ModBase
 
     private const int RewardSummonRowSize = 20; // Key, LotGroup, Chance, 1, 1
     private const int SummonCurveRowSize = 12;  // Group, SkillLevel, Weight
+    private const int SummonRowSize = 36;       // Skill1LotA/B, Skill2LotA/B, Key, Species, Rarity(0x18), ...
+    private const int SummonLotRowSize = 20;    // Group, Skill, Curve, Weight(0x0C), -1
+    private const uint EmptyHash = 0x887AE0B0;
 
     public Mod(ModContext context)
     {
@@ -70,7 +73,111 @@ public class Mod : ModBase
     {
         ApplyGuaranteedDrops();
         ApplyMaxSkillLevels();
+        ApplyBoostChaseSkills();
         _dataManager.UpdateIndex();
+    }
+
+    /// <summary>
+    /// summon_lot.tbl: raise the throttled "chase" passive skill on 5-star summons.
+    ///
+    /// Every 5-star summon's slot-1 skill pool that has a chase skill follows one shape:
+    /// exactly ONE entry with a uniquely-minimum weight (vanilla 800 = 8%), the rest
+    /// higher and equal. We find each 5-star summon's slot-1 lot group (summon.tbl), and
+    /// in summon_lot.tbl rewrite that group's minimum-weight entry so the chase skill
+    /// takes ChaseSkillPercent of the pool — keeping the filler weights (and thus their
+    /// relative odds) untouched. Flat pools (no unique minimum) are left alone. Verified
+    /// against the vanilla tables: 19 groups match this shape, 0 are ambiguous
+    /// (scripts/analyze-summon-chase-skills.mjs).
+    /// </summary>
+    private void ApplyBoostChaseSkills()
+    {
+        byte[] summon = _dataManager.GetArchiveFile("system/table/summon.tbl");
+        byte[] lot = _dataManager.GetArchiveFile("system/table/summon_lot.tbl");
+        if (summon is null || summon.Length < 8 || lot is null || lot.Length < 8)
+        {
+            Log("ERROR: could not read summon.tbl / summon_lot.tbl from the game archive.");
+            return;
+        }
+        long summonRows = BinaryPrimitives.ReadInt64LittleEndian(summon);
+        long lotRows = BinaryPrimitives.ReadInt64LittleEndian(lot);
+        if (8 + summonRows * SummonRowSize != summon.Length ||
+            8 + lotRows * SummonLotRowSize != lot.Length)
+        {
+            Log("ERROR: summon.tbl / summon_lot.tbl layout changed (game update?) — refusing to patch chase skills.");
+            return;
+        }
+        if (!_configuration.BoostChaseSkills)
+        {
+            _dataManager.AddOrUpdateExternalFile("system/table/summon_lot.tbl", lot);
+            Log("Boost chase skills OFF — vanilla summon_lot.tbl registered.");
+            return;
+        }
+        int pct = Math.Clamp(_configuration.ChaseSkillPercent, 8, 100);
+
+        // 1) collect the slot-1 lot groups belonging to 5-star summons
+        var fiveStarGroups = new HashSet<uint>();
+        for (long r = 0; r < summonRows; r++)
+        {
+            int off = (int)(8 + r * SummonRowSize);
+            uint rarity = BinaryPrimitives.ReadUInt32LittleEndian(summon.AsSpan(off + 0x18, 4));
+            if (rarity != 5) continue;
+            uint a = BinaryPrimitives.ReadUInt32LittleEndian(summon.AsSpan(off + 0x00, 4)); // Skill1LotA
+            uint b = BinaryPrimitives.ReadUInt32LittleEndian(summon.AsSpan(off + 0x04, 4)); // Skill1LotB
+            uint group = a != EmptyHash ? a : b;
+            if (group != EmptyHash) fiveStarGroups.Add(group);
+        }
+
+        // 2) index summon_lot rows by group (row index list)
+        var rowsByGroup = new Dictionary<uint, List<long>>();
+        for (long r = 0; r < lotRows; r++)
+        {
+            int off = (int)(8 + r * SummonLotRowSize);
+            uint group = BinaryPrimitives.ReadUInt32LittleEndian(lot.AsSpan(off, 4));
+            if (!fiveStarGroups.Contains(group)) continue;
+            if (!rowsByGroup.TryGetValue(group, out var list)) rowsByGroup[group] = list = new List<long>();
+            list.Add(r);
+        }
+
+        int WeightAt(long r) => BinaryPrimitives.ReadInt32LittleEndian(lot.AsSpan((int)(8 + r * SummonLotRowSize + 0x0C), 4));
+
+        // 3) for each group, boost the unique-minimum (chase) entry to pct% of the pool
+        int boosted = 0;
+        foreach (var (group, rowList) in rowsByGroup)
+        {
+            if (rowList.Count < 2) continue;                       // single-entry pool: nothing to boost
+            int min = int.MaxValue, max = int.MinValue;
+            long chaseRow = -1; int minCount = 0;
+            long fillersTotal = 0;
+            foreach (var r in rowList)
+            {
+                int w = WeightAt(r);
+                if (w < min) { min = w; chaseRow = r; minCount = 1; }
+                else if (w == min) minCount++;
+                if (w > max) max = w;
+            }
+            if (min == max || minCount != 1) continue;             // flat / ambiguous: leave vanilla
+
+            void SetWeight(long r, int w) => BinaryPrimitives.WriteInt32LittleEndian(lot.AsSpan((int)(8 + r * SummonLotRowSize + 0x0C), 4), w);
+
+            if (pct >= 100)
+            {
+                // true guarantee: zero every filler so only the chase skill can roll
+                foreach (var r in rowList) if (r != chaseRow) SetWeight(r, 0);
+                SetWeight(chaseRow, 10000);
+            }
+            else
+            {
+                foreach (var r in rowList) if (r != chaseRow) fillersTotal += WeightAt(r);
+                // chase / (chase + fillersTotal) == pct/100  =>  chase = fillersTotal*pct/(100-pct)
+                long newChase = Math.Clamp((long)Math.Round(fillersTotal * (double)pct / (100 - pct)), 1, int.MaxValue);
+                SetWeight(chaseRow, (int)newChase);
+            }
+            boosted++;
+        }
+
+        _dataManager.AddOrUpdateExternalFile("system/table/summon_lot.tbl", lot);
+        Log($"Chase skills boosted: {boosted} five-star pools set to ~{pct}% for their throttled skill " +
+            $"(from {fiveStarGroups.Count} five-star slot-1 groups; flat pools left vanilla).");
     }
 
     /// <summary>reward_summon.tbl: per-source summon drop chance → 100%.</summary>
